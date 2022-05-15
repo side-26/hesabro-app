@@ -3,6 +3,9 @@
     <header>
         <NavBar/>
     </header>
+    <main>
+        
+    </main>
 </template>
 <script>
 import NavBar from '../../layout/navBar/NavBar.layout.vue'
