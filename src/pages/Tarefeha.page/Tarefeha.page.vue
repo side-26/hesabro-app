@@ -6,10 +6,10 @@
     <main class="container mx-auto sm:px-20 md:px-12 lg:px-36">
         <TarefehContainer :title="title">
         <template v-slot:body>
-            <tarefehCard   :tarefehInfo="item" v-for="item in Data" :key="item.title"/>
+            <tarefehCard @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data" :key="item.title"/>
         </template>
         <template v-slot:footer>
-            <TotalPriceCon   :totalPrice="totalpriceArr"/>
+            <TotalPriceCon   :totalPrice="totalprice"/>
         </template>
         </TarefehContainer>
         <TarefehContainer :title="title1">
@@ -27,7 +27,7 @@ export default {
     data() {
         return {
             Data:data,
-            totalpriceArr:[],
+            totalprice:0,
             title:"تعرفه های حسابرو",
             title1:"امکانات جانبی"
         }
@@ -37,7 +37,13 @@ export default {
         TarefehContainer,
         tarefehCard,
         TotalPriceCon
-    }
+    },
+    methods: {
+        handleTotalPrice(price){
+            this.totalprice+=+price
+            console.log(price)
+        }
+    },
 }
 </script>
 <style lang="">
