@@ -13,7 +13,12 @@
         </template>
         </TarefehContainer>
         <TarefehContainer :title="title1">
-            <tarefehCard  :tarefehInfo="item" v-for="item in Data" :key="item.title"/>
+            <template lang="" v-slot:body>
+            
+            <servicesBox  :percent="75" :totalPrice="totalprice" :title="subTitle" :desc="desc"/>
+            <servicesBox :percent="5" :totalPrice="totalprice" :title="subTitle1" :desc="desc1"/>
+                
+            </template>
         </TarefehContainer>
     </main>
 </template>
@@ -21,7 +26,8 @@
 import NavBar from '../../layout/navBar/NavBar.layout.vue';
 import TarefehContainer from '../../components/tarefehContainer.component/TarefehContainer.component.vue';
 import tarefehCard from '../../components/tarefehCard.component/tarefehCard.component.vue';
-import TotalPriceCon from '../../components/TotalPriceCon.component/TotalPriceCon.component.vue'
+import TotalPriceCon from '../../components/TotalPriceCon.component/TotalPriceCon.component.vue';
+import servicesBox from '../../components/servicesBox.component/servicesBox.component.vue'
 import {data} from '../../config/tarefeh.data';
 export default {
     data() {
@@ -29,14 +35,19 @@ export default {
             Data:data,
             totalprice:0,
             title:"تعرفه های حسابرو",
-            title1:"امکانات جانبی"
+            title1:"امکانات جانبی",
+            subTitle:"تعداد شعب",
+            subTitle1:"تعداد کاربران همزمان",
+            desc:"شعبه جدید",
+            desc1:"کاربر جدید",
         }
     },
     components:{
         NavBar,
         TarefehContainer,
         tarefehCard,
-        TotalPriceCon
+        TotalPriceCon,
+        servicesBox
     },
     methods: {
         handleTotalPrice(price){
