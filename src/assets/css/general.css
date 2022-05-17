@@ -27,3 +27,7 @@
     font-family: "IranYecan-thin";
     src: url(../fonts/Rounded_Dots/IRANYekanThinRd.ttf);
 }
+
+.width {
+    width: 48%;
+}
