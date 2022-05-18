@@ -3,7 +3,7 @@
     <header class="mb-10">
         <NavBar/>
     </header>
-    <main class="container mx-auto sm:px-20 md:px-12 lg:px-36">
+    <main class="container mx-auto sm:px-14 md:px-10 lg:px-28">
         <TarefehContainer :title="title">
         <template v-slot:body>
             <tarefehCard @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data" :key="item.title"/>
@@ -12,7 +12,7 @@
             <TotalPriceCon   :totalPrice="totalprice"/>
         </template>
         </TarefehContainer>
-        <TarefehContainer :title="title1">
+        <TarefehContainer :title="title1" :classes="gap-4">
             <template lang="" v-slot:body>
             
             <servicesBox  :percent="75" :totalPrice="totalprice" :title="subTitle" :desc="desc"/>

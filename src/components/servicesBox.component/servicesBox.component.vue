@@ -1,11 +1,11 @@
 <template lang="">
-    <div class="">
-        <div class="flex justify-between items-center">
-            <h6>{{title}}</h6>
-            <Counter :count="count" :step="1"/>
+    <div class="bg-gray-100 p-5 rounded-xl mx-4 md:mx-0">
+        <div class="flex justify-between sm:items-center mb-5 sm:flex-row flex-col">
+            <h6 class="font-IranYecan-extraBold my-3 self-start sm:my-0  text-sm">{{title}}</h6>
+            <Counter @handle-counter="handleCounter" :count="count" :step="1"/>
         </div>
-        <div>به ازای هر {{desc}}،{{percent}} به قیمت ماژول ها اضافه میشود</div>
-        <div><span>برای هر شعبه جدید : <span>{{price}}</span></span><span>{{finalPrice}}</span></div>
+        <div class="text-xs font-IranYecan-bold mb-6 ">به ازای هر {{desc}}،{{percent}}درصد به قیمت ماژول ها اضافه میشود</div>
+        <div class="text-xs flex justify-between font-IranYecan-bold"><span>برای هر شعبه جدید : <span>{{price}} تومان</span></span><span>{{finalPrice}} تومان</span></div>
     </div>
 </template>
 <script>
@@ -23,10 +23,15 @@ export default {
     },
     computed: {
         price(){
-            return 0;
+            return this.totalPrice*((+this.percent/100));
         },
         finalPrice(){
-            return 0;
+            return this.totalPrice*(this.count*(+this.percent/100))
+        }
+    },
+    methods: {
+        handleCounter(step){
+                this.count+=step
         }
     },
 }
