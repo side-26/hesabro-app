@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             checked:false,
-            toggled:false
+            toggled:true
         }
     },
         props:["tarefehInfo"],
