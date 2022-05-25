@@ -17,7 +17,8 @@ export default {
     name:"FormCo",
     methods: {
         handleSubmit(){
-            alert("submited")
+            alert("submited");
+            this.$emit("handleLoading");
         }
     },
 }

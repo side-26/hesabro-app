@@ -1,9 +1,9 @@
 
 <template lang="">
-    <header class="mb-10">
+    <header class="mb-10" :class="{'blur':loading}">
         <NavBar/>
     </header>
-    <main class="container mx-auto sm:px-14 md:px-10 lg:px-28">
+    <main class="container mx-auto sm:px-14 md:px-10 lg:px-28 " :class="{'blur':loading}">
         <TarefehContainer :title="title">
         <template v-slot:body>
             <tarefehCard @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data" :key="item.title"/>
@@ -14,22 +14,24 @@
         </TarefehContainer>
         <TarefehContainer :title="title1" :classes="gap-4">
             <template lang="" v-slot:body>
-            <servicesBox @handle-side-price="sidePrice"  :min="1"  :percent="75" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle" :desc="desc"/>
+            <servicesBox @handle-side-price="handlesidePrice"  :min="1"  :percent="75" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle" :desc="desc"/>
             <servicesBox  @handle-side-price="handlesidePrice" :min="5" :percent="5" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle1" :desc="desc1"/>
             </template>
         </TarefehContainer>
         <TarefehContainer :title="title2" :classes="gap-4">
                 <template lang="" v-slot:body>
                     <Bill :discount="discount" :taxes="taxes" :finalPrice="ff1" :totalPrice="sideServices"/>
-                    <FormCo >
+                    <FormCo @handle-loading="handleLoading">
                         <InputCo :type="text" :title="title3" :placeHolder="placeHolder"/>
                         <InputCo :type="text" :title="title4" :placeHolder="placeHolder1"/>
                     </FormCo>
                 </template>
         </TarefehContainer>
     </main>
+    <Loading v-if="loading" :msg="txt"/>
 </template>
 <script>
+import Loading from '../../components/Loading.component/Loading.component.vue';
 import NavBar from '../../layout/navBar/NavBar.layout.vue';
 import TarefehContainer from '../../components/tarefehContainer.component/TarefehContainer.component.vue';
 import tarefehCard from '../../components/tarefehCard.component/tarefehCard.component.vue';
@@ -47,6 +49,7 @@ export default {
             discount:10,
             taxes:5,
             sideServices:0,
+            loading:false,
             title:"تعرفه های حسابرو",
             title1:"امکانات جانبی",
             title2:"ثبت سفارش",
@@ -57,7 +60,8 @@ export default {
             desc:"شعبه جدید",
             desc1:"کاربر جدید",
             placeHolder:"نام و نام خانوادگی خود را وارد کنید",
-            placeHolder1:"موبایل خود را وارد کنید"
+            placeHolder1:"موبایل خود را وارد کنید",
+            txt:"لطفا منتظر بمانید"
         }
     },
     components:{
@@ -68,7 +72,8 @@ export default {
         servicesBox,
         Bill,
         FormCo,
-        InputCo
+        InputCo,
+        Loading
     },
     methods: {
         handleTotalPrice(price){
@@ -78,20 +83,22 @@ export default {
         handlesidePrice(price){
             this.sideServices+=+price;
             console.log(this.sideServices)
+        },
+        handleLoading(){
+            this.loading=!this.loading;
         }
     },
     watch: {
-        // sideServices(newVal,oldVal){
-        //     console.log(newVal,oldVal)
-        // }
+        
     },
     computed: {
         finalPrice(){
             return +(this.totalprice+this.taxes-this.discount)
         },
         ff1(){
-           return this.totalprice
-        }
+           return this.totalprice+this.sideServices
+        },
+        
     },
 }
 </script>

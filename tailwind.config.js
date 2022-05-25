@@ -11,6 +11,10 @@ module.exports = {
                 "IranYekan-regular": ["IranYecan-regular"],
                 "IranYecan-bold": ["IranYecan-bold"],
                 "IranYecan-extraBold": ["IranYecan-extraBold"],
+            },
+            animation: {
+                'spin-slow': 'spin 1.5s ease-in-out infinite',
+
             }
         },
 
