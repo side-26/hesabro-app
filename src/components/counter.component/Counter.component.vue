@@ -4,7 +4,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
 </svg>
 </button>
-<span class="mx-2 py-2  px-5 rounded-md bg-gray-200 font-IranYecan-bold">{{count}}</span>
+<span class="mx-2 py-2  px-5 rounded-md bg-gray-200 font-IranYecan-bold">{{toPersian(count)}}</span>
 <button :disabled="min>=count" :class="{'text-gray-300':min>=count,'cursor-no-drop':min>=count}" @click="handleCounter(-step)"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
 </svg></button>
@@ -18,7 +18,7 @@ export default {
             
         }
     },
-    props:["count","step","min"],
+    props:["count","step","min","toPersian"],
     methods: {
         handleCounter(step){
                this.$emit('handleCounter',step)

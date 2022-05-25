@@ -6,16 +6,16 @@
     <main class="container mx-auto sm:px-14 md:px-10 lg:px-28 " :class="{'blur':loading}">
         <TarefehContainer :title="title">
         <template v-slot:body>
-            <tarefehCard @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data" :key="item.title"/>
+            <tarefehCard :toPersian="toPersian" @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data" :key="item.title"/>
         </template>
         <template v-slot:footer>
-            <TotalPriceCon   :totalPrice="totalprice"/>
+            <TotalPriceCon :toPersian="toPersian"  :totalPrice="totalprice"/>
         </template>
         </TarefehContainer>
         <TarefehContainer :title="title1" :classes="gap-4">
             <template lang="" v-slot:body>
-            <servicesBox @handle-side-price="handlesidePrice"  :min="1"  :percent="75" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle" :desc="desc"/>
-            <servicesBox  @handle-side-price="handlesidePrice" :min="5" :percent="5" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle1" :desc="desc1"/>
+            <servicesBox @handlesidePrice="handlesidePrice" v-model="side1" :min="1"  :percent="75" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle" :desc="desc"/>
+            <servicesBox  @handlesidePrice="handlesidePrice" v-model="side2" :min="5" :percent="5" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle1" :desc="desc1"/>
             </template>
         </TarefehContainer>
         <TarefehContainer :title="title2" :classes="gap-4">
@@ -39,8 +39,10 @@ import TotalPriceCon from '../../components/TotalPriceCon.component/TotalPriceCo
 import servicesBox from '../../components/servicesBox.component/servicesBox.component.vue';
 import Bill from '../../components/Bill.component/Bill.component.vue';
 import FormCo from '../../components/form.component/form.component.vue';
-import InputCo from '../../components/form.component/Input.component/Input.component.vue'
+import InputCo from '../../components/form.component/Input.component/Input.component.vue';
+import {toFarsiNumber} from '../../utilities/ConvertToPersian'
 import {data} from '../../config/tarefeh.data';
+
 export default {
     data() {
         return {
@@ -50,6 +52,8 @@ export default {
             taxes:5,
             sideServices:0,
             loading:false,
+            side1:0,
+            side2:0,
             title:"تعرفه های حسابرو",
             title1:"امکانات جانبی",
             title2:"ثبت سفارش",
@@ -82,21 +86,21 @@ export default {
         },
         handlesidePrice(price){
             this.sideServices+=+price;
-            console.log(this.sideServices)
+            // console.log("side services is here",this.sideServices,price)
         },
         handleLoading(){
             this.loading=!this.loading;
+        },
+        toPersian(num){
+            return toFarsiNumber(num)
         }
-    },
-    watch: {
-        
     },
     computed: {
         finalPrice(){
             return +(this.totalprice+this.taxes-this.discount)
         },
         ff1(){
-           return this.totalprice+this.sideServices
+           return this.totalprice+this.side1+this.side2
         },
         
     },
