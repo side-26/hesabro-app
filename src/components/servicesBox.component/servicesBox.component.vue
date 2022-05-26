@@ -10,7 +10,7 @@
 </template>
 <script>
 import Counter from '../counter.component/Counter.component.vue';
-import {toFarsiNumber} from '../../utilities/ConvertToPersian'
+import {toFarsiNumber} from '@/utilities/ConvertToPersian'
 
 export default {
     name:"servicesContainer",

@@ -31,17 +31,17 @@
     <Loading v-if="loading" :msg="txt"/>
 </template>
 <script>
-import Loading from '../../components/Loading.component/Loading.component.vue';
-import NavBar from '../../layout/navBar/NavBar.layout.vue';
-import TarefehContainer from '../../components/tarefehContainer.component/TarefehContainer.component.vue';
-import tarefehCard from '../../components/tarefehCard.component/tarefehCard.component.vue';
-import TotalPriceCon from '../../components/TotalPriceCon.component/TotalPriceCon.component.vue';
-import servicesBox from '../../components/servicesBox.component/servicesBox.component.vue';
-import Bill from '../../components/Bill.component/Bill.component.vue';
-import FormCo from '../../components/form.component/form.component.vue';
-import InputCo from '../../components/form.component/Input.component/Input.component.vue';
-import {toFarsiNumber} from '../../utilities/ConvertToPersian'
-import {data} from '../../config/tarefeh.data';
+import Loading from '@/components/Loading.component/Loading.component.vue';
+import NavBar from '@/layout/navBar/NavBar.layout.vue';
+import TarefehContainer from '@/components/tarefehContainer.component/TarefehContainer.component.vue';
+import tarefehCard from '@/components/tarefehCard.component/tarefehCard.component.vue';
+import TotalPriceCon from '@/components/TotalPriceCon.component/TotalPriceCon.component.vue';
+import servicesBox from '@/components/servicesBox.component/servicesBox.component.vue';
+import Bill from '@/components/Bill.component/Bill.component.vue';
+import FormCo from '@/components/form.component/form.component.vue';
+import InputCo from '@/components/form.component/Input.component/Input.component.vue';
+import {toFarsiNumber} from '@/utilities/ConvertToPersian'
+import {data} from '@/config/tarefeh.data';
 console.log(isNaN("0912ffdsfsad5955"))
 export default {
     data() {
