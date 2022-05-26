@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "vee-validate": "^4.5.11",
     "vue": "^3.2.25"
   },
   "devDependencies": {
