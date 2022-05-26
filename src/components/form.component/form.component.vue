@@ -1,6 +1,6 @@
 <template lang="">
     <section class="lg:w-2/3 md:w-4/5 w-full  mt-3 md:mt-0  md:mr-auto px-3">
-        <form @submit.prevent="handleSubmit">
+        <Form @submit="handleSubmit">
             <slot>
 
             </slot>
@@ -9,15 +9,18 @@
                         ثبت سفارش
                 </button>
             </div>
-        </form>
+        </Form>
     </section>
 </template>
 <script>
+import { Form, Field } from 'vee-validate';
 export default {
+components: {
+    Form,
+  },
     name:"FormCo",
     methods: {
-        handleSubmit(){
-            alert("submited");
+        handleSubmit(val){
             this.$emit("handleLoading");
         }
     },

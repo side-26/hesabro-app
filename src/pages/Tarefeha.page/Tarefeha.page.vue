@@ -14,16 +14,16 @@
         </TarefehContainer>
         <TarefehContainer :title="title1" :classes="gap-4">
             <template lang="" v-slot:body>
-            <servicesBox @handlesidePrice="handlesidePrice" v-model="side1" :min="1"  :percent="75" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle" :desc="desc"/>
-            <servicesBox  @handlesidePrice="handlesidePrice" v-model="side2" :min="5" :percent="5" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle1" :desc="desc1"/>
+            <servicesBox @handlesidePrice="handlesidePrice" v-model="sideServices1" :min="1"  :percent="75" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle" :desc="desc"/>
+            <servicesBox  @handlesidePrice="handlesidePrice" v-model="sideServices2" :min="5" :percent="5" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle1" :desc="desc1"/>
             </template>
         </TarefehContainer>
         <TarefehContainer :title="title2" :classes="gap-4">
                 <template lang="" v-slot:body>
                     <Bill :discount="discount" :taxes="taxes" :finalPrice="ff1" :totalPrice="sideServices"/>
                     <FormCo @handle-loading="handleLoading">
-                        <InputCo :type="text" :title="title3" :placeHolder="placeHolder"/>
-                        <InputCo :type="text" :title="title4" :placeHolder="placeHolder1"/>
+                        <InputCo :name="fullName" :type="text" :validateFu="handleValidateFullName" :title="title3" :placeHolder="placeHolder"/>
+                        <InputCo :name="mobileNo" :type="text" :validateFu="handleValidatephoneNumber" :title="title4" :placeHolder="placeHolder1"/>
                     </FormCo>
                 </template>
         </TarefehContainer>
@@ -42,7 +42,7 @@ import FormCo from '../../components/form.component/form.component.vue';
 import InputCo from '../../components/form.component/Input.component/Input.component.vue';
 import {toFarsiNumber} from '../../utilities/ConvertToPersian'
 import {data} from '../../config/tarefeh.data';
-
+console.log(isNaN("0912ffdsfsad5955"))
 export default {
     data() {
         return {
@@ -52,8 +52,8 @@ export default {
             taxes:5,
             sideServices:0,
             loading:false,
-            side1:0,
-            side2:0,
+            sideServices1:0,
+            sideServices2:0,
             title:"تعرفه های حسابرو",
             title1:"امکانات جانبی",
             title2:"ثبت سفارش",
@@ -65,7 +65,9 @@ export default {
             desc1:"کاربر جدید",
             placeHolder:"نام و نام خانوادگی خود را وارد کنید",
             placeHolder1:"موبایل خود را وارد کنید",
-            txt:"لطفا منتظر بمانید"
+            txt:"لطفا منتظر بمانید",
+            fullName:"fullName",
+            mobileNo:"mobileNo"
         }
     },
     components:{
@@ -93,6 +95,23 @@ export default {
         },
         toPersian(num){
             return toFarsiNumber(num)
+        },
+        handleValidateFullName(val){
+            if(!val)
+                return "فیلد مورد نظر خالی است!!"
+            else if(val.length<7)
+                return "نام و نام خانوادگی خود را کامل وارد کنید!!"
+            return true;
+        },
+        handleValidatephoneNumber(val){
+            if(!val)
+                return "فیلد مورد نظر خالی است!!!"
+            else if(val[0]!=="0"||val.length!=11)
+                return "شماره تلفن معتبر نمی باشد!!"
+            else if(isNaN(val))
+                return "شماره تلفن باید عدد باشد!!!"
+            return true;
+            
         }
     },
     computed: {
@@ -100,7 +119,7 @@ export default {
             return +(this.totalprice+this.taxes-this.discount)
         },
         ff1(){
-           return this.totalprice+this.side1+this.side2
+           return this.totalprice+this.sideServices1+this.sideServices2
         },
         
     },
