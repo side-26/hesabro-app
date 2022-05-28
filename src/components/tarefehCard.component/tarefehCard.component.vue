@@ -38,12 +38,12 @@ export default {
         props:["tarefehInfo","toPersian"],
     methods: {
         handleCheck(price){
-                
             this.checked=!this.checked;
             if(this.checked)
-                this.$emit("handleTotalPrice",price)
+                this.$emit("handleTotalPrice",price,this.tarefehInfo,true)
             else
-                this.$emit("handleTotalPrice",-price) 
+                this.$emit("handleTotalPrice",-price,this.tarefehInfo,false) 
+            
         },
         handleToggle(evt){
             evt.stopPropagation();

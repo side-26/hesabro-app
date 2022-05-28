@@ -6,10 +6,10 @@
             </slot>
             <div>
                 <button type="submit" class="rounded-xl font-IranYecan-bold mt-2 text-sm bg-cyan-500 hover:bg-cyan-600 transition-all py-3 text-white w-full">
-                       <transition-group>
+                       <!-- <transition-group> -->
                            <span v-if="statusCode==0">ثبت سفارش</span>
                             <span v-else class="animate-spin loading-spinner mx-1" v-for="item in arr" :key="item"></span>
-                       </transition-group>
+                       <!-- </transition-group> -->
                         
                 </button>
             </div>
@@ -28,7 +28,7 @@ export default {
     name:"FormCo",
     methods: {
         handleSubmit(val){
-            this.$emit("handleLoading");
+            this.$emit("handleLoading",val);
             console.log(val)
         }
     },

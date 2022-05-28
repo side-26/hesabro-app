@@ -1,7 +1,7 @@
 import axios from 'axios';
-export const tarefeha = {
-    async Get(BASE_URL) {
-        return await axios.get(`${BASE_URL}`)
+export const users = {
+    async Post(BASE_URL, data) {
+        return await axios.post(`${BASE_URL}`, data)
             .then(res => {
                 return res
             }).catch(err => {

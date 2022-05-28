@@ -40,8 +40,10 @@ import servicesBox from '@/components/servicesBox.component/servicesBox.componen
 import Bill from '@/components/Bill.component/Bill.component.vue';
 import FormCo from '@/components/form.component/form.component.vue';
 import InputCo from '@/components/form.component/Input.component/Input.component.vue';
-import {toFarsiNumber} from '@/utilities/ConvertToPersian'
-import {data} from '@/config/tarefeh.data';
+import {toFarsiNumber} from '@/utilities/ConvertToPersian';
+import {tarefeha} from '@/api/tarefeha.api.js';
+import {users} from '../../api/users.api';
+import {BASE_URL} from '@/config/url.config'
 export default {
     data() {
         return {
@@ -53,7 +55,7 @@ export default {
             btnStatusCode:0,
             sideServices:0,
             loading:true,
-            customerInfo:{},
+            customerInfo:{orders:[]},
             sideServices1:0,
             sideServices2:0,
             title:"تعرفه های حسابرو",
@@ -84,17 +86,28 @@ export default {
         Loading
     },
     methods: {
-        handleTotalPrice(price){
-            this.totalprice+=+price
-            // console.log(price)
+        handleTotalPrice(price,cardInfo,checked){
+            this.totalprice+=+price;
+            if(!checked)
+                this.customerInfo.orders=this.customerInfo.orders.filter(item=>item.title!==cardInfo.title);
+            else
+                this.customerInfo.orders=[...this.customerInfo.orders,cardInfo];
+            
+            console.log(this.customerInfo);
         },
         handlesidePrice(price){
             this.sideServices+=+price;
             // console.log("side services is here",this.sideServices,price)
         },
-        handleLoading(){
+        handleLoading(val){
             // this.loading=!this.loading;
-            this.btnStatusCode=this.btnStatusCode==200?0:200;
+            this.btnStatusCode=200;
+            this.customerInfo={...this.customerInfo,...val}
+            users.Post(`${BASE_URL}users`,this.customerInfo).then(item=>{
+                console.log(item)
+                if(item.status===201)
+                    this.btnStatusCode=0
+            })
         },
         toPersian(num){
             return toFarsiNumber(num)
@@ -129,19 +142,13 @@ export default {
         
     },
 mounted() {
-    fetch("https://61ebc3aa7ec58900177cdd5f.mockapi.io/courses/items").
-    then(item=>{ this.statusCode=item.status
-
-    return item.json();}).then(
-        item=>{ 
-            if(this.statusCode==200)
-                this.loading=false
-            this.Data=item;
-            })
-    .catch(err=>console.log(err))
+    tarefeha.Get(`${BASE_URL}items`).then(item=>{
+        if(item.status===200)
+            this.loading=false
+         this.Data=item.data
+        }).catch(err=>{
+            alert(err.message)
+        })
 },
 }
 </script>
-<style lang="">
-    
-</style>
