@@ -21,7 +21,7 @@
         <TarefehContainer :title="title2" :classes="gap-4">
                 <template lang="" v-slot:body>
                     <Bill :discount="discount" :taxes="taxes" :finalPrice="ff1" :totalPrice="sideServices"/>
-                    <FormCo @handle-loading="handleLoading">
+                    <FormCo :statusCode="btnStatusCode" @handle-loading="handleLoading">
                         <InputCo :name="fullName" :type="text" :validateFu="handleValidateFullName" :title="title3" :placeHolder="placeHolder"/>
                         <InputCo :name="mobileNo" :type="text" :validateFu="handleValidatephoneNumber" :title="title4" :placeHolder="placeHolder1"/>
                     </FormCo>
@@ -42,16 +42,18 @@ import FormCo from '@/components/form.component/form.component.vue';
 import InputCo from '@/components/form.component/Input.component/Input.component.vue';
 import {toFarsiNumber} from '@/utilities/ConvertToPersian'
 import {data} from '@/config/tarefeh.data';
-console.log(isNaN("0912ffdsfsad5955"))
 export default {
     data() {
         return {
-            Data:data,
+            Data:[],
             totalprice:0,
             discount:10,
             taxes:5,
+            statusCode:0,
+            btnStatusCode:0,
             sideServices:0,
-            loading:false,
+            loading:true,
+            customerInfo:{},
             sideServices1:0,
             sideServices2:0,
             title:"تعرفه های حسابرو",
@@ -91,19 +93,22 @@ export default {
             // console.log("side services is here",this.sideServices,price)
         },
         handleLoading(){
-            this.loading=!this.loading;
+            // this.loading=!this.loading;
+            this.btnStatusCode=this.btnStatusCode==200?0:200;
         },
         toPersian(num){
             return toFarsiNumber(num)
         },
         handleValidateFullName(val){
+            console.log(val)
             if(!val)
                 return "فیلد مورد نظر خالی است!!"
-            else if(val.length<7)
+            else if(val.length<8)
                 return "نام و نام خانوادگی خود را کامل وارد کنید!!"
             return true;
         },
         handleValidatephoneNumber(val){
+            console.log(val)
             if(!val)
                 return "فیلد مورد نظر خالی است!!!"
             else if(val[0]!=="0"||val.length!=11)
@@ -123,6 +128,18 @@ export default {
         },
         
     },
+mounted() {
+    fetch("https://61ebc3aa7ec58900177cdd5f.mockapi.io/courses/items").
+    then(item=>{ this.statusCode=item.status
+
+    return item.json();}).then(
+        item=>{ 
+            if(this.statusCode==200)
+                this.loading=false
+            this.Data=item;
+            })
+    .catch(err=>console.log(err))
+},
 }
 </script>
 <style lang="">

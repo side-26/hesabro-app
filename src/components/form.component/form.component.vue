@@ -6,7 +6,11 @@
             </slot>
             <div>
                 <button type="submit" class="rounded-xl font-IranYecan-bold mt-2 text-sm bg-cyan-500 hover:bg-cyan-600 transition-all py-3 text-white w-full">
-                        ثبت سفارش
+                       <transition-group>
+                           <span v-if="statusCode==0">ثبت سفارش</span>
+                            <span v-else class="animate-spin loading-spinner mx-1" v-for="item in arr" :key="item"></span>
+                       </transition-group>
+                        
                 </button>
             </div>
         </Form>
@@ -15,14 +19,25 @@
 <script>
 import { Form, Field } from 'vee-validate';
 export default {
-components: {
-    Form,
-  },
+    data() {
+        return {
+            arr:[1,3,2]
+        }
+    },
+  
     name:"FormCo",
     methods: {
         handleSubmit(val){
             this.$emit("handleLoading");
+            console.log(val)
         }
     },
+    computed: {
+        
+    },
+    props:["statusCode"],
+    components: {
+       Form,
+      },
 }
 </script>

@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    /* border: 3px solid rgba(255, 255, 255, .3); */
+    border-radius: 50%;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spinner 1s ease-in-out infinite alternate;
+    transition: all .35s ease-in-out;
+}
+
+
+/* .loading-spinner ::before {
+    animation: 1.5s ease-in infinite spinner alternate;
+    animation-play-state: inherit;
+    border-radius: 50%;
+    content: "";
+    height: 10px;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 40px;
+    will-change: transform;
+} */
+
+@keyframes spinner {
+    0% {
+        background-color: white;
+        opacity: .1;
+    }
+    100% {
+        background-color: white;
+        opacity: .9;
+    }
+}
