@@ -21,7 +21,7 @@
         <TarefehContainer :title="title2" :classes="gap-4">
                 <template lang="" v-slot:body>
                     <Bill :discount="discount" :taxes="taxes" :finalPrice="ff1" :totalPrice="sideServices"/>
-                    <FormCo :statusCode="btnStatusCode" @handle-loading="handleLoading">
+                    <FormCo :statusCode="btnStatusCode" @handlePost="handlePost">
                         <InputCo :name="fullName" :type="text" :validateFu="handleValidateFullName" :title="title3" :placeHolder="placeHolder"/>
                         <InputCo :name="mobileNo" :type="text" :validateFu="handleValidatephoneNumber" :title="title4" :placeHolder="placeHolder1"/>
                     </FormCo>
@@ -29,6 +29,9 @@
         </TarefehContainer>
     </main>
     <Loading v-if="loading" :msg="txt"/>
+    <Teleport to="#modalTel">
+        <InfoModal @handleClose="handleClose" v-if="showRegisterdModal" title="ثبت سفارش" :type="registerdSuccess" descSuccessfull="سفارش شما با موفقیت ثبت شد و پس از بررسی با شما تماس میگیرم." descFailed="سفارش شما با خطا مواجه شد لطفا مجددا تلاش کنید یا با پشتیبانی تماس بگیرید." btnText="تایید"/>
+    </Teleport>
 </template>
 <script>
 import Loading from '@/components/Loading.component/Loading.component.vue';
@@ -42,8 +45,9 @@ import FormCo from '@/components/form.component/form.component.vue';
 import InputCo from '@/components/form.component/Input.component/Input.component.vue';
 import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 import {tarefeha} from '@/api/tarefeha.api.js';
-import {users} from '../../api/users.api';
-import {BASE_URL} from '@/config/url.config'
+import {users} from '@/api/users.api';
+import {BASE_URL} from '@/config/url.config';
+import InfoModal from '@/components/Modal.component/InfoModal.component/InfoModal.component.vue'
 export default {
     data() {
         return {
@@ -52,6 +56,7 @@ export default {
             discount:10,
             taxes:5,
             statusCode:0,
+            openModal:true,
             btnStatusCode:0,
             sideServices:0,
             loading:true,
@@ -71,7 +76,9 @@ export default {
             placeHolder1:"موبایل خود را وارد کنید",
             txt:"لطفا منتظر بمانید",
             fullName:"fullName",
-            mobileNo:"mobileNo"
+            mobileNo:"mobileNo",
+            registerdSuccess:"failed",
+            showRegisterdModal:false
         }
     },
     components:{
@@ -83,7 +90,8 @@ export default {
         Bill,
         FormCo,
         InputCo,
-        Loading
+        Loading,
+        InfoModal
     },
     methods: {
         handleTotalPrice(price,cardInfo,checked){
@@ -99,14 +107,17 @@ export default {
             this.sideServices+=+price;
             // console.log("side services is here",this.sideServices,price)
         },
-        handleLoading(val){
+        handlePost(val){
             // this.loading=!this.loading;
             this.btnStatusCode=200;
-            this.customerInfo={...this.customerInfo,...val}
+            this.customerInfo={...val,...this.customerInfo}
             users.Post(`${BASE_URL}users`,this.customerInfo).then(item=>{
                 console.log(item)
-                if(item.status===201)
+                if(item.status===201){
                     this.btnStatusCode=0
+                    this.registerdSuccess="success"
+                }
+                this.showRegisterdModal=true
             })
         },
         toPersian(num){
@@ -116,7 +127,7 @@ export default {
             console.log(val)
             if(!val)
                 return "فیلد مورد نظر خالی است!!"
-            else if(val.length<8)
+            else if(val.length<6)
                 return "نام و نام خانوادگی خود را کامل وارد کنید!!"
             return true;
         },
@@ -130,6 +141,10 @@ export default {
                 return "شماره تلفن باید عدد باشد!!!"
             return true;
             
+        },
+        handleClose(){
+            this.showRegisterdModal=false;
+            this.btnStatusCode=0
         }
     },
     computed: {
@@ -142,13 +157,25 @@ export default {
         
     },
 mounted() {
-    tarefeha.Get(`${BASE_URL}items`).then(item=>{
+    try {
+        tarefeha.Get(`${BASE_URL}items`).then(item=>{
         if(item.status===200)
             this.loading=false
          this.Data=item.data
-        }).catch(err=>{
-            alert(err.message)
         })
+    } catch (error) {
+        alert('try again')
+    }
 },
 }
 </script>
+<style scoped>
+.modal {
+  position: fixed;
+  z-index: 999;
+  top: 20%;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+}
+</style>

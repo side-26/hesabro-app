@@ -28,8 +28,7 @@ export default {
     name:"FormCo",
     methods: {
         handleSubmit(val){
-            this.$emit("handleLoading",val);
-            console.log(val)
+            this.$emit("handlePost",val);
         }
     },
     computed: {

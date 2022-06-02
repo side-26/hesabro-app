@@ -1,11 +1,12 @@
 <template lang="">
   <nav class="">
     <section class="sm:static relative container mx-auto py-2 flex">
-      <figure class="mr-8 sm:mr-0 sm:ml-10 lg:ml-14 ml-8">
-        <a href="#">
-          <img src="../../assets/img/hesabro.logo.svg" alt="logo" />
-        </a>
-      </figure>
+      <router-link to="/">
+        <figure class="mr-8 sm:mr-0 sm:ml-10 lg:ml-14 ml-8">
+            <img src="../../assets/img/hesabro.logo.svg" alt="logo" />
+          
+        </figure>
+      </router-link> 
       <button @click="handleShow()" class="sm:hidden w-10 text-cyan-600">
         <svg
           xmlns="http://www.w3.org/2000/svg"
