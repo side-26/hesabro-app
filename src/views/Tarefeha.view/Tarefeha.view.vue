@@ -6,21 +6,21 @@
     <main class="container mx-auto sm:px-14 md:px-10 lg:px-28 " :class="{'blur':loading}">
         <TarefehContainer :title="title">
         <template v-slot:body>
-            <tarefehCard :toPersian="toPersian" @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data" :key="item.title"/>
+            <tarefehCard :seprateFu="seprateNumber" :toPersian="toPersian" @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data.items" :key="item.title"/>
         </template>
         <template v-slot:footer>
-            <TotalPriceCon :toPersian="toPersian"  :totalPrice="totalprice"/>
+            <TotalPriceCon :seprateFu="seprateNumber" :toPersian="toPersian"  :totalPrice="totalprice"/>
         </template>
         </TarefehContainer>
         <TarefehContainer :title="title1" :classes="gap-4">
-            <template lang="" v-slot:body>
-            <servicesBox @handlesidePrice="handlesidePrice" v-model="sideServices1" :min="1"  :percent="75" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle" :desc="desc"/>
-            <servicesBox  @handlesidePrice="handlesidePrice" v-model="sideServices2" :min="5" :percent="5" :totalPrice="totalprice" :sideServices="sideServices" :title="subTitle1" :desc="desc1"/>
+            <template lang="" v-slot:body> 
+            <servicesBox :seprateFu="seprateNumber" v-if="Data.const_prices" @handlesidePrice="handlesidePrice"  v-model="PerBranch" :min="Data.const_prices.price_per_branch"  :percent="75"  :totalPrice="totalprice" :title="subTitle" :desc="desc"/>
+            <servicesBox :seprateFu="seprateNumber" v-if="Data.const_prices" @handlesidePrice="handlesidePrice"  v-model="PerUser" :min="Data.const_prices.price_per_user" :percent="5" :totalPrice="totalprice" :title="subTitle1" :desc="desc1"/>
             </template>
         </TarefehContainer>
         <TarefehContainer :title="title2" :classes="gap-4">
                 <template lang="" v-slot:body>
-                    <Bill :discount="discount" :taxes="taxes" :finalPrice="ff1" :totalPrice="sideServices"/>
+                    <Bill :discount="discount" :seprateFu="seprateNumber" :taxes="taxes" :finalPrice="ff1" :totalPrice="sideServices"/>
                     <FormCo :statusCode="btnStatusCode" @handlePost="handlePost">
                         <InputCo :name="fullName" :type="text" :validateFu="handleValidateFullName" :title="title3" :placeHolder="placeHolder"/>
                         <InputCo :name="mobileNo" :type="text" :validateFu="handleValidatephoneNumber" :title="title4" :placeHolder="placeHolder1"/>
@@ -44,6 +44,7 @@ import Bill from '@/components/Bill.component/Bill.component.vue';
 import FormCo from '@/components/form.component/form.component.vue';
 import InputCo from '@/components/form.component/Input.component/Input.component.vue';
 import {toFarsiNumber} from '@/utilities/ConvertToPersian';
+import {handleSprateNumber} from '@/utilities/SeprateNumbers'
 import {tarefeha} from '@/api/tarefeha.api.js';
 import {users} from '@/api/users.api';
 import {BASE_URL} from '@/config/url.config';
@@ -58,11 +59,10 @@ export default {
             statusCode:0,
             openModal:true,
             btnStatusCode:0,
-            sideServices:0,
             loading:true,
-            customerInfo:{orders:[]},
-            sideServices1:0,
-            sideServices2:0,
+            customerInfo:{'selected_modules':[]},
+            PerBranch:{price:0,count:0},
+            PerUser:{price:0,count:0},
             title:"تعرفه های حسابرو",
             title1:"امکانات جانبی",
             title2:"ثبت سفارش",
@@ -75,10 +75,10 @@ export default {
             placeHolder:"نام و نام خانوادگی خود را وارد کنید",
             placeHolder1:"موبایل خود را وارد کنید",
             txt:"لطفا منتظر بمانید",
-            fullName:"fullName",
-            mobileNo:"mobileNo",
+            fullName:"name",
+            mobileNo:"phone_number",
             registerdSuccess:"failed",
-            showRegisterdModal:false
+            showRegisterdModal:false,
         }
     },
     components:{
@@ -97,31 +97,34 @@ export default {
         handleTotalPrice(price,cardInfo,checked){
             this.totalprice+=+price;
             if(!checked)
-                this.customerInfo.orders=this.customerInfo.orders.filter(item=>item.title!==cardInfo.title);
+                this.customerInfo.selected_modules=this.customerInfo.selected_modules.filter(item=>item!==cardInfo);
             else
-                this.customerInfo.orders=[...this.customerInfo.orders,cardInfo];
+                this.customerInfo.selected_modules=[...this.customerInfo.selected_modules,cardInfo];
             
             console.log(this.customerInfo);
         },
         handlesidePrice(price){
             this.sideServices+=+price;
-            // console.log("side services is here",this.sideServices,price)
         },
         handlePost(val){
-            // this.loading=!this.loading;
             this.btnStatusCode=200;
-            this.customerInfo={...val,...this.customerInfo}
-            users.Post(`${BASE_URL}users`,this.customerInfo).then(item=>{
-                console.log(item)
-                if(item.status===201){
-                    this.btnStatusCode=0
-                    this.registerdSuccess="success"
-                }
-                this.showRegisterdModal=true
-            })
+            this.customerInfo={...val,...this.customerInfo,'users_count':this.PerUser.count,'branches_count':this.PerBranch.count}
+            // users.Post(`${BASE_URL}users`,this.customerInfo).then(item=>{
+            //     console.log(item)
+            //     if(item.status===201){
+            //         this.btnStatusCode=0
+            //         this.registerdSuccess="success"
+            //     }
+            //     this.showRegisterdModal=true
+            // })
+            // console.log(this.customerInfo)
+            console.log(this.customerInfo);
         },
         toPersian(num){
             return toFarsiNumber(num)
+        },
+        seprateNumber(num){
+            return handleSprateNumber(num)
         },
         handleValidateFullName(val){
             console.log(val)
@@ -152,16 +155,18 @@ export default {
             return +(this.totalprice+this.taxes-this.discount)
         },
         ff1(){
-           return this.totalprice+this.sideServices1+this.sideServices2
+           return this.totalprice+this.PerBranch.price+this.PerUser.price;
         },
         
     },
 mounted() {
     try {
-        tarefeha.Get(`${BASE_URL}items`).then(item=>{
+        tarefeha.Get(`${BASE_URL}/modules-pricing`).then(item=>{
         if(item.status===200)
-            this.loading=false
-         this.Data=item.data
+            this.loading=false;
+         this.Data=item.data.data;
+        //  this.sideServices=item.data;
+         
         })
     } catch (error) {
         alert('try again')
