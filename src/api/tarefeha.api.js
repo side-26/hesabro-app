@@ -1,7 +1,8 @@
-import axios from 'axios';
+import api from './axios';
+import {urls} from '../urls'
 export const tarefeha = {
-    async Get(BASE_URL) {
-        return await axios.get(`${BASE_URL}`)
+    async Get() {
+        return await api.get(urls.tarefeha)
             .then(res => {
                 return res
             }).catch(err => {

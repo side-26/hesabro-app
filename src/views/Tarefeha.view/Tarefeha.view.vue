@@ -14,16 +14,16 @@
         </TarefehContainer>
         <TarefehContainer :title="title1" :classes="gap-4">
             <template lang="" v-slot:body> 
-            <servicesBox :seprateFu="seprateNumber" v-if="Data.const_prices" @handlesidePrice="handlesidePrice"  v-model="PerBranch" :min="Data.const_prices.price_per_branch"  :percent="75"  :totalPrice="totalprice" :title="subTitle" :desc="desc"/>
-            <servicesBox :seprateFu="seprateNumber" v-if="Data.const_prices" @handlesidePrice="handlesidePrice"  v-model="PerUser" :min="Data.const_prices.price_per_user" :percent="5" :totalPrice="totalprice" :title="subTitle1" :desc="desc1"/>
+            <servicesBox :seprateFu="seprateNumber" v-if="Data.const_prices" v-model="PerBranch" :min="1"  :percent="Data.const_prices.price_per_branch"  :totalPrice="totalprice" :title="subTitle" :desc="desc"/>
+            <servicesBox :seprateFu="seprateNumber" v-if="Data.const_prices" v-model="PerUser" :min="1" :percent="Data.const_prices.price_per_user" :totalPrice="totalprice" :title="subTitle1" :desc="desc1"/>
             </template>
         </TarefehContainer>
         <TarefehContainer :title="title2" :classes="gap-4">
                 <template lang="" v-slot:body>
-                    <Bill :discount="discount" :seprateFu="seprateNumber" :taxes="taxes" :finalPrice="ff1" :totalPrice="sideServices"/>
+                    <Bill :discount="discount" :seprateFu="seprateNumber" :taxes="taxes" :finalPrice="totalPrice" :totalPrice="sideServices"/>
                     <FormCo :statusCode="btnStatusCode" @handlePost="handlePost">
-                        <InputCo :name="fullName" :type="text" :validateFu="handleValidateFullName" :title="title3" :placeHolder="placeHolder"/>
-                        <InputCo :name="mobileNo" :type="text" :validateFu="handleValidatephoneNumber" :title="title4" :placeHolder="placeHolder1"/>
+                        <InputCo :name="fullName" :type="text" :rules="handleValidateFullName" :title="title3" :placeHolder="placeHolder"/>
+                        <InputCo :name="mobileNo" :type="text" :rules="handleValidatephoneNumber" :title="title4" :placeHolder="placeHolder1"/>
                     </FormCo>
                 </template>
         </TarefehContainer>
@@ -47,7 +47,6 @@ import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 import {handleSprateNumber} from '@/utilities/SeprateNumbers'
 import {tarefeha} from '@/api/tarefeha.api.js';
 import {users} from '@/api/users.api';
-import {BASE_URL} from '@/config/url.config';
 import InfoModal from '@/components/Modal.component/InfoModal.component/InfoModal.component.vue'
 export default {
     data() {
@@ -97,28 +96,25 @@ export default {
         handleTotalPrice(price,cardInfo,checked){
             this.totalprice+=+price;
             if(!checked)
-                this.customerInfo.selected_modules=this.customerInfo.selected_modules.filter(item=>item!==cardInfo);
+                this.customerInfo.selected_modules=this.customerInfo.selected_modules.filter(id=>id!==cardInfo);
             else
                 this.customerInfo.selected_modules=[...this.customerInfo.selected_modules,cardInfo];
-            
-            console.log(this.customerInfo);
         },
         handlesidePrice(price){
             this.sideServices+=+price;
         },
         handlePost(val){
             this.btnStatusCode=200;
+            // https://asrd.mobittest.ir/api/hesabro/shop-v1/modules-pricing
             this.customerInfo={...val,...this.customerInfo,'users_count':this.PerUser.count,'branches_count':this.PerBranch.count}
-            // users.Post(`${BASE_URL}users`,this.customerInfo).then(item=>{
+            // users.Post(`${BASE_URL}/hesabro/shop-v1/modules-pricing`,this.customerInfo).then(item=>{
             //     console.log(item)
             //     if(item.status===201){
             //         this.btnStatusCode=0
-            //         this.registerdSuccess="success"
+            //         this.registerdSuccess="sucess"
+            //         this.showRegisterdModal=true
             //     }
-            //     this.showRegisterdModal=true
             // })
-            // console.log(this.customerInfo)
-            console.log(this.customerInfo);
         },
         toPersian(num){
             return toFarsiNumber(num)
@@ -154,18 +150,17 @@ export default {
         finalPrice(){
             return +(this.totalprice+this.taxes-this.discount)
         },
-        ff1(){
+        totalPrice(){
            return this.totalprice+this.PerBranch.price+this.PerUser.price;
         },
         
     },
 mounted() {
     try {
-        tarefeha.Get(`${BASE_URL}/modules-pricing`).then(item=>{
+        tarefeha.Get().then(item=>{
         if(item.status===200)
             this.loading=false;
          this.Data=item.data.data;
-        //  this.sideServices=item.data;
          
         })
     } catch (error) {

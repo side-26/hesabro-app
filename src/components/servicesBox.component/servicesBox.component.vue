@@ -42,12 +42,8 @@ export default {
     methods: {
         handleCounter(step){
                 this.count+=step;
-                console.log(this.finalPrice)
         },
-        ff(){
-           
-            this.$emit("handlesidePrice",this.finalPrice)
-        },
+        
         handleChange(){
             this.$emit("update:modelValue",{price:this.finalPrice,count:this.count})
         },
