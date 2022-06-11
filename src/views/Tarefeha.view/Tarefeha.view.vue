@@ -105,16 +105,15 @@ export default {
         },
         handlePost(val){
             this.btnStatusCode=200;
-            // https://asrd.mobittest.ir/api/hesabro/shop-v1/modules-pricing
             this.customerInfo={...val,...this.customerInfo,'users_count':this.PerUser.count,'branches_count':this.PerBranch.count}
-            // users.Post(`${BASE_URL}/hesabro/shop-v1/modules-pricing`,this.customerInfo).then(item=>{
-            //     console.log(item)
-            //     if(item.status===201){
-            //         this.btnStatusCode=0
-            //         this.registerdSuccess="sucess"
-            //         this.showRegisterdModal=true
-            //     }
-            // })
+            users.Post(this.customerInfo).then(item=>{
+                console.log(item)
+                if(item.status===201){
+                    this.btnStatusCode=0
+                    this.registerdSuccess="sucess"
+                    this.showRegisterdModal=true
+                }
+            })
         },
         toPersian(num){
             return toFarsiNumber(num)

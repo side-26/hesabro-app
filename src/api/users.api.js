@@ -1,6 +1,7 @@
-import axios from 'axios';
+import api from './axios';
+import {urls} from '../urls'
 export const users = {
-    async Post(BASE_URL, data) {
+    async Post(data) {
         const options = {
             headers: {
                 "Access-Control-Allow-Origin": "*",
@@ -9,7 +10,7 @@ export const users = {
                 'Access-Control-Allow-Headers':'Origin,Content-Type,X-Requested-With,Accept,Authorization'
             }
           };
-        return await axios.post(`${BASE_URL}`, data)
+        return await api.post(urls.tarefeha, data)
             .then(res => {
                 return res
             }).catch(err => {
