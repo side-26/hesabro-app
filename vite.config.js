@@ -7,18 +7,15 @@ export default defineConfig({
     plugins: [vue()],
     server:{
         proxy: {
-          "/api": {
-          target: 'https://asrd.mobittest.ir',
-          changeOrigin: true,
-          secure: false,
-          rewrite: (path) => {
-            console.log("path is",path);
-            return  path.replace(/^\/api/, '')
-          }
-          },
+          '/api': 'https://asrd.mobittest.ir'
         }
       },
-    alias: {
-        "@": path.resolve(__dirname, './src')
-    },
+    // server:{
+    //   proxy:"https://asrd.mobittest.ir"
+    // },
+      resolve:{
+        alias: {
+            "@": path.resolve(__dirname, './src')
+        },
+      },
 });

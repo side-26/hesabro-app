@@ -15,6 +15,11 @@ module.exports = {
             animation: {
                 'spin-slow': 'spin 1.5s ease-in-out infinite',
 
+            },
+            fontSize:{
+                'xs':'0.8125rem',
+                // 'sm':''
+                'C-base':"1.0625rem"
             }
         },
 

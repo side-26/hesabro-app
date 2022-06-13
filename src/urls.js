@@ -1,3 +1,3 @@
 export const urls={
-    'tarefeha':'/hesabro/shop-v1/modules-pricing'
+    'tarefeha':'api/hesabro/shop-v1/modules-pricing'
 }

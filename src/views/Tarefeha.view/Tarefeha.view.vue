@@ -45,7 +45,8 @@ import FormCo from '@/components/form.component/form.component.vue';
 import InputCo from '@/components/form.component/Input.component/Input.component.vue';
 import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 import {handleSprateNumber} from '@/utilities/SeprateNumbers'
-import {tarefeha} from '@/api/tarefeha.api.js';
+import axios from 'axios';
+import {tarefeha} from '../../api/tarefeha.api'
 import {users} from '@/api/users.api';
 import InfoModal from '@/components/Modal.component/InfoModal.component/InfoModal.component.vue'
 export default {
@@ -59,7 +60,7 @@ export default {
             openModal:true,
             btnStatusCode:0,
             loading:true,
-            customerInfo:{'selected_modules':[]},
+            customerInfo:{'selected_modules_id':[]},
             PerBranch:{price:0,count:0},
             PerUser:{price:0,count:0},
             title:"تعرفه های حسابرو",
@@ -96,9 +97,9 @@ export default {
         handleTotalPrice(price,cardInfo,checked){
             this.totalprice+=+price;
             if(!checked)
-                this.customerInfo.selected_modules=this.customerInfo.selected_modules.filter(id=>id!==cardInfo);
+                this.customerInfo.selected_modules_id=this.customerInfo.selected_modules_id.filter(id=>id!==cardInfo);
             else
-                this.customerInfo.selected_modules=[...this.customerInfo.selected_modules,cardInfo];
+                this.customerInfo.selected_modules_id=[...this.customerInfo.selected_modules_id,cardInfo];
         },
         handlesidePrice(price){
             this.sideServices+=+price;
@@ -106,6 +107,7 @@ export default {
         handlePost(val){
             this.btnStatusCode=200;
             this.customerInfo={...val,...this.customerInfo,'users_count':this.PerUser.count,'branches_count':this.PerBranch.count}
+            console.log(this.customerInfo)
             users.Post(this.customerInfo).then(item=>{
                 console.log(item)
                 if(item.status===201){
@@ -157,11 +159,16 @@ export default {
 mounted() {
     try {
         tarefeha.Get().then(item=>{
-        if(item.status===200)
-            this.loading=false;
-         this.Data=item.data.data;
+            this.Data=item.data.data;
+        if(item.data.success===true)
+            this.loading=false
          
         })
+        // axios.get("http://localhost:3000/api/hesabro/shop-v1/modules-pricing",{ useCredentails: true }).then((res)=>{
+        //     this.Data=res.data.data
+        //     if(res.data.success===true)
+        //         this.loading=false
+        // })
     } catch (error) {
         alert('try again')
     }

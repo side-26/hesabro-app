@@ -1,5 +1,5 @@
 import api from './axios';
-import {urls} from '../urls'
+import {urls} from '../urls';
 export const users = {
     async Post(data) {
         const options = {
