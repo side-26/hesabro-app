@@ -30,7 +30,9 @@
     </main>
     <Loading v-if="loading" :msg="txt"/>
     <Teleport to="#modalTel">
-        <InfoModal @handleClose="handleClose" v-if="showRegisterdModal" title="ثبت سفارش" :type="registerdSuccess" descSuccessfull="سفارش شما با موفقیت ثبت شد و پس از بررسی با شما تماس میگیرم." descFailed="سفارش شما با خطا مواجه شد لطفا مجددا تلاش کنید یا با پشتیبانی تماس بگیرید." btnText="تایید"/>
+        <transition>
+            <InfoModal @handleClose="handleClose" :path="modalPath" v-if="showRegisterdModal" :title="modalTitle" :type="registerdSuccess" :desc="modalDesc" btnText="تایید"/>
+        </transition>
     </Teleport>
 </template>
 <script>
@@ -45,10 +47,11 @@ import FormCo from '@/components/form.component/form.component.vue';
 import InputCo from '@/components/form.component/Input.component/Input.component.vue';
 import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 import {handleSprateNumber} from '@/utilities/SeprateNumbers'
-import axios from 'axios';
-import {tarefeha} from '../../api/tarefeha.api'
+import {data} from '@/config/tarefeh.data'
+import {tarefeha} from '@/api/tarefeha.api'
 import {users} from '@/api/users.api';
 import InfoModal from '@/components/Modal.component/InfoModal.component/InfoModal.component.vue'
+
 export default {
     data() {
         return {
@@ -60,7 +63,8 @@ export default {
             openModal:true,
             btnStatusCode:0,
             loading:true,
-            customerInfo:{'selected_modules_id':[]},
+            'selected_modules_id':[],
+            customerInfo:{},
             PerBranch:{price:0,count:0},
             PerUser:{price:0,count:0},
             title:"تعرفه های حسابرو",
@@ -78,7 +82,10 @@ export default {
             fullName:"name",
             mobileNo:"phone_number",
             registerdSuccess:"failed",
+            modalDesc:"",
+            modalTitle:"",
             showRegisterdModal:false,
+            modalPath:""
         }
     },
     components:{
@@ -97,25 +104,36 @@ export default {
         handleTotalPrice(price,cardInfo,checked){
             this.totalprice+=+price;
             if(!checked)
-                this.customerInfo.selected_modules_id=this.customerInfo.selected_modules_id.filter(id=>id!==cardInfo);
+                this.selected_modules_id=this.selected_modules_id.filter(id=>id!==cardInfo);
             else
-                this.customerInfo.selected_modules_id=[...this.customerInfo.selected_modules_id,cardInfo];
+                this.selected_modules_id=[...this.selected_modules_id,cardInfo];
         },
         handlesidePrice(price){
             this.sideServices+=+price;
         },
         handlePost(val){
             this.btnStatusCode=200;
-            this.customerInfo={...val,...this.customerInfo,'users_count':this.PerUser.count,'branches_count':this.PerBranch.count}
-            console.log(this.customerInfo)
+            this.modalTitle="ثبت سفارش";
+            const value=JSON.stringify(this.selected_modules_id);
+            this.customerInfo={...val,"selected_modules_id":value,'users_count':this.PerUser.count,'branches_count':this.PerBranch.count}
             users.Post(this.customerInfo).then(item=>{
-                console.log(item)
-                if(item.status===201){
+                console.log(item.data)
+                if(item.data.success!=="success"){
                     this.btnStatusCode=0
-                    this.registerdSuccess="sucess"
+                    this.modalDesc="ثبت نام با موفقیت ثبت شد"
+                    this.registerdSuccess="success"
                     this.showRegisterdModal=true
+                    this.modalPath="/"
+                }
+                else{
+                    this.btnStatusCode=0
+                    this.registerdSuccess="faild";
+                    this.modalDesc="ثبت نام کنسل شد"
+                    this.showRegisterdModal=true
+                    this.modalPath=""
                 }
             })
+            console.log(this.customerInfo)
         },
         toPersian(num){
             return toFarsiNumber(num)
@@ -159,19 +177,21 @@ export default {
 mounted() {
     try {
         tarefeha.Get().then(item=>{
-            this.Data=item.data.data;
-        if(item.data.success===true)
+            this.loading=false;
+        if(!item.status&&item.response.status>400){
+            this.registerdSuccess="failed"
+            this.showRegisterdModal=true;
             this.loading=false
-         
+            this.modalTitle="خطا!!";
+            this.modalPath="/"
+            this.modalDesc="دریافت اطلاعات با خطا مواجه شد";
+         }
+            this.Data=item.data.data;
         })
-        // axios.get("http://localhost:3000/api/hesabro/shop-v1/modules-pricing",{ useCredentails: true }).then((res)=>{
-        //     this.Data=res.data.data
-        //     if(res.data.success===true)
-        //         this.loading=false
-        // })
     } catch (error) {
         alert('try again')
     }
+    console.log(this.Data)
 },
 }
 </script>
@@ -183,5 +203,26 @@ mounted() {
   left: 50%;
   width: 300px;
   margin-left: -150px;
+}
+.checkboxx{
+    position: absolute;
+    right: 0;
+    top: 0;
+    /* background-color: red; */
+    border: 2px solid red;
+    width:20px;
+    height: 20px;
+}
+.checkboxx::after{
+    content: "";
+    position: absolute;
+    border: 1px solid blue;
+    border-right-style: none;
+    border-top-style: none;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 8px;
+    transform: rotate(-45deg);
 }
 </style>

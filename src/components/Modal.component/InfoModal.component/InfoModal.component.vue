@@ -21,18 +21,15 @@
 <script>
 export default {
     name:"InfoModal",
-    props:["descSuccessfull","btnText","title","type","descFailed"],
+    props:["desc","btnText","title","type",'path'],
     
     computed:{
-            desc(){
-                return this.type==="success"? this.descSuccessfull : this.descFailed;
-            }
+           
     },
     methods:{
         handelRegister(success){
-            if(success==="success")
-                this.$router.push('/');
-            else
+            this.$router.push(`${this.path}`);
+            if(success!=="success")
                this.$emit('handleClose');
         }
     }

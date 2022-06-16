@@ -20,6 +20,17 @@ module.exports = {
                 'xs':'0.8125rem',
                 // 'sm':''
                 'C-base':"1.0625rem"
+            },
+            borderWidth:{
+                '3':'3px'
+            },
+            width:{
+                '5.5':'1.4rem'
+            }
+            ,
+            height:{
+                '1.5':'.45rem',
+                '5.5':'1.4rem'
             }
         },
 

@@ -1,7 +1,7 @@
 <template lang="">
-    <div @click="handleCheck(tarefehInfo.price)" :class="{'border-gray-200':!checked,'border-cyan-500':checked,'h-auto':!toggled,'h-fit':toggled}" class="bg-gray-100 cursor-pointer  p-3 md:p-5 border-2 flex-grow  mx-4 md:mx-0 rounded-lg transition-all   my-2">
+    <div @click="handleCheck(tarefehInfo.price)" :class="{'border-cyan-500 border-2':checked,'h-auto':!toggled,'h-fit':toggled}" class="bg-gray-100 cursor-pointer  p-3 md:p-5  flex-grow  mx-4 md:mx-0 rounded-lg transition-all   my-2">
         <section :class="{'text-cyan-500':checked,'mb-7':!toggled}" class="flex 0 transition-all flex-wrap  justify-between">
-            <div class="flex justify-between flex-wrap items-center"><input  :class="{'border-gray-200':!checked,'border-cyan-500':checked}" :checked="checked"  class="ml-3 text-lg border-2 rounded-lg w-4 h-4" type="checkbox"   id=""><h4 class="font-IranYecan-bold text-base">{{tarefehInfo.module_name}}</h4></div>
+            <div class="flex justify-between flex-wrap items-center"><div  :class="{'border-gray-300':!checked,'border-cyan-500 bg-cyan-500 border-0  after:w-4 after:h-1.5 after:white after:absolute after:border-b-3 after:border-l-3':checked}"   class="ml-3 relative  border-2 w-5.5 h-5.5 rounded-md  after:-rotate-45 after:bottom-2  after:left-1"></div><h4 class="font-IranYecan-bold text-base">{{tarefehInfo.module_name}}</h4></div>
             <div class="items-center flex sm:mt-0 mt-5 text-center sm:text-left"><span class="font-IranYecan-bold">{{toPersian(seprateFu(tarefehInfo.price))}} تومان</span>
             <transition name="arrowBtn" mode="out-in">
                 <button type="button" v-if="toggled" class="text-slate-900 mr-4" @click="handleToggle($event)">
@@ -73,4 +73,25 @@ export default {
     .arrowBtn-leave-to {
       opacity: 0;
     }
+    .checkboxx{
+    position: absolute;
+    right: 0;
+    top: 0;
+    /* background-color: red; */
+    border: 2px solid red;
+    width:20px;
+    height: 20px;
+}
+.checkboxx::after{
+    content: "";
+    position: absolute;
+    border: 1px solid blue;
+    border-right-style: none;
+    border-top-style: none;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 8px;
+    transform: rotate(-45deg);
+}
     </style>
