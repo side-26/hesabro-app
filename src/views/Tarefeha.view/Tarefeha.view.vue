@@ -31,7 +31,7 @@
     <Loading v-if="loading" :msg="txt"/>
     <Teleport to="#modalTel">
         <transition>
-            <InfoModal @handleClose="handleClose" :path="modalPath" v-if="showRegisterdModal" :title="modalTitle" :type="registerdSuccess" :desc="modalDesc" btnText="تایید"/>
+            <InfoModal  @handleClose="handleClose" :path="modalPath" v-if="showRegisterdModal" :title="modalTitle" :type="registerdSuccess" :desc="modalDesc" btnText="تایید"/>
         </transition>
     </Teleport>
 </template>
@@ -47,8 +47,8 @@ import FormCo from '@/components/form.component/form.component.vue';
 import InputCo from '@/components/form.component/Input.component/Input.component.vue';
 import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 import {handleSprateNumber} from '@/utilities/SeprateNumbers'
-import {data} from '@/config/tarefeh.data'
-import {tarefeha} from '@/api/tarefeha.api'
+import {data} from '@/config/tarefeh.data';
+import {tarefeha} from '@/api/tarefeha.api';
 import {users} from '@/api/users.api';
 import InfoModal from '@/components/Modal.component/InfoModal.component/InfoModal.component.vue'
 
@@ -114,26 +114,22 @@ export default {
         handlePost(val){
             this.btnStatusCode=200;
             this.modalTitle="ثبت سفارش";
-            const value=JSON.stringify(this.selected_modules_id);
-            this.customerInfo={...val,"selected_modules_id":value,'users_count':this.PerUser.count,'branches_count':this.PerBranch.count}
+            const selectedModulesIdArray=JSON.stringify(this.selected_modules_id);
+            this.customerInfo={...val,"selected_modules_id":selectedModulesIdArray,'users_count':this.PerUser.count,'branches_count':this.PerBranch.count}
             users.Post(this.customerInfo).then(item=>{
-                console.log(item.data)
+                this.showRegisterdModal=true
+                this.btnStatusCode=0
                 if(item.data.success!=="success"){
-                    this.btnStatusCode=0
                     this.modalDesc="ثبت نام با موفقیت ثبت شد"
                     this.registerdSuccess="success"
-                    this.showRegisterdModal=true
                     this.modalPath="/"
                 }
                 else{
-                    this.btnStatusCode=0
                     this.registerdSuccess="faild";
                     this.modalDesc="ثبت نام کنسل شد"
-                    this.showRegisterdModal=true
                     this.modalPath=""
                 }
             })
-            console.log(this.customerInfo)
         },
         toPersian(num){
             return toFarsiNumber(num)
@@ -191,7 +187,6 @@ mounted() {
     } catch (error) {
         alert('try again')
     }
-    console.log(this.Data)
 },
 }
 </script>
@@ -203,26 +198,5 @@ mounted() {
   left: 50%;
   width: 300px;
   margin-left: -150px;
-}
-.checkboxx{
-    position: absolute;
-    right: 0;
-    top: 0;
-    /* background-color: red; */
-    border: 2px solid red;
-    width:20px;
-    height: 20px;
-}
-.checkboxx::after{
-    content: "";
-    position: absolute;
-    border: 1px solid blue;
-    border-right-style: none;
-    border-top-style: none;
-    top: 0;
-    left: 0;
-    width: 15px;
-    height: 8px;
-    transform: rotate(-45deg);
 }
 </style>

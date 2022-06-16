@@ -4,7 +4,7 @@
             <h6 class="font-IranYecan-bold sm:self-center my-3 self-start sm:my-0  text-base">{{title}}</h6>
             <Counter :toPersian="toPersian" :min="min" @handle-counter="handleCounter" :count="count"  :step="1"/>
         </div>
-        <div class="text-xs font-IranYecan-medium mb-6 ">به ازای هر {{toPersian(desc)}} ، {{toPersian(seprateFu(percent))}} درصد به قیمت ماژول ها اضافه میشود</div>
+        <div class="text-xs font-IranYecan-medium my-7 md:my-6 ">به ازای هر {{toPersian(desc)}} ، {{toPersian(seprateFu(percent))}} درصد به قیمت ماژول ها اضافه میشود</div>
         <div class="text-xs flex-col sm:flex-row flex justify-between font-IranYecan-medium "><span>برای هر شعبه جدید : <span class="">{{toPersian(seprateFu(price.toFixed(0)))}} تومان</span></span><span class="text-base font-IranYekan-bold mt-4 sm:mt-0 self-center sm:self-stretch">{{toPersian(seprateFu(finalPrice.toFixed(0)))}} تومان</span></div>
     </div>
 </template>
