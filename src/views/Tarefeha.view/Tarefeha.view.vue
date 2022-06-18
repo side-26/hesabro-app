@@ -57,7 +57,7 @@ export default {
         return {
             Data:[],
             totalprice:0,
-            discount:10,
+            discount:0,
             taxes:5,
             statusCode:0,
             openModal:true,

@@ -31,7 +31,11 @@ module.exports = {
             height:{
                 '1.5':'.45rem',
                 '5.5':'1.4rem'
+            },
+            rotate:{
+                '47':'47deg'
             }
+
         },
 
     },
