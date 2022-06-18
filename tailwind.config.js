@@ -34,8 +34,10 @@ module.exports = {
             },
             rotate:{
                 '47':'47deg'
+            },
+            backgroundImage:{
+                'main-bg':'url("./src/assets/img/wallTest.jpg")'
             }
-
         },
 
     },
