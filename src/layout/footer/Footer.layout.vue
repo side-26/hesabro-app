@@ -1,11 +1,10 @@
 <template lang="">
-    <footer class="py-10 bg-gray-100 px-24">
-        <section class="flex justify-between   mb-5">
-            <div class="font-IranYecan-bold text-sm">
+    <footer class="py-10 bg-gray-100 px-10 md:px-6 lg:px-24">
+        <section class="flex justify-between md:flex-row flex-col   mb-5">
+            <div class="font-IranYecan-bold text-sm md:mt-0 mt-5">
                 <router-link to="/">
                     <figure class="w-14 h-14">
                         <img class="w-full h-full" src="../../assets/img/hesabro.logo.svg" alt="hesabro-logo" />
-           
                     </figure>
                 </router-link>
                 <h5 class=" text-gray-800 font-IranYecan-bold mt-4">
@@ -43,16 +42,14 @@
                 </div>
                 <div class="flex">
                     
-                    <figure class="w-32 h-32 ml-5 cursor-pointer">
+                    <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
                         <img class="w-full h-full" src="../../assets/img/download.jfif" alt="etemad-logo"/>
                     </figure>
-                        <figure class="w-32 h-32 cursor-pointer">
+                        <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
                             <img class="w-full h-full" src="../../assets/img/samandehi.png" alt="samandehi-logo"/>
                         </figure>
                 </div>
             </div>
-            
-
         </section>
         <p class="text-sm font-IranYekan-regular text-slate-400 text-center">تمامی لوگو ها ، عکس ها و سایر محتوا های قرار داده شده با احترام متعلق به <a target="_blank" class="hover:text-cyan-600 text-cyan-500 transition-all" href="https://avapardaz.vc/">
         گروه فناوری آواپرداز

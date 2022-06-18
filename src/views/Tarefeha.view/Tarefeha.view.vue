@@ -1,9 +1,11 @@
 
 <template lang="">
+<div>
+
     <header class="mb-10" :class="{'blur':loading}">
         <NavBar/>
     </header>
-    <main class="container mx-auto sm:px-14 md:px-10 lg:px-28 " :class="{'blur':loading}">
+    <main class="container mx-auto sm:px-14 md:px-10 lg:px-28 mb-24" :class="{'blur':loading}">
         <TarefehContainer :title="title">
         <template v-slot:body>
             <tarefehCard :seprateFu="seprateNumber" :toPersian="toPersian" @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data.items" :key="item.title"/>
@@ -28,12 +30,14 @@
                 </template>
         </TarefehContainer>
     </main>
+    <Footer/>
     <Loading v-if="loading" :msg="txt"/>
     <Teleport to="#modalTel">
         <transition>
             <InfoModal  @handleClose="handleClose" :path="modalPath" v-if="showRegisterdModal" :title="modalTitle" :type="registerdSuccess" :desc="modalDesc" btnText="تایید"/>
         </transition>
     </Teleport>
+</div>
 </template>
 <script>
 import Loading from '@/components/Loading.component/Loading.component.vue';
@@ -48,6 +52,7 @@ import InputCo from '@/components/form.component/Input.component/Input.component
 import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 import {handleSprateNumber} from '@/utilities/SeprateNumbers'
 import {data} from '@/config/tarefeh.data';
+import Footer from '../../layout/footer/Footer.layout.vue'
 import {tarefeha} from '@/api/tarefeha.api';
 import {users} from '@/api/users.api';
 import InfoModal from '@/components/Modal.component/InfoModal.component/InfoModal.component.vue'
@@ -90,6 +95,7 @@ export default {
     },
     components:{
         NavBar,
+        Footer,
         TarefehContainer,
         tarefehCard,
         TotalPriceCon,
