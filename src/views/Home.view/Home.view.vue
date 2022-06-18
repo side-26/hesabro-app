@@ -1,10 +1,10 @@
 <template lang="">
-<header class="bg-center bg-cover bg-main-bg bg-fixed">
+<header class="bg-center relative bg-cover bg-main-bg bg-fixed">
     <NavBar/>
-        <section class="px-24  pt-20 pb-32  flex  justify-start items-center">
-            <div class="">
-                <h1 class="text-4xl font-IranYecan-extraBold leading-loose">حسابرو <br/> راهکار جامع مدیریت مالی <br/> و کسب کار شما</h1>
-                <p class="font-IranYecan-bold leading-6 text-sm my-10 w-2/4">سامانه یکپارچه حسابرو،راهکاری نوین جهت راهاندازی و مدیریت کسب و کار هاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرآیند ها را در بستری ساده و کم هزینه فراهم می آورد.</p>
+        <section class="sm:px-24 px-10  sm:pt-20 pt-10 pb-32  flex  justify-start items-center">
+            <div class="pb-20 sm:mb-0">
+                <h1 class="sm:text-4xl text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">حسابرو <br/> راهکار جامع مدیریت مالی <br/> و کسب کار شما</h1>
+                <p class="font-IranYecan-bold  absolute sm:static sm:w-2/3 w-full md:w-2/4 right-0 -bottom-11  px-4 sm:px-0  bg-white sm:bg-transparent text-justify leading-6 text-sm sm:py-0 sm:mt-10 py-10 ">سامانه یکپارچه حسابرو ، راهکاری نوین جهت راه اندازی و مدیریت کسب و کار هاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرآیند ها را در بستری ساده و کم هزینه فراهم می آورد.</p>
             </div>
         </section>
 </header>

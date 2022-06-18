@@ -5,7 +5,11 @@ import NavBar from './layout/navBar/NavBar.layout.vue'
 </script>
 
 <template lang="">
-<router-view></router-view>
+<router-view v-slot="{ Component }">
+  <transition name="fade">
+    <component :is="Component" />
+  </transition>
+</router-view>
 </template>
 <script>
 export default {
