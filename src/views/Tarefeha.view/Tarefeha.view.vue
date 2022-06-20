@@ -5,13 +5,14 @@
     <header class="mb-10" :class="{'blur':loading}">
         <NavBar/>
     </header>
-    <main class="container mx-auto sm:px-14 md:px-0 lg:px-28 mb-24" :class="{'blur':loading}">
+    <main class="container mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{'blur':loading}">
         <TarefehContainer :title="title">
         <template v-slot:body>
             <tarefehCard :seprateFu="seprateNumber" :toPersian="toPersian" @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data.items" :key="item.title"/>
+            
         </template>
-        <template v-slot:footer>
-            <TotalPriceCon :seprateFu="seprateNumber" :toPersian="toPersian"  :totalPrice="totalprice"/>
+        <template v-slot:footer lang="">
+                <TotalPriceCon class="hidden md:block" :title="totalPriceWithModulesConTitle" :seprateFu="seprateNumber" :toPersian="toPersian"  :totalPrice="totalprice"/>
         </template>
         </TarefehContainer>
         <TarefehContainer :title="title1" :classes="gap-4">
@@ -19,13 +20,17 @@
             <servicesBox :seprateFu="seprateNumber" v-if="Data.const_prices" v-model="PerBranch" :min="1"  :percent="Data.const_prices.price_per_branch"  :totalPrice="totalprice" :title="subTitle" :desc="desc"/>
             <servicesBox :seprateFu="seprateNumber" v-if="Data.const_prices" v-model="PerUser" :min="1" :percent="Data.const_prices.price_per_user" :totalPrice="totalprice" :title="subTitle1" :desc="desc1"/>
             </template>
+            <template v-slot:footer lang="">
+                <TotalPriceCon class="md:hidden" :title="totalPriceConTitle" :seprateFu="seprateNumber" :toPersian="toPersian"  :totalPrice="totalprice"/>
+                <TotalPriceCon class="md:hidden" :title="totalPriceWithModulesConTitle"  :seprateFu="seprateNumber" :toPersian="toPersian"  :totalPrice="totalPrice"/>
+        </template>
         </TarefehContainer>
         <TarefehContainer :title="title2" :classes="gap-4">
                 <template lang="" v-slot:body>
                     <Bill :discount="discount" :seprateFu="seprateNumber" :taxes="taxes" :finalPrice="totalPrice" :totalPrice="sideServices"/>
                     <FormCo :statusCode="btnStatusCode" @handlePost="handlePost">
-                        <InputCo :name="fullName" :type="text" :rules="handleValidateFullName" :title="title3" :placeHolder="placeHolder"/>
-                        <InputCo :name="mobileNo" :type="text" :rules="handleValidatephoneNumber" :title="title4" :placeHolder="placeHolder1"/>
+                        <InputCo :name="fullName" :type="text" :rules="handleValidateFullName" :title="title3" :placeHolder="placeHolderName"/>
+                        <InputCo :name="mobileNo" :type="text" :rules="handleValidatephoneNumber" :title="title4" :placeHolder="placeHolderMobile"/>
                     </FormCo>
                 </template>
         </TarefehContainer>
@@ -81,8 +86,10 @@ export default {
             subTitle1:"تعداد کاربران همزمان",
             desc:"شعبه جدید",
             desc1:"کاربر جدید",
-            placeHolder:"نام و نام خانوادگی خود را وارد کنید",
-            placeHolder1:"موبایل خود را وارد کنید",
+            totalPriceConTitle:"قیمت ماژول ها",
+            totalPriceWithModulesConTitle:"قیمت کل",
+            placeHolderName:"نام و نام خانوادگی خود را وارد کنید",
+            placeHolderMobile:"موبایل خود را وارد کنید",
             txt:"لطفا منتظر بمانید",
             fullName:"name",
             mobileNo:"phone_number",
@@ -164,7 +171,7 @@ export default {
         },
         handleClose(){
             this.showRegisterdModal=false;
-            this.btnStatusCode=0
+            this.btnStatusCode=0;
         }
     },
     computed: {
