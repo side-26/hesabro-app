@@ -25,7 +25,8 @@ module.exports = {
                 '3':'3px'
             },
             width:{
-                '5.5':'1.4rem'
+                '5.5':'1.4rem',
+                '100':'32rem'
             }
             ,
             height:{
@@ -36,7 +37,7 @@ module.exports = {
                 '47':'47deg'
             },
             backgroundImage:{
-                'main-bg':'url("./src/assets/img/wallTest.jpg")'
+                'main-bg':'url("./src/assets/img/main_bg.jpg")',
             }
         },
 

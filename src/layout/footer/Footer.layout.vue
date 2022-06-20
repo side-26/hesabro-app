@@ -43,10 +43,10 @@
                 <div class="flex">
                     
                     <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
-                        <img class="w-full h-full" src="../../assets/img/download.jfif" alt="etemad-logo"/>
+                        <img loading="lazy" class="w-full h-full" src="../../assets/img/download.jfif" alt="etemad-logo"/>
                     </figure>
                         <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
-                            <img class="w-full h-full" src="../../assets/img/samandehi.png" alt="samandehi-logo"/>
+                            <img loading="lazy" class="w-full h-full" src="../../assets/img/samandehi.png" alt="samandehi-logo"/>
                         </figure>
                 </div>
             </div>
