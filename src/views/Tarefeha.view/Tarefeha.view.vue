@@ -5,7 +5,7 @@
     <header class="mb-10" :class="{'blur':loading}">
         <NavBar/>
     </header>
-    <main class="container mx-auto sm:px-14 md:px-10 lg:px-28 mb-24" :class="{'blur':loading}">
+    <main class="container mx-auto sm:px-14 md:px-0 lg:px-28 mb-24" :class="{'blur':loading}">
         <TarefehContainer :title="title">
         <template v-slot:body>
             <tarefehCard :seprateFu="seprateNumber" :toPersian="toPersian" @handle-total-price="handleTotalPrice"  :tarefehInfo="item" v-for="item in Data.items" :key="item.title"/>
