@@ -17,7 +17,7 @@
             <div class="absolute bg-gradient-to-l from-white to-transparent   w-full h-full left-0 top-0">
             </div>
     </header>
-    <main class="">
+    <main class="overflow-hidden">
         <section class="mx-auto py-4 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
             <ImgContainer v-for="item in advantagesData" :key="item.id">
                 <AdvCart  :cardProperty="item"/>
@@ -57,12 +57,26 @@
                     </span>
                     </h4>
             </div>
-            <div class="overflow-auto md:h-56 lg:h-48 flex test">
+            <div class="overflow-auto h-48 md:h-56 lg:h-48 flex snap-x">
                 <ModuleCard v-for="Module in modules" :key="Module.id" :title="Module.title" :desc="Module.desc" :src="Module.src"/>
             </div>
         </section>
-        <section class="">
+        <section class="container mx-auto">
+            <h4 class="font-IranYecan-extraBold text-2xl text-center my-5">
+                مشتریان حسابرو
+            </h4>
+            <p class="text-center text-xs font-IranYecan-medium"> گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند</p>
+            <div class="flex flex-wrap justify-center  my-20">
+                <div class="mx-10 text-center" v-for="customer in customers" :key="customer.id">
+                    <a :href="customer.href" target="_blank">
+                        <figure  class="mb-5">
+                            <img class="w-24 h-24" :src="customer.src" alt=""/>
+                        </figure>
 
+                    </a>
+                    <span class="text-center font-IranYecan-bold text-sm">{{customer.title}}</span>
+                </div>
+            </div>
         </section>
     </main>
     <Footer/>
@@ -78,7 +92,9 @@
     import ModuleCard from '../../components/ModuleCard.component/ModuleCard.component.vue';
     import {toFarsiNumber} from '../../utilities/ConvertToPersian';
     import {advantages} from '@/config/tarefeh.data';
-    import {modules} from '../../config/tarefeh.data'
+    import {modules} from '../../config/tarefeh.data';
+    import {customers} from '../../config/tarefeh.data';
+    
 
 export default {
     name:"home",
@@ -86,6 +102,7 @@ export default {
         return {
             advantagesData:advantages,
             modules:modules,
+            customers:customers
         } 
     },
     components:{

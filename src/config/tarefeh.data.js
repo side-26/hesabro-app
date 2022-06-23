@@ -76,3 +76,10 @@ export const modules=[
     {id:6,title:'سیستم فروش',desc:'ثبت فاکتور های فروش و خدمت، مدیریت رزرو کالا، گزارشات فروش و سود و زیان',src:'/src/assets/img/sell_FILL1_wght400_GRAD0_opsz48.svg'},
     {id:7,title:'سیستم دریافت و پرداخت', desc:'، مدیریت وام ها انتقال های بین بانکی ، دریافت و پرداخت از /به شخصی ،تسویه کارتخوان، مدیریت اسناد دریافتی و پرداختنی(چک ها)',src:'/src/assets/img/swap_horiz_FILL1_wght400_GRAD0_opsz48.svg'}
 ]
+export const customers=[
+    {id:1,href:'https://www.mobit.ir/',src:'src/assets/img/mobitIcon.svg',title:"مبین"},
+    {id:2,href:'https://zoodex.ir/',src:'src/assets/img/zoodexIcon.svg',title:"زودکس"},
+    {id:3,href:'https://asreertebat.net/',src:'src/assets/img/asarErtebatat.svg',title:"عصر ارتباطات"},
+    {id:4,href:'https://rahkarsanat.org/',src:'src/assets/img/rahkar.svg',title:"راهکار صنعت"},
+    {id:5,href:'https://cut-media.ir/',title:"کات مدیا",src:'src/assets/img/cutMedia.svg'}
+]
