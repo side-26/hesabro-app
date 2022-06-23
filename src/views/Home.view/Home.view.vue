@@ -18,10 +18,38 @@
             </div>
     </header>
     <main class="">
-        <section class="mx-auto py-4 px-2 md:px-5 lg:px-10 items-center">
+        <section class="mx-auto py-4 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
             <ImgContainer v-for="item in advantagesData" :key="item.id">
                 <AdvCart  :cardProperty="item"/>
             </ImgContainer>
+        </section>
+        <section class="my-24 relative flex justify-start items-center  right-0">
+            <div class="flex justify-center  w-100 h-105 rounded-l-3xl overflow-hidden  bg-gray-100">
+                <div class="text-4xl text-gray-300 pt-36 font-IranYecan-thin text-right tracking-wider rotate-90">درباره ما</div>
+            </div>
+            <div class=" flex items-center relative -right-36">
+                <figure class="border-8 border-white w-80 rounded-3xl overflow-hidden h-100">
+                    <img class="w-full h-full" alt="about-us" src="@/assets/img/main_bg.jpg" loading="lazy" />
+                </figure>
+                <div class="mr-10 lg:w-2/3">
+                    <h4 class="font-IranYecan-extraBold text-2xl mb-10">درباره ما</h4>
+                    <p class="font-IranYecan-medium text-gray-900 text-xs">سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد</p>
+                    <OptionCom :convertToPersian='convertToPersian'/> 
+                    <div class="font-IranYecan-medium mt-14">
+                        <span class="text-slate-500">تلفن : </span>
+                        <a class="text-slate-900 " href="tel:03491002424">{{convertToPersian("03491002424")}}</a>
+                    </div>
+                    <div class="font-IranYecan-medium mt-14">
+                        <span class="text-slate-500">ادرس : </span>
+                        <span class="text-slate-900 ">کرمان ، خیابان نامدار محمدی </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="my-32">
+            <div class="">
+                
+            </div>
         </section>
     </main>
     <Footer/>
@@ -30,10 +58,12 @@
     </template>
 <script>
     import NavBar from '@/layout/navBar/NavBar.layout.vue';
-    import Footer from '../../layout/footer/Footer.layout.vue';
-    import ImgContainer from '../../components/imgContainer.component/ImgContainer.component.vue';
-    import AdvCart from '../../components/imgContainer.component/advCart.component/AdvCart.component.vue'
-    import {advantages} from '../../config/tarefeh.data';
+    import Footer from '@/layout/footer/Footer.layout.vue';
+    import ImgContainer from '@/components/imgContainer.component/ImgContainer.component.vue';
+    import AdvCart from '@/components/imgContainer.component/advCart.component/AdvCart.component.vue';
+    import OptionCom from '@/components/Options.component/Option.component.vue';
+    import {toFarsiNumber} from '../../utilities/ConvertToPersian'
+    import {advantages} from '@/config/tarefeh.data';
 
 export default {
     name:"home",
@@ -46,11 +76,15 @@ export default {
         NavBar,
         Footer,
         ImgContainer,
-        AdvCart
+        AdvCart,
+        OptionCom
     },
     methods:{
         handleNavigate(){
             this.$router.push('/tarefeha')
+        },
+        convertToPersian(num){
+            return toFarsiNumber(num)
         }
 
     }
@@ -65,5 +99,13 @@ transition: all .35s ease-in-out;
 .enter{
 opacity: 1;
 transform: translate(0);
+}
+.test{
+   transform: rotate(90deg);
+    position: absolute;
+    top: 0;
+    left: 100%;
+    white-space: nowrap;    
+    font-size: 48px;
 }
 </style>
