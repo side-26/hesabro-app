@@ -27,13 +27,22 @@ module.exports = {
             width:{
                 '5.5':'1.4rem',
                 '97':'30rem',
-                '100':'34rem',
+                '100':'32rem',
+                '105':'34rem',
+                
+            },
+            minWidth:{
+                '2.3':'23%',
+                '2.7':'55%'
             }
             ,
             height:{
                 '1.5':'.45rem',
                 '5.5':'1.4rem',
-                '100':'28rem',
+                '97':'28rem',
+                '98':'30rem',
+                '100':'32rem',
+                '103':'34rem',
                 '105':'35rem'
             },
             rotate:{
@@ -45,5 +54,8 @@ module.exports = {
         },
 
     },
-    plugins: [],
+    plugins: [
+        require('tailwind-scrollbar-hide')
+        // ...
+      ],
 }

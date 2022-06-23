@@ -24,11 +24,11 @@
             </ImgContainer>
         </section>
         <section class="my-24 relative flex justify-start items-center  right-0">
-            <div class="flex justify-center  w-100 h-105 rounded-l-3xl overflow-hidden  bg-gray-100">
+            <div class="flex justify-center  w-105 h-105 rounded-l-3xl overflow-hidden  bg-gray-100">
                 <div class="text-4xl text-gray-300 pt-36 font-IranYecan-thin text-right tracking-wider rotate-90">درباره ما</div>
             </div>
             <div class=" flex items-center relative -right-36">
-                <figure class="border-8 border-white w-80 rounded-3xl overflow-hidden h-100">
+                <figure class="border-8 border-white w-80 rounded-3xl overflow-hidden h-97">
                     <img class="w-full h-full" alt="about-us" src="@/assets/img/main_bg.jpg" loading="lazy" />
                 </figure>
                 <div class="mr-10 lg:w-2/3">
@@ -46,10 +46,23 @@
                 </div>
             </div>
         </section>
-        <section class="my-32">
-            <div class="">
-                
+        <section class="py-32 relative h-100">
+            <div class=" absolute border-3 -top-5 left-1/3 -z-10  border-cyan-600 rounded-full lg:h-98 lg:w-97 flex justify-center items-center">
+                <h4 class="font-IranYecan-extraBold flex-col text-center flex text-5xl ">
+                    <span class="mb-64">
+                        ماژول های
+                    </span>
+                    <span class="text-cyan-600">
+                       حسابرو
+                    </span>
+                    </h4>
             </div>
+            <div class="overflow-auto md:h-56 lg:h-48 flex test">
+                <ModuleCard v-for="Module in modules" :key="Module.id" :title="Module.title" :desc="Module.desc" :src="Module.src"/>
+            </div>
+        </section>
+        <section class="">
+
         </section>
     </main>
     <Footer/>
@@ -62,22 +75,26 @@
     import ImgContainer from '@/components/imgContainer.component/ImgContainer.component.vue';
     import AdvCart from '@/components/imgContainer.component/advCart.component/AdvCart.component.vue';
     import OptionCom from '@/components/Options.component/Option.component.vue';
-    import {toFarsiNumber} from '../../utilities/ConvertToPersian'
+    import ModuleCard from '../../components/ModuleCard.component/ModuleCard.component.vue';
+    import {toFarsiNumber} from '../../utilities/ConvertToPersian';
     import {advantages} from '@/config/tarefeh.data';
+    import {modules} from '../../config/tarefeh.data'
 
 export default {
     name:"home",
     data() {
         return {
-            advantagesData:advantages
-        }
+            advantagesData:advantages,
+            modules:modules,
+        } 
     },
     components:{
         NavBar,
         Footer,
         ImgContainer,
         AdvCart,
-        OptionCom
+        OptionCom,
+        ModuleCard
     },
     methods:{
         handleNavigate(){
@@ -100,12 +117,27 @@ transition: all .35s ease-in-out;
 opacity: 1;
 transform: translate(0);
 }
-.test{
-   transform: rotate(90deg);
-    position: absolute;
-    top: 0;
-    left: 100%;
-    white-space: nowrap;    
-    font-size: 48px;
+ .test{
+        scroll-snap-type: x mandatory;
+    }
+    ::-webkit-scrollbar {
+  width: 20px;
 }
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
 </style>
