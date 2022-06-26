@@ -50,6 +50,9 @@ module.exports = {
             },
             backgroundImage:{
                 'main-bg':'url("./src/assets/img/main_bg.jpg")',
+            },
+            spacing:{
+                '40.5':'40%'
             }
         },
 

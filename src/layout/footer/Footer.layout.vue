@@ -1,6 +1,6 @@
 <template lang="">
-    <footer class="py-10 bg-gray-100 px-10 md:px-6 lg:px-24">
-        <section class="flex justify-between md:flex-row flex-col   mb-5">
+    <footer class="py-10 bg-gray-100 px-10 md:px-6 lg:px-24  2xl:px-0">
+        <section class="flex justify-between md:flex-row flex-col 2xl:container 2xl:mx-auto  mb-5">
             <div class="font-IranYecan-bold text-sm md:mt-0 mt-5">
                 <router-link to="/">
                     <figure class="w-14 h-14">
@@ -28,10 +28,10 @@
                 <div>
                     <ul class="text-sm text-slate-900">
                         <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/">خانه</router-link></li> 
-                        <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/">خدمات و راهکار ها</router-link></li> 
+                        <li class="my-6"><a class="text-slate-800 font-IranYekan-regular" href="#advantages">خدمات و راهکار ها</a></li> 
                         <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/tarefeha">تعرفه ها</router-link></li> 
-                        <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/">سوالات متداول</router-link></li> 
-                        <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/">ارتباط با ما</router-link></li> 
+                        <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular side-26" to="/">سوالات متداول</router-link></li> 
+                        <li class="my-6"><a href="#about_us" class="text-slate-800 font-IranYekan-regular" to="/">ارتباط با ما</a></li> 
                     </ul>
                 </div>
 
