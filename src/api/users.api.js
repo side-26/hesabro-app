@@ -1,7 +1,7 @@
 import api from './axios';
 import {urls} from '../urls';
 export const users = {
-    async Post(data) {
+    async post(data) {
         // const options = {
         //     headers: {
         //         "Access-Control-Allow-Origin": "*",

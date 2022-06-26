@@ -1,7 +1,7 @@
 import api from './axios';
 import {urls} from '../urls'
 export const tarefeha = {
-    async Get() {
+    async get() {
         return await api.get(urls.tarefeha)
             .then(res => {
                 return res
