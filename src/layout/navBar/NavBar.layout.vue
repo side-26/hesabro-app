@@ -29,7 +29,7 @@
         <li class="my-5 sm:my-0"><a @click="hanleShow()"  href="#advantages" class="hover:text-cyan-600 transition-all ">خدمات و راهکار ها</a></li>
         <li class="my-5 sm:my-0"><router-link @click="hanleShow()" to="/tarefeha" class="hover:text-cyan-600 transition-all ">تعرفه ها</router-link></li>
         <li class="my-5 sm:my-0"><a @click="hanleShow()"  href="/" class="hover:text-cyan-600   transition-all text-slate-800"> سوالات متداول</a></li>
-        <li class="my-5 sm:my-0"><a @click="hanleShow()"  href="#about_us" class="hover:text-cyan-600  transition-all text-slate-800"> ارتباط با ما</a></li>
+        <li class="my-5 sm:my-0"><a @click="hanleShow()"  href="#about_us"  class="hover:text-cyan-600  transition-all text-slate-800"> ارتباط با ما</a></li>
       </ul>
     </section>
   </nav>

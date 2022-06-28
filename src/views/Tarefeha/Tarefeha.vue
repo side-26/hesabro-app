@@ -25,8 +25,8 @@
                 <template lang="" v-slot:body>
                     <Bill :discount="discount"  :taxes="taxes" :finalPrice="totalPrice" :totalPrice="sideServices"/>
                     <FormCo :statusCode="btnStatusCode" @handlePost="handlePost">
-                        <InputCo :name="fullName" :type="text" :rules="handleValidateFullName" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید"/>
-                        <InputCo :name="mobileNo" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید"/>
+                        <InputCo name="name" :type="text" :rules="handleValidateFullName" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید"/>
+                        <InputCo name="phone_number" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید"/>
                     </FormCo>
                 </template>
         </TarefehContainer>
@@ -70,8 +70,6 @@ export default {
             customerInfo:{},
             PerBranch:{price:0,count:0},
             PerUser:{price:0,count:0},
-            fullName:"name",
-            mobileNo:"phone_number",
             registerdSuccess:"failed",
             modalDesc:"",
             modalTitle:"",
@@ -127,7 +125,6 @@ export default {
             return handleSprateNumber(num)
         },
         handleValidateFullName(val){
-            console.log(val)
             if(!val)
                 return "فیلد مورد نظر خالی است!!"
             else if(val.length<6)
@@ -135,7 +132,6 @@ export default {
             return true;
         },
         handleValidatephoneNumber(val){
-            console.log(val)
             if(!val)
                 return "فیلد مورد نظر خالی است!!!"
             else if(val[0]!=="0"||val.length!=11)

@@ -1,6 +1,6 @@
 <template lang="">
     <div class="py-5  scroll-t h-full  snap-start  min-w-full  md:min-w-2.7 flex-wrap xl:min-w-2.3">
-        <section class="pl-5 py-4  h-full px-3 border-gray-300 bg-gray-50 border-l-2">
+        <section class="pl-5 py-4 after:absolute after:w-full   h-full px-3 border-gray-300 bg-gray-50 border-l-2">
             <div class="flex">
                 <figure class="w-6 h-6 ml-3">
                     <img :src="src" alt="title" class="w-full h-full"/>
@@ -18,8 +18,4 @@ export default {
 }
 </script>
 <style lang="css">
-   .scroll-snap-align{
-    scroll-snap-align: start;
-   }
-    
 </style>

@@ -1,8 +1,8 @@
 <template lang="">
 <div>
     <NavBar/>
-    <header class="">
-            <section class="bg-center bg-cover bg-main-bg  sm:px-24 px-10 relative z-10   sm:py-40 pt-10 md:pb-72 flex  justify-start items-center">
+    <header>
+            <section class="bg-center bg-cover bg-main-bg  sm:px-24 px-10 relative z-10 side-26  sm:py-40 pt-10 md:pb-72 flex  justify-start items-center">
                 <div class="pb-20 sm:mb-0">
                     <h1  class="sm:text-4xl text-white text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">حسابرو<br/> مدیریت مالی و حسابداری</h1>
                     <!-- <p  class="font-IranYecan-bold  absolute sm:static sm:w-2/3 w-full md:w-2/4 side-26 right-0 -bottom-11  px-4 sm:px-0  bg-white sm:bg-transparent text-justify leading-6 text-gray-600 text-sm sm:py-0 sm:mt-10 py-10 ">سامانه یکپارچه حسابرو ، راهکاری نوین جهت راه اندازی و مدیریت کسب و کار هاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرآیند ها را در بستری ساده و کم هزینه فراهم می آورد.</p> -->
@@ -38,8 +38,20 @@
                 </div>
             </div>
         </section>
-        <section class="py-32 lg:relative h-100 2xl:px-20">
-            <div class=" lg:absolute lg:border-3  2xl:left-40.5  lg:-top-5 lg:left-1/3 -z-10  border-cyan-600 rounded-full lg:h-98 lg:w-97 lg:flex justify-center items-center">
+        <section  class="py-32 lg:relative h-100 2xl:px-20">
+            <div class="lg:absolute -z-10 top-0 left-0 w-full h-full flex justify-center items-center">
+                <div class="border-cyan-600 flex items-center justify-center lg:border-3 lg:rounded-full lg:w-100 lg:h-100">
+                    <h4 class="font-IranYecan-extraBold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-3xl 2xl:text-4xl ">
+                    <span class="lg:mb-72 lg:m-0 ml-4">
+                        ماژول های
+                    </span>
+                    <span class="text-cyan-600">
+                       حسابرو
+                    </span>
+                    </h4>
+                </div>
+            </div>
+            <!-- <div class=" lg:absolute lg:border-3  2xl:left-40.5  lg:-top-5 lg:left-1/3 -z-10  border-cyan-600 rounded-full lg:h-98 lg:w-97 lg:flex justify-center items-center">
                 <h4 class="font-IranYecan-extraBold justify-center mb-5 lg:flex-col text-center flex text-3xl ">
                     <span class="lg:mb-64">
                         ماژول های
@@ -48,12 +60,12 @@
                        حسابرو
                     </span>
                     </h4>
-            </div>
-            <div class="overflow-auto  h-48 md:h-56 lg:h-48 flex snap-x">
+            </div> -->
+            <div id="moduls" class="overflow-auto  h-48 md:h-56 lg:h-48 flex snap-x">
                 <ModuleCard v-for="Module in modules" :key="Module.id" :title="Module.title" :desc="Module.desc" :src="Module.src"/>
             </div>
         </section>
-        <section class="container mx-auto">
+        <section class="container my-44 lg:my-20 mx-auto">
             <h4 class="font-IranYecan-extraBold text-2xl text-center my-5">
                 مشتریان حسابرو
             </h4>
@@ -123,15 +135,4 @@ transition: all .35s ease-in-out;
 opacity: 1;
 transform: translate(0);
 }
-::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #d6dee1;
-  border-radius: 20px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #d6dee1;
-}
-
 </style>

@@ -14,10 +14,10 @@
 import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 export default {
     name:"counter",
-    props:["count","step","min"],
+    props:["count","step","min",'modelValue'],
     methods: {
         handleCounter(step){
-               this.$emit('handleCounter',step)
+            this.$emit("update:modelValue",this.modelValue+step)
             console.log("min",this.min,"count",this.count)
         },
         PersianConvertor(val){
