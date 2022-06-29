@@ -40,7 +40,7 @@
             </div>
         </section>
         <!-- ماژول های حسابرو -->
-        <section  class="py-32 lg:relative h-100 flex justify-center items-center 2xl:px-20">
+        <section  class="lg:py-32  lg:relative h-100 flex flex-col lg:flex-row justify-center items-center 2xl:px-20">
             <div class="lg:absolute -z-10 top-0 left-0 w-full h-full flex justify-center items-center">
                 <div class="border-cyan-600 flex items-center justify-center lg:border-3 lg:rounded-full lg:w-100 lg:h-100">
                     <h4 class="font-IranYecan-extraBold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-4xl 2xl:text-5xl ">
@@ -53,12 +53,51 @@
                     </h4>
                 </div>
             </div>
-            <div id="moduls" class="overflow-auto   h-48 md:h-56 lg:h-48 flex snap-x">
-                <ModuleCard class="test" v-for="Module in modules" :key="Module.id" :title="Module.title" :desc="Module.desc" :src="Module.src"/>
-            </div>
+            <!-- <div ref="moduleContainer" id="moduls" class="h-48 overflow-x-auto md:h-56 lg:h-48 flex snap-x">
+                </div> -->
+            <swiper
+            :slidesPerView="'auto'"
+            :spaceBetween="0"
+            :autoplay="{
+                    delay: 3000,
+                    disableOnInteraction: true,
+                    }"
+            :breakpoints="{
+      '640': {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      '768': {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      '1024': {
+        slidesPerView: 3,
+        spaceBetween: 0,
+      },
+      '1300':{
+        slidesPerView: 4,
+        spaceBetween: 0,
+      }
+    }"
+            dir="rtl"
+            :centeredSlides="true"
+            :loop="true"
+            :navigation="false"
+            :grabCursor="true"
+            class="h-80 lg:h-36"
+            :modules="modules"
+  >
+    <swiper-slide class="" v-for="Module in TarefehaModules" :key="Module.id">
+      <ModuleCard   :title="Module.title" :desc="Module.desc" :src="Module.src"/>
+    </swiper-slide>
+  </swiper>
+  <div ref="moduleContainer" id="moduls" class="h-48 overflow-x-auto md:h-56 lg:h-48 flex snap-x">
+                </div>
         </section>
+
         <!-- مشتریان حسابرو -->
-        <section class="container my-44 lg:my-20 mx-auto">
+        <section class="container my-40 lg:my-20 mx-auto">
             <h4 class="font-IranYecan-extraBold text-2xl text-center my-5">
                 مشتریان حسابرو
             </h4>
@@ -86,19 +125,25 @@
     import AdvCard from '@/components/advCard/AdvCard.vue';
     import OptionCom from '@/components/Options/Option.vue';
     import ModuleCard from '@/components/ModuleCard/ModuleCard.vue';
+    import { Swiper, SwiperSlide } from "swiper/vue";
+    import { Pagination, Navigation,Autoplay,EffectFade } from "swiper";
     import {toFarsiNumber} from '@/utilities/ConvertToPersian';
     import {advantages} from '@/config/tarefeh.data';
     import {modules} from '@/config/tarefeh.data';
     import {customers} from '@/config/tarefeh.data';
-     
+    import "swiper/css";
+    import "swiper/css/pagination";
+    import "swiper/css/navigation";
+    // import "./style.css";
 
 export default {
     name:"home",
     data() {
         return {
             advantagesData:advantages,
-            modules:modules,
-            customers:customers
+            TarefehaModules:modules,
+            customers:customers,
+            
         } 
     },
     components:{
@@ -106,8 +151,15 @@ export default {
         Footer,
         AdvCard,
         OptionCom,
-        ModuleCard
+        ModuleCard,
+        Swiper,
+        SwiperSlide,
     },
+    setup() {
+    return {
+      modules: [Pagination, Navigation,Autoplay,EffectFade],
+    };
+  },
     methods:{
         handleNavigate(){
             this.$router.push('/tarefeha')
@@ -122,7 +174,7 @@ export default {
     },
     mounted() {
         this.handleAutoScroll();
-    },
+            },
 }
 </script>
 <style lang="css">
@@ -135,5 +187,28 @@ transition: all .35s ease-in-out;
 opacity: 1;
 transform: translate(0);
 }
-
+.test{
+    height: 100%;
+}
+.swiper-slide {
+  /* text-align: center; */
+  /* font-size: 18px; */
+  /* background: #fff; */
+    display: flex;
+    flex-direction: column;
+  /* Center slide text vertically */
+  
+  /* display: flex; */
+  /* -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  /* -webkit-justify-content: center; */
+  /* justify-content: center; */
+}
+.swiper-wrapper{
+    display: flex;
+    transition: all 1.95s ease-out !important;
+}
+.swiper-wrapper:hover{
+    transition: none;
+}
 </style>

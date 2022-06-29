@@ -14,7 +14,7 @@
 <script>
 export default {
     name:"AdvCart",
-    props:{'cardProperty':{
+    props:{cardProperty:{
         type:Object,
         required:true
     },},

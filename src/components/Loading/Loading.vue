@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-    props:{"msg":{
+    props:{msg:{
         type:String,
         required:true
     }}

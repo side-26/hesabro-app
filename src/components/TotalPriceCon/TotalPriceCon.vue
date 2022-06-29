@@ -10,10 +10,10 @@ import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 import {handleSprateNumber} from '@/utilities/SeprateNumbers'
 export default {
     name:"totalPrice",
-    props:{"title":{
+    props:{title:{
         type:String,
         required:true
-    },"totalPrice":{
+    },totalPrice:{
         type:String,
         required:true
     }},

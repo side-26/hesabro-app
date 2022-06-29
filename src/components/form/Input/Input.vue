@@ -14,16 +14,19 @@ export default {
     ErrorMessage
   },
     name:"InputCo",
-    props:{"name":{
+    props:{name:{
         type:String,
         required:true
-    },"title":{
+    },
+    title:{
         type:String,
         required:true
-    },"placeHolder":{
+    },
+    placeHolder:{
         type:String,
         required:true
-    },"rules":{
+    },
+    rules:{
         type:Function,
         required:true
     }}

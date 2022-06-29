@@ -7,7 +7,7 @@
                 </figure>
                 <h5 class="font-IranYecan-extraBold mb-3">{{title}}</h5>
             </div>
-            <p class="mr-10 text-xs font-IranYekan-regular">{{desc}}</p>
+            <p class="mr-10 lg:w-full w-6/12 text-xs font-IranYekan-regular">{{desc}}</p>
         </section>
     </div>
 </template>
@@ -15,13 +15,15 @@
 export default {
     name:"ModuleCard",
     props:{
-        'title':{
+        title:{
             type:String,
             required:true
-        },"src":{
+        },
+        src:{
             type:String,
             required:true
-        },"desc":{
+        },
+        desc:{
             type:String,
             required:true
         }

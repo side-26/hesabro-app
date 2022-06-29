@@ -14,16 +14,20 @@
 import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 export default {
     name:"counter",
-    props:{"count":{
+    props:{
+        count:{
         type:Number,
         required:true
-    },"step":{
+    },
+    step:{
         type:Number,
         required:true
-    },"min":{
+    },
+    min:{
         type:Number,
         required:true
-    },'modelValue':{
+    },
+    modelValue:{
         type:Number,
         required:true
     }},

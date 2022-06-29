@@ -34,7 +34,7 @@ export default {
             itemArr:this.convertToArray(this.tarefehInfo.description)
         }
     },
-        props:{"tarefehInfo":{
+        props:{tarefehInfo:{
             type:Object,
             required:true
         }},
