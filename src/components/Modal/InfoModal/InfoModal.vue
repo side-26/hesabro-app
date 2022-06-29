@@ -20,7 +20,13 @@
 <script>
 export default {
     name:"InfoModal",
-    props:["desc","btnText","title","type",'path'],
+    props:{"desc":String,
+    'btnText':{
+        type:String,
+        default:"تایید"
+    },
+    "title":String,"type":String,'path':String
+    },
     methods:{
         handelRegister(success){
             this.$router.push(`${this.path}`);

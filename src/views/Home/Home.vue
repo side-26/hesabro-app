@@ -12,8 +12,9 @@
             </section>
     </header>
     <main class="overflow-hidden">
+        <!-- راهکار ها و خدمات -->
         <section id="advantages" class="mx-auto py-10 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
-                <AdvCart v-for="item in advantagesData" :key="item.id" :cardProperty="item"/>
+                <AdvCard v-for="item in advantagesData" :key="item.id" :cardProperty="item"/>
         </section>
         <section id="about_us" class="my-24 relative flex justify-start items-center  right-0">
             <div class="flex justify-center py-96 px-10 sm:px-20 md:p-0 md:w-97  lg:w-105 md:h-105  rounded-l-3xl overflow-hidden  bg-gray-100">
@@ -38,10 +39,11 @@
                 </div>
             </div>
         </section>
-        <section  class="py-32 lg:relative h-100 2xl:px-20">
+        <!-- ماژول های حسابرو -->
+        <section  class="py-32 lg:relative h-100 flex justify-center items-center 2xl:px-20">
             <div class="lg:absolute -z-10 top-0 left-0 w-full h-full flex justify-center items-center">
                 <div class="border-cyan-600 flex items-center justify-center lg:border-3 lg:rounded-full lg:w-100 lg:h-100">
-                    <h4 class="font-IranYecan-extraBold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-3xl 2xl:text-4xl ">
+                    <h4 class="font-IranYecan-extraBold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-4xl 2xl:text-5xl ">
                     <span class="lg:mb-72 lg:m-0 ml-4">
                         ماژول های
                     </span>
@@ -51,20 +53,11 @@
                     </h4>
                 </div>
             </div>
-            <!-- <div class=" lg:absolute lg:border-3  2xl:left-40.5  lg:-top-5 lg:left-1/3 -z-10  border-cyan-600 rounded-full lg:h-98 lg:w-97 lg:flex justify-center items-center">
-                <h4 class="font-IranYecan-extraBold justify-center mb-5 lg:flex-col text-center flex text-3xl ">
-                    <span class="lg:mb-64">
-                        ماژول های
-                    </span>
-                    <span class="text-cyan-600">
-                       حسابرو
-                    </span>
-                    </h4>
-            </div> -->
-            <div id="moduls" class="overflow-auto  h-48 md:h-56 lg:h-48 flex snap-x">
-                <ModuleCard v-for="Module in modules" :key="Module.id" :title="Module.title" :desc="Module.desc" :src="Module.src"/>
+            <div id="moduls" class="overflow-auto   h-48 md:h-56 lg:h-48 flex snap-x">
+                <ModuleCard class="test" v-for="Module in modules" :key="Module.id" :title="Module.title" :desc="Module.desc" :src="Module.src"/>
             </div>
         </section>
+        <!-- مشتریان حسابرو -->
         <section class="container my-44 lg:my-20 mx-auto">
             <h4 class="font-IranYecan-extraBold text-2xl text-center my-5">
                 مشتریان حسابرو
@@ -82,6 +75,7 @@
             </div>
         </section>
     </main>
+    <!-- فوتر سایت -->
     <Footer/>
 </div>
 
@@ -89,14 +83,14 @@
 <script>
     import NavBar from '@/layout/navBar/NavBar.layout.vue';
     import Footer from '@/layout/footer/Footer.layout.vue';
-    import AdvCart from '@/components/advCard/AdvCard.vue';
+    import AdvCard from '@/components/advCard/AdvCard.vue';
     import OptionCom from '@/components/Options/Option.vue';
     import ModuleCard from '@/components/ModuleCard/ModuleCard.vue';
     import {toFarsiNumber} from '@/utilities/ConvertToPersian';
     import {advantages} from '@/config/tarefeh.data';
     import {modules} from '@/config/tarefeh.data';
     import {customers} from '@/config/tarefeh.data';
-    
+     
 
 export default {
     name:"home",
@@ -110,7 +104,7 @@ export default {
     components:{
         NavBar,
         Footer,
-        AdvCart,
+        AdvCard,
         OptionCom,
         ModuleCard
     },
@@ -120,9 +114,15 @@ export default {
         },
         convertToPersian(num){
             return toFarsiNumber(num)
+        },
+        handleAutoScroll(){
+            
+            console.log(this.Footer)
         }
-
-    }
+    },
+    mounted() {
+        this.handleAutoScroll();
+    },
 }
 </script>
 <style lang="css">
@@ -135,4 +135,5 @@ transition: all .35s ease-in-out;
 opacity: 1;
 transform: translate(0);
 }
+
 </style>

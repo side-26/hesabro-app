@@ -36,7 +36,7 @@
 </div>
     <Teleport to="#modalTel">
         <transition>
-            <InfoModal  @handleClose="handleClose" :path="modalPath" v-if="showRegisterdModal" :title="modalTitle" :type="registerdSuccess" desc="شعبه جدید" btnText="تایید"/>
+            <InfoModal  @handleClose="handleClose" :path="modalPath" v-if="showRegisterdModal" :title="modalTitle" :type="registerdSuccess" :desc="modalDesc" btnText="تایید"/>
         </transition>
     </Teleport>
 </template>
@@ -110,7 +110,7 @@ export default {
                 this.showRegisterdModal=true
                 this.btnStatusCode=0
                 if(item.data.success!=="success"){
-                    this.modalDesc="ثبت نام با موفقیت ثبت شد"
+                    this.modalDesc="ثبت نام با موفقیت انجام شد با شما از طرف حسابرو تماس گرفته می شود."
                     this.registerdSuccess="success"
                     this.modalPath="/"
                 }

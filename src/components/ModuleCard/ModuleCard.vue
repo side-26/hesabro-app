@@ -1,6 +1,6 @@
 <template lang="">
-    <div class="py-5  scroll-t h-full  snap-start  min-w-full  md:min-w-2.7 flex-wrap xl:min-w-2.3">
-        <section class="pl-5 py-4 after:absolute after:w-full   h-full px-3 border-gray-300 bg-gray-50 border-l-2">
+    <div class="py-2  scroll-t h-full bg-gray-50 snap-start  min-w-full  md:min-w-2.7 flex-wrap xl:min-w-2.3 relative after:absolute after:w-0 md:after:w-0.5 after:left-0 after:top-0 md:after:h-4/5 after:h-0 md:after:my-5 lg:after:my-4 after:bg-gray-200">
+        <section class="pl-5 py-4 px-3">
             <div class="flex">
                 <figure class="w-6 h-6 ml-3">
                     <img :src="src" alt="title" class="w-full h-full"/>
@@ -17,5 +17,3 @@ export default {
     props:['title',"src","desc"]
 }
 </script>
-<style lang="css">
-</style>
