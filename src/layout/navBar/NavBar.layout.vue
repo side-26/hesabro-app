@@ -1,9 +1,9 @@
 <template lang="">
-  <nav class="relative z-30">
+  <nav class="bg-white sticky z-20 top-0">
     <section class="sm:static relative container mx-auto 2xl:mx-0 2xl:mr-32 py-3 flex items-center">
       <router-link to="/" class="flex items-center sm:pr-8">
         <figure class="mr-8 sm:mr-0 sm:ml-10 lg:ml-14">
-            <img src="../../assets/img/hesabro.logo.svg" alt="logo" />
+            <img src="@/assets/img/hesabro.logo.svg" alt="logo" />
         </figure>
         <span class="font-IranYecan-bold sm:hidden mr-5  text-xl text-cyan-600 ">حسابرو</span>
       </router-link> 
@@ -29,7 +29,7 @@
         <li class="my-5 sm:my-0"><a @click="hanleShow()"  href="#advantages" class="hover:text-cyan-600 transition-all ">خدمات و راهکار ها</a></li>
         <li class="my-5 sm:my-0"><router-link @click="hanleShow()" to="/tarefeha" class="hover:text-cyan-600 transition-all ">تعرفه ها</router-link></li>
         <li class="my-5 sm:my-0"><a @click="hanleShow()"  href="/" class="hover:text-cyan-600   transition-all text-slate-800"> سوالات متداول</a></li>
-        <li class="my-5 sm:my-0"><a @click="hanleShow()"  href="#about_us" class="hover:text-cyan-600  transition-all text-slate-800"> ارتباط با ما</a></li>
+        <li class="my-5 sm:my-0"><a @click="hanleShow()"  href="#about_us"  class="hover:text-cyan-600  transition-all text-slate-800"> ارتباط با ما</a></li>
       </ul>
     </section>
   </nav>

@@ -3,6 +3,7 @@
 @tailwind utilities;
 html {
     scroll-behavior: smooth;
+    scrollbar-width: thin;
 }
 
 .loading-spinner {
@@ -17,31 +18,18 @@ html {
 }
 
 *::-webkit-scrollbar {
-    /* width: 10px; */
-    border-radius: 2rem;
+    width: 10px;
+}
+
+body {
+    scrollbar-width: thin;
 }
 
 *::-webkit-scrollbar-thumb {
     background-color: darkgrey;
     /* outline: 1px solid slategrey; */
     border-radius: 2rem;
-    scrollbar-width: thin;
 }
-
-
-/* .loading-spinner ::before {
-    animation: 1.5s ease-in infinite spinner alternate;
-    animation-play-state: inherit;
-    border-radius: 50%;
-    content: "";
-    height: 10px;
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    transform: translate3d(-50%, -50%, 0);
-    width: 40px;
-    will-change: transform;
-} */
 
 @keyframes spinner {
     0% {
