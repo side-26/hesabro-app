@@ -34,7 +34,10 @@ export default {
             itemArr:this.convertToArray(this.tarefehInfo.description)
         }
     },
-        props:["tarefehInfo"],
+        props:{"tarefehInfo":{
+            type:Object,
+            required:true
+        }},
     methods: {
         handleCheck(price){
             this.checked=!this.checked;
@@ -46,9 +49,7 @@ export default {
         },
         handleToggle(evt){
             evt.stopPropagation();
-            // this.checked=!this.checked;
             this.toggled=!this.toggled;
-            
         },
         toPersianNu(val){
             return toFarsiNumber(val)

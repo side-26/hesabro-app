@@ -20,12 +20,18 @@
 <script>
 export default {
     name:"InfoModal",
-    props:{"desc":String,
+    props:{"desc":{
+        type:String,
+        required:true
+    },
     'btnText':{
         type:String,
         default:"تایید"
     },
-    "title":String,"type":String,'path':String
+    'type':{
+        type:String,
+        required:true
+    }
     },
     methods:{
         handelRegister(success){

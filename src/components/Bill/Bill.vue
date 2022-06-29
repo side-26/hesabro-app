@@ -11,7 +11,16 @@ import {toFarsiNumber} from '@/utilities/ConvertToPersian';
 import {handleSprateNumber} from '@/utilities/SeprateNumbers';
 export default {
     name:"Bill",
-    props:["discount","taxes","finalPrice","seprateFu"],
+    props:{"discount":{
+        type:Number,
+        required:true
+    },"taxes":{
+        type:Number,
+        required:true
+    },"finalPrice":{
+        type:Number,
+        required:true
+    },},
     computed: {
         Discount(){
             return this.discount*this.finalPrice/100

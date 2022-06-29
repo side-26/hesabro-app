@@ -14,6 +14,17 @@
 <script>
 export default {
     name:"ModuleCard",
-    props:['title',"src","desc"]
+    props:{
+        'title':{
+            type:String,
+            required:true
+        },"src":{
+            type:String,
+            required:true
+        },"desc":{
+            type:String,
+            required:true
+        }
+        }
 }
 </script>

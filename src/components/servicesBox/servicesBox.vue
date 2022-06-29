@@ -15,7 +15,25 @@ import {handleSprateNumber} from '@/utilities/SeprateNumbers'
 export default {
     
     name:"servicesContainer",
-    props:["percent","title","totalPrice","desc","min","modelValue"],
+    props:{"percent":{
+        type:Number,
+        required:true
+    },"title":{
+        type:String,
+        required:true
+    },"totalPrice":{
+        type:Number,
+        required:true
+    },"desc":{
+        type:String,
+        required:true
+    },"min":{
+        type:Number,
+        required:true
+    },"modelValue":{
+        type:Number,
+        required:true
+    }},
     components:{
         Counter,
     },

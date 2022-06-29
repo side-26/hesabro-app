@@ -6,11 +6,17 @@
     </div>
 </template>
 <script>
-import {toFarsiNumber} from '../../utilities/ConvertToPersian';
-import {handleSprateNumber} from '../../utilities/SeprateNumbers'
+import {toFarsiNumber} from '@/utilities/ConvertToPersian';
+import {handleSprateNumber} from '@/utilities/SeprateNumbers'
 export default {
     name:"totalPrice",
-    props:["title","totalPrice"],
+    props:{"title":{
+        type:String,
+        required:true
+    },"totalPrice":{
+        type:String,
+        required:true
+    }},
     methods:{
         toPersianNu(val){
             return toFarsiNumber(val)

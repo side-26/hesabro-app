@@ -18,6 +18,12 @@ export default {
     components:{
 Container_Header
     },
-    props:["title",'classes']
+    props:{"title":{
+        type:String,
+        required:true
+    },'classes':{
+        type:String,
+        required:true
+    }}
 }
 </script>

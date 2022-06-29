@@ -14,6 +14,18 @@ export default {
     ErrorMessage
   },
     name:"InputCo",
-    props:["name","title","placeHolder","rules"]
+    props:{"name":{
+        type:String,
+        required:true
+    },"title":{
+        type:String,
+        required:true
+    },"placeHolder":{
+        type:String,
+        required:true
+    },"rules":{
+        type:Function,
+        required:true
+    }}
 }
 </script>

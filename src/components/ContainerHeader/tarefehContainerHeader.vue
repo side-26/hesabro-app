@@ -7,7 +7,10 @@
 <script>
 export default {
     name:"container-header",
-    props:["title"]
+    props:{"title":{
+        type:String,
+        required:true
+    }}
 }
 </script>
 <style lang="">

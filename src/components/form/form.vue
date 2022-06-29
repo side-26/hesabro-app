@@ -24,7 +24,10 @@ export default {
     computed: {
         
     },
-    props:["statusCode"],
+    props:{"statusCode":{
+        type:Number,
+        required:true
+    }},
     components: {
        Form,
       },
