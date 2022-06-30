@@ -24,8 +24,8 @@
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" :totalPrice="sideServices" />
           <FormCo :statusCode="btnStatusCode" @handlePost="handlePost">
-            <InputCo name="name" :type="text" :rules="handleValidateFullName" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
-            <InputCo name="phone_number" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
+            <TextInput name="name" :type="text" :rules="handleValidateFullName" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
+            <TextInput name="phone_number" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
           </FormCo>
         </template>
       </TarefehContainer>
@@ -48,7 +48,7 @@ import TotalPriceCon from '@/components/TotalPriceCon/TotalPriceCon.vue'
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import Bill from '@/components/Bill/Bill.vue'
 import FormCo from '@/components/form/form.vue'
-import InputCo from '@/components/form/input/input.vue'
+import TextInput from '../../components/form/Input/TextInput.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import { tarefeha } from '@/api/tarefeha.api'
 import { users } from '@/api/users.api'
@@ -85,7 +85,7 @@ export default {
     servicesBox,
     Bill,
     FormCo,
-    InputCo,
+    TextInput,
     Loading,
     InfoModal,
   },

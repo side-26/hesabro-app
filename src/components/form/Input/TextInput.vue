@@ -13,7 +13,7 @@ export default {
     Field,
     ErrorMessage,
   },
-  name: 'InputCo',
+  name: 'TextInput',
   props: {
     name: {
       type: String,
