@@ -103,7 +103,7 @@
           <div class="mx-10 my-4 lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
             <a :href="customer.href" target="_blank">
               <figure class="mb-5">
-                <img class="w-24 h-24" :src="customer.src" alt="" />
+                <img class="w-24 h-24" :src="customer.src" :alt="customer.title" />
               </figure>
             </a>
             <a :href="customer.href" target="_blank" class="text-center font-IranYecan-bold text-sm">{{ customer.title }}</a>
