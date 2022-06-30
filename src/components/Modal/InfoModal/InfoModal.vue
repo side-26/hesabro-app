@@ -42,11 +42,16 @@ export default {
     title:{
       type:String,
       required:true
+    },
+    showRegisterdModal:{
+      type:String,
+      required:true
     }
   },
   methods: {
     handelRegister(success) {
-      if (success !== 'success') this.$emit('handleClose')
+      if (success !== 'success')
+       this.$emit('update:showRegisterdModal', false)
       this.$router.push(this.path);
     },
   },

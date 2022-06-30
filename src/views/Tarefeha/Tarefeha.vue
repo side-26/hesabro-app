@@ -35,7 +35,7 @@
   </div>
   <Teleport to="#modalTel">
     <transition>
-      <InfoModal @handleClose="handleClose" :path="modalPath" v-if="showRegisterdModal" :title="modalTitle" :type="registerdSuccess" :desc="modalDesc" btnText="تایید" />
+      <InfoModal v-model="showRegisterdModal" :path="modalPath" v-if="showRegisterdModal" :title="modalTitle" :type="registerdSuccess" :desc="modalDesc" btnText="تایید" />
     </transition>
   </Teleport>
 </template>
@@ -130,10 +130,6 @@ export default {
       else if (val[0] !== '0' || val.length != 11) return 'شماره تلفن معتبر نمی باشد!!'
       else if (isNaN(val)) return 'شماره تلفن باید عدد باشد!!!'
       return true
-    },
-    handleClose() {
-      this.showRegisterdModal = false
-      this.btnStatusCode = 0
     },
   },
   computed: {
