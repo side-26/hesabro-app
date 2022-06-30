@@ -2,7 +2,7 @@
   <div class="fixed flex justify-center z-40 items-center w-full min-h-screen top-0 left-0" @click="">
     <section class="z-50 relative">
       <figure class="animate-spin-slow mb-3">
-        <img class="w-full h-full" src="../../assets/img/hesabro.logo.svg" alt="Hesabro-logo" />
+        <img class="w-full h-full" src="../../../public/img/hesabro.logo.svg" alt="Hesabro-logo" />
       </figure>
       <span class="text-white font-IranYecan-bold text-sm">{{ msg }}</span>
     </section>

@@ -4,7 +4,7 @@
       <div class="font-IranYecan-bold text-sm md:mt-0 mt-5">
         <router-link to="/">
           <figure class="w-14 h-14">
-            <img class="w-full h-full" src="../../assets/img/hesabro.logo.svg" alt="hesabro-logo" />
+            <img class="w-full h-full" src="../../../public/img/hesabro.logo.svg" alt="hesabro-logo" />
           </figure>
         </router-link>
         <h5 class="text-gray-800 font-IranYecan-bold mt-4">حسابرو، راهکار جامع مدیریت مالی کسب‌ و ‌کار شما</h5>
@@ -31,10 +31,10 @@
         <div class="font-IranYecan-bold mb-16">مجوز های حسابرو</div>
         <div class="flex">
           <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
-            <img loading="lazy" class="w-full object-cover h-full" src="@/assets/img/etemad.png" alt="etemad-logo" />
+            <img loading="lazy" class="w-full object-cover h-full" src="../../../public/img/etemad.png" alt="etemad-logo" />
           </figure>
           <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
-            <img loading="lazy" class="w-full object-cover h-full" src="@/assets/img/samandehi.png" alt="samandehi-logo" />
+            <img loading="lazy" class="w-full object-cover h-full" src="../../../public/img/samandehi.png" alt="samandehi-logo" />
           </figure>
         </div>
       </div>
