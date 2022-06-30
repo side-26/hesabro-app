@@ -31,10 +31,10 @@
         <div class="font-IranYecan-bold mb-16">مجوز های حسابرو</div>
         <div class="flex">
           <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
-            <img loading="lazy" class="w-full h-full" src="../../assets/img/download.jfif" alt="etemad-logo" />
+            <img loading="lazy" class="w-full object-cover h-full" src="@/assets/img/etemad.png" alt="etemad-logo" />
           </figure>
           <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
-            <img loading="lazy" class="w-full h-full" src="../../assets/img/samandehi.png" alt="samandehi-logo" />
+            <img loading="lazy" class="w-full object-cover h-full" src="@/assets/img/samandehi.png" alt="samandehi-logo" />
           </figure>
         </div>
       </div>
