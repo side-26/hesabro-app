@@ -22,8 +22,8 @@
   </div>
 </template>
 <script>
-import { toFarsiNumber } from '@/utilities/ConvertToPersian'
-import { handleSprateNumber } from '@/utilities/SeprateNumbers'
+import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
+import { handleSprateNumber } from '@/src/utilities/SeprateNumbers'
 export default {
   name: 'tarefehCard',
   data() {

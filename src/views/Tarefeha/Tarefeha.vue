@@ -40,19 +40,19 @@
   </Teleport>
 </template>
 <script>
-import Loading from '@/components/Loading/Loading.vue'
-import NavBar from '@/layout/navBar/NavBar.layout.vue'
-import TarefehContainer from '@/components/tarefehContainer/TarefehContainer.vue'
-import tarefehCard from '@/components/tarefehCard/tarefehCard.vue'
-import TotalPriceCon from '@/components/TotalPriceCon/TotalPriceCon.vue'
-import servicesBox from '@/components/servicesBox/servicesBox.vue'
-import Bill from '@/components/Bill/Bill.vue'
-import FormCo from '@/components/form/form.vue'
+import Loading from '../../components/Loading/Loading.vue'
+import NavBar from '../../layout/navBar/NavBar.layout.vue'
+import TarefehContainer from '../../components/tarefehContainer/TarefehContainer.vue'
+import tarefehCard from '../../components/tarefehCard/tarefehCard.vue'
+import TotalPriceCon from '../../components/TotalPriceCon/TotalPriceCon.vue'
+import servicesBox from '../../components/servicesBox/servicesBox.vue'
+import Bill from '../../components/Bill/Bill.vue'
+import FormCo from '../../components/form/form.vue'
 import TextInput from '../../components/form/Input/TextInput.vue'
-import Footer from '@/layout/footer/Footer.layout.vue'
-import { tarefeha } from '@/api/tarefeha.api'
-import { users } from '@/api/users.api'
-import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
+import Footer from '../../layout/footer/Footer.layout.vue'
+import { tarefeha } from '../../api/tarefeha.api'
+import { users } from '../../api/users.api'
+import InfoModal from '../../components/Modal/InfoModal/InfoModal.vue'
 
 export default {
   data() {

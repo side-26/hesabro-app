@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/views/Home/Home.vue'
-import Tarefeha from '@/views/Tarefeha/Tarefeha.vue';
-import NotFound from '../views/NotFound/NotFound.vue';
-import { ROUTES } from '@/config/path.route'
+import Home from '@/src/views/Home/Home.vue'
+import Tarefeha from '@/src/views/Tarefeha/Tarefeha.vue';
+import NotFound from '@/src/views/NotFound/NotFound.vue';
+import { ROUTES } from '@/src/config/path.route'
 const routes = [
     { path: `/`, name: `${ROUTES.HOME.name}`, component: Home },
     { path: `/${ROUTES.TAREFEHA.path}`, name: `${ROUTES.TAREFEHA.name}`, component: Tarefeha },

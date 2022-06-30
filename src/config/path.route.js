@@ -5,7 +5,7 @@ export const ROUTES = {
         name: "صفحه اصلی | حسابرو  "
     },
     TAREFEHA: {
-        path: "tarefeha",
+        path: "price",
         name: "تعرفه ها | حسابرو"
     },
     CONTACTUS: {
