@@ -35,11 +35,19 @@ export default {
       type: String,
       required: true,
     },
+    path:{
+      type:String,
+      required:true
+    },
+    title:{
+      type:String,
+      required:true
+    }
   },
   methods: {
     handelRegister(success) {
-      this.$router.push(`${this.path}`)
       if (success !== 'success') this.$emit('handleClose')
+      this.$router.push(this.path);
     },
   },
 }
