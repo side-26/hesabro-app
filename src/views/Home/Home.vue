@@ -160,9 +160,6 @@ export default {
     convertToPersian(num) {
       return toFarsiNumber(num)
     },
-    handleAutoScroll() {
-      console.log(this.Footer)
-    },
   },
 }
 </script>
