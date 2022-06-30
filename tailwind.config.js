@@ -49,7 +49,7 @@ module.exports = {
                 '47':'47deg'
             },
             backgroundImage:{
-                'main-bg':'url("./src/assets/img/main_bg.jpg")',
+                'main-bg':'url("../../../public/img/main_bg.jpg")',
             },
             spacing:{
                 '40.5':'40%'
