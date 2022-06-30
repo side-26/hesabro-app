@@ -3,7 +3,7 @@
     <section class="sm:static relative container mx-auto 2xl:mx-0 2xl:mr-32 py-3 flex items-center">
       <router-link to="/" class="flex items-center sm:pr-8">
         <figure class="mr-8 sm:mr-0 sm:ml-10 lg:ml-14">
-          <img src="@/assets/img/hesabro.logo.svg" alt="logo" />
+          <img src="../../../public/img/hesabro.logo.svg" alt="hesabro-logo" />
         </figure>
         <span class="font-IranYecan-bold sm:hidden mr-5 text-xl text-cyan-600">حسابرو</span>
       </router-link>
