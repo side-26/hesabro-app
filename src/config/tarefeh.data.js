@@ -14,7 +14,7 @@ export const modules=[
     {id:7,title:'سیستم دریافت و پرداخت', desc:'، مدیریت وام ها انتقال های بین بانکی ، دریافت و پرداخت از /به شخصی ،تسویه کارتخوان، مدیریت اسناد دریافتی و پرداختنی(چک ها)',src:'/src/assets/img/swap_horiz_FILL1_wght400_GRAD0_opsz48.svg'}
 ]
 export const customers=[
-    {id:1,href:'https://www.mobit.ir/',src:'src/assets/img/mobitIcon.svg',title:"مبین"},
+    {id:1,href:'https://www.mobit.ir/',src:'src/assets/img/mobitIcon.svg',title:"مبیت"},
     {id:2,href:'https://zoodex.ir/',src:'src/assets/img/zoodexIcon.svg',title:"زودکس"},
     {id:3,href:'https://asreertebat.net/',src:'src/assets/img/asarErtebatat.svg',title:"عصر ارتباطات"},
     {id:4,href:'https://rahkarsanat.org/',src:'src/assets/img/rahkar.svg',title:"راهکار صنعت"},
