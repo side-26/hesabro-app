@@ -53,6 +53,7 @@ import Footer from '../../layout/footer/Footer.layout.vue'
 import { tarefeha } from '../../api/tarefeha.api'
 import { users } from '../../api/users.api'
 import InfoModal from '../../components/Modal/InfoModal/InfoModal.vue'
+import axios from 'axios'
 
 export default {
   data() {
@@ -142,7 +143,7 @@ export default {
   },
   mounted() {
     try {
-      tarefeha.get().then((item) => {
+      axios.get('https://asrd.mobittest.ir/api/hesabro/shop-v1/modules-pricing').then((item) => {
         this.loading = false
           console.log("item",item)
         if (item.status >= 400) {
