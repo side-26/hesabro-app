@@ -10,7 +10,7 @@
           <TotalPriceCon class="hidden md:block" title="قیمت کل" :totalPrice="totalprice" />
         </template>
       </TarefehContainer>
-      <TarefehContainer title="امکانات جانبی" :classes="gap-4">
+      <TarefehContainer title="امکانات جانبی" :classes="gap - 4">
         <template lang="" v-slot:body>
           <servicesBox v-if="Data.const_prices" v-model="PerBranch" :min="1" :percent="Data.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
           <servicesBox v-if="Data.const_prices" v-model="PerUser" :min="1" :percent="Data.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
@@ -144,7 +144,7 @@ export default {
     try {
       tarefeha.get().then((item) => {
         this.loading = false
-          console.log("item",item)
+        console.log('item', item)
         if (item.status >= 400) {
           this.registerdSuccess = 'failed'
           this.showRegisterdModal = true
@@ -153,12 +153,11 @@ export default {
           this.modalPath = '/'
           this.modalDesc = 'دریافت اطلاعات با خطا مواجه شد'
         }
-        this.Data = item.data.data;
-
+        this.Data = item.data.data
       })
     } catch (error) {
-      alert('سایت با مشکل مواجه شد.');
-      this.$router.push('/');
+      alert('سایت با مشکل مواجه شد.')
+      this.$router.push('/')
     }
   },
 }
