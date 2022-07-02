@@ -17,16 +17,16 @@
         class="sm:bg-inherit bg-white sm:static sm:mt-0 mt-5 font-IranYekan-regular absolute sm:scale-100 transition-all z-30 overflow-hidden top-8 w-full text-center sm:flex-row flex-col flex justify-between sm:w-3/4 md:w-4/6 lg:w-6/12 xl:w-1/2 items-center text-slate-800"
       >
         <li class="my-5 sm:my-0">
-          <router-link @click="hanleShow()" to="/" class="hover:text-cyan-600 transition-all">خانه</router-link>
+          <router-link @click="hanleShow()"  to="/" class="hover:text-cyan-600 transition-all">خانه</router-link>
         </li>
         <li class="my-5 sm:my-0">
-          <a href="/#advantages " class="hover:text-cyan-600 transition-all">خدمات و راهکار ها</a>
+          <a href="/#advantages " @click="hanleShow()" class="hover:text-cyan-600 transition-all">خدمات و راهکار ها</a>
         </li>
         <li class="my-5 sm:my-0">
           <router-link @click="hanleShow()" to="/pricing" class="hover:text-cyan-600 transition-all">تعرفه ها</router-link>
         </li>
         <li class="my-5 sm:my-0">
-          <a @click="hanleShow()" href="/#customers" class="hover:text-cyan-600 transition-all text-slate-800"> مشتریان حسابرو</a>
+          <a @click="hanleShow()" href="/#customers" class="hover:text-cyan-600 active:text-red-600 transition-all text-slate-800"> مشتریان حسابرو</a>
         </li>
         <li class="my-5 sm:my-0">
           <a @click="hanleShow()" href="/#about_us" class="hover:text-cyan-600 transition-all text-slate-800"> ارتباط با ما</a>

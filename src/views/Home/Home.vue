@@ -2,7 +2,7 @@
   <div>
     <NavBar />
     <header>
-      <section class="bg-center bg-cover bg-main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 md:pb-72 flex justify-start items-center">
+      <section class="bg-center bg-cover bg-main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 md:pb-40 flex justify-start items-center">
         <div class="pb-20 sm:mb-0">
           <h1 class="sm:text-4xl text-white text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">
             حسابرو<br />
@@ -16,7 +16,7 @@
     </header>
     <main class="overflow-hidden">
       <!-- راهکار ها و خدمات -->
-      <section id="advantages" class="mx-auto py-10 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
+      <section id="advantages" class="mx-auto py-8 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
         <AdvCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <section id="about_us" class="my-24 relative flex justify-start items-center right-0">

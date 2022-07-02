@@ -26,7 +26,8 @@ const routes = [
     //       }
     //     }
     //   },
-    linkExactActiveClass: "text-cyan-600 font-IranYecan-bold"
+    linkExactActiveClass: "text-cyan-600 font-IranYecan-bold",
+    linkActiveClass: 'text-cyan-600 font-IranYecan-bold'
 })
 router.beforeEach((to, from) => {
     document.title = to.name;
