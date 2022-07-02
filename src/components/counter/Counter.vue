@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import { toFarsiNumber } from '@/utilities/ConvertToPersian'
+import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
 export default {
   name: 'counter',
   props: {

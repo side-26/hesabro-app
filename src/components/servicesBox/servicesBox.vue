@@ -13,9 +13,9 @@
   </div>
 </template>
 <script>
-import Counter from '@/components/counter/Counter.vue'
-import { toFarsiNumber } from '@/utilities/ConvertToPersian'
-import { handleSprateNumber } from '@/utilities/SeprateNumbers'
+import Counter from '@/src/components/counter/Counter.vue'
+import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
+import { handleSprateNumber } from '@/src/utilities/SeprateNumbers'
 export default {
   name: 'servicesContainer',
   props: {

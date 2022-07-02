@@ -8,7 +8,7 @@
   </section>
 </template>
 <script>
-import Container_Header from '@/components/ContainerHeader/tarefehContainerHeader.vue'
+import Container_Header from '@/src/components/ContainerHeader/tarefehContainerHeader.vue'
 export default {
   name: 'TarefehContainer',
   components: {

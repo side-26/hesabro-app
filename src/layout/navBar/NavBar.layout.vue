@@ -3,7 +3,7 @@
     <section class="sm:static relative container mx-auto 2xl:mx-0 2xl:mr-32 py-3 flex items-center">
       <router-link to="/" class="flex items-center sm:pr-8">
         <figure class="mr-8 sm:mr-0 sm:ml-10 lg:ml-14">
-          <img src="../../../public/img/hesabro.logo.svg" alt="hesabro-logo" />
+          <img src="/img/hesabro.logo.svg" alt="hesabro-logo" />
         </figure>
         <span class="font-IranYecan-bold sm:hidden mr-5 text-xl text-cyan-600">حسابرو</span>
       </router-link>
@@ -18,7 +18,7 @@
       >
         <li class="my-5 sm:my-0"><router-link @click="hanleShow()" to="/" class="hover:text-cyan-600 transition-all">خانه</router-link></li>
         <li class="my-5 sm:my-0"><a @click="hanleShow()" href="/#advantages" class="hover:text-cyan-600 transition-all">خدمات و راهکار ها</a></li>
-        <li class="my-5 sm:my-0"><router-link @click="hanleShow()" to="/tarefeha" class="hover:text-cyan-600 transition-all">تعرفه ها</router-link></li>
+        <li class="my-5 sm:my-0"><router-link @click="hanleShow()" to="/price" class="hover:text-cyan-600 transition-all">تعرفه ها</router-link></li>
         <li class="my-5 sm:my-0"><a @click="hanleShow()" href="/#customers" class="hover:text-cyan-600 transition-all text-slate-800"> مشتریان حسابرو</a></li>
         <li class="my-5 sm:my-0"><a @click="hanleShow()" href="/#about_us" class="hover:text-cyan-600 transition-all text-slate-800"> ارتباط با ما</a></li>
       </ul>

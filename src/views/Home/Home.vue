@@ -25,7 +25,7 @@
         </div>
         <div class="flex lg:flex-row flex-col items-center relative lg:-right-36">
           <figure class="border-8 border-white ml-3 lg:ml-0 translate-x-14 mb-5 md:my-0 w-full lg:w-80 rounded-3xl overflow-hidden lg:h-97">
-            <img class="w-full object-cover h-full" alt="about-us" src="../../../public/img/about_us_img.jpg" loading="lazy" />
+            <img class="w-full object-cover h-full" alt="about-us" src="/img/about_us_img.jpg" loading="lazy" />
           </figure>
           <div class="mr-3 md:mr-5 lg:mr-10 lg:w-2/3">
             <h4 class="font-IranYecan-extraBold text-2xl mb-10">درباره ما</h4>
@@ -116,17 +116,17 @@
   </div>
 </template>
 <script>
-import NavBar from '@/layout/navBar/NavBar.layout.vue'
-import Footer from '@/layout/footer/Footer.layout.vue'
-import AdvCard from '@/components/advCard/AdvCard.vue'
-import OptionCom from '@/components/Options/Option.vue'
-import ModuleCard from '@/components/ModuleCard/ModuleCard.vue'
+import NavBar from '@/src/layout/navBar/NavBar.layout.vue'
+import Footer from '@/src/layout/footer/Footer.layout.vue'
+import AdvCard from '@/src/components/advCard/AdvCard.vue'
+import OptionCom from '@/src/components/Options/Option.vue'
+import ModuleCard from '@/src/components/ModuleCard/ModuleCard.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination, Navigation, Autoplay, EffectFade } from 'swiper'
-import { toFarsiNumber } from '@/utilities/ConvertToPersian'
-import { advantages } from '@/config/tarefeh.data'
-import { modules } from '@/config/tarefeh.data'
-import { customers } from '@/config/tarefeh.data'
+import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
+import { advantages } from '@/src/config/tarefeh.data'
+import { modules } from '@/src/config/tarefeh.data'
+import { customers } from '@/src/config/tarefeh.data'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
