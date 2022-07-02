@@ -1,10 +1,10 @@
 <template lang="">
   <div>
     <NavBar />
-    <header>
-      <section class="bg-center bg-cover bg-main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 md:pb-40 flex justify-start items-center">
+    <header class="">
+      <section class="bg-center bg-cover bg-no-repeat bg-main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
         <div class="pb-20 sm:mb-0">
-          <h1 class="sm:text-4xl text-white text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">
+          <h1 class="sm:text-4xl  shadow-black text-white text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">
             حسابرو<br />
             مدیریت مالی و حسابداری
           </h1>
@@ -16,7 +16,7 @@
     </header>
     <main class="overflow-hidden">
       <!-- راهکار ها و خدمات -->
-      <section id="advantages" class="mx-auto py-8 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
+      <section id="advantages" class="mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
         <AdvCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <section id="about_us" class="my-24 relative flex justify-start items-center right-0">
@@ -29,10 +29,12 @@
           </figure>
           <div class="mr-3 md:mr-5 lg:mr-10 lg:w-2/3">
             <h4 class="font-IranYecan-extraBold text-2xl mb-10">درباره ما</h4>
-            <p class="font-IranYecan-medium text-gray-900 text-xs">
+            <p class="font-IranYecan-medium text-gray-900 w-4/5 text-xs">
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
-            <OptionCom :convertToPersian="convertToPersian" />
+            <div class="grid my-10 mx-3 grid-cols-2 lg:gap-0 gap-2 md:grid-cols-none md:grid-flow-col">
+              <ItemAboutUs :itemArr="item" v-for="item in achivements" :key="item.id" :convertToPersian="convertToPersian" />
+            </div>
             <div class="font-IranYecan-medium text-sm md:text-base mt-7">
               <span class="text-slate-500">تلفن : </span>
               <a class="text-slate-900" href="tel:03491002424">{{ convertToPersian('03491002424') }}</a>
@@ -54,8 +56,9 @@
             </h4>
           </div>
         </div>
-        <!-- <div ref="moduleContainer" id="moduls" class="h-48 overflow-x-auto md:h-56 lg:h-48 flex snap-x">
-                </div> -->
+        <div class="flex lg:hidden overflow-x-auto h-97 container mx-auto">
+          <ModuleCard v-for="Module in TarefehaModules" class="lg:hidden block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
+        </div>
         <swiper
           :slidesPerView="'auto'"
           :spaceBetween="0"
@@ -85,20 +88,19 @@
           :loop="true"
           :navigation="false"
           :grabCursor="true"
-          class="h-80 lg:h-36"
+          class="hidden lg:block h-80 lg:h-36"
           :modules="modules"
         >
-          <swiper-slide class="" v-for="Module in TarefehaModules" :key="Module.id">
-            <ModuleCard :title="Module.title" :desc="Module.desc" :src="Module.src" />
+          <swiper-slide class="hidden lg:flex" v-for="Module in TarefehaModules" :key="Module.id">
+            <ModuleCard class="hidden lg:block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
           </swiper-slide>
         </swiper>
-        <!-- <div  class="h-48 overflow-x-auto md:h-56 lg:h-48 flex snap-x"></div> -->
       </section>
 
       <!-- مشتریان حسابرو -->
       <section id="customers" class="container my-40 lg:my-20 mx-auto">
         <h4 class="font-IranYecan-extraBold text-2xl text-center my-5">مشتریان حسابرو</h4>
-        <p class="text-center text-xs font-IranYecan-medium">گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند</p>
+        <p class="text-center px-4 md:px-0 text-xs font-IranYecan-medium">گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند</p>
         <div class="flex flex-wrap justify-center my-20">
           <div class="mx-10 my-4 lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
             <a :href="customer.href" target="_blank">
@@ -119,14 +121,15 @@
 import NavBar from '@/src/layout/navBar/NavBar.layout.vue'
 import Footer from '@/src/layout/footer/Footer.layout.vue'
 import AdvCard from '@/src/components/advCard/AdvCard.vue'
-import OptionCom from '@/src/components/Options/Option.vue'
+import ItemAboutUs from '../../components/ItemAboutUs/ItemAboutUs.vue'
 import ModuleCard from '@/src/components/ModuleCard/ModuleCard.vue'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Pagination, Navigation, Autoplay, EffectFade } from 'swiper'
-import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
-import { advantages } from '@/src/config/tarefeh.data'
-import { modules } from '@/src/config/tarefeh.data'
-import { customers } from '@/src/config/tarefeh.data'
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination, Navigation, Autoplay, EffectFade } from 'swiper';
+import { toFarsiNumber } from '@/src/utilities/ConvertToPersian';
+import { advantages } from '@/src/config/tarefeh.data';
+import { modules } from '@/src/config/tarefeh.data';
+import { customers } from '@/src/config/tarefeh.data';
+import {achivements} from '../../config/tarefeh.data'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
@@ -137,13 +140,14 @@ export default {
       advantagesData: advantages,
       TarefehaModules: modules,
       customers: customers,
+      achivements
     }
   },
   components: {
     NavBar,
     Footer,
     AdvCard,
-    OptionCom,
+    ItemAboutUs,
     ModuleCard,
     Swiper,
     SwiperSlide,

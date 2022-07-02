@@ -20,7 +20,7 @@
           <router-link @click="hanleShow()"  to="/" class="hover:text-cyan-600 transition-all">خانه</router-link>
         </li>
         <li class="my-5 sm:my-0">
-          <a href="/#advantages " @click="hanleShow()" class="hover:text-cyan-600 transition-all">خدمات و راهکار ها</a>
+          <a href="/#advantages" class="hover:text-cyan-600 transition-all">خدمات و راهکار ها</a>
         </li>
         <li class="my-5 sm:my-0">
           <router-link @click="hanleShow()" to="/pricing" class="hover:text-cyan-600 transition-all">تعرفه ها</router-link>
