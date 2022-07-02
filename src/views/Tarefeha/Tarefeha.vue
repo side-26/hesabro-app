@@ -4,13 +4,13 @@
     <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading }">
       <TarefehContainer title="تعرفه های حسابرو">
         <template v-slot:body>
-          <tarefehCard @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in Data.items" :key="item.title" />
+          <tarefehCard v-if="Data" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in Data.items" :key="item.title" />
         </template>
         <template v-slot:footer lang="">
           <TotalPriceCon class="hidden md:block" title="قیمت کل" :totalPrice="totalprice" />
         </template>
       </TarefehContainer>
-      <TarefehContainer title="امکانات جانبی" :classes="gap - 4">
+      <TarefehContainer title="امکانات جانبی" :classes="gap-4">
         <template lang="" v-slot:body>
           <servicesBox v-if="Data.const_prices" v-model="PerBranch" :min="1" :percent="Data.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
           <servicesBox v-if="Data.const_prices" v-model="PerUser" :min="1" :percent="Data.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
@@ -144,7 +144,8 @@ export default {
     try {
       tarefeha.get().then((item) => {
         this.loading = false
-        if (!item.status && item.response.status !== 200) {
+          console.log("item",item)
+        if (item.status >= 400) {
           this.registerdSuccess = 'failed'
           this.showRegisterdModal = true
           this.loading = false
@@ -152,7 +153,8 @@ export default {
           this.modalPath = '/'
           this.modalDesc = 'دریافت اطلاعات با خطا مواجه شد'
         }
-        this.Data = item.data.data
+        this.Data = item.data.data;
+
       })
     } catch (error) {
       alert('سایت با مشکل مواجه شد.');

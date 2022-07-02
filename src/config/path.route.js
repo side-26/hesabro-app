@@ -5,19 +5,19 @@ export const ROUTES = {
         name: "صفحه اصلی | حسابرو  "
     },
     TAREFEHA: {
-        path: "price",
+        path: "pricing",
         name: "تعرفه ها | حسابرو"
     },
     CONTACTUS: {
-        path: "contactUs",
+        path: "#about_us",
         name: "ارتباط با ما | حسابرو"
     },
     SERVICES: {
-        path: "services",
+        path: "#advantages",
         name: "خدمات و راهکار ها | حسابرو"
     },
     FAQ: {
-        path: "FAQ",
+        path: "#customers",
         name: "سولات متداول | حسابرو"
     },
 }

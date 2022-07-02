@@ -21,7 +21,7 @@
           <ul class="text-sm text-slate-900">
             <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/">خانه</router-link></li>
             <li class="my-6"><a class="text-slate-800 font-IranYekan-regular" href="#advantages">خدمات و راهکار ها</a></li>
-            <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/price">تعرفه ها</router-link></li>
+            <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/pricing">تعرفه ها</router-link></li>
             <li class="my-6"><a class="text-slate-800 font-IranYekan-regular side-26" href="/#customers">مشتریان حسابرو</a></li>
             <li class="my-6"><a href="#about_us" class="text-slate-800 font-IranYekan-regular" to="/">ارتباط با ما</a></li>
           </ul>
