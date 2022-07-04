@@ -20,3 +20,9 @@ export const customers=[
     {id:4,href:'https://rahkarsanat.org/',src:'/img/rahkar.svg',title:"راهکار صنعت"},
     {id:5,href:'https://cut-media.ir/',title:"کات مدیا",src:'/img/cutMedia.svg'}
 ]
+export const achivements=[
+    {id:1,title:'تعداد اسناد حسابداری',amount:'10000000'},
+    {id:2,title:'تعداد مشتریان کسب و کارها',amount:'100000'},
+    {id:3,title:'نیروی فنی متخصص',amount:'50'},
+    {id:4,title:'کسب و کارهای همکار',amount:'10'}
+]
