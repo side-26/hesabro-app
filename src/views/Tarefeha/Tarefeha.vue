@@ -12,8 +12,8 @@
       </TarefehContainer>
       <TarefehContainer title="امکانات جانبی" :classes="gap - 4">
         <template lang="" v-slot:body>
-          <servicesBox v-if="Data.const_prices" v-model="PerBranch" :min="1" :percent="Data.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
-          <servicesBox v-if="Data.const_prices" v-model="PerUser" :min="1" :percent="Data.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
+          <servicesBox v-if="Data.const_prices" v-model="PerBranch" :min="Data.default_branches_count" :percent="Data.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
+          <servicesBox v-if="Data.const_prices" v-model="PerUser" :min="Data.default_users_count" :percent="Data.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
         </template>
         <template v-slot:footer lang="">
           <TotalPriceCon class="md:hidden" title="قیمت ماژول ها" :totalPrice="totalprice" />
@@ -122,7 +122,7 @@ export default {
     },
     handleValidateFullName(val) {
       if (!val) return 'فیلد مورد نظر خالی است!!'
-      else if (val.length < 6) return 'نام و نام خانوادگی خود را کامل وارد کنید!!'
+      else if (val.length < 2) return 'نام و نام خانوادگی خود را کامل وارد کنید!!'
       return true
     },
     handleValidatephoneNumber(val) {
