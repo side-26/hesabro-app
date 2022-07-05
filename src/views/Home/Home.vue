@@ -4,11 +4,7 @@
     <header>
       <section class="bg-center bg-cover bg-no-repeat bg-main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
         <div class="pb-20 sm:mb-0">
-<<<<<<< HEAD
           <h1 class="sm:text-4xl shadow-black text-white text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">
-=======
-          <h1 id="hello" class="sm:text-4xl text-shadow shadow-black text-white text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">
->>>>>>> 7d117af2ac6be037dd1b61374ff2b9f73d8917ce
             حسابرو<br />
             مدیریت مالی و حسابداری
           </h1>
@@ -60,13 +56,8 @@
             </h4>
           </div>
         </div>
-<<<<<<< HEAD
         <div class="flex lg:hidden overflow-x-auto h-97 container mx-auto py-2">
           <ModuleCard v-for="Module in TarefehaModules" class="min-h-[12rem] lg:hidden tw-min-w-[60vw] max-w-[70vw] block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
-=======
-        <div class="flex lg:hidden hiddenScrollBar overflow-x-auto h-97 container mx-auto">
-          <ModuleCard v-for="Module in TarefehaModules" class="lg:hidden block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
->>>>>>> 7d117af2ac6be037dd1b61374ff2b9f73d8917ce
         </div>
         <swiper
           :slidesPerView="'auto'"
