@@ -8,7 +8,7 @@
         </figure>
         <span class="font-IranYecan-bold sm:hidden mr-5 text-xl text-cyan-600">حسابرو</span>
       </router-link>
-      <router-link to="/pricing" class="hover:text-cyan-600 font-IranYekan-bold md:hidden ml-8 mr-auto transition-all">تعرفه ها</router-link>
+      <router-link v-if="currentURL.fullPath==='/'" to="/pricing" class="hover:text-cyan-600 font-IranYekan-bold md:hidden ml-8 mr-auto transition-all">تعرفه ها</router-link>
       <ul class="sm:bg-inherit hidden bg-white sm:static sm:mt-0 mt-5 font-IranYekan-regular absolute sm:scale-100 transition-all z-30 top-8 w-full text-center sm:flex-row flex-col md:flex justify-between sm:w-3/4 md:w-4/6 lg:w-6/12 xl:w-1/2 items-center text-slate-800">
         <li class="my-5 sm:my-0">
           <router-link to="/" class="hover:text-cyan-600 transition-all">خانه</router-link>
@@ -32,10 +32,14 @@
   <!-- پایان منو های سایت -->
 </template>
 <script>
-  import {ROUTES} from '../../config/path.route.js'
 export default {
-  methods:{
-    
+  data() {
+    return {
+      currentURL:this.$router.currentRoute
+    }
+  },
+  mounted(){
+    console.log(this.currentURL)
   }
 }
 </script>

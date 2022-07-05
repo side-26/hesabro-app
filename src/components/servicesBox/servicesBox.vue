@@ -7,8 +7,9 @@
     <div class="text-xs font-IranYekan-regular my-7 md:my-6">به ازای هر {{ toPersian(desc) }} ، {{ toPersian(seprateNumbers(percent)) }} درصد به قیمت ماژول ها اضافه میشود</div>
     <div class="text-xs flex-col side-26 lg:flex-row flex justify-between font-IranYecan-medium">
       <span
-        >برای هر شعبه جدید : <span class="">{{ toPersian(seprateNumbers(price.toFixed(0))) }} تومان</span></span
-      ><span class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toPersian(seprateNumbers(finalPrice.toFixed(0))) }} تومان</span>
+        >برای هر {{desc}} جدید : <span class="">{{ toPersian(seprateNumbers(price.toFixed(0))) }} تومان</span></span
+      ><span v-if="finalPrice>0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toPersian(seprateNumbers(finalPrice.toFixed(0))) }} تومان</span>
+      <span v-if="finalPrice===0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">رایگان</span>
     </div>
   </div>
 </template>
@@ -57,7 +58,8 @@ export default {
       return this.totalPrice * (+this.percent / 100)
     },
     finalPrice() {
-      if (this.count > this.min) return this.price * (this.count - this.min + 1)
+      if (this.count > this.min) return this.price * (this.count - this.min)
+      else if (this.count === this.min) return this.price * 0
       return this.price
     },
   },
