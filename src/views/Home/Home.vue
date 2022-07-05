@@ -1,10 +1,10 @@
 <template lang="">
   <div>
     <NavBar />
-    <header class="">
+    <header>
       <section class="bg-center bg-cover bg-no-repeat bg-main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
         <div class="pb-20 sm:mb-0">
-          <h1 class="sm:text-4xl  shadow-black text-white text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">
+          <h1 id="hello" class="sm:text-4xl text-shadow shadow-black text-white text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">
             حسابرو<br />
             مدیریت مالی و حسابداری
           </h1>
@@ -19,11 +19,11 @@
       <section id="advantages" class="mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
         <AdvCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
-      <section id="about_us" class="my-24 relative flex justify-start items-center right-0">
-        <div class="flex justify-center py-96 px-10 sm:px-20 md:p-0 md:w-97 lg:w-105 md:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
+      <section ref="aboutUs" id="about_us" class="md:my-0 lg:py-24 md:mt-20 my-24 relative flex justify-start items-stretch right-0">
+        <div class="flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-IranYecan-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
         </div>
-        <div class="flex lg:flex-row flex-col items-center relative lg:-right-36">
+        <div class="flex lg:flex-row mt-5 lg:mt-0 flex-col items-center relative lg:-right-36">
           <figure class="border-8 border-white ml-3 lg:ml-0 translate-x-14 mb-5 md:my-0 w-full lg:w-80 rounded-3xl overflow-hidden lg:h-97">
             <img class="w-full object-cover h-full" alt="about-us" src="/img/about_us_img.jpg" loading="lazy" />
           </figure>
@@ -32,9 +32,9 @@
             <p class="font-IranYecan-medium text-gray-900 w-4/5 text-xs">
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
-            <div class="grid my-10 mx-3 grid-cols-2 lg:gap-0 gap-2 md:grid-cols-none md:grid-flow-col">
+            <section class="grid my-4 lg:my-10 mx-2 md:mx-0 lg:mx-3 grid-cols-2 lg:gap-0 gap-2 md:grid-cols-none md:grid-flow-col">
               <ItemAboutUs :itemArr="item" v-for="item in achivements" :key="item.id" :convertToPersian="convertToPersian" />
-            </div>
+            </section>
             <div class="font-IranYecan-medium text-sm md:text-base mt-7">
               <span class="text-slate-500">تلفن : </span>
               <a class="text-slate-900" href="tel:03491002424">{{ convertToPersian('03491002424') }}</a>
@@ -47,7 +47,7 @@
         </div>
       </section>
       <!-- ماژول های حسابرو -->
-      <section class="lg:py-32 lg:relative h-100 flex flex-col lg:flex-row justify-center items-center 2xl:px-20">
+      <section class="lg:py-32 test1 lg:relative h-100 flex flex-col lg:flex-row justify-center items-center 2xl:px-20">
         <div class="lg:absolute -z-10 top-0 left-0 w-full h-full flex justify-center items-center">
           <div class="border-cyan-600 flex items-center justify-center lg:border-3 lg:rounded-full lg:w-100 lg:h-100">
             <h4 class="font-IranYecan-extraBold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-4xl 2xl:text-5xl">
@@ -56,7 +56,7 @@
             </h4>
           </div>
         </div>
-        <div class="flex lg:hidden overflow-x-auto h-97 container mx-auto">
+        <div class="flex lg:hidden hiddenScrollBar overflow-x-auto h-97 container mx-auto">
           <ModuleCard v-for="Module in TarefehaModules" class="lg:hidden block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
         </div>
         <swiper
@@ -123,13 +123,13 @@ import Footer from '@/src/layout/footer/Footer.layout.vue'
 import AdvCard from '@/src/components/advCard/AdvCard.vue'
 import ItemAboutUs from '../../components/ItemAboutUs/ItemAboutUs.vue'
 import ModuleCard from '@/src/components/ModuleCard/ModuleCard.vue'
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination, Navigation, Autoplay, EffectFade } from 'swiper';
-import { toFarsiNumber } from '@/src/utilities/ConvertToPersian';
-import { advantages } from '@/src/config/tarefeh.data';
-import { modules } from '@/src/config/tarefeh.data';
-import { customers } from '@/src/config/tarefeh.data';
-import {achivements} from '../../config/tarefeh.data'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Navigation, Autoplay, EffectFade } from 'swiper'
+import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
+import { advantages } from '@/src/config/tarefeh.data'
+import { modules } from '@/src/config/tarefeh.data'
+import { customers } from '@/src/config/tarefeh.data'
+import { achivements } from '../../config/tarefeh.data'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
@@ -140,7 +140,7 @@ export default {
       advantagesData: advantages,
       TarefehaModules: modules,
       customers: customers,
-      achivements
+      achivements,
     }
   },
   components: {
@@ -158,9 +158,6 @@ export default {
     }
   },
   methods: {
-    handleNavigate() {
-      this.$router.push('/tarefeha')
-    },
     convertToPersian(num) {
       return toFarsiNumber(num)
     },
@@ -186,5 +183,8 @@ export default {
 }
 .swiper-wrapper:hover {
   transition: none;
+}
+.text-shadow {
+  text-shadow: 1px 1px 10px #fff;
 }
 </style>

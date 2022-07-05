@@ -1,55 +1,41 @@
 <template lang="">
-  <nav class="bg-white sticky z-20 top-0">
-    <section class="sm:static relative container mx-auto 2xl:mx-0 2xl:mr-32 py-3 flex items-center">
+  <!-- قسمت منو های سایت -->
+  <nav class="bg-white sticky z-20 top-0 2xl:pr-10">
+    <section class="sm:static relative container mx-auto 2xl:mx-0 py-3 flex items-center">
       <router-link to="/" class="flex items-center sm:pr-8">
         <figure class="mr-8 sm:mr-0 sm:ml-10 lg:ml-14">
           <img src="/img/hesabro.logo.svg" alt="hesabro-logo" />
         </figure>
         <span class="font-IranYecan-bold sm:hidden mr-5 text-xl text-cyan-600">حسابرو</span>
       </router-link>
-      <button @click="handleShow()" class="sm:hidden ml-10 mr-auto w-10 text-cyan-600">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="{2}">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-        </svg>
-      </button>
-      <ul
-        :class="{ 'scale-100': show, 'scale-0': !show }"
-        class="sm:bg-inherit bg-white sm:static sm:mt-0 mt-5 font-IranYekan-regular absolute sm:scale-100 transition-all z-30 overflow-hidden top-8 w-full text-center sm:flex-row flex-col flex justify-between sm:w-3/4 md:w-4/6 lg:w-6/12 xl:w-1/2 items-center text-slate-800"
-      >
+      <router-link to="/pricing" class="hover:text-cyan-600 font-IranYekan-bold md:hidden ml-8 mr-auto transition-all">تعرفه ها</router-link>
+      <ul class="sm:bg-inherit hidden bg-white sm:static sm:mt-0 mt-5 font-IranYekan-regular absolute sm:scale-100 transition-all z-30 top-8 w-full text-center sm:flex-row flex-col md:flex justify-between sm:w-3/4 md:w-4/6 lg:w-6/12 xl:w-1/2 items-center text-slate-800">
         <li class="my-5 sm:my-0">
-          <router-link @click="hanleShow()"  to="/" class="hover:text-cyan-600 transition-all">خانه</router-link>
+          <router-link to="/" class="hover:text-cyan-600 transition-all">خانه</router-link>
         </li>
         <li class="my-5 sm:my-0">
-          <a href="/#advantages" class="hover:text-cyan-600 transition-all">خدمات و راهکار ها</a>
+          <router-link :to="{name:`صفحه اصلی | حسابرو`,hash:'#advantages'}" class="hover:text-cyan-600 transition-all">خدمات و راهکار ها</router-link>
         </li>
         <li class="my-5 sm:my-0">
-          <router-link @click="hanleShow()" to="/pricing" class="hover:text-cyan-600 transition-all">تعرفه ها</router-link>
+          <router-link to="/pricing" class="hover:text-cyan-600 transition-all">تعرفه ها</router-link>
         </li>
         <li class="my-5 sm:my-0">
-          <a @click="hanleShow()" href="/#customers" class="hover:text-cyan-600 active:text-red-600 transition-all text-slate-800"> مشتریان حسابرو</a>
+          <router-link :to="{name:`صفحه اصلی | حسابرو`,hash:'#customers'}" class="hover:text-cyan-600 transition-alltext-slate-800"> مشتریان حسابرو</router-link>
         </li>
         <li class="my-5 sm:my-0">
-          <a @click="hanleShow()" href="/#about_us" class="hover:text-cyan-600 transition-all text-slate-800"> ارتباط با ما</a>
+          <router-link :to="{name:`صفحه اصلی | حسابرو`,hash:'#about_us'}" class="hover:text-cyan-600 transition-all text-slate-800"> ارتباط با ما</router-link>
         </li>
       </ul>
-      <!-- <router-link to="/home" custom v-slot="{ navigate, href, route }">
-  <a :href="href" @click="navigate">{{ route.fullPath }}</a>
-</router-link> -->
+      
     </section>
   </nav>
+  <!-- پایان منو های سایت -->
 </template>
 <script>
+  import {ROUTES} from '../../config/path.route.js'
 export default {
-  data() {
-    return {
-      show: false,
-    }
-  },
-  methods: {
-    handleShow() {
-      this.show = !this.show
-    },
+  methods:{
     
-  },
+  }
 }
 </script>

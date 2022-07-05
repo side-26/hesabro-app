@@ -14,20 +14,22 @@ const routes = [
     mode: 'history',
     history: createWebHistory(),
     routes,
-    // scrollBehavior(to, from, savedPosition) {
-    //     if(savedPosition)
-    //         return savedPosition
-    //     if (to.hash) {
-    //         console.log(to,from,savedPosition);
+    scrollBehavior(to, from, savedPosition) {
+        if(savedPosition)
+            return savedPosition
+        if (to.hash) {
+            console.log(to,from,savedPosition);
             
-    //       return {
-    //         el: to.hash,
-    //         behavior: 'smooth',
-    //       }
-    //     }
-    //   },
-    linkExactActiveClass: "text-cyan-600 font-IranYecan-bold",
-    linkActiveClass: 'text-cyan-600 font-IranYecan-bold'
+          return {
+            el: to.hash,
+            behavior: 'smooth',
+            top:0
+          }
+        }
+
+      },
+    // linkExactActiveClass: "text-cyan-600 font-IranYecan-bold",
+    // linkActiveClass: 'text-cyan-600 font-IranYecan-bold'
 })
 router.beforeEach((to, from) => {
     document.title = to.name;
