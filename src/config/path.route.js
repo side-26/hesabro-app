@@ -2,7 +2,7 @@ export const ROUTES = {
 
     HOME: {
         path: "home",
-        name: "صفحه اصلی | حسابرو  "
+        name: "صفحه اصلی | حسابرو"
     },
     TAREFEHA: {
         path: "pricing",
