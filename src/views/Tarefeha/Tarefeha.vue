@@ -53,7 +53,6 @@ import Footer from '../../layout/footer/Footer.layout.vue'
 import { tarefeha } from '../../api/tarefeha.api'
 import { users } from '../../api/users.api'
 import InfoModal from '../../components/Modal/InfoModal/InfoModal.vue'
-import axios from 'axios'
 
 export default {
   data() {
