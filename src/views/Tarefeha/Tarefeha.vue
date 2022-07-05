@@ -146,7 +146,7 @@ export default {
       tarefeha.get().then((item) => {
         this.loading = false
         console.log('item', item)
-        if (item.status >= 400) {
+        if (item.status > 200) {
           this.registerdSuccess = 'failed'
           this.showRegisterdModal = true
           this.loading = false
