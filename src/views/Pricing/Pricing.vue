@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    <NavBar />
+    <NavBar :class="{ blur: loading }"/>
     <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading }">
       <pricing-container title="تعرفه های حسابرو">
         <template v-slot:body>
@@ -30,7 +30,7 @@
         </template>
       </pricing-container>
     </main>
-    <Footer />
+    <Footer :class="{ blur: loading }"/>
     <Loading v-if="loading" msg="لطفا منتظر بمانید" />
   </div>
   <Teleport to="#modalTel">
@@ -118,7 +118,7 @@ export default {
       })
     },
     seprateNumber(num) {
-      return handleSprateNumber(num)
+      return handleSprateNumber(num);
     },
     handleValidateFullName(val) {
       if (!val) return 'فیلد مورد نظر خالی است!!'

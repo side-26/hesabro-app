@@ -19,11 +19,11 @@
         <li class="pricing_navlink my-5 sm:my-0">
           <router-link  id="3" to="/pricing" :router-link-active="text-cyan-500" class="hover:text-cyan-500  transition-all">تعرفه ها</router-link>
         </li>
+          <li class="my-5 sm:my-0">
+            <router-link :class="{'text-cyan-500 font-extrabold':currentPosition==='aboutUs'}"  :to="{name:`صفحه اصلی | حسابرو`,hash:'#aboutUs'}" class="hover:text-cyan-600 transition-all">درباره ما</router-link>
+          </li>
         <li class="my-5 sm:my-0">
           <router-link :class="{'text-cyan-500 font-extrabold':currentPosition==='customers'}"  :to="{name:`صفحه اصلی | حسابرو`,hash:'#customers'}" class="hover:text-cyan-600 transition-all"> مشتریان حسابرو</router-link>
-        </li>
-        <li class="my-5 sm:my-0">
-          <router-link :class="{'text-cyan-500 font-extrabold':currentPosition==='aboutUs'}"  :to="{name:`صفحه اصلی | حسابرو`,hash:'#aboutUs'}" class="hover:text-cyan-600 transition-all"> ارتباط با ما</router-link>
         </li>
       </ul>
       

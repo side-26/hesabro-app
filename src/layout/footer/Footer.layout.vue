@@ -22,8 +22,8 @@
             <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/">خانه</router-link></li>
             <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" :to="{name:'صفحه اصلی | حسابرو',hash:'#advantages'}">خدمات و راهکار ها</router-link></li>
             <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/pricing">تعرفه ها</router-link></li>
+            <li class="my-6"><router-link :to="{name:'صفحه اصلی | حسابرو',hash:'#aboutUs'}" class="text-slate-800 font-IranYekan-regular">درباره ما</router-link></li>
             <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular side-26" :to="{name:'صفحه اصلی | حسابرو',hash:'#customers'}">مشتریان حسابرو</router-link></li>
-            <li class="my-6"><router-link :to="{name:'صفحه اصلی | حسابرو',hash:'#about_us'}" class="text-slate-800 font-IranYekan-regular">ارتباط با ما</router-link></li>
           </ul>
         </div>
       </div>
