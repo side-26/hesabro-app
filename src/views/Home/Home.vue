@@ -1,8 +1,10 @@
 <template lang="">
   <div>
-    <NavBar />
-    <header>
-      <section class="bg-center bg-cover bg-no-repeat bg-main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
+    
+      <NavBar :currentPosition="currentPosition"/>
+
+    <header id="header" class="observing">
+      <section  class=" bg-center bg-cover bg-no-repeat bg-main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
         <div class="pb-20 sm:mb-0">
           <h1 class="sm:text-4xl shadow-black text-white text-3xl font-IranYecan-extraBold sm:leading-loose leading-normal">
             حسابرو<br />
@@ -16,10 +18,10 @@
     </header>
     <main class="overflow-hidden">
       <!-- راهکار ها و خدمات -->
-      <section id="advantages" class="mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
+      <section id="advantages" class="observing mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
         <AdvCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
-      <section ref="aboutUs" id="about_us" class="md:my-0 lg:py-24 md:mt-20 my-24 relative flex justify-start items-stretch right-0">
+      <section  id="aboutUs" class="observing md:my-0 lg:py-24 md:mt-20 my-24 relative flex justify-start items-stretch right-0">
         <div class="flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-IranYecan-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
         </div>
@@ -47,7 +49,7 @@
         </div>
       </section>
       <!-- ماژول های حسابرو -->
-      <section class="lg:py-32 test1 lg:relative h-100 flex flex-col lg:flex-row justify-center items-center 2xl:px-20">
+      <section  class="lg:py-32 test1 lg:relative h-100 flex flex-col lg:flex-row justify-center items-center 2xl:px-20">
         <div class="lg:absolute -z-10 top-0 left-0 w-full h-full flex justify-center items-center">
           <div class="border-cyan-600 flex items-center justify-center lg:border-3 lg:rounded-full lg:w-100 lg:h-100">
             <h4 class="font-IranYecan-extraBold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-4xl 2xl:text-5xl">
@@ -98,7 +100,7 @@
       </section>
 
       <!-- مشتریان حسابرو -->
-      <section id="customers" class="container my-40 lg:my-20 mx-auto">
+      <section id="customers" class="observing container my-40 lg:my-20 mx-auto">
         <h4 class="font-IranYecan-extraBold text-2xl text-center my-5">مشتریان حسابرو</h4>
         <p class="text-center px-4 md:px-0 text-xs font-IranYecan-medium">گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند</p>
         <div class="flex flex-wrap justify-center my-20">
@@ -117,7 +119,8 @@
     <Footer />
   </div>
 </template>
-<script>
+<script >
+import { onMounted, ref } from 'vue'
 import NavBar from '@/layout/navBar/NavBar.layout.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import AdvCard from '@/components/advCard/AdvCard.vue'
@@ -126,6 +129,7 @@ import ModuleCard from '@/components/ModuleCard/ModuleCard.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination, Navigation, Autoplay, EffectFade } from 'swiper'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
+import { useIntersectionObserver } from '@vueuse/core'
 import { advantages } from '@/config/tarefeh.data'
 import { modules } from '@/config/tarefeh.data'
 import { customers } from '@/config/tarefeh.data'
@@ -153,8 +157,24 @@ export default {
     SwiperSlide,
   },
   setup() {
+    const currentPosition=ref('');
+    onMounted(() => {
+      const observer =new IntersectionObserver((entries)=>{
+        entries.forEach(entry => {
+          if(entry.isIntersecting ){
+            // debugger;
+            currentPosition.value=entry.target.getAttribute('id');
+            console.log(entry)
+          }
+        })
+      },{threshold:0.45})
+      document.querySelectorAll('.observing').forEach(section=>{
+        observer.observe(section)
+      })
+    })
     return {
       modules: [Pagination, Navigation, Autoplay],
+      currentPosition
     }
   },
   methods: {
