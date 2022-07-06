@@ -3,7 +3,7 @@
     <NavBar :currentPosition="currentPosition" />
 
     <header id="header" class="observing">
-      <section class="bg-center bg-cover bg-no-repeat bg-main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
+      <section class="bg-center bg-cover bg-no-repeat main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
         <div class="pb-20 sm:mb-0">
           <h1 class="sm:text-4xl shadow-black text-white text-3xl font-extrabold sm:leading-loose leading-normal">
             حسابرو<br />
@@ -185,7 +185,7 @@ export default {
   },
 }
 </script>
-<style lang="css">
+<style lang="css" scoped>
 .before-enter {
   opacity: 0;
   transform: translate(100px);
@@ -207,5 +207,8 @@ export default {
 }
 .text-shadow {
   text-shadow: 1px 1px 10px #fff;
+}
+.main-bg{
+  background-image: url('/img/main_bg.jpg');
 }
 </style>

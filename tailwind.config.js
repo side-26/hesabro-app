@@ -5,7 +5,6 @@ module.exports = {
     ],
     theme: {
         extend: {
-           
             animation: {
                 'spin-slow': 'spin 1.5s ease-in-out infinite',
 
@@ -13,7 +12,7 @@ module.exports = {
             fontSize:{
                 'xs':'0.8125rem',
                 // 'sm':''
-                'C-base':"1.0625rem"
+                'base2':"1.0625rem"
             },
             borderWidth:{
                 '3':'3px'
@@ -43,9 +42,6 @@ module.exports = {
             },
             rotate:{
                 '47':'47deg'
-            },
-            backgroundImage:{
-                'main-bg':'url("../../../img/main_bg.jpg")',
             },
             spacing:{
                 '40.5':'40%'
