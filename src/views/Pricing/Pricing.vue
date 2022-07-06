@@ -2,25 +2,25 @@
   <div>
     <NavBar />
     <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading }">
-      <TarefehContainer title="تعرفه های حسابرو">
+      <pricing-container title="تعرفه های حسابرو">
         <template v-slot:body>
-          <tarefehCard v-if="Data" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in Data.items" :key="item.title" />
+          <pricing-card v-if="pricingData" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.title" />
         </template>
         <template v-slot:footer lang="">
-          <TotalPriceCon class="hidden md:block" title="قیمت کل زیر سیستم ها" :totalPrice="totalprice" />
+          <total-price-con class="hidden md:block" title="قیمت کل زیر سیستم ها" :totalPrice="totalprice" />
         </template>
-      </TarefehContainer>
-      <TarefehContainer title="امکانات جانبی" :classes="gap - 4">
+      </pricing-container>
+      <pricing-container title="امکانات جانبی" :classes="gap - 4">
         <template lang="" v-slot:body>
-          <servicesBox v-if="Data.const_prices" v-model="PerBranch" :min="Data.const_prices.default_branches_count" :percent="Data.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
-          <servicesBox v-if="Data.const_prices" v-model="PerUser" :min="Data.const_prices.default_users_count" :percent="Data.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
+          <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
+          <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
         </template>
         <template v-slot:footer lang="">
-          <TotalPriceCon class="md:hidden" title="قیمت ماژول ها" :totalPrice="totalprice" />
-          <TotalPriceCon class="md:hidden" title="قیمت کل" :totalPrice="totalPrice" />
+          <total-price-con class="md:hidden" title="قیمت ماژول ها" :totalPrice="totalprice" />
+          <total-price-con class="md:hidden" title="قیمت کل" :totalPrice="totalPrice" />
         </template>
-      </TarefehContainer>
-      <TarefehContainer title="ثبت سفارش" :classes="gap - 4">
+      </pricing-container>
+      <pricing-container title="ثبت سفارش" :classes="gap - 4">
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" :totalPrice="sideServices" />
           <FormCo :statusCode="btnStatusCode" @handlePost="handlePost">
@@ -28,7 +28,7 @@
             <TextInput name="phone_number" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
           </FormCo>
         </template>
-      </TarefehContainer>
+      </pricing-container>
     </main>
     <Footer />
     <Loading v-if="loading" msg="لطفا منتظر بمانید" />
@@ -40,24 +40,24 @@
   </Teleport>
 </template>
 <script>
-import Loading from '../../components/Loading/Loading.vue'
-import NavBar from '../../layout/navBar/NavBar.layout.vue'
-import TarefehContainer from '../../components/tarefehContainer/TarefehContainer.vue'
-import tarefehCard from '../../components/tarefehCard/tarefehCard.vue'
-import TotalPriceCon from '../../components/TotalPriceCon/TotalPriceCon.vue'
-import servicesBox from '../../components/servicesBox/servicesBox.vue'
-import Bill from '../../components/Bill/Bill.vue'
-import FormCo from '../../components/form/form.vue'
-import TextInput from '../../components/form/Input/TextInput.vue'
-import Footer from '../../layout/footer/Footer.layout.vue'
-import { tarefeha } from '../../api/tarefeha.api'
-import { users } from '../../api/users.api'
-import InfoModal from '../../components/Modal/InfoModal/InfoModal.vue'
+import Loading from '@/components/Loading/Loading.vue'
+import NavBar from '@/layout/navBar/NavBar.layout.vue'
+import pricingContainer from '@/components/pricingContainer/pricingContainer.vue'
+import pricingCard from '@/components/pricingCard/pricingCard.vue'
+import TotalPriceCon from '@/components/TotalPriceCon/TotalPriceCon.vue'
+import servicesBox from '@/components/servicesBox/servicesBox.vue'
+import Bill from '@/components/Bill/Bill.vue'
+import FormCo from '@/components/form/form.vue'
+import TextInput from '@/components/form/Input/TextInput.vue'
+import Footer from '@/layout/footer/Footer.layout.vue'
+import { tarefeha } from '@/api/tarefeha.api'
+import { users } from '@/api/users.api'
+import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
 
 export default {
   data() {
     return {
-      Data: [],
+      pricingData: [],
       totalprice: 0,
       discount: 0,
       taxes: 5,
@@ -79,8 +79,8 @@ export default {
   components: {
     NavBar,
     Footer,
-    TarefehContainer,
-    tarefehCard,
+    pricingContainer,
+    pricingCard,
     TotalPriceCon,
     servicesBox,
     Bill,
@@ -144,7 +144,6 @@ export default {
     try {
       tarefeha.get().then((item) => {
         this.loading = false
-        console.log('item', item)
         if (item.status > 200) {
           this.registerdSuccess = 'failed'
           this.showRegisterdModal = true
@@ -153,7 +152,7 @@ export default {
           this.modalPath = '/'
           this.modalDesc = 'دریافت اطلاعات با خطا مواجه شد'
         }
-        this.Data = item.data.data
+        this.pricingData = item.data.data
       })
     } catch (error) {
       alert('سایت با مشکل مواجه شد.')

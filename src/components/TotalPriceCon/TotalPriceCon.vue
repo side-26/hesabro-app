@@ -8,8 +8,8 @@
   </div>
 </template>
 <script>
-import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
-import { handleSprateNumber } from '@/src/utilities/SeprateNumbers'
+import { toFarsiNumber } from '@/utilities/ConvertToPersian'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {
   name: 'totalPrice',
   props: {

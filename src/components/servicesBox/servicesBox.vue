@@ -7,16 +7,16 @@
     <div class="text-xs font-IranYekan-regular my-7 md:my-6">به ازای هر {{ desc }} ، {{ seprateNumbers(percent) }} درصد به قیمت ماژول ها اضافه میشود</div>
     <div class="text-xs flex-col side-26 lg:flex-row flex justify-between font-IranYecan-medium">
       <span
-        >برای هر {{desc}} جدید : <span class="">{{ toPersian(seprateNumbers(price.toFixed(0))) }} تومان</span></span
-      ><span v-if="finalPrice>0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toPersian(seprateNumbers(finalPrice.toFixed(0))) }} تومان</span>
-      <span v-if="finalPrice===0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">رایگان</span>
+        >برای هر {{ desc }} جدید : <span class="">{{ toPersian(seprateNumbers(price.toFixed(0))) }} تومان</span></span
+      ><span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toPersian(seprateNumbers(finalPrice.toFixed(0))) }} تومان</span>
+      <span v-if="finalPrice === 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">رایگان</span>
     </div>
   </div>
 </template>
 <script>
-import Counter from '@/src/components/counter/Counter.vue'
-import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
-import { handleSprateNumber } from '@/src/utilities/SeprateNumbers'
+import Counter from '@/components/counter/Counter.vue'
+import { toFarsiNumber } from '@/utilities/ConvertToPersian'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {
   name: 'servicesBox',
   props: {
@@ -58,9 +58,8 @@ export default {
       return this.totalPrice * (+this.percent / 100)
     },
     finalPrice() {
-      if (this.count > this.min) return this.price * (this.count - this.min)
-      else if (this.count === this.min) return this.price * 0
-      return this.price
+      if (this.count === this.min) return 0
+      return this.price * (this.count - this.min)
     },
   },
   watch: {

@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
+import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { handleSprateNumber } from '../../utilities/SeprateNumbers'
 export default {
   name: 'OptionCom',

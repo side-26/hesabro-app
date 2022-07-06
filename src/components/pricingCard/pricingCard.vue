@@ -22,8 +22,8 @@
   </div>
 </template>
 <script>
-import { toFarsiNumber } from '@/src/utilities/ConvertToPersian'
-import { handleSprateNumber } from '@/src/utilities/SeprateNumbers'
+import { toFarsiNumber } from '@/utilities/ConvertToPersian'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {
   name: 'tarefehCard',
   data() {
@@ -55,7 +55,6 @@ export default {
       return handleSprateNumber(val)
     },
     convertToArray(str) {
-      console.log(str.match(/\d+/))
       let arr = []
       if (str.match(/\d+/)) {
         arr = str.split(/\d+/)

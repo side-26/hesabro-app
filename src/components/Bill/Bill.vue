@@ -15,8 +15,8 @@
   </section>
 </template>
 <script>
-import { toFarsiNumber } from '../../utilities/ConvertToPersian'
-import { handleSprateNumber } from '../../utilities/SeprateNumbers'
+import { toFarsiNumber } from '@/utilities/ConvertToPersian'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {
   name: 'Bill',
   props: {

@@ -38,8 +38,5 @@ export default {
       currentURL:this.$router.currentRoute
     }
   },
-  mounted(){
-    console.log(this.currentURL)
-  }
 }
 </script>
