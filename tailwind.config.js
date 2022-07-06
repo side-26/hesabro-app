@@ -5,13 +5,7 @@ module.exports = {
     ],
     theme: {
         extend: {
-            // fontFamily: {
-            //     "thin": ["thin"],
-            //     "medium": ["medium"],
-            //     "IranYekan-regular": ["regular"],
-            //     "bold": ["bold"],
-            //     "extraBold": ["extraBold"],
-            // },
+           
             animation: {
                 'spin-slow': 'spin 1.5s ease-in-out infinite',
 
@@ -59,7 +53,4 @@ module.exports = {
         },
 
     },
-    plugins: [
-        // ...
-      ],
-}
+  }
