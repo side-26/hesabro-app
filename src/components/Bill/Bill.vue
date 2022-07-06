@@ -1,5 +1,5 @@
 <template lang="">
-  <section class="font-IranYecan-medium md:bg-transparent bg-gray-100 p-4 text-gray-800 text-base rounded-lg md:w-4/5 mx-2 md:mx-0 lg:w-2/3">
+  <section class="font-medium md:bg-transparent bg-gray-100 p-4 text-gray-800 text-base rounded-lg md:w-4/5 mx-2 md:mx-0 lg:w-2/3">
     <div class="my-5 flex justify-between">
       <span> قیمت کل : </span><span>{{ toPersian(seprateNu(finalPrice.toFixed())) }} تومان</span>
     </div>

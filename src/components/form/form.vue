@@ -3,7 +3,7 @@
     <Form @submit="handleSubmit">
       <slot> </slot>
       <div>
-        <button type="submit" class="rounded-xl flex justify-center items-center font-IranYecan-bold md:mt-4 mt-60 text-sm bg-cyan-500 hover:bg-cyan-600 transition-all py-3 text-white w-full">
+        <button type="submit" class="rounded-xl flex justify-center items-center font-bold md:mt-4 mt-60 text-sm bg-cyan-500 hover:bg-cyan-600 transition-all py-3 text-white w-full">
           <span v-if="statusCode == 0">ثبت سفارش</span>
           <span v-else class="animate-spin loading-spinner mx-1" v-for="item in 3" :key="item"></span>
         </button>

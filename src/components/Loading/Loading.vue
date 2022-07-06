@@ -4,7 +4,7 @@
       <figure class="animate-spin-slow mb-3">
         <img class="w-full h-full" src="/img/hesabro.logo.svg" alt="Hesabro-logo" />
       </figure>
-      <span class="text-white font-IranYecan-bold text-sm">{{ msg }}</span>
+      <span class="text-white font-bold text-sm">{{ msg }}</span>
     </section>
     <div class="absolute w-screen min-h-screen left-0 top-0 opacity-50 bg-black z-10"></div>
   </div>

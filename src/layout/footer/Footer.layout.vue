@@ -1,13 +1,13 @@
 <template lang="">
   <footer class="py-10 bg-gray-100 px-10 md:px-6 lg:px-24 2xl:px-0">
     <section class="flex justify-between md:flex-row flex-col 2xl:container 2xl:mx-auto mb-5">
-      <div class="font-IranYecan-bold text-sm md:mt-0 mt-5">
+      <div class="font-bold text-sm md:mt-0 mt-5">
         <router-link to="/">
           <figure class="w-14 h-14">
             <img class="w-full h-full" src="/img/hesabro.logo.svg" alt="hesabro-logo" />
           </figure>
         </router-link>
-        <h5 class="text-gray-800 font-IranYecan-bold mt-4">حسابرو، راهکار جامع مدیریت مالی کسب‌ و ‌کار شما</h5>
+        <h5 class="text-gray-800 font-bold mt-4">حسابرو، راهکار جامع مدیریت مالی کسب‌ و ‌کار شما</h5>
         <div class="my-8">آدرس : <span class="text-slate-500"> کرمان ، میدان قرنی ، ساختمان پدر ، طبقه پنجم</span></div>
         <div class="">تلفن : <a class="text-slate-500" href="tel:+989981396467" data-v-461b212e="">09981396467</a></div>
         <div class="my-8">
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="">
-        <div class="font-IranYecan-bold text-lg">دسترسی ها</div>
+        <div class="font-bold text-lg">دسترسی ها</div>
         <div>
           <ul class="text-sm text-slate-900">
             <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/">خانه</router-link></li>
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="flex flex-col items-center">
-        <div class="font-IranYecan-bold mb-16">مجوز های حسابرو</div>
+        <div class="font-bold mb-16">مجوز های حسابرو</div>
         <div class="flex">
           <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
             <img loading="lazy" class="w-full object-cover h-full" src="/img/etemad.png" alt="etemad-logo" />

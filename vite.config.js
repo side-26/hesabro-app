@@ -10,9 +10,6 @@ export default defineConfig({
       '/api': 'https://hesabro.com',
     },
   },
-  // server:{
-  //   proxy:"https://asrd.mobittest.ir"
-  // },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

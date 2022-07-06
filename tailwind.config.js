@@ -5,13 +5,13 @@ module.exports = {
     ],
     theme: {
         extend: {
-            fontFamily: {
-                "IranYecan-thin": ["IranYecan-thin"],
-                "IranYecan-medium": ["IranYecan-medium"],
-                "IranYekan-regular": ["IranYecan-regular"],
-                "IranYecan-bold": ["IranYecan-bold"],
-                "IranYecan-extraBold": ["IranYecan-extraBold"],
-            },
+            // fontFamily: {
+            //     "thin": ["thin"],
+            //     "medium": ["medium"],
+            //     "IranYekan-regular": ["regular"],
+            //     "bold": ["bold"],
+            //     "extraBold": ["extraBold"],
+            // },
             animation: {
                 'spin-slow': 'spin 1.5s ease-in-out infinite',
 
