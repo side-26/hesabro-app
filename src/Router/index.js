@@ -14,7 +14,7 @@ const router = createRouter({
   mode: 'history',
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to, savedPosition) {
     if (savedPosition)
       return savedPosition
     else if (to.hash) {
@@ -24,9 +24,10 @@ const router = createRouter({
         top:-10
       }
     }
-    else if (to.path === '/pricing')
+    else if (to.path === '/pricing'||to.path === '/')
       return { top: 0 }
-
+    
+      
   },
   // linkExactActiveClass: "text-cyan-600 font-bold",
   // linkActiveClass: 'text-cyan-600 font-bold'

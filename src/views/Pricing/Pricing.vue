@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    <NavBar :class="{ blur: loading }"/>
+    <NavBar :class="{ blur: loading }" />
     <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading }">
       <pricing-container title="تعرفه های حسابرو">
         <template v-slot:body>
@@ -23,14 +23,14 @@
       <pricing-container title="ثبت سفارش" :classes="gap - 4">
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" :totalPrice="sideServices" />
-          <FormCo :statusCode="btnStatusCode" @handlePost="handlePost">
+          <FormCo :modulesArr="selected_modules_id.length" :statusCode="btnStatusCode" @handlePost="handlePost">
             <TextInput name="name" :type="text" :rules="handleValidateFullName" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
             <TextInput name="phone_number" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
           </FormCo>
         </template>
       </pricing-container>
     </main>
-    <Footer :class="{ blur: loading }"/>
+    <Footer :class="{ blur: loading }" />
     <Loading v-if="loading" msg="لطفا منتظر بمانید" />
   </div>
   <Teleport to="#modalTel">
@@ -98,6 +98,7 @@ export default {
     handlesidePrice(price) {
       this.sideServices += +price
     },
+
     handlePost(val) {
       this.btnStatusCode = 200
       this.modalTitle = 'ثبت سفارش'
@@ -107,7 +108,7 @@ export default {
         this.showRegisterdModal = true
         this.btnStatusCode = 0
         if (item.data.success !== 'success') {
-          this.modalDesc = 'ثبت نام با موفقیت انجام شد با شما از طرف حسابرو تماس گرفته می شود.'
+          this.modalDesc = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
           this.registerdSuccess = 'success'
           this.modalPath = '/'
         } else {
@@ -118,7 +119,7 @@ export default {
       })
     },
     seprateNumber(num) {
-      return handleSprateNumber(num);
+      return handleSprateNumber(num)
     },
     handleValidateFullName(val) {
       if (!val) return 'فیلد مورد نظر خالی است!!'

@@ -43,16 +43,17 @@ export default {
       type:String,
       required:true
     },
-    showRegisterdModal:{
+    modelValue:{
       type:String,
       required:true
     }
   },
   methods: {
     handelRegister(success) {
-      if (success !== 'success')
-       this.$emit('update:showRegisterdModal', false)
+      // if (success !== 'success')
+      this.$emit('update:modelValue', false)
       this.$router.push(this.path);
+      console.log(this.showRegisterdModal)
     },
   },
 }
