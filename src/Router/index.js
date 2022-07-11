@@ -17,13 +17,15 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition)
       return savedPosition
-    if (to.hash) {
+    else if (to.hash) {
       return {
         el: to.hash,
         behavior: 'smooth',
-        top: 0
+        top:-10
       }
     }
+    else if (to.path === '/pricing')
+      return { top: 0 }
 
   },
   // linkExactActiveClass: "text-cyan-600 font-bold",

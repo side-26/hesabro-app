@@ -64,7 +64,7 @@
           :slidesPerView="'auto'"
           :spaceBetween="0"
           :autoplay="{
-            delay: 3000,
+            delay: 2000,
             disableOnInteraction: true,
           }"
           :breakpoints="{
@@ -163,7 +163,6 @@ export default {
             if (entry.isIntersecting) {
               // debugger;
               currentPosition.value = entry.target.getAttribute('id')
-              console.log(entry)
             }
           })
         },
@@ -185,7 +184,7 @@ export default {
   },
 }
 </script>
-<style lang="css" scoped>
+<style lang="css">
 .before-enter {
   opacity: 0;
   transform: translate(100px);
@@ -199,11 +198,8 @@ export default {
   height: 100%;
 }
 .swiper-wrapper {
-  display: flex;
+  display: flex !important;
   transition: all 1.95s ease-out !important;
-}
-.swiper-wrapper:hover {
-  transition: none;
 }
 .text-shadow {
   text-shadow: 1px 1px 10px #fff;
