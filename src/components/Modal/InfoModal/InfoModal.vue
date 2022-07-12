@@ -5,7 +5,7 @@
         <h6 class="font-bold  text-sm py-3">{{ title }}</h6>
         <p class="text-xs font-IranYekan-regular text-gray-600 leading-6">{{ desc }}</p>
         <button
-          @click.stop="handelRegister(type)"
+          @click.stop="handelRegister()"
           :class="{
             'bg-red-500': type !== 'success',
             'bg-cyan-500': type === 'success',
@@ -20,8 +20,8 @@
   </transition>
 </template>
 <script>
+import {useRouter} from 'vue-router'
 export default {
-  name: 'InfoModal',
   props: {
     desc: {
       type: String,
@@ -48,14 +48,17 @@ export default {
       required:true
     }
   },
-  methods: {
-    handelRegister(success) {
-      // if (success !== 'success')
-      this.$emit('update:modelValue', false)
-      this.$router.push(this.path);
-      console.log(this.showRegisterdModal)
-    },
-  },
+  setup(props,contex) {
+    const router=useRouter();
+    const handelRegister=()=> {
+      contex.emit('update:modelValue', false)
+      router.push(props.path);
+    }
+    return{
+      handelRegister
+    }
+  }
+  
 }
 </script>
 <style lang="css">
