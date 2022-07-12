@@ -16,7 +16,6 @@
 <script>
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 export default {
-  name: 'counter',
   props: {
     count: {
       type: Number,
@@ -39,13 +38,17 @@ export default {
       required:true
     }
   },
-  methods: {
-    handleCounter(step) {
-      this.$emit('update:modelValue', this.modelValue + step)
-    },
-    PersianConvertor(val) {
+  setup(props,contex) {
+    const handleCounter=(step)=> {
+      contex.emit('update:modelValue', props.modelValue + step)
+    }
+    const PersianConvertor=(val)=> {
       return toFarsiNumber(val)
-    },
-  },
+    }
+    return {
+      handleCounter,
+      PersianConvertor
+    }
+  }
 }
 </script>
