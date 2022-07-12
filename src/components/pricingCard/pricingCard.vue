@@ -22,39 +22,35 @@
   </div>
 </template>
 <script>
+import { ref,onMounted } from 'vue'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {
-  name: 'tarefehCard',
-  data() {
-    return {
-      checked: false,
-      toggled: true,
-      itemArr: this.convertToArray(this.tarefehInfo.description),
-    }
-  },
   props: {
     tarefehInfo: {
       type: Object,
       required: true,
     },
   },
-  methods: {
-    handleCheck(price) {
-      this.checked = !this.checked
-      if (this.checked) this.$emit('handleTotalPrice', price, this.tarefehInfo.id, true)
-      else this.$emit('handleTotalPrice', -price, this.tarefehInfo.id, false)
-    },
-    handleToggle() {
-      this.toggled = !this.toggled
-    },
-    toPersianNu(val) {
+  setup(props,contex) {
+    const checked = ref(false)
+    const toggled = ref(true)
+    const itemArr = ref([])
+    const handleCheck = (price) => {
+      checked.value = !checked.value
+      if (checked.value) contex.emit('handleTotalPrice', price, props.tarefehInfo.id, true)
+      else contex.emit('handleTotalPrice', -price, props.tarefehInfo.id, false)
+    }
+    const handleToggle = () => {
+      toggled.value = !toggled.value
+    }
+    const toPersianNu = (val) => {
       return toFarsiNumber(val)
-    },
-    seprateNu(val) {
+    }
+    const seprateNu = (val) => {
       return handleSprateNumber(val)
-    },
-    convertToArray(str) {
+    }
+    const convertToArray = (str) => {
       let arr = []
       if (str.match(/\d+/)) {
         arr = str.split(/\d+/)
@@ -63,7 +59,20 @@ export default {
         arr.push(`.${str}`)
       }
       return arr
-    },
+    }
+    onMounted(()=>{
+      itemArr.value=convertToArray(props.tarefehInfo.description)
+    })
+    return {
+      checked,
+      toggled,
+      itemArr,
+      handleCheck,
+      convertToArray,
+      toPersianNu,
+      handleToggle,
+      seprateNu,
+    }
   },
 }
 </script>
