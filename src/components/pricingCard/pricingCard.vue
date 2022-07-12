@@ -14,15 +14,15 @@
         </button>
       </div>
     </section>
-    <div class="py overflow-hidden" :class="{ 'h-0': toggled }">
+    <section class="py overflow-hidden" :class="{ 'h-0': toggled }">
       <ul>
         <li class="text-xs my-5 font-medium" v-for="(item, index) in itemArr" :key="item">{{ toPersianNu(index + 1) }}{{ item }}</li>
       </ul>
-    </div>
+    </section>
   </div>
 </template>
 <script>
-import { ref,onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {
@@ -32,7 +32,7 @@ export default {
       required: true,
     },
   },
-  setup(props,contex) {
+  setup(props, contex) {
     const checked = ref(false)
     const toggled = ref(true)
     const itemArr = ref([])
@@ -60,8 +60,8 @@ export default {
       }
       return arr
     }
-    onMounted(()=>{
-      itemArr.value=convertToArray(props.tarefehInfo.description)
+    onMounted(() => {
+      itemArr.value = convertToArray(props.tarefehInfo.description)
     })
     return {
       checked,
