@@ -11,7 +11,6 @@
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {
-  name: 'totalPrice',
   props: {
     title: {
       type: String,
@@ -22,13 +21,17 @@ export default {
       required: true,
     },
   },
-  methods: {
-    toPersianNu(val) {
+  setup(props) {
+    const toPersianNu = (val) => {
       return toFarsiNumber(val)
-    },
-    seprateNu(val) {
+    }
+    const seprateNu = (val) => {
       return handleSprateNumber(val)
-    },
+    }
+    return {
+      toPersianNu,
+      seprateNu,
+    }
   },
 }
 </script>
