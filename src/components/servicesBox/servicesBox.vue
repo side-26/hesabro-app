@@ -14,11 +14,11 @@
   </div>
 </template>
 <script>
+import {ref,computed,watch,onMounted} from 'vue'
 import Counter from '@/components/counter/Counter.vue'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {
-  name: 'servicesBox',
   props: {
     percent: {
       type: Number,
@@ -45,39 +45,39 @@ export default {
       required: true,
     },
   },
-  components: {
-    Counter,
-  },
-  data() {
+  setup(props,contex) {
+    const count=ref(props.min);
+    const price=computed(()=>{
+      return props.totalPrice * (+props.percent / 100)
+    });
+    const finalPrice=computed(()=>{
+        if (count.value === props.min) return 0
+      return price.value * (count.value - props.min)
+    })
+    const handleCounter=(step)=> {
+      count.value += step
+    }
+    const toPersian=(num)=> {
+      return toFarsiNumber(num)
+    }
+    const seprateNumbers=(val)=> {
+      return handleSprateNumber(val)
+    }
+    watch(finalPrice,()=>{
+      contex.emit('update:modelValue', { price: finalPrice.value, count: count.value })
+
+    })
     return {
-      count: this.min,
-      
+      count,
+      price,
+      finalPrice,
+      handleCounter,
+      seprateNumbers,
+      toPersian
     }
   },
-  computed: {
-    price() {
-      return this.totalPrice * (+this.percent / 100)
-    },
-    finalPrice() {
-      if (this.count === this.min) return 0
-      return this.price * (this.count - this.min)
-    },
-  },
-  watch: {
-    finalPrice(oldVal,newVal) {
-      this.$emit('update:modelValue', { price: this.finalPrice, count: this.count })
-    },
-  },
-  methods: {
-    handleCounter(step) {
-      this.count += step
-    },
-    toPersian(num) {
-      return toFarsiNumber(num)
-    },
-    seprateNumbers(val) {
-      return handleSprateNumber(val)
-    },
+  components: {
+    Counter,
   },
 }
 </script>
