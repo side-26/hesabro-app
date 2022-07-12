@@ -22,7 +22,7 @@
       </pricing-container>
       <pricing-container title="ثبت سفارش" :classes="gap - 4">
         <template lang="" v-slot:body>
-          <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" :totalPrice="sideServices" />
+          <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
           <FormCo :modulesArr="selected_modules_id.length" :statusCode="btnStatusCode" @handlePost="handlePost">
             <TextInput name="name" :type="text" :rules="handleValidateFullName" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
             <TextInput name="phone_number" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
@@ -40,6 +40,7 @@
   </Teleport>
 </template>
 <script>
+import { reactive, ref, onMounted, computed } from 'vue'
 import Loading from '@/components/Loading/Loading.vue'
 import NavBar from '@/layout/navBar/NavBar.layout.vue'
 import pricingContainer from '@/components/pricingContainer/pricingContainer.vue'
@@ -55,25 +56,114 @@ import { users } from '@/api/users.api'
 import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
 
 export default {
-  data() {
+  //   props: {
+  //     name: 'Pricing',
+  //   },
+  setup(props) {
+    const pricingData = ref([])
+    const totalprice = ref(0)
+    const discount = ref(0)
+    const taxes = ref(5)
+    const statusCode = ref(0)
+    const loading = ref(true)
+    const btnStatusCode = ref(0)
+    const selected_modules_id = ref([])
+    let customerInfo = reactive({})
+    let PerBranch = ref({ price: 0, count: 0 })
+    let PerUser = ref({ price: 0, count: 0 })
+    const registerdSuccess = ref('failed')
+    const modalDesc = ref('')
+    const modalTitle = ref('خطا')
+    const showRegisterdModal = ref(false)
+    const modalPath = ref('')
+    const finalPrice = computed(totalprice.value, () => {
+      return +(totalprice.value + taxes.value - discount.value)
+    })
+    const totalPrice = computed(() => {
+      return totalprice.value + PerBranch.value.price + PerUser.value.price
+    })
+    const handleTotalPrice = (price, cardInfo, checked) => {
+      totalprice.value += +price
+      if (!checked) selected_modules_id.value = selected_modules_id.value.filter((id) => id !== cardInfo)
+      else selected_modules_id.value = [...selected_modules_id.value, cardInfo]
+    }
+    const seprateNumber = (num) => {
+      return handleSprateNumber(num)
+    }
+    const handlePost = (val) => {
+      btnStatusCode.value = 200
+      modalTitle.value = 'ثبت سفارش'
+      const selectedModulesIdArray = JSON.stringify(selected_modules_id.value)
+      customerInfo = { ...val, selected_modules_id: selectedModulesIdArray, users_count: PerUser.value.count, branches_count: PerBranch.value.count }
+      users.post(customerInfo).then((item) => {
+        showRegisterdModal.value = true
+        btnStatusCode.value = 0
+        if (item.data.success !== 'success') {
+          modalDesc.value = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
+          registerdSuccess.value = 'success'
+          modalPath.value = '/'
+          statusCode.value = 200
+        } else {
+          registerdSuccess.value = 'faild'
+          modalDesc.value = 'ثبت نام کنسل شد'
+          modalPath.value = ''
+        }
+      })
+    }
+    const handleValidateFullName = (val) => {
+        if (!val) return 'فیلد مورد نظر خالی است!!'
+        else if (val.length < 2) return 'نام و نام خانوادگی خود را کامل وارد کنید!!'
+        return true
+      },
+      handleValidatephoneNumber = (val) => {
+        if (!val) return 'فیلد مورد نظر خالی است!!!'
+        else if (val[0] !== '0' || val.length != 11) return 'شماره تلفن معتبر نمی باشد!!'
+        else if (isNaN(val)) return 'شماره تلفن باید عدد باشد!!!'
+        return true
+      }
+    onMounted(() => {
+      try {
+        tarefeha.get().then((item) => {
+          loading.value = false
+          if (item.status > 200) {
+            registerdSuccess.value = 'failed'
+            showRegisterdModal.value = true
+            loading.value = false
+            modalTitle.value = 'خطا!!'
+            modalPath.value = '/'
+            modalDesc.value = 'دریافت اطلاعات با خطا مواجه شد'
+          }
+          pricingData.value = item.data.data
+        })
+      } catch (error) {
+        alert('سایت با مشکل مواجه شد.')
+        // $router.push('/')
+      }
+    })
     return {
-      pricingData: [],
-      totalprice: 0,
-      discount: 0,
-      taxes: 5,
-      statusCode: 0,
-      openModal: true,
-      btnStatusCode: 0,
-      loading: true,
-      selected_modules_id: [],
-      customerInfo: {},
-      PerBranch: { price: 0, count: 0 },
-      PerUser: { price: 0, count: 0 },
-      registerdSuccess: 'failed',
-      modalDesc: '',
-      modalTitle: 'خطا',
-      showRegisterdModal: false,
-      modalPath: '',
+      pricingData,
+      totalprice,
+      discount,
+      taxes,
+      statusCode,
+      btnStatusCode,
+      loading,
+      selected_modules_id,
+      customerInfo,
+      PerBranch,
+      PerUser,
+      registerdSuccess,
+      modalDesc,
+      modalTitle,
+      showRegisterdModal,
+      modalPath,
+      finalPrice,
+      totalPrice,
+      handleTotalPrice,
+      seprateNumber,
+      handleValidateFullName,
+      handleValidatephoneNumber,
+      handlePost,
     }
   },
   components: {
@@ -88,77 +178,6 @@ export default {
     TextInput,
     Loading,
     InfoModal,
-  },
-  methods: {
-    handleTotalPrice(price, cardInfo, checked) {
-      this.totalprice += +price
-      if (!checked) this.selected_modules_id = this.selected_modules_id.filter((id) => id !== cardInfo)
-      else this.selected_modules_id = [...this.selected_modules_id, cardInfo]
-    },
-    handlesidePrice(price) {
-      this.sideServices += +price
-    },
-
-    handlePost(val) {
-      this.btnStatusCode = 200
-      this.modalTitle = 'ثبت سفارش'
-      const selectedModulesIdArray = JSON.stringify(this.selected_modules_id)
-      this.customerInfo = { ...val, selected_modules_id: selectedModulesIdArray, users_count: this.PerUser.count, branches_count: this.PerBranch.count }
-      users.post(this.customerInfo).then((item) => {
-        this.showRegisterdModal = true
-        this.btnStatusCode = 0
-        if (item.data.success !== 'success') {
-          this.modalDesc = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
-          this.registerdSuccess = 'success'
-          this.modalPath = '/'
-        } else {
-          this.registerdSuccess = 'faild'
-          this.modalDesc = 'ثبت نام کنسل شد'
-          this.modalPath = ''
-        }
-      })
-    },
-    seprateNumber(num) {
-      return handleSprateNumber(num)
-    },
-    handleValidateFullName(val) {
-      if (!val) return 'فیلد مورد نظر خالی است!!'
-      else if (val.length < 2) return 'نام و نام خانوادگی خود را کامل وارد کنید!!'
-      return true
-    },
-    handleValidatephoneNumber(val) {
-      if (!val) return 'فیلد مورد نظر خالی است!!!'
-      else if (val[0] !== '0' || val.length != 11) return 'شماره تلفن معتبر نمی باشد!!'
-      else if (isNaN(val)) return 'شماره تلفن باید عدد باشد!!!'
-      return true
-    },
-  },
-  computed: {
-    finalPrice() {
-      return +(this.totalprice + this.taxes - this.discount)
-    },
-    totalPrice() {
-      return this.totalprice + this.PerBranch.price + this.PerUser.price
-    },
-  },
-  mounted() {
-    try {
-      tarefeha.get().then((item) => {
-        this.loading = false
-        if (item.status > 200) {
-          this.registerdSuccess = 'failed'
-          this.showRegisterdModal = true
-          this.loading = false
-          this.modalTitle = 'خطا!!'
-          this.modalPath = '/'
-          this.modalDesc = 'دریافت اطلاعات با خطا مواجه شد'
-        }
-        this.pricingData = item.data.data
-      })
-    } catch (error) {
-      alert('سایت با مشکل مواجه شد.')
-      this.$router.push('/')
-    }
   },
 }
 </script>

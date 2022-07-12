@@ -64,7 +64,7 @@ export default {
     },
   },
   watch: {
-    finalPrice() {
+    finalPrice(oldVal,newVal) {
       this.$emit('update:modelValue', { price: this.finalPrice, count: this.count })
     },
   },
