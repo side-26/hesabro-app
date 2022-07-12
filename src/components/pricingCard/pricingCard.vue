@@ -1,5 +1,5 @@
 <template lang="">
-  <div @click="handleCheck(tarefehInfo.price)" :class="{ 'border-cyan-500 bg-white border-2': checked, 'bg-gray-100': !checked, 'h-auto ': !toggled, 'h-fit': toggled }" class="cursor-pointer p-3 md:p-5 flex-grow mx-4 md:mx-0 rounded-lg transition-all">
+  <div @click="handleCheck(tarefehInfo.price)" :class="{ 'border-cyan-500 bg-white border-2': checked, 'bg-gray-50': !checked, 'h-auto ': !toggled, 'h-fit': toggled }" class="cursor-pointer p-3 md:p-5 flex-grow mx-4 md:mx-0 rounded-lg transition-all">
     <section :class="{ 'text-cyan-500 ': checked, 'mb-3': !toggled }" class="flex 0 transition-all flex-wrap justify-between">
       <div class="flex justify-between flex-wrap items-center">
         <div :class="{ 'border-gray-300': !checked, 'border-cyan-500 bg-cyan-500 border-0  after:w-4 after:h-1.5 after:text-white after:absolute after:border-b-3 after:border-l-3': checked }" class="ml-3 relative border-2 w-5.5 h-5.5 rounded-md after:-rotate-47 after:bottom-2 after:left-1"></div>
