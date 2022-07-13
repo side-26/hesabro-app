@@ -9,10 +9,7 @@
             حسابرو<br />
             مدیریت مالی و حسابداری
           </h1>
-          <!-- <p  class="font-bold  absolute sm:static sm:w-2/3 w-full md:w-2/4 side-26 right-0 -bottom-11  px-4 sm:px-0  bg-white sm:bg-transparent text-justify leading-6 text-gray-600 text-sm sm:py-0 sm:mt-10 py-10 ">سامانه یکپارچه حسابرو ، راهکاری نوین جهت راه اندازی و مدیریت کسب و کار هاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرآیند ها را در بستری ساده و کم هزینه فراهم می آورد.</p> -->
         </div>
-        <!-- <div class="absolute bg-gradient-to-l from-black to-transparent   w-full h-full left-0 top-0">
-            </div> -->
       </section>
     </header>
     <main class="overflow-hidden">
@@ -21,29 +18,35 @@
         <AdvCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <section id="aboutUs" class="observing md:my-0 lg:py-24 md:mt-20 my-24 relative flex justify-start items-stretch right-0">
-        <div class="flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
+        <div class="hidden md:flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
         </div>
         <div class="flex lg:flex-row mt-5 lg:mt-0 flex-col items-center relative lg:-right-36">
-          <figure class="border-8 border-white ml-3 lg:ml-0 translate-x-14 mb-5 md:my-0 w-full lg:w-80 rounded-3xl overflow-hidden lg:h-97">
+          <figure class="border-8 hidden md:block border-white ml-3 lg:ml-0 translate-x-14 mb-5 md:my-0 w-full lg:w-80 rounded-3xl overflow-hidden lg:h-97">
             <img class="w-full object-cover h-full" alt="about-us" src="/img/about_us_img.jpg" loading="lazy" />
           </figure>
-          <div class="mr-3 md:mr-5 lg:mr-10 lg:w-2/3">
-            <h4 class="font-extrabold text-2xl mb-10">درباره ما</h4>
-            <p class="font-medium text-gray-900 w-4/5 text-xs">
+          <div class="mr-3  md:mr-5 lg:mr-10 lg:w-2/3">
+            <h4 class="font-extrabold text-center md:text-right text-2xl  mb-10">درباره ما</h4>
+            <p class="font-medium text-center md:text-right mx-auto md:mx-0 text-gray-900 w-4/5 text-xs">
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
-            <section class="grid my-4 lg:my-10 mx-2 md:mx-0 lg:mx-3 grid-cols-2 lg:gap-0 gap-2 md:grid-cols-none md:grid-flow-col">
+            <section class="grid my-20  mx-auto lg:my-10 md:mx-0 lg:mx-3 grid-cols-2 lg:gap-0 gap-x-2 gap-y-8 md:grid-cols-none md:grid-flow-col">
               <ItemAboutUs :itemArr="item" v-for="item in achivements" :key="item.id" :convertToPersian="convertToPersian" />
             </section>
-            <div class="font-medium text-sm md:text-base mt-7">
-              <span class="text-slate-500">تلفن : </span>
-              <a class="text-slate-900" href="tel:03491002424">{{ convertToPersian('03491002424') }}</a>
-            </div>
-            <div class="font-medium mt-7 text-sm md:text-base">
-              <span class="text-slate-500">ادرس : </span>
-              <span class="text-slate-900">کرمان ، خیابان نامدار محمدی </span>
-            </div>
+            <section class="bg-gray-50 py-4 px-3 md:bg-transparent">
+              <div class="font-medium text-sm md:text-base">
+                <span class="text-slate-500">تلفن : </span>
+                <a class="text-slate-900" href="tel:03491002424">{{ convertToPersian('03491002424') }}</a>
+              </div>
+              <div class="font-medium text-sm md:text-base mt-7">
+                <span class="text-slate-500">واتس آپ : </span>
+                <a class="text-slate-900" href="tel:09981396467">{{ convertToPersian('09981396467') }}</a>
+              </div>
+              <div class="font-medium mt-7 text-sm md:text-base">
+                <span class="text-slate-500">ادرس : </span>
+                <span class="text-slate-900">کرمان ، خیابان نامدار محمدی </span>
+              </div>
+            </section>
           </div>
         </div>
       </section>
