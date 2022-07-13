@@ -17,7 +17,7 @@
       <section id="advantages" class="observing mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
         <AdvCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
-      <section id="aboutUs" class="observing md:my-0 lg:py-24 md:mt-20 my-24 relative flex justify-start items-stretch right-0">
+      <section id="aboutUs" class="observing md:my-0 lg:py-24 md:mt-20 my-10 relative flex justify-start items-stretch right-0">
         <div class="hidden md:flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
         </div>
@@ -102,17 +102,17 @@
       </section>
 
       <!-- مشتریان حسابرو -->
-      <section id="customers" class="observing container my-40 lg:my-20 mx-auto">
+      <section id="customers" class="observing container my-24 lg:my-20 mx-auto">
         <h4 class="font-extrabold text-2xl text-center my-5">مشتریان حسابرو</h4>
-        <p class="text-center px-4 md:px-0 text-xs font-medium">گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند</p>
+        <p class="text-center px-4 md:w-[60%] 2xl:w-[50%] md:mx-auto md:px-0 text-xs font-medium">گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند</p>
         <div class="flex flex-wrap justify-center my-20">
-          <div class="mx-10 my-4 lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
+          <div class="mx-2 sm:mx-4 my-4 border-2 transition-all hover:border-gray-300 border-gray-100 px-2 py-3 w-24 md:w-auto  md:py-6 md:px-7 rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
             <a :href="customer.href" target="_blank">
-              <figure class="mb-5">
-                <img class="w-24 h-24" :src="customer.src" :alt="customer.title" />
+              <figure class="mb-5 flex justify-center">
+                <img class="w-12 h-12 md:w-[4.7rem] md:h-[4.7rem]" :src="customer.src" :alt="customer.title" />
               </figure>
             </a>
-            <a :href="customer.href" target="_blank" class="text-center font-bold text-sm">{{ customer.title }}</a>
+            <a :href="customer.href" target="_blank" class="text-center font-bold text-xs md:text-sm">{{ customer.title }}</a>
           </div>
         </div>
       </section>
