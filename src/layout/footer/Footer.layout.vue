@@ -1,48 +1,35 @@
 <template lang="">
-  <footer class="py-10 bg-gray-100 px-10 md:px-6 lg:px-24 2xl:px-0">
-    <section class="flex justify-between md:flex-row flex-col 2xl:container 2xl:mx-auto mb-5">
-      <div class="font-bold text-sm md:mt-0 mt-5">
+  <footer class="py-5 bg-gray-100 px-10 md:px-6 lg:px-24 2xl:px-0">
+    <section class="flex flex-wrap pb-10 justify-between items-center relative after:absolute after:bottom-[7%] after:w-full after:h-[2px] after:bg-gray-200">
+      <div class="flex items-center md:w-[60%] xl:w-[35%]">
         <router-link to="/">
-          <figure class="w-14 h-14">
+          <figure class="w-16 h-16">
             <img class="w-full h-full" src="/img/hesabro.logo.svg" alt="hesabro-logo" />
           </figure>
         </router-link>
-        <h5 class="text-gray-800 font-bold mt-4">حسابرو، راهکار جامع مدیریت مالی کسب‌ و ‌کار شما</h5>
-        <div class="my-8">آدرس : <span class="text-slate-500"> کرمان ، میدان قرنی ، ساختمان پدر ، طبقه پنجم</span></div>
-        <div class="">تلفن : <a class="text-slate-500" href="tel:+989981396467" data-v-461b212e="">09981396467</a></div>
-        <div class="my-8">
-          شبکه های اجتماعی :
-          <figure></figure>
-        </div>
-      </div>
-      <div class="">
-        <div class="font-bold text-lg">دسترسی ها</div>
-        <div>
-          <ul class="text-sm text-slate-900">
-            <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/">خانه</router-link></li>
-            <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" :to="{name:'صفحه اصلی | حسابرو',hash:'#advantages'}">خدمات و راهکار ها</router-link></li>
-            <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular" to="/pricing">تعرفه ها</router-link></li>
-            <li class="my-6"><router-link :to="{name:'صفحه اصلی | حسابرو',hash:'#aboutUs'}" class="text-slate-800 font-IranYekan-regular">درباره ما</router-link></li>
-            <li class="my-6"><router-link class="text-slate-800 font-IranYekan-regular side-26" :to="{name:'صفحه اصلی | حسابرو',hash:'#customers'}">مشتریان حسابرو</router-link></li>
+        <section class="my-5 md:mr-7 w-full">
+          <h6 class="font-bold text-lg mb-10">دسترسی سریع</h6>
+          <ul class="flex justify-between text-sm">
+            <li><router-link class="text-slate-800 font-medium" to="/pricing">تعرفه ها</router-link></li>
+            <li
+              class="relative lg:after:absolute lg:after:w-[13px] lg:after:h-[13px] lg:after:rounded-full lg:after:bg-gray-300 lg:after:left-[-100%] lg:after:top-1 lg:before:absolute lg:before:w-[13px] lg:before:h-[13px] lg:before:rounded-full lg:before:bg-gray-300 lg:before:right-[-100%] lg:before:top-1"
+            >
+              <router-link :to="{ name: 'صفحه اصلی | حسابرو', hash: '#aboutUs' }" class="text-slate-800 md:mx-0 mx-3 font-medium">درباره ما</router-link>
+            </li>
+            <li><router-link class="text-slate-800 font-medium" :to="{ name: 'صفحه اصلی | حسابرو', hash: '#advantages' }">خدمات و راهکار ها</router-link></li>
           </ul>
-        </div>
+        </section>
       </div>
-      <div class="flex flex-col items-center">
-        <div class="font-bold mb-16">مجوز های حسابرو</div>
-        <div class="flex">
-          <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
-            <img loading="lazy" class="w-full object-cover h-full" src="/img/etemad.png" alt="etemad-logo" />
-          </figure>
-          <figure class="md:w-32 md:h-32 ml-5 w-20 h-20 cursor-pointer">
-            <img loading="lazy" class="w-full object-cover h-full" src="/img/samandehi.png" alt="samandehi-logo" />
-          </figure>
-        </div>
-      </div>
+      <section class="flex">
+        <figure class="md:w-24 md:h-24 ml-5 w-20 h-20 cursor-pointer">
+          <img class="w-full object-cover h-full" src="/img/etemad.png" alt="etemad-logo" />
+        </figure>
+        <figure class="md:w-24 md:h-24 ml-5 w-20 h-20 cursor-pointer">
+          <img class="w-full object-cover h-full" src="/img/samandehi.png" alt="samandehi-logo" />
+        </figure>
+      </section>
     </section>
-    <p class="text-sm font-IranYekan-regular text-slate-400 text-center">
-      تمامی لوگو ها ، عکس ها و سایر محتوا های قرار داده شده با احترام متعلق به <a target="_blank" class="hover:text-cyan-600 text-cyan-500 transition-all" href="https://avapardaz.vc/"> گروه فناوری آواپرداز </a> و امتیاز استفاده از این اطلاعات تنها برای
-      <a target="_blank" class="hover:text-cyan-600 text-cyan-500 transition-all" href="https://avapardaz.vc/"> گروه فناوری آواپرداز </a> مجاز است
-    </p>
+    <p class="text-sm font-IranYekan-regular text-slate-400 text-center">تمامی حقوق این وبسایت متعلق به <a target="_blank" class="hover:text-cyan-600 text-cyan-500 transition-all" href="https://avapardaz.vc/"> گروه فناوری آواپرداز </a>می باشد</p>
   </footer>
 </template>
 <script>
