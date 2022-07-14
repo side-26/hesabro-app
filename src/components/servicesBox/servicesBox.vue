@@ -4,12 +4,12 @@
       <h6 class="font-bold sm:self-center my-3 self-start sm:my-0 text-base">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
     </div>
-    <div class="text-xs font-IranYekan-regular my-7 md:my-6">به ازای هر {{ desc }} ، {{ handleSprateNumber(percent) }} درصد به قیمت ماژول ها اضافه میشود</div>
+    <div class="text-xs font-IranYekan-regular my-7 md:my-6">به ازای هر {{ desc }} ، {{ toFarsiNumber(handleSprateNumber(percent)) }} درصد به قیمت ماژول ها اضافه میشود</div>
     <div class="text-xs flex-col side-26 lg:flex-row flex justify-between font-medium">
       <span
-        >برای هر {{ desc }} جدید : <span class="">{{ toFarsiNumber(handleSprateNumber(price.toFixed(0))) }} تومان</span></span
+        >برای هر {{ desc }}  : <span class="">{{ toFarsiNumber(handleSprateNumber(price.toFixed(0))) }} تومان</span></span
       ><span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed(0))) }} تومان</span>
-      <span v-if="finalPrice === 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">رایگان</span>
+      <span v-else class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">رایگان</span>
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const count = ref(props.min)
+    const count = ref(0)
     const price = computed(() => {
       return props.totalPrice * (+props.percent / 100)
     })
@@ -59,6 +59,9 @@ export default {
     }
     watch(finalPrice, () => {
       emit('update:modelValue', { price: finalPrice.value, count: count.value })
+    })
+    onMounted(()=>{
+      count.value=props.min
     })
     return {
       count,
