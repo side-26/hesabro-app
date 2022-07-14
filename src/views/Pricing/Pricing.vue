@@ -3,7 +3,7 @@
     <NavBar :class="{ blur: loading }" />
     <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading }">
       <pricing-container title="تعرفه های حسابرو">
-        <template  v-slot:body>
+        <template v-slot:body>
           <pricing-card v-if="pricingData" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.title" />
         </template>
         <template v-slot:footer lang="">
@@ -23,10 +23,10 @@
       <pricing-container title="ثبت سفارش" :classes="gap - 4">
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
-          <dynamic-form class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3"   @handleSubmit="handleSubmit">
+          <dynamic-form class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit">
             <template lang="" v-slot:inputs>
-              <dynamic-input name="name" :type="text"  title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
-              <dynamic-input name="phone_number" :type="text"  title="موبایل" placeHolder="موبایل خود را وارد کنید" />
+              <dynamic-input name="name" :type="text" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
+              <dynamic-input name="phone_number" :type="text" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
             </template>
             <template v-slot:submitBtn>
               <button
@@ -48,7 +48,7 @@
   </div>
   <Teleport to="#modalTel">
     <transition>
-      <InfoModal v-model="showRegisterdModal" :path="modalPath" v-if="showRegisterdModal" :title="modalTitle" :type="registerdSuccess" :desc="modalDesc" btnText="تایید" />
+      <InfoModal v-model="modalInfo.show" :path="modalInfo.redirectPath" v-if="modalInfo.show" :title="modalInfo.title" :type="modalInfo.type" :desc="modalInfo.desc" btnText="تایید" />
     </transition>
   </Teleport>
 </template>
@@ -79,11 +79,7 @@ export default {
     let customerInfo = reactive({})
     let PerBranch = ref({ price: 0, count: 0 })
     let PerUser = ref({ price: 0, count: 0 })
-    const registerdSuccess = ref('failed')
-    const modalDesc = ref('');
-    const modalTitle = ref('خطا');
-    const showRegisterdModal = ref(false)
-    const modalPath = ref('')
+    const modalInfo = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed' })
     const finalPrice = computed(() => {
       return +(totalprice.value + taxes.value - discount.value)
     })
@@ -97,35 +93,35 @@ export default {
     }
     const handleSubmit = (val) => {
       btnStatusCode.value = 200
-      modalTitle.value = 'ثبت سفارش'
+      modalInfo.title = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selected_modules_id.value)
       customerInfo = { ...val, selected_modules_id: selectedModulesIdArray, users_count: PerUser.value.count, branches_count: PerBranch.value.count }
       users.post(customerInfo).then((item) => {
-        showRegisterdModal.value = true
+        modalInfo.show = true
         btnStatusCode.value = 0
         if (item.data.success !== 'success') {
-          modalDesc.value = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
-          registerdSuccess.value = 'success'
-          modalPath.value = '/'
+          modalInfo.desc = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
+          modalInfo.type = 'success'
+          modalInfo.redirectPath = '/'
         } else {
-          registerdSuccess.value = 'faild'
-          modalDesc.value = 'ثبت نام کنسل شد'
-          modalPath.value = ''
+          modalInfo.type = 'faild'
+          modalInfo.desc = 'ثبت نام کنسل شد'
+          modalInfo.redirectPath = '/pricing'
         }
       })
     }
-    
+
     onMounted(() => {
       try {
         tarefeha.get().then((item) => {
           loading.value = false
           if (item.status > 200) {
-            registerdSuccess.value = 'failed'
-            showRegisterdModal.value = true
+            modalInfo.type = 'failed'
+            modalInfo.show = true
             loading.value = false
-            modalTitle.value = 'خطا!!'
-            modalPath.value = '/'
-            modalDesc.value = 'دریافت اطلاعات با خطا مواجه شد'
+            modalInfo.title = 'خطا!!'
+            modalInfo.redirectPath = '/'
+            modalInfo.desc = 'دریافت اطلاعات با خطا مواجه شد'
           }
           pricingData.value = item.data.data
         })
@@ -144,11 +140,7 @@ export default {
       customerInfo,
       PerBranch,
       PerUser,
-      registerdSuccess,
-      modalDesc,
-      modalTitle,
-      showRegisterdModal,
-      modalPath,
+      modalInfo,
       finalPrice,
       totalPrice,
       handleTotalPrice,
