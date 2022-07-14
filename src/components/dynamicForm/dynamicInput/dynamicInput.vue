@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="flex-col flex mb-3">
     <label class="font-medium text-xs mb-3 text-gray-700">{{ title }}</label>
     <Field class="bg-gray-200 text-sm text-gray-800 font-bold py-2 pr-1 rounded-lg placeholder:font-bold placeholder:text-xs" :name="name" :type="type" :rules="rules" :placeholder="placeHolder" />

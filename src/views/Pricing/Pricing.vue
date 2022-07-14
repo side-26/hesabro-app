@@ -23,10 +23,23 @@
       <pricing-container title="ثبت سفارش" :classes="gap - 4">
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
-          <FormCo :modulesArr="selected_modules_id.length" :statusCode="btnStatusCode" @handlePost="handlePost">
-            <TextInput name="name" :type="text" :rules="handleValidateFullName" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
-            <TextInput name="phone_number" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
-          </FormCo>
+          <dynamic-form class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3"  :statusCode="btnStatusCode" @handleSubmit="handleSubmit">
+            <template lang="" v-slot:inputs>
+              <dynamic-input name="name" :type="text" :rules="handleValidateFullName" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
+              <dynamic-input name="phone_number" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
+            </template>
+            <template v-slot:submitBtn>
+              <button
+                :disabled="totalprice === 0"
+                :class="{ 'bg-gray-200 cursor-not-allowed': totalprice === 0, 'bg-cyan-500 hover:bg-cyan-600': totalprice !== 0 }"
+                type="submit"
+                class="rounded-xl flex justify-center items-center font-bold md:mt-4 mt-60 text-sm transition-all py-3 text-white w-full"
+              >
+                ثبت سفارش
+                <!-- <span v-else class="animate-spin loading-spinner mx-1" v-for="item in 3" :key="item"></span> -->
+              </button>
+            </template>
+          </dynamic-form>
         </template>
       </pricing-container>
     </main>
@@ -48,17 +61,14 @@ import pricingCard from '@/components/pricingCard/pricingCard.vue'
 import TotalPriceCon from '@/components/TotalPriceCon/TotalPriceCon.vue'
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import Bill from '@/components/Bill/Bill.vue'
-import FormCo from '@/components/form/form.vue'
-import TextInput from '@/components/form/Input/TextInput.vue'
+import dynamicForm from '../../components/dynamicForm/dynamicForm.vue'
+import dynamicInput from '../../components/dynamicForm/dynamicInput/dynamicInput.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import { tarefeha } from '@/api/tarefeha.api'
 import { users } from '@/api/users.api'
 import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
 
 export default {
-  //   props: {
-  //     name: 'Pricing',
-  //   },
   setup(props) {
     const pricingData = ref([])
     const totalprice = ref(0)
@@ -72,11 +82,11 @@ export default {
     let PerBranch = ref({ price: 0, count: 0 })
     let PerUser = ref({ price: 0, count: 0 })
     const registerdSuccess = ref('failed')
-    const modalDesc = ref('')
-    const modalTitle = ref('خطا')
+    const modalDesc = ref('');
+    const modalTitle = ref('خطا');
     const showRegisterdModal = ref(false)
     const modalPath = ref('')
-    const finalPrice = computed(totalprice.value, () => {
+    const finalPrice = computed(() => {
       return +(totalprice.value + taxes.value - discount.value)
     })
     const totalPrice = computed(() => {
@@ -87,7 +97,7 @@ export default {
       if (!checked) selected_modules_id.value = selected_modules_id.value.filter((id) => id !== cardInfo)
       else selected_modules_id.value = [...selected_modules_id.value, cardInfo]
     }
-    const handlePost = (val) => {
+    const handleSubmit = (val) => {
       btnStatusCode.value = 200
       modalTitle.value = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selected_modules_id.value)
@@ -134,7 +144,6 @@ export default {
         })
       } catch (error) {
         alert('سایت با مشکل مواجه شد.')
-        // $router.push('/')
       }
     })
     return {
@@ -159,7 +168,7 @@ export default {
       handleTotalPrice,
       handleValidateFullName,
       handleValidatephoneNumber,
-      handlePost,
+      handleSubmit,
     }
   },
   components: {
@@ -170,8 +179,8 @@ export default {
     TotalPriceCon,
     servicesBox,
     Bill,
-    FormCo,
-    TextInput,
+    dynamicForm,
+    dynamicInput,
     Loading,
     InfoModal,
   },
