@@ -48,10 +48,10 @@ export default {
       required:true
     }
   },
-  setup(props,contex) {
+  setup(props,{emit}) {
     const router=useRouter();
     const handelRegister=()=> {
-      contex.emit('update:modelValue', false)
+      emit('update:modelValue', false)
       router.push(props.path);
     }
     return{
