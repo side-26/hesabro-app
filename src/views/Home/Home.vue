@@ -31,16 +31,16 @@
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
             <section class="grid my-20  mx-auto lg:my-10 md:mx-0 lg:mx-3 grid-cols-2 lg:gap-0 gap-x-2 gap-y-8 md:grid-cols-none md:grid-flow-col">
-              <ItemAboutUs :itemArr="item" v-for="item in achivements" :key="item.id" :convertToPersian="convertToPersian" />
+              <ItemAboutUs :itemArr="item" v-for="item in achivements" :key="item.id"  />
             </section>
             <section class="bg-gray-50 py-4 px-3 mr-[-2%]md:mr-0 md:bg-transparent">
               <div class="font-medium text-sm md:text-base">
                 <span class="text-slate-500">تلفن : </span>
-                <a class="text-slate-900" href="tel:03491002424">{{ convertToPersian('03491002424') }}</a>
+                <a class="text-slate-900" href="tel:03491002424">{{ toFarsiNumber('03491002424') }}</a>
               </div>
               <div class="font-medium text-sm md:text-base mt-7">
                 <span class="text-slate-500">واتس آپ : </span>
-                <a class="text-slate-900" href="tel:09981396467">{{ convertToPersian('09981396467') }}</a>
+                <a class="text-slate-900" href="tel:09981396467">{{ toFarsiNumber('09981396467') }}</a>
               </div>
               <div class="font-medium mt-7 text-sm md:text-base">
                 <span class="text-slate-500">ادرس : </span>
@@ -177,12 +177,8 @@ export default {
     return {
       modules: [Pagination, Navigation, Autoplay],
       currentPosition,
+      toFarsiNumber
     }
-  },
-  methods: {
-    convertToPersian(num) {
-      return toFarsiNumber(num)
-    },
   },
 }
 </script>
