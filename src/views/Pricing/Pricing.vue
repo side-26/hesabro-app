@@ -3,7 +3,7 @@
     <NavBar :class="{ blur: loading }" />
     <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading }">
       <pricing-container title="تعرفه های حسابرو">
-        <template v-slot:body>
+        <template  v-slot:body>
           <pricing-card v-if="pricingData" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.title" />
         </template>
         <template v-slot:footer lang="">
@@ -23,10 +23,10 @@
       <pricing-container title="ثبت سفارش" :classes="gap - 4">
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
-          <dynamic-form class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3"  :statusCode="btnStatusCode" @handleSubmit="handleSubmit">
+          <dynamic-form class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3"   @handleSubmit="handleSubmit">
             <template lang="" v-slot:inputs>
-              <dynamic-input name="name" :type="text" :rules="handleValidateFullName" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
-              <dynamic-input name="phone_number" :type="text" :rules="handleValidatephoneNumber" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
+              <dynamic-input name="name" :type="text"  title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
+              <dynamic-input name="phone_number" :type="text"  title="موبایل" placeHolder="موبایل خود را وارد کنید" />
             </template>
             <template v-slot:submitBtn>
               <button
@@ -67,14 +67,12 @@ import Footer from '@/layout/footer/Footer.layout.vue'
 import { tarefeha } from '@/api/tarefeha.api'
 import { users } from '@/api/users.api'
 import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
-
 export default {
   setup(props) {
     const pricingData = ref([])
     const totalprice = ref(0)
     const discount = ref(0)
     const taxes = ref(5)
-    const statusCode = ref(0)
     const loading = ref(true)
     const btnStatusCode = ref(0)
     const selected_modules_id = ref([])
@@ -109,7 +107,6 @@ export default {
           modalDesc.value = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
           registerdSuccess.value = 'success'
           modalPath.value = '/'
-          statusCode.value = 200
         } else {
           registerdSuccess.value = 'faild'
           modalDesc.value = 'ثبت نام کنسل شد'
@@ -117,17 +114,7 @@ export default {
         }
       })
     }
-    const handleValidateFullName = (val) => {
-        if (!val) return 'فیلد مورد نظر خالی است!!'
-        else if (val.length < 2) return 'نام و نام خانوادگی خود را کامل وارد کنید!!'
-        return true
-      },
-      handleValidatephoneNumber = (val) => {
-        if (!val) return 'فیلد مورد نظر خالی است!!!'
-        else if (val[0] !== '0' || val.length != 11) return 'شماره تلفن معتبر نمی باشد!!'
-        else if (isNaN(val)) return 'شماره تلفن باید عدد باشد!!!'
-        return true
-      }
+    
     onMounted(() => {
       try {
         tarefeha.get().then((item) => {
@@ -151,7 +138,6 @@ export default {
       totalprice,
       discount,
       taxes,
-      statusCode,
       btnStatusCode,
       loading,
       selected_modules_id,
@@ -166,8 +152,6 @@ export default {
       finalPrice,
       totalPrice,
       handleTotalPrice,
-      handleValidateFullName,
-      handleValidatephoneNumber,
       handleSubmit,
     }
   },
