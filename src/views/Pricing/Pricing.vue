@@ -20,7 +20,7 @@
           <total-price-con class="md:hidden" title="قیمت کل" :totalPrice="totalPrice" />
         </template>
       </pricing-container>
-      <pricing-container title="ثبت سفارش" :classes="gap - 4">
+      <pricing-container title="ثبت سفارش">
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
           <dynamic-form class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit">
