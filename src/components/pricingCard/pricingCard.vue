@@ -38,7 +38,7 @@ export default {
     const itemArr = ref([])
     const handleCheck = (price) => {
       checked.value = !checked.value
-      if (checked.value) contex.emit('handleTotalPrice', price, props.tarefehInfo.id, true)
+      if (checked.value) emit('handleTotalPrice', price, props.tarefehInfo.id, true)
       else emit('handleTotalPrice', -price, props.tarefehInfo.id, false)
     }
     const handleToggle = () => {
