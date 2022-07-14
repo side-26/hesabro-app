@@ -1,16 +1,16 @@
 <template lang="">
   <section class="font-medium md:bg-transparent bg-gray-100 p-4 text-gray-800 text-base rounded-lg md:w-4/5 mx-2 md:mx-0 lg:w-2/3">
     <div class="my-5 flex justify-between">
-      <span> قیمت کل : </span><span>{{ toPersian(seprateNu(finalPrice.toFixed())) }} تومان</span>
+      <span> قیمت کل : </span><span>{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed())) }} تومان</span>
     </div>
+    <!-- <div class="my-5 flex justify-between">
+      <span> تخفیف : </span><span class="text-red-500">{{ toFarsiNumber(handleSprateNumber(discount.toFixed())) }} تومان </span>
+    </div> -->
     <div class="my-5 flex justify-between">
-      <span> تخفیف : </span><span class="text-red-500">{{ toPersian(seprateNu(discount.toFixed())) }} تومان </span>
-    </div>
-    <div class="my-5 flex justify-between">
-      <span> مالیات : </span><span>{{ toPersian(seprateNu(taxes.toFixed())) }} تومان</span>
+      <span> مالیات : </span><span>{{ toFarsiNumber(handleSprateNumber(taxes.toFixed())) }} تومان</span>
     </div>
     <div class="border-t-2 my-4 pt-3 border-gray-300 flex justify-between">
-      <span>جمع کل</span><span>{{ toPersian(seprateNu(totalPrice.toFixed())) }} تومان</span>
+      <span>جمع کل</span><span>{{ toFarsiNumber(handleSprateNumber(totalPrice.toFixed())) }} تومان</span>
     </div>
   </section>
 </template>
@@ -34,7 +34,7 @@ export default {
       required: true,
     },
   },
-  setup(props,contex) {
+  setup(props) {
     const discount = computed(() => {
       return(props.discount * props.finalPrice) / 100
     })
@@ -42,21 +42,14 @@ export default {
       return ((9 / 100) * props.finalPrice)
     })
     const totalPrice = computed(() => {
-      // console.log(taxes)
       return props.finalPrice+taxes.value
     })
-    const toPersian=(num)=> {
-      return toFarsiNumber(num)
-    }
-    const seprateNu=(val)=>{
-      return handleSprateNumber(val)
-    }
     return {
       discount,
       taxes,
       totalPrice,
-      toPersian,
-      seprateNu
+      toFarsiNumber,
+      handleSprateNumber
     }
   },
 }

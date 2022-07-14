@@ -100,10 +100,9 @@
           </swiper-slide>
         </swiper>
       </section>
-
       <!-- مشتریان حسابرو -->
       <section id="customers" class="observing container my-24 lg:my-20 mx-auto">
-        <h4 class="font-extrabold text-2xl text-center my-5">مشتریان حسابرو</h4>
+        <h4 class="font-extrabold text-2xl text-center my-5">برخی از مشتریان حسابرو</h4>
         <p class="text-center px-4 md:w-[60%] 2xl:w-[50%] md:mx-auto md:px-0 text-xs font-medium">گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند</p>
         <div class="flex flex-wrap justify-center my-20">
           <div class="mx-2 sm:mx-4 my-4 border-2 transition-all hover:border-gray-300 border-gray-100 px-2 py-3 w-24 md:w-auto  md:py-6 md:px-7 rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
