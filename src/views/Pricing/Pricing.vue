@@ -87,9 +87,6 @@ export default {
       if (!checked) selected_modules_id.value = selected_modules_id.value.filter((id) => id !== cardInfo)
       else selected_modules_id.value = [...selected_modules_id.value, cardInfo]
     }
-    const seprateNumber = (num) => {
-      return handleSprateNumber(num)
-    }
     const handlePost = (val) => {
       btnStatusCode.value = 200
       modalTitle.value = 'ثبت سفارش'
@@ -160,7 +157,6 @@ export default {
       finalPrice,
       totalPrice,
       handleTotalPrice,
-      seprateNumber,
       handleValidateFullName,
       handleValidatephoneNumber,
       handlePost,
