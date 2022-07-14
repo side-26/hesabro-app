@@ -6,7 +6,7 @@
         <h4 class="font-bold text-sm md:text-base">{{ tarefehInfo.module_name }}</h4>
       </div>
       <div class="items-center flex sm:mt-0 text-center sm:text-left" @click.stop="handleToggle()">
-        <span class="font-bold">{{ toPersianNu(seprateNu(tarefehInfo.price)) }} تومان</span>
+        <span class="font-bold">{{ toFarsiNumber(handleSprateNumber(tarefehInfo.price)) }} تومان</span>
         <button type="button" :class="{ 'rotate-180': !toggled }" class="text-slate-900 hidden md:block transition-all mr-4">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -16,7 +16,7 @@
     </section>
     <section class="py overflow-hidden" :class="{ 'h-0': toggled }">
       <ul>
-        <li class="text-xs my-5 font-medium" v-for="(item, index) in itemArr" :key="item">{{ toPersianNu(index + 1) }}{{ item }}</li>
+        <li class="text-xs my-5 font-medium" v-for="(item, index) in itemArr" :key="item">{{ toFarsiNumber(index + 1) }}{{ item }}</li>
       </ul>
     </section>
   </div>
@@ -32,23 +32,17 @@ export default {
       required: true,
     },
   },
-  setup(props, contex) {
+  setup(props, {emit}) {
     const checked = ref(false)
     const toggled = ref(true)
     const itemArr = ref([])
     const handleCheck = (price) => {
       checked.value = !checked.value
       if (checked.value) contex.emit('handleTotalPrice', price, props.tarefehInfo.id, true)
-      else contex.emit('handleTotalPrice', -price, props.tarefehInfo.id, false)
+      else emit('handleTotalPrice', -price, props.tarefehInfo.id, false)
     }
     const handleToggle = () => {
       toggled.value = !toggled.value
-    }
-    const toPersianNu = (val) => {
-      return toFarsiNumber(val)
-    }
-    const seprateNu = (val) => {
-      return handleSprateNumber(val)
     }
     const convertToArray = (str) => {
       let arr = []
@@ -69,9 +63,9 @@ export default {
       itemArr,
       handleCheck,
       convertToArray,
-      toPersianNu,
+      toFarsiNumber,
       handleToggle,
-      seprateNu,
+      handleSprateNumber
     }
   },
 }
