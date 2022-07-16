@@ -26,7 +26,7 @@
             <img class="w-full object-cover h-full" alt="about-us" src="/img/about_us_img.jpg" loading="lazy" />
           </figure>
           <div class="mr-3  md:mr-5 lg:mr-10 lg:w-2/3">
-            <h4 class="font-extrabold text-center md:text-right text-2xl  mb-10">درباره ما</h4>
+            <h3 class="font-extrabold text-center md:text-right text-2xl  mb-10">درباره ما</h3>
             <p class="font-medium text-center md:text-right mx-auto md:mx-0 text-gray-900 w-4/5 text-xs">
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
@@ -54,10 +54,10 @@
       <section class="lg:py-32 test1 lg:relative h-100 flex flex-col lg:flex-row justify-center items-center 2xl:px-20">
         <div class="lg:absolute -z-10 top-0 left-0 w-full h-full flex justify-center items-center">
           <div class="border-cyan-600 flex items-center justify-center lg:border-3 lg:rounded-full lg:w-100 lg:h-100">
-            <h4 class="font-extrabold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-4xl 2xl:text-5xl">
+            <h3 class="font-extrabold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-4xl 2xl:text-5xl">
               <span class="lg:mb-72 lg:m-0 ml-4"> ماژول های </span>
               <span class="text-cyan-600"> حسابرو </span>
-            </h4>
+            </h3>
           </div>
         </div>
         <div class="flex lg:hidden overflow-x-auto h-97 container mx-auto py-2">
@@ -102,7 +102,7 @@
       </section>
       <!-- مشتریان حسابرو -->
       <section id="customers" class="observing container my-24 lg:my-20 mx-auto">
-        <h4 class="font-extrabold text-2xl text-center my-5">برخی از مشتریان حسابرو</h4>
+        <h3 class="font-extrabold text-2xl text-center my-5">برخی از مشتریان حسابرو</h3>
         <p class="text-center px-4 md:w-[60%] 2xl:w-[50%] md:mx-auto md:px-0 text-xs font-medium">گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند</p>
         <div class="flex flex-wrap justify-center my-20">
           <div class="mx-2 sm:mx-4 my-4 border-2 transition-all hover:border-gray-300 border-gray-100 px-2 py-3 w-24 md:w-auto  md:py-6 md:px-7 rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">

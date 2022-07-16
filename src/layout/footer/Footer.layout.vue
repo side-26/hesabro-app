@@ -8,7 +8,7 @@
           </figure>
         </router-link>
         <section class="my-5 md:mr-7 w-full">
-          <h6 class="font-bold text-lg mb-5 sm:mb-10">دسترسی سریع</h6>
+          <div class="font-bold text-lg mb-5 sm:mb-10">دسترسی سریع</div>
           <ul class="flex flex-col sm:flex-row justify-between text-sm">
             <li><router-link class="text-slate-800 font-medium" to="/pricing">تعرفه ها</router-link></li>
             <li class="my-4  sm:mx-16 lg:mx-20 xl:mx-24 sm:my-0 relative   lg:before:right-[-49px] xl:before:right-[-60px] lg:after:left-[-45px] xl:after:left-[-60px] lg:after:absolute lg:after:w-[12px] lg:after:h-[12px] lg:after:rounded-full lg:after:bg-gray-300 lg:after:top-[5px] lg:before:absolute lg:before:w-[12px] lg:before:h-[12px] lg:before:rounded-full lg:before:bg-gray-300 lg:before:top-[5px]">

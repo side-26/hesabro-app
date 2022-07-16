@@ -5,7 +5,7 @@
         <figure class="hidden lg:block w-6 h-6 ml-3">
           <img :src="src" alt="title" class="w-full h-full" />
         </figure>
-        <h5 class="font-extrabold mb-3">{{ title }}</h5>
+        <h4 class="font-extrabold mb-3">{{ title }}</h4>
       </div>
       <p class="text-xs font-IranYekan-regular">{{ desc }}</p>
       <figure class="flex lg:hidden w-8 h-8 lg:w-6 lg:h-6 mt-3 lg:ml-3">
