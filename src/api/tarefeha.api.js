@@ -6,7 +6,7 @@ export const tarefeha = {
             .then(res => {
                 return res
             }).catch(err => {
-                return err
+                // return err
             });
 
 

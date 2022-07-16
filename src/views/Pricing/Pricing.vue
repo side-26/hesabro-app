@@ -23,10 +23,10 @@
       <pricing-container title="ثبت سفارش">
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
-          <dynamic-form class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit">
+          <userForm class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit">
             <template lang="" v-slot:inputs>
-              <dynamic-input name="name" :type="text" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
-              <dynamic-input name="phone_number" :type="text" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
+              <userInput name="name" :type="text" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
+              <userInput name="phone_number" :type="text" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
             </template>
             <template v-slot:submitBtn>
               <button
@@ -39,7 +39,7 @@
                 <!-- <span v-else class="animate-spin loading-spinner mx-1" v-for="item in 3" :key="item"></span> -->
               </button>
             </template>
-          </dynamic-form>
+          </userForm>
         </template>
       </pricing-container>
     </main>
@@ -54,6 +54,7 @@
 </template>
 <script>
 import { reactive, ref, onMounted, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import Loading from '@/components/Loading/Loading.vue'
 import NavBar from '@/layout/navBar/NavBar.layout.vue'
 import pricingContainer from '@/components/pricingContainer/pricingContainer.vue'
@@ -61,14 +62,15 @@ import pricingCard from '@/components/pricingCard/pricingCard.vue'
 import TotalPriceCon from '@/components/TotalPriceCon/TotalPriceCon.vue'
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import Bill from '@/components/Bill/Bill.vue'
-import dynamicForm from '../../components/dynamicForm/dynamicForm.vue'
-import dynamicInput from '../../components/dynamicForm/dynamicInput/dynamicInput.vue'
+import userForm from '@/components/UserForm/userForm.vue'
+import userInput from '../../components/UserForm/UserInput/userInput.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import { tarefeha } from '@/api/tarefeha.api'
 import { users } from '@/api/users.api'
 import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
 export default {
-  setup(props) {
+  setup() {
+    const router = useRouter()
     const pricingData = ref([])
     const totalprice = ref(0)
     const discount = ref(0)
@@ -99,13 +101,13 @@ export default {
       users.post(customerInfo).then((item) => {
         modalInfo.show = true
         btnStatusCode.value = 0
-        if (item.data.success !== 'success') {
+        if (item) {
           modalInfo.desc = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
           modalInfo.type = 'success'
           modalInfo.redirectPath = '/'
         } else {
           modalInfo.type = 'faild'
-          modalInfo.desc = 'ثبت نام کنسل شد'
+          modalInfo.desc = 'ثبت نام نشد لطفا بعدا امتحان کنید.'
           modalInfo.redirectPath = '/pricing'
         }
       })
@@ -115,7 +117,7 @@ export default {
       try {
         tarefeha.get().then((item) => {
           loading.value = false
-          if (item.status > 200) {
+          if (!item) {
             modalInfo.type = 'failed'
             modalInfo.show = true
             loading.value = false
@@ -126,7 +128,7 @@ export default {
           pricingData.value = item.data.data
         })
       } catch (error) {
-        alert('سایت با مشکل مواجه شد.')
+        router.push('/')
       }
     })
     return {
@@ -155,8 +157,8 @@ export default {
     TotalPriceCon,
     servicesBox,
     Bill,
-    dynamicForm,
-    dynamicInput,
+    userForm,
+    userInput,
     Loading,
     InfoModal,
   },
