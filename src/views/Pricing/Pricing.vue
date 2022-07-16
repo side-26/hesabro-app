@@ -107,7 +107,7 @@ export default {
           modalInfo.redirectPath = '/'
         } else {
           modalInfo.type = 'faild'
-          modalInfo.desc = 'ثبت نام نشد لطفا بعدا امتحان کنید.'
+          modalInfo.desc = 'ثبت نام انجام نشد لطفا بعدا امتحان کنید.'
           modalInfo.redirectPath = '/pricing'
         }
       })
