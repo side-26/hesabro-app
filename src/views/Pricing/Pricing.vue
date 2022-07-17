@@ -6,11 +6,11 @@
         <template v-slot:body>
           <PricingCard v-if="pricingData" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.title" />
         </template>
-        <template v-slot:footer lang="">
+        <template v-slot:footer>
           <total-price-container class="hidden md:block" title="قیمت کل زیر سیستم ها" :totalPrice="totalprice" />
         </template>
       </pricing-container>
-      <pricing-container title="امکانات جانبی" :classes="gap - 4">
+      <pricing-container title="امکانات جانبی">
         <template lang="" v-slot:body>
           <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
           <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
