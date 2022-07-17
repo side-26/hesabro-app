@@ -13,7 +13,7 @@
 </template>
 <script>
 export default {
-  name: 'AdvCart',
+  name: 'AdvantagesCard',
   props: {
     cardProperty: {
       type: Object,
