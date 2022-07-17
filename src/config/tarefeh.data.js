@@ -17,7 +17,6 @@ export const customers = [
     { id: 2, href: 'https://zoodex.ir/', src: '/img/zoodexIcon.svg', title: "زودکس" },
     { id: 3, href: 'https://asreertebat.net/', src: '/img/asarErtebatat.svg', title: "عصر ارتباطات" },
     { id: 4, href: 'https://rahkarsanat.org/', src: '/img/rahkar.svg', title: "راهکار صنعت" },
-    { id: 5, href: 'https://cut-media.ir/', title: "کات مدیا", src: '/img/cutMedia.svg' }
 ]
 export const achivements = [
     { id: 1, title: 'تعداد اسناد حسابداری', amount: '10000000' },
