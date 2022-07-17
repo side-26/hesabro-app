@@ -23,23 +23,7 @@
       <pricing-container title="ثبت سفارش">
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
-          <userForm class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit">
-            <template lang="" v-slot:inputs>
-              <userInput name="name" :type="text" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
-              <userInput name="phone_number" :type="text" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
-            </template>
-            <template v-slot:submitBtn>
-              <button
-                :disabled="totalprice === 0"
-                :class="{ 'bg-gray-200 cursor-not-allowed': totalprice === 0, 'bg-cyan-500 hover:bg-cyan-600': totalprice !== 0 }"
-                type="submit"
-                class="rounded-xl flex justify-center items-center font-bold md:mt-4 mt-60 text-sm transition-all py-3 text-white w-full"
-              >
-                ثبت سفارش
-                <!-- <span v-else class="animate-spin loading-spinner mx-1" v-for="item in 3" :key="item"></span> -->
-              </button>
-            </template>
-          </userForm>
+          <user-form :totalprice="totalprice" class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit" />
         </template>
       </pricing-container>
     </main>
@@ -63,7 +47,6 @@ import TotalPriceContainer from '@/components/TotalPriceContainer/TotalPriceCont
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
-import userInput from '../../components/UserForm/UserInput/userInput.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import { tarefeha } from '@/api/tarefeha.api'
 import { users } from '@/api/users.api'
@@ -118,9 +101,9 @@ export default {
         tarefeha.get().then((item) => {
           loading.value = false
           if (!item) {
-            modalInfo.type = 'failed';
-            modalInfo.show = true;
-            loading.value = false;
+            modalInfo.type = 'failed'
+            modalInfo.show = true
+            loading.value = false
             modalInfo.title = 'خطا!!'
             modalInfo.redirectPath = '/'
             modalInfo.desc = 'دریافت اطلاعات با خطا مواجه شد'
@@ -158,7 +141,6 @@ export default {
     servicesBox,
     Bill,
     userForm,
-    userInput,
     Loading,
     InfoModal,
   },

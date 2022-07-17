@@ -1,19 +1,31 @@
 <template>
   <section>
     <Form @submit="handleSubmit" :validation-schema="schema">
-      <slot name="inputs"> </slot>
-      <slot name="submitBtn"> </slot>
+      <user-input name="name" :type="text" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
+      <user-input name="phone_number" :type="text" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
+      <button :disabled="totalprice === 0"  type="submit" class="rounded-xl disabled:bg-gray-200 bg-cyan-500 hover:bg-cyan-600 disabled:cursor-not-allowed flex justify-center items-center font-bold md:mt-4 mt-60 text-sm transition-all py-3 text-white w-full">
+        ثبت سفارش
+        <!-- <span v-else class="animate-spin loading-spinner mx-1" v-for="item in 3" :key="item"></span> -->
+      </button>
     </Form>
   </section>
 </template>
 <script>
 import { Form } from 'vee-validate'
-import {string,object}  from 'yup';
+import { string, object } from 'yup';
+import UserInput from './UserInput/UserInput.vue';
 export default {
   components: {
     Form,
     string,
-    object
+    object,
+    UserInput
+  },
+  props:{
+    totalprice:{
+      type:Number,
+      required:true
+    }
   },
   setup(props, { emit }) {
     const handleSubmit = (val) => {
@@ -21,7 +33,7 @@ export default {
     }
     const schema = {
       name: string().required().label(),
-      phone_number:string().required().length(11).label(),
+      phone_number: string().required().length(11).label(),
     }
     return {
       handleSubmit,
