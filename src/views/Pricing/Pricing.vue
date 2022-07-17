@@ -4,10 +4,10 @@
     <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading }">
       <pricing-container title="تعرفه های حسابرو">
         <template v-slot:body>
-          <pricing-card v-if="pricingData" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.title" />
+          <PricingCard v-if="pricingData" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.title" />
         </template>
         <template v-slot:footer lang="">
-          <total-price-con class="hidden md:block" title="قیمت کل زیر سیستم ها" :totalPrice="totalprice" />
+          <total-price-container class="hidden md:block" title="قیمت کل زیر سیستم ها" :totalPrice="totalprice" />
         </template>
       </pricing-container>
       <pricing-container title="امکانات جانبی" :classes="gap - 4">
@@ -16,8 +16,8 @@
           <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
         </template>
         <template v-slot:footer lang="">
-          <total-price-con class="md:hidden" title="قیمت ماژول ها" :totalPrice="totalprice" />
-          <total-price-con class="md:hidden" title="قیمت کل" :totalPrice="totalPrice" />
+          <total-price-container class="md:hidden" title="قیمت ماژول ها" :totalPrice="totalprice" />
+          <total-price-container class="md:hidden" title="قیمت کل" :totalPrice="totalPrice" />
         </template>
       </pricing-container>
       <pricing-container title="ثبت سفارش">
@@ -57,9 +57,9 @@ import { reactive, ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Loading from '@/components/Loading/Loading.vue'
 import NavBar from '@/layout/navBar/NavBar.layout.vue'
-import pricingContainer from '@/components/pricingContainer/pricingContainer.vue'
-import pricingCard from '@/components/pricingCard/pricingCard.vue'
-import TotalPriceCon from '@/components/TotalPriceCon/TotalPriceCon.vue'
+import PricingContainer from '@/components/PricingContainer/PricingContainer.vue'
+import PricingCard from '@/components/PricingCard/PricingCard.vue'
+import TotalPriceContainer from '@/components/TotalPriceContainer/TotalPriceContainer.vue'
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
@@ -118,9 +118,9 @@ export default {
         tarefeha.get().then((item) => {
           loading.value = false
           if (!item) {
-            modalInfo.type = 'failed'
-            modalInfo.show = true
-            loading.value = false
+            modalInfo.type = 'failed';
+            modalInfo.show = true;
+            loading.value = false;
             modalInfo.title = 'خطا!!'
             modalInfo.redirectPath = '/'
             modalInfo.desc = 'دریافت اطلاعات با خطا مواجه شد'
@@ -152,9 +152,9 @@ export default {
   components: {
     NavBar,
     Footer,
-    pricingContainer,
-    pricingCard,
-    TotalPriceCon,
+    PricingContainer,
+    PricingCard,
+    TotalPriceContainer,
     servicesBox,
     Bill,
     userForm,

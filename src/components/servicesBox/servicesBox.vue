@@ -15,7 +15,7 @@
 </template>
 <script>
 import { ref, computed, watch, onMounted } from 'vue'
-import Counter from '@/components/counter/Counter.vue'
+import Counter from '@/components/Counter/Counter.vue'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {

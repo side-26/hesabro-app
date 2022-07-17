@@ -21,7 +21,7 @@ export default {
       required: true,
     },
   },
-  setup(props) {
+  setup() {
     return {
       toFarsiNumber,
       handleSprateNumber,
