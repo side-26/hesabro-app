@@ -37,7 +37,7 @@
             <section class="bg-gray-50 py-4 px-3 mr-[-11px] md:mr-0 md:bg-transparent">
               <div class="font-medium text-sm md:text-base">
                 <span class="text-slate-500">تلفن : </span>
-                <a class="text-slate-900" href="tel:03491002424">{{ toFarsiNumber('03491002424') }}</a>
+                <a class="text-slate-900" href="tel:03491002424">{{ toFarsiNumber('03491002426') }}</a>
               </div>
               <div class="font-medium text-sm md:text-base mt-7">
                 <span class="text-slate-500">واتس آپ : </span>
