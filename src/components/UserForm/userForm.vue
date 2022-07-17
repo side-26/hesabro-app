@@ -3,7 +3,7 @@
     <Form @submit="handleSubmit" :validation-schema="schema">
       <Input name="name" :type="text" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
       <Input name="phone_number" :type="text" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
-      <button :disabled="totalprice === 0"  type="submit" class="rounded-xl disabled:bg-gray-200 bg-cyan-500 hover:bg-cyan-600 disabled:cursor-not-allowed flex justify-center items-center font-bold md:mt-4 mt-60 text-sm transition-all py-3 text-white w-full">
+      <button :disabled="totalprice === 0||submitLoading"  type="submit" class="rounded-xl disabled:bg-gray-200 bg-cyan-500 hover:bg-cyan-600 disabled:cursor-not-allowed flex justify-center items-center font-bold md:mt-4 mt-60 text-sm transition-all py-3 text-white w-full">
         ثبت سفارش
         <!-- <span v-else class="animate-spin loading-spinner mx-1" v-for="item in 3" :key="item"></span> -->
       </button>
@@ -24,6 +24,10 @@ export default {
   props:{
     totalprice:{
       type:Number,
+      required:true
+    },
+    submitLoading:{
+      type:Boolean,
       required:true
     }
   },

@@ -17,6 +17,7 @@
       <section id="advantages" class="observing mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
         <AdvantagesCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
+      <!-- بخش درباره با ما -->
       <section id="aboutUs" class="observing md:my-0 lg:py-24 md:mt-20 my-10 relative flex justify-start items-stretch right-0">
         <div class="hidden md:flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
@@ -30,10 +31,10 @@
             <p class="font-medium text-center md:text-right mx-auto md:mx-0 text-gray-900 w-4/5 text-xs">
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
-            <section class="flex flex-wrap justify-center my-20 mx-auto lg:my-10 md:mx-0 lg:mx-3 grid-cols-2 lg:gap-0 gap-x-2 gap-y-8 md:grid-cols-none md:grid-flow-col">
+            <section class="flex flex-wrap justify-center md:justify-start my-20 mx-auto lg:my-10 md:mx-0 lg:mx-3 grid-cols-2 lg:gap-0 gap-x-2 gap-y-8 md:grid-cols-none md:grid-flow-col">
               <about-us-item :itemArr="item" v-for="item in achivements" :key="item.id" />
             </section>
-            <section class="bg-gray-50 py-4 px-3 mr-[-2%]md:mr-0 md:bg-transparent">
+            <section class="bg-gray-50 py-4 px-3 mr-[-11px] md:mr-0 md:bg-transparent">
               <div class="font-medium text-sm md:text-base">
                 <span class="text-slate-500">تلفن : </span>
                 <a class="text-slate-900" href="tel:03491002424">{{ toFarsiNumber('03491002424') }}</a>

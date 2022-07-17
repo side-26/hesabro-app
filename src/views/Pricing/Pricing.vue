@@ -1,7 +1,7 @@
 <template lang="">
   <div>
-    <NavBar :class="{ blur: loading }" />
-    <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading }">
+    <NavBar :class="{ blur: loading.spinner }" />
+    <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading.spinner }">
       <pricing-container title="تعرفه های حسابرو">
         <template v-slot:body>
           <PricingCard v-if="pricingData" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.title" />
@@ -23,12 +23,12 @@
       <pricing-container title="ثبت سفارش">
         <template lang="" v-slot:body>
           <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
-          <user-form :totalprice="totalprice" class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit" />
+          <user-form :totalprice="totalprice" :submitLoading="loading.submit" class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit" />
         </template>
       </pricing-container>
     </main>
-    <Footer :class="{ blur: loading }" />
-    <Loading v-if="loading" msg="لطفا منتظر بمانید" />
+    <Footer :class="{ blur: loading.spinner }" />
+    <Loading v-if="loading.spinner" msg="لطفا منتظر بمانید" />
   </div>
   <Teleport to="#modalTel">
     <transition>
@@ -58,7 +58,7 @@ export default {
     const totalprice = ref(0)
     const discount = ref(0)
     const taxes = ref(5)
-    const loading = ref(true)
+    const loading = reactive({ submit: false, spinner: true })
     const btnStatusCode = ref(0)
     const selected_modules_id = ref([])
     let customerInfo = reactive({})
@@ -80,6 +80,7 @@ export default {
       btnStatusCode.value = 200
       modalInfo.title = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selected_modules_id.value)
+      loading.submit = true
       customerInfo = { ...val, selected_modules_id: selectedModulesIdArray, users_count: PerUser.value.count, branches_count: PerBranch.value.count }
       users.post(customerInfo).then((item) => {
         modalInfo.show = true
@@ -89,21 +90,22 @@ export default {
           modalInfo.type = 'success'
           modalInfo.redirectPath = '/'
         } else {
-          modalInfo.type = 'faild'
+          modalInfo.type = 'failed'
           modalInfo.desc = 'ثبت نام انجام نشد لطفا بعدا امتحان کنید.'
           modalInfo.redirectPath = '/pricing'
         }
+          loading.submit = false
       })
     }
 
     onMounted(() => {
       try {
         tarefeha.get().then((item) => {
-          loading.value = false
+          loading.spinner = false
           if (!item) {
             modalInfo.type = 'failed'
             modalInfo.show = true
-            loading.value = false
+            loading.spinner = false
             modalInfo.title = 'خطا!!'
             modalInfo.redirectPath = '/'
             modalInfo.desc = 'دریافت اطلاعات با خطا مواجه شد'
