@@ -31,7 +31,7 @@
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
             <section class="grid my-20 mx-auto lg:my-10 md:mx-0 lg:mx-3 grid-cols-2 lg:gap-0 gap-x-2 gap-y-8 md:grid-cols-none md:grid-flow-col">
-              <ItemAboutUs :itemArr="item" v-for="item in achivements" :key="item.id" />
+              <about-us-item :itemArr="item" v-for="item in achivements" :key="item.id" />
             </section>
             <section class="bg-gray-50 py-4 px-3 mr-[-2%]md:mr-0 md:bg-transparent">
               <div class="font-medium text-sm md:text-base">
