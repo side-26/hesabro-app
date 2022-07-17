@@ -65,29 +65,11 @@
           <ModuleCard v-for="Module in TarefehaModules" class="min-h-[12rem] lg:hidden tw-min-w-[60vw] max-w-[70vw] block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
         </div>
         <swiper
-          :slidesPerView="'auto'"
+          :slidesPerView="4"
           :spaceBetween="0"
           :autoplay="{
             delay: 2000,
             disableOnInteraction: true,
-          }"
-          :breakpoints="{
-            '640': {
-              slidesPerView: 1,
-              spaceBetween: 0,
-            },
-            '768': {
-              slidesPerView: 2,
-              spaceBetween: 0,
-            },
-            '1024': {
-              slidesPerView: 3,
-              spaceBetween: 0,
-            },
-            '1300': {
-              slidesPerView: 4,
-              spaceBetween: 0,
-            },
           }"
           :centeredSlides="true"
           :loop="true"
