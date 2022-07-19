@@ -85,8 +85,8 @@
         <hesabro-water-mark/>
       </section>
       <!-- مشتریان حسابرو -->
-      <section id="customers" class="observing container my-24 lg:my-20 mx-auto">
-        <h3 class="font-extrabold text-2xl text-center my-5">برخی از مشتریان حسابرو</h3>
+      <section  id="customers" class="observing bg-white z-50 container  my-24 lg:my-20 mx-auto">
+        <h3 class="font-extrabold z-50 text-2xl text-center my-5">برخی از مشتریان حسابرو</h3>
         <p class="text-center px-4 md:w-[60%] 2xl:w-[50%] md:mx-auto md:px-0 text-xs font-medium">
           گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند
         </p>
