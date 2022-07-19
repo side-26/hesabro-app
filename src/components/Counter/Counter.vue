@@ -1,6 +1,6 @@
 <template lang="">
   <div class="flex justify-between self-center">
-    <button :disabled="price==0" class='disabled:cursor-not-allowed' @click="handleCounter(step)">
+    <button :disabled="price == 0" class="disabled:cursor-not-allowed" @click="handleCounter(step)">
       <svg xmlns="http://www.w3.org/2000/svg" class="lg:h-6 h-5 lg:w-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
       </svg>
@@ -16,6 +16,7 @@
 <script>
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 export default {
+  name: 'Counter',
   props: {
     count: {
       type: Number,
@@ -33,20 +34,20 @@ export default {
       type: Number,
       required: true,
     },
-    price:{
-      type:Number,
-      required:true
-    }
+    price: {
+      type: Number,
+      required: true,
+    },
   },
-  setup(props,{emit}) {
-    const handleCounter=(step)=> {
+  setup(props, { emit }) {
+    const handleCounter = (step) => {
       emit('update:modelValue', props.modelValue + step)
     }
-    
+
     return {
       handleCounter,
-      toFarsiNumber
+      toFarsiNumber,
     }
-  }
+  },
 }
 </script>
