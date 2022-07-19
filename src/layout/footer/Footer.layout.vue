@@ -1,5 +1,5 @@
 <template lang="">
-  <footer class="py-1 bg-gray-100 px-10 md:px-6 lg:px-24  2xl:px-0">
+  <footer class="py-1 bg-gray-100 px-10 md:px-6 lg:px-24 2xl:px-0">
     <section class="flex 2xl:container mx-auto flex-wrap pb-10 sm:pb-5 justify-between items-center relative after:absolute after:bottom-[7%] after:w-full after:h-[2px] after:bg-gray-200">
       <div class="flex items-center">
         <router-link class="hidden md:block" to="/">
@@ -10,9 +10,13 @@
         <section class="my-5 md:mr-7 w-full">
           <div class="font-bold text-lg mb-5 sm:mb-10">دسترسی سریع</div>
           <ul class="flex flex-col sm:flex-row justify-between text-sm">
-            <li><router-link class="text-slate-800 font-medium" to="/pricing">تعرفه ها</router-link></li>
-            <li class="my-4  sm:mx-16 lg:mx-20 xl:mx-24 sm:my-0 relative   lg:before:right-[-49px] xl:before:right-[-60px] lg:after:left-[-45px] xl:after:left-[-60px] lg:after:absolute lg:after:w-[12px] lg:after:h-[12px] lg:after:rounded-full lg:after:bg-gray-300 lg:after:top-[5px] lg:before:absolute lg:before:w-[12px] lg:before:h-[12px] lg:before:rounded-full lg:before:bg-gray-300 lg:before:top-[5px]">
-              <router-link :to="{ name: 'صفحه اصلی | حسابرو', hash: '#aboutUs' }" class="text-slate-800  font-medium">درباره ما</router-link>
+            <li class="flex">
+              <router-link class="text-slate-800 font-medium" to="/pricing">تعرفه ها</router-link>
+            </li>
+            <li class="my-4 sm:my-0 flex items-center">
+              <div class="rounded-full lg:mx-7 2xl:mx-8 w-3 h-3 bg-gray-300"></div>
+              <router-link :to="{ name: 'صفحه اصلی | حسابرو', hash: '#aboutUs' }" class="text-slate-800 font-medium">درباره ما</router-link>
+              <div class="rounded-full lg:mx-7 2xl:mx-8 w-3 h-3 bg-gray-300"></div>
             </li>
             <li><router-link class="text-slate-800 font-medium" :to="{ name: 'صفحه اصلی | حسابرو', hash: '#advantages' }">خدمات و راهکار ها</router-link></li>
           </ul>
