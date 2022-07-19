@@ -13,10 +13,10 @@
             <li class="flex">
               <router-link class="text-slate-800 font-medium" to="/pricing">تعرفه ها</router-link>
             </li>
-            <li class="my-4 sm:my-0 flex items-center">
-              <div class="rounded-full lg:mx-7 w-3 h-3 bg-gray-300"></div>
+            <li class="my-4 sm:my-0 sm:mx-14 lg:mx-0 flex items-center">
+              <div class="rounded-full hidden lg:block md:mx-5 lg:mx-7 w-3 h-3 bg-gray-300"></div>
               <router-link :to="{ name: 'صفحه اصلی | حسابرو', hash: '#aboutUs' }" class="text-slate-800 font-medium">درباره ما</router-link>
-              <div class="rounded-full lg:mx-7 w-3 h-3 bg-gray-300"></div>
+              <div class="rounded-full hidden lg:block md:mx-5 lg:mx-7 w-3 h-3 bg-gray-300"></div>
             </li>
             <li><router-link class="text-slate-800 font-medium" :to="{ name: 'صفحه اصلی | حسابرو', hash: '#advantages' }">خدمات و راهکار ها</router-link></li>
           </ul>
