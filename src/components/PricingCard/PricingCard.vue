@@ -26,13 +26,14 @@ import { ref, onMounted } from 'vue'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 export default {
+  name: 'PricingCard',
   props: {
     tarefehInfo: {
       type: Object,
       required: true,
     },
   },
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     const checked = ref(false)
     const toggled = ref(true)
     const itemArr = ref([])
@@ -65,7 +66,7 @@ export default {
       convertToArray,
       toFarsiNumber,
       handleToggle,
-      handleSprateNumber
+      handleSprateNumber,
     }
   },
 }
