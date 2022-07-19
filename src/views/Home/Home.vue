@@ -45,7 +45,7 @@
               </div>
               <div class="font-medium mt-7 text-sm md:text-base">
                 <span class="text-slate-500">ادرس : </span>
-                <span class="text-slate-900">کرمان ، خیابان نامدار محمدی </span>
+                <span class="text-slate-900">کرمان، میدان قرنی، ساختمان پدر</span>
               </div>
             </section>
           </div>
