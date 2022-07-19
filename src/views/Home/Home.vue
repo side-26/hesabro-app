@@ -112,6 +112,7 @@ import Footer from '@/layout/footer/Footer.layout.vue'
 import AdvantagesCard from '@/components/AdvantagesCard/AdvantagesCard.vue'
 import aboutUsItem from '@/components/AboutUsItem/aboutUsItem.vue'
 import ModuleCard from '@/components/ModuleCard/ModuleCard.vue'
+import HesabroWaterMark from '@/components/hesabroWaterMark/HesabroWaterMark.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination, Navigation, Autoplay, EffectFade } from 'swiper'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
@@ -140,6 +141,7 @@ export default {
     ModuleCard,
     Swiper,
     SwiperSlide,
+    HesabroWaterMark
   },
   setup() {
     const currentPosition = ref('')
