@@ -39,11 +39,11 @@
                 <span class="text-slate-500">تلفن : </span>
                 <a class="text-slate-900" href="tel:03491002424">{{ toFarsiNumber('03491002426') }}</a>
               </div>
-              <div class="font-medium text-sm md:text-base mt-7">
+              <div class="font-medium text-sm md:text-base my-7">
                 <span class="text-slate-500">واتس آپ : </span>
                 <a class="text-slate-900" href="tel:09981396467">{{ toFarsiNumber('09981396467') }}</a>
               </div>
-              <div class="font-medium mt-7 text-sm md:text-base">
+              <div class="font-medium text-sm md:text-base">
                 <span class="text-slate-500">ادرس : </span>
                 <span class="text-slate-900">کرمان، میدان قرنی، ساختمان پدر</span>
               </div>
