@@ -52,7 +52,7 @@
         </div>
       </section>
       <!-- ماژول های حسابرو -->
-      <section class="lg:py-32 test1 lg:relative h-100 flex flex-col lg:flex-row justify-center items-center 2xl:px-20">
+      <section class="lg:py-32  test1 lg:relative h-100 flex flex-col lg:flex-row justify-center items-center 2xl:px-20">
         <div class="lg:absolute -z-10 top-0 left-0 w-full h-full flex justify-center items-center">
           <div class="border-cyan-600 flex items-center justify-center lg:border-3 lg:rounded-full lg:w-100 lg:h-100">
             <h3 class="font-extrabold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-4xl 2xl:text-5xl">
@@ -75,13 +75,14 @@
           :loop="true"
           :navigation="false"
           :grabCursor="true"
-          class="hidden lg:block h-80 lg:h-36"
+          class="hidden z-20 lg:block h-80 lg:h-36"
           :modules="modules"
         >
           <swiper-slide class="hidden lg:flex" v-for="Module in TarefehaModules" :key="Module.id">
             <ModuleCard class="hidden lg:block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
           </swiper-slide>
         </swiper>
+        <hesabro-water-mark/>
       </section>
       <!-- مشتریان حسابرو -->
       <section id="customers" class="observing container my-24 lg:my-20 mx-auto">
