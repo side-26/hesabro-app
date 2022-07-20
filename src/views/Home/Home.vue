@@ -55,7 +55,7 @@
       <section class="py-32 z-40 lg:relative 2xl:px-20">
         <div class="">
           <div class="border-cyan-600 flex items-center justify-center">
-            <h3 class="font-extrabold justify-center  mb-14 text-center flex text-4xl 2xl:text-5xl">
+            <h3 class="font-extrabold justify-center  mb-14 text-center flex text-3xl">
               <span class="ml-4"> ماژول های </span>
               <span class="text-cyan-600"> حسابرو </span>
             </h3>
@@ -71,7 +71,7 @@
       </section>
       <!-- مشتریان حسابرو -->
       <section  id="customers" class="observing relative z-50 container  my-24 lg:mt-14 lg:mb-48 mx-auto">
-        <h3 class="font-extrabold z-50 text-2xl text-center my-5">برخی از مشتریان حسابرو</h3>
+        <h3 class="font-extrabold z-50 text-3xl text-center my-5">برخی از مشتریان حسابرو</h3>
         <p class="text-center px-4 md:w-[60%] 2xl:w-[50%] md:mx-auto md:px-0 text-xs font-medium">
           گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی ، شرکت های مالی ، استارت آپ ها ، فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند
         </p>
