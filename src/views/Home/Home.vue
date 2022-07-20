@@ -101,16 +101,11 @@ import AdvantagesCard from '@/components/AdvantagesCard/AdvantagesCard.vue'
 import aboutUsItem from '@/components/AboutUsItem/aboutUsItem.vue'
 import ModuleCard from '@/components/ModuleCard/ModuleCard.vue'
 import HesabroWaterMark from '@/components/hesabroWaterMark/HesabroWaterMark.vue'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Pagination, Navigation, Autoplay, EffectFade } from 'swiper'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { advantages } from '@/config/tarefeh.data'
 import { modules } from '@/config/tarefeh.data'
 import { customers } from '@/config/tarefeh.data'
 import { achivements } from '@/config/tarefeh.data'
-import 'swiper/css'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
 export default {
   name: 'home',
   data() {
@@ -127,8 +122,6 @@ export default {
     AdvantagesCard,
     aboutUsItem,
     ModuleCard,
-    Swiper,
-    SwiperSlide,
     HesabroWaterMark
   },
   setup() {
@@ -150,7 +143,6 @@ export default {
       })
     })
     return {
-      modules: [Pagination, Navigation, Autoplay],
       currentPosition,
       toFarsiNumber,
     }
