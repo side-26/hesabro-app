@@ -12,7 +12,8 @@ module.exports = {
             fontSize:{
                 'xs':'0.8125rem',
                 // 'sm':''
-                'base2':"1.0625rem"
+                'base2':"1.0625rem",
+                '4.5xl':'40px'
             },
             borderWidth:{
                 '3':'3px'

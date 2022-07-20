@@ -5,7 +5,11 @@
         <img :src="src" alt="title" class="w-12 self-center h-12" />
       </figure>
       <div class="flex flex-col lg:order-2 justify-center lg:w-[73%] ">
+<<<<<<< HEAD
         <h4 class="font-extrabold mb-3">{{ title }}</h4>
+=======
+        <h4 class="font-extrabold text-lg mb-3">{{ title }}</h4>
+>>>>>>> 3652704f4a5be4aff4738bb50f958b45eeebb39b
         <p class="text-xs leading-6 text-justify font-IranYekan-regular">{{ desc }}</p>
       </div>
     </section>

@@ -5,7 +5,7 @@
         <img class="w-full object-cover h-full" :src="cardProperty.imgSrc" loading="lazy" :alt="cardProperty.title" />
       </figure>
       <div :class="{ 'order-1 md:-translate-x-1/4': cardProperty.align === 'left', 'order-1 md:translate-x-1/4': cardProperty.align === 'right' }" class="p-4 rounded-2xl bg-white -translate-y-16 md:-translate-y-12 shadow-md mx-auto md:mx-0 w-5/6 md:w-2/4 lg:w-2/5">
-        <h2 class="font-extrabold text-lg py-3">{{ cardProperty.title }}</h2>
+        <h2 class="font-extrabold xl:text-xl 2xl:text-2xl py-3">{{ cardProperty.title }}</h2>
         <p class="text-justify text-slate-800 font-IranYekan-regular text-xs">{{ cardProperty.desc }}</p>
       </div>
     </div>
