@@ -14,7 +14,7 @@
     </header>
     <main class="overflow-hidden">
       <!-- راهکار ها و خدمات -->
-      <section id="advantages" class="observing mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
+      <section id="advantages" class="observing mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:px-28">
         <AdvantagesCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <!-- بخش درباره با ما -->
@@ -31,20 +31,20 @@
             <p class="font-medium text-center md:text-right mx-auto md:mx-0 text-gray-900 w-4/5 text-xs">
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
-            <section class="flex flex-wrap justify-center md:justify-start my-14 md:my-10 mx-auto lg:my-5 md:mx-0 lg:mx-3 ">
+            <section class="flex flex-wrap justify-center md:justify-start my-14 md:my-[52px] mx-auto  md:mx-0 lg:mx-3 ">
               <about-us-item :itemArr="item" v-for="item in achivements" :key="item.id" />
             </section>
             <section class="bg-gray-50 py-4 px-3 mr-[-11px] md:mr-0 md:bg-transparent">
               <div class="font-medium text-sm md:text-base flex">
-                <figure class="text-slate-500 ml-4 w-8 h-8"><img class="w-full h-full" src="../../../public/img/phoneIcon.svg" alt="company-phoneNumber" /></figure>
+                <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="../../../public/img/phoneIcon.svg" alt="company-phoneNumber" /></figure>
                 <a class="text-slate-900" href="tel:03491002424">{{ toFarsiNumber('03491002426') }}</a>
               </div>
               <div class="font-medium text-sm md:text-base flex my-7">
-                <figure class="text-slate-500 ml-4 w-8 h-8"><img class="w-full h-full" src="../../../public/img/whatsApp.svg" alt="company-whatsapp-account" /></figure>
+                <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="../../../public/img/whatsApp.svg" alt="company-whatsapp-account" /></figure>
                 <a class="text-slate-900" href="tel:09981396467">{{ toFarsiNumber('09981396467') }}</a>
               </div>
               <div class="font-medium text-sm md:text-base flex">
-                <figure class="text-slate-500 ml-4 w-8 h-8"><img class="w-full h-full" src="../../../public/img/mapMarker.svg" alt="company-address" /></figure>
+                <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="../../../public/img/mapMarker.svg" alt="company-address" /></figure>
                 <span class="text-slate-900">کرمان، میدان قرنی، ساختمان پدر</span>
               </div>
             </section>
