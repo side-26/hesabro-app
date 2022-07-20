@@ -14,7 +14,7 @@
     </header>
     <main class="overflow-hidden">
       <!-- راهکار ها و خدمات -->
-      <section id="advantages" class="observing mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:px-28">
+      <section id="advantages" class="observing mx-auto py-1 px-2 md:px-5 lg:px-10 2xl:container 2xl:px-0">
         <AdvantagesCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <!-- بخش درباره با ما -->
@@ -76,16 +76,16 @@
           گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی ، شرکت های مالی ، استارت آپ ها ، فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند
         </p>
         <div class="flex flex-wrap justify-center my-14">
-          <div class="mx-2 sm:mx-4 my-4 border-2 transition-all overflow-hidden bg-white hover:border-gray-300 border-gray-100 w-24 md:w-auto rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
-            <a :href="customer.href" target="_blank">
+          <a :href="customer.href" target="_blank" class="mx-2 sm:mx-4 my-4 border-2 transition-all overflow-hidden bg-white hover:border-gray-300 border-gray-100 w-24 md:w-auto rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
+            <div>
               <figure class="mb-5 px-8 flex justify-center py-5">
                 <img class="w-12 h-12 md:w-[4.7rem] md:h-[4.7rem]" :src="customer.src" :alt="customer.title" />
               </figure>
-            </a>
-            <div class=" bg-gray-200 py-2 w-full ">
-              <a :href="customer.href" target="_blank" class="text-center font-bold  text-xs md:text-sm">{{ customer.title }}</a>
             </div>
-          </div>
+            <div class=" bg-gray-200 py-2 w-full ">
+              <div :href="customer.href" target="_blank" class="text-center font-bold  text-xs md:text-sm">{{ customer.title }}</div>
+            </div>
+          </a>
         </div>
       </section>
     </main>
