@@ -1,6 +1,6 @@
 <template lang="">
   <!-- قسمت منو های سایت -->
-  <nav class="bg-white sticky z-20 top-0 2xl:pr-10">
+  <nav class="bg-white sticky z-[50] top-0 2xl:pr-10">
     <section class="sm:static relative container mx-auto 2xl:mx-0 py-3 flex items-center">
       <router-link to="/" class="flex items-center sm:pr-8">
         <figure class="mr-8 sm:mr-0 sm:ml-10 lg:ml-14">

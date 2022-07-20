@@ -18,7 +18,7 @@
         <AdvantagesCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <!-- بخش درباره با ما -->
-      <section id="aboutUs" class="observing md:my-0 lg:py-24 md:mt-20 my-10 relative flex justify-start items-stretch right-0">
+      <section id="aboutUs" class="observing  z-40 md:my-0 lg:py-24 md:mt-20 my-10 relative flex justify-start items-stretch right-0">
         <div class="hidden md:flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
         </div>
@@ -52,46 +52,31 @@
         </div>
       </section>
       <!-- ماژول های حسابرو -->
-      <section class="lg:py-32  test1 lg:relative h-100 flex flex-col lg:flex-row justify-center items-center 2xl:px-20">
-        <div class="lg:absolute -z-10 top-0 left-0 w-full h-full flex justify-center items-center">
-          <div class="border-cyan-600 flex items-center justify-center lg:border-3 lg:rounded-full lg:w-100 lg:h-100">
-            <h3 class="font-extrabold justify-center mb-5 lg:m-0 lg:flex-col text-center flex text-4xl 2xl:text-5xl">
-              <span class="lg:mb-72 lg:m-0 ml-4"> ماژول های </span>
+      <section class="py-32 z-40 lg:relative 2xl:px-20">
+        <div class="">
+          <div class="border-cyan-600 flex items-center justify-center">
+            <h3 class="font-extrabold justify-center  mb-14 text-center flex text-4xl 2xl:text-5xl">
+              <span class="ml-4"> ماژول های </span>
               <span class="text-cyan-600"> حسابرو </span>
             </h3>
           </div>
         </div>
-        <div class="flex lg:hidden overflow-x-auto h-97 container mx-auto py-2">
-          <ModuleCard v-for="Module in TarefehaModules" class="min-h-[12rem] lg:hidden tw-min-w-[60vw] max-w-[70vw] block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
+        <div class="flex lg:hidden overflow-x-auto min-h-min container mx-auto py-2">
+          <ModuleCard v-for="Module in TarefehaModules" class="lg:hidden min-h-[18rem] md:min-h-[12rem]  max-w-[70vw] block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
         </div>
-        <swiper
-          :slidesPerView="4"
-          :spaceBetween="0"
-          :autoplay="{
-            delay: 2000,
-            disableOnInteraction: true,
-          }"
-          :centeredSlides="true"
-          :loop="true"
-          :navigation="false"
-          :grabCursor="true"
-          class="hidden z-20 lg:block h-80 lg:h-36"
-          :modules="modules"
-        >
-          <swiper-slide class="hidden lg:flex" v-for="Module in TarefehaModules" :key="Module.id">
-            <ModuleCard class="hidden lg:block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
-          </swiper-slide>
-        </swiper>
-        <hesabro-water-mark/>
+        <div class="lg:flex flex-wrap justify-center hidden my-4 px-12 2xl:container wxl:px-0 2xl:mx-auto">
+          <ModuleCard class="hidden lg:block" v-for="Module in TarefehaModules" :title="Module.title" :desc="Module.desc" :src="Module.src" />
+        </div>
+        <HesabroWaterMark/>
       </section>
       <!-- مشتریان حسابرو -->
-      <section  id="customers" class="observing bg-white z-50 container  my-24 lg:my-20 mx-auto">
+      <section  id="customers" class="observing relative z-50 container  my-24 lg:my-20 mx-auto">
         <h3 class="font-extrabold z-50 text-2xl text-center my-5">برخی از مشتریان حسابرو</h3>
         <p class="text-center px-4 md:w-[60%] 2xl:w-[50%] md:mx-auto md:px-0 text-xs font-medium">
           گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند
         </p>
         <div class="flex flex-wrap justify-center my-20">
-          <div class="mx-2 sm:mx-4 my-4 border-2 transition-all hover:border-gray-300 border-gray-100 px-2 py-3 w-24 md:w-auto md:py-6 md:px-7 rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
+          <div class="mx-2 sm:mx-4 my-4 border-2 transition-all bg-white hover:border-gray-300 border-gray-100 px-2 py-3 w-24 md:w-auto md:py-6 md:px-7 rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
             <a :href="customer.href" target="_blank">
               <figure class="mb-5 flex justify-center">
                 <img class="w-12 h-12 md:w-[4.7rem] md:h-[4.7rem]" :src="customer.src" :alt="customer.title" />

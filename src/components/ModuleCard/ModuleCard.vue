@@ -1,16 +1,13 @@
 <template lang="">
-  <div class="py-2 h-full shadow-lg lg:rounded-none rounded-lg lg:shadow-none lg:bg-gray-50 min-w-[70%] mx-4 lg:mx-0 md:min-w-2.7 xl:min-w-2.3 relative after:absolute after:w-0 md:after:w-0.5 after:left-0 after:top-0 md:after:h-4/5 after:h-0 md:after:my-5 lg:after:my-4 after:bg-gray-200">
-    <section class="p-4 flex flex-col h-full justify-between">
-      <div class="flex">
-        <figure class="hidden lg:block w-6 h-6 ml-3">
-          <img :src="src" alt="title" class="w-full h-full" />
-        </figure>
-        <h4 class="font-extrabold mb-3">{{ title }}</h4>
-      </div>
-      <p class="text-xs font-IranYekan-regular">{{ desc }}</p>
-      <figure class="flex lg:hidden w-8 h-8 lg:w-6 lg:h-6 mt-3 lg:ml-3">
-        <img :src="src" alt="title" class="w-full h-full" />
+  <div class=" h-40 m-2  shadow z-10 rounded-xl overflow-hidden  relative min-w-[75%] lg:min-w-0 lg:w-[40%] xl:w-[31%]">
+    <section class="p-4 flex flex-col items-baseline justify-around lg:justify-start lg:items-center bg-white lg:flex-row h-full">
+      <figure class="flex order-2 lg:order-1 justify-start items-center  p-5">
+        <img :src="src" alt="title" class="w-12 self-center h-12" />
       </figure>
+      <div class="flex flex-col lg:order-2 justify-center lg:w-[73%] ">
+        <h4 class="font-extrabold mb-3">{{ title }}</h4>
+        <p class="text-xs leading-6 font-IranYekan-regular">{{ desc }}</p>
+      </div>
     </section>
   </div>
 </template>
