@@ -1,7 +1,7 @@
 <template lang="">
   <div>
     <NavBar :currentPosition="currentPosition" />
-
+<!-- هدر سایت -->
     <header id="header" class="observing">
       <section class="bg-center bg-cover bg-no-repeat main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
         <div class="pb-20 sm:mb-0">
