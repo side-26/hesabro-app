@@ -19,10 +19,10 @@ export const modules = [
     { id: 7, title: 'فروشگاه اینترنتی', desc: 'فروش محصولات بر روی سایت اختصاصی یکپارچگی ساختار مالی  فروش آنلاین و حضوری ، مدیریت مرسولات و پیک ها ، مدیریت سایر تامین کنندگان کالاها', src: '/img/store_FILL1_wght400_GRAD0_opsz48.svg' },
 ]
 export const customers = [
-    { id: 1, href: 'https://www.mobit.ir/', src: '/img/mobitIcon.svg', title: 'مبیت' },
-    { id: 2, href: 'https://zoodex.ir/', src: '/img/zoodexIcon.svg', title: 'زودکس' },
-    { id: 3, href: 'https://asreertebat.net/', src: '/img/asarErtebatat.svg', title: 'عصر ارتباطات' },
-    { id: 4, href: 'https://rahkarsanat.org/', src: '/img/rahkar.svg', title: 'راهکار صنعت' },
+    { id: 1, href: 'https://www.mobit.ir/', src: '/img/mobitIcon.svg', title: 'مبیت' ,rel:"nofollow" },
+    { id: 2, href: 'https://zoodex.ir/', src: '/img/zoodexIcon.svg', title: 'زودکس' ,rel:"nofollow" },
+    { id: 3, href: 'https://asreertebat.net/', src: '/img/asarErtebatat.svg', title: 'عصر ارتباطات',rel:"follow" },
+    { id: 4, href: 'https://rahkarsanat.org/', src: '/img/rahkar.svg', title: 'راهکار صنعت',rel:"follow" },
 ]
 export const achivements = [
     { id: 1, title: 'تعداد اسناد حسابداری', amount: '10000000' },
