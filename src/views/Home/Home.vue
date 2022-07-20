@@ -18,11 +18,7 @@
         <AdvantagesCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <!-- بخش درباره با ما -->
-<<<<<<< HEAD
-      <section id="aboutUs" class="observing  z-40 md:my-0 lg:py-24 md:mt-20 my-10 relative flex justify-start items-stretch right-0">
-=======
       <section id="aboutUs" class="observing  z-40 md:my-0 lg:py-8 md:mt-20 my-5 relative flex justify-start items-stretch right-0">
->>>>>>> 3652704f4a5be4aff4738bb50f958b45eeebb39b
         <div class="hidden md:flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
         </div>
@@ -56,17 +52,10 @@
         </div>
       </section>
       <!-- ماژول های حسابرو -->
-<<<<<<< HEAD
       <section class="py-32 z-40 lg:relative 2xl:px-20">
         <div class="">
           <div class="border-cyan-600 flex items-center justify-center">
             <h3 class="font-extrabold justify-center  mb-14 text-center flex text-4xl 2xl:text-5xl">
-=======
-      <section class="py-28 z-40 lg:relative 2xl:px-20">
-        <div class="">
-          <div class="border-cyan-600 flex items-center justify-center">
-            <h3 class="font-extrabold justify-center  mb-14 text-center flex text-3xl">
->>>>>>> 3652704f4a5be4aff4738bb50f958b45eeebb39b
               <span class="ml-4"> ماژول های </span>
               <span class="text-cyan-600"> حسابرو </span>
             </h3>
@@ -81,22 +70,13 @@
         <HesabroWaterMark/>
       </section>
       <!-- مشتریان حسابرو -->
-<<<<<<< HEAD
-      <section  id="customers" class="observing relative z-50 container  my-24 lg:my-20 mx-auto">
-=======
       <section  id="customers" class="observing relative z-50 container  my-24 lg:mt-14 lg:mb-48 mx-auto">
->>>>>>> 3652704f4a5be4aff4738bb50f958b45eeebb39b
         <h3 class="font-extrabold z-50 text-2xl text-center my-5">برخی از مشتریان حسابرو</h3>
         <p class="text-center px-4 md:w-[60%] 2xl:w-[50%] md:mx-auto md:px-0 text-xs font-medium">
-          گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند
+          گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی ، شرکت های مالی ، استارت آپ ها ، فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند
         </p>
-<<<<<<< HEAD
-        <div class="flex flex-wrap justify-center my-20">
-          <div class="mx-2 sm:mx-4 my-4 border-2 transition-all bg-white hover:border-gray-300 border-gray-100 px-2 py-3 w-24 md:w-auto md:py-6 md:px-7 rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
-=======
         <div class="flex flex-wrap justify-center my-14">
           <div class="mx-2 sm:mx-4 my-4 border-2 transition-all overflow-hidden bg-white hover:border-gray-300 border-gray-100 w-24 md:w-auto rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
->>>>>>> 3652704f4a5be4aff4738bb50f958b45eeebb39b
             <a :href="customer.href" target="_blank">
               <figure class="mb-5 px-8 flex justify-center py-5">
                 <img class="w-12 h-12 md:w-[4.7rem] md:h-[4.7rem]" :src="customer.src" :alt="customer.title" />
