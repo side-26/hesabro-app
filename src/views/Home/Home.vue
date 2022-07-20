@@ -18,7 +18,7 @@
         <AdvantagesCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <!-- بخش درباره با ما -->
-      <section id="aboutUs" class="observing  z-40 md:my-0 lg:py-24 md:mt-20 my-10 relative flex justify-start items-stretch right-0">
+      <section id="aboutUs" class="observing  z-40 md:my-0 lg:py-8 md:mt-20 my-5 relative flex justify-start items-stretch right-0">
         <div class="hidden md:flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
         </div>
@@ -31,7 +31,7 @@
             <p class="font-medium text-center md:text-right mx-auto md:mx-0 text-gray-900 w-4/5 text-xs">
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
-            <section class="flex flex-wrap justify-center md:justify-start my-20 mx-auto lg:my-10 md:mx-0 lg:mx-3 grid-cols-2 lg:gap-0 gap-x-2 gap-y-8 md:grid-cols-none md:grid-flow-col">
+            <section class="flex flex-wrap justify-center md:justify-start my-14 md:my-10 mx-auto lg:my-5 md:mx-0 lg:mx-3 ">
               <about-us-item :itemArr="item" v-for="item in achivements" :key="item.id" />
             </section>
             <section class="bg-gray-50 py-4 px-3 mr-[-11px] md:mr-0 md:bg-transparent">
@@ -52,7 +52,7 @@
         </div>
       </section>
       <!-- ماژول های حسابرو -->
-      <section class="py-24 z-40 lg:relative 2xl:px-20">
+      <section class="py-28 z-40 lg:relative 2xl:px-20">
         <div class="">
           <div class="border-cyan-600 flex items-center justify-center">
             <h3 class="font-extrabold justify-center  mb-14 text-center flex text-4xl 2xl:text-5xl">
@@ -70,20 +70,20 @@
         <HesabroWaterMark/>
       </section>
       <!-- مشتریان حسابرو -->
-      <section  id="customers" class="observing relative z-50 container  my-24 lg:my-20 mx-auto">
+      <section  id="customers" class="observing relative z-50 container  my-24 lg:mt-14 lg:mb-48 mx-auto">
         <h3 class="font-extrabold z-50 text-2xl text-center my-5">برخی از مشتریان حسابرو</h3>
         <p class="text-center px-4 md:w-[60%] 2xl:w-[50%] md:mx-auto md:px-0 text-xs font-medium">
           گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی شرکت های مالی استارت آپ ها فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند
         </p>
-        <div class="flex flex-wrap justify-center my-20">
-          <div class="mx-2 sm:mx-4 my-4 border-2 transition-all bg-white hover:border-gray-300 border-gray-100 px-2 py-3 w-24 md:w-auto md:py-6 md:px-7 rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
+        <div class="flex flex-wrap justify-center my-14">
+          <div class="mx-2 sm:mx-4 my-4 border-2 transition-all overflow-hidden bg-white hover:border-gray-300 border-gray-100 w-24 md:w-auto rounded-xl md:rounded-2xl lg:my-0 text-center" v-for="customer in customers" :key="customer.id">
             <a :href="customer.href" target="_blank">
-              <figure class="mb-5 flex justify-center">
+              <figure class="mb-5 px-8 flex justify-center py-5">
                 <img class="w-12 h-12 md:w-[4.7rem] md:h-[4.7rem]" :src="customer.src" :alt="customer.title" />
               </figure>
             </a>
-            <div class="">
-              <a :href="customer.href" target="_blank" class="text-center font-bold bg-gray-200 text-xs md:text-sm">{{ customer.title }}</a>
+            <div class=" bg-gray-200 py-2 w-full ">
+              <a :href="customer.href" target="_blank" class="text-center font-bold  text-xs md:text-sm">{{ customer.title }}</a>
             </div>
           </div>
         </div>
