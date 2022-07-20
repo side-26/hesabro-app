@@ -5,7 +5,7 @@
     <header id="header" class="observing">
       <section class="bg-center bg-cover bg-no-repeat main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
         <div class="pb-20 sm:mb-0">
-          <h1 class="sm:text-4xl shadow-black text-white text-3xl font-extrabold sm:leading-loose leading-normal">
+          <h1 class="sm:text-4xl  2xl:text-4.5xl shadow-black text-white text-3xl font-extrabold sm:leading-loose leading-normal">
             حسابرو<br />
             مدیریت مالی و حسابداری
           </h1>
@@ -27,7 +27,7 @@
             <img class="w-full object-cover h-full" alt="about-us" src="/img/about_us_img.jpg" loading="lazy" />
           </figure>
           <div class="mr-3 md:mr-5 lg:mr-10 lg:w-2/3">
-            <h3 class="font-extrabold text-center md:text-right text-2xl mb-10">درباره ما</h3>
+            <h3 class="font-extrabold text-center md:text-right text-3xl mb-10">درباره ما</h3>
             <p class="font-medium text-center md:text-right mx-auto md:mx-0 text-gray-900 w-4/5 text-xs">
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
@@ -55,7 +55,7 @@
       <section class="py-28 z-40 lg:relative 2xl:px-20">
         <div class="">
           <div class="border-cyan-600 flex items-center justify-center">
-            <h3 class="font-extrabold justify-center  mb-14 text-center flex text-4xl 2xl:text-5xl">
+            <h3 class="font-extrabold justify-center  mb-14 text-center flex text-3xl">
               <span class="ml-4"> ماژول های </span>
               <span class="text-cyan-600"> حسابرو </span>
             </h3>
