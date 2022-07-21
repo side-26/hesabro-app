@@ -18,7 +18,7 @@
         <AdvantagesCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <!-- بخش درباره با ما -->
-      <section id="aboutUs" class="observing  z-40 md:my-0 lg:py-8 md:mt-20 my-5 relative flex justify-start items-stretch right-0">
+      <section id="aboutUs" class="observing  z-50 md:my-0 lg:py-8 md:mt-20 my-5 relative flex justify-start items-stretch right-0">
         <div class="hidden md:flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
         </div>
