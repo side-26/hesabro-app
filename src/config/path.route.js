@@ -6,7 +6,7 @@ export const ROUTES = {
     },
     TAREFEHA: {
         path: "pricing",
-        name: "تعرفه ها | حسابرو"
+        name: "تعرفه‌ها‌ ‌| حسابرو"
     },
  
 }

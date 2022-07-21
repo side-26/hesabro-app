@@ -4,7 +4,7 @@
       <h6 class="font-bold sm:self-center my-3 self-start sm:my-0 text-base">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
     </div>
-    <div class="text-xs font-IranYekan-regular my-7 md:my-6">به ازای هر {{ desc }} ، {{ toFarsiNumber(handleSprateNumber(percent)) }} درصد به قیمت ماژول ها اضافه میشود</div>
+    <div class="text-xs font-IranYekan-regular my-7 md:my-6">به ازای هر {{ desc }}،{{ toFarsiNumber(handleSprateNumber(percent)) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
     <div class="text-xs flex-col side-26 lg:flex-row flex justify-between font-medium">
       <span
         >برای هر {{ desc }}  : <span class="">{{ toFarsiNumber(handleSprateNumber(price.toFixed(0))) }} تومان</span></span
