@@ -1,6 +1,6 @@
 <template lang="">
   <footer class="py-1 bg-gray-100 px-10 md:px-6 lg:px-24 2xl:px-0">
-    <section class="flex 2xl:container mx-auto flex-wrap pb-10 sm:pb-5 justify-between items-center relative after:absolute after:bottom-[7%] after:w-full after:h-[2px] after:bg-gray-200">
+    <!-- <section class="flex 2xl:container mx-auto flex-wrap pb-10 sm:pb-5 justify-between items-center relative after:absolute after:bottom-[7%] after:w-full after:h-[2px] after:bg-gray-200">
       <div class="flex items-center">
         <router-link class="hidden md:block" to="/">
           <figure class="w-16 h-16">
@@ -30,8 +30,8 @@
           <img class="w-full object-contain h-full" src="/img/samandehi.png" alt="samandehi-logo" />
         </figure>
       </section>
-    </section>
-    <p class="text-sm pb-2 font-IranYekan-regular text-slate-400 text-center">تمامی حقوق این وبسایت متعلق به <a target="_blank" class="hover:text-cyan-600 text-cyan-500 transition-all" href="https://avapardaz.vc/"> گروه فناوری آواپرداز </a>می باشد</p>
+    </section> -->
+    <p class="text-sm py-5 font-IranYekan-regular text-slate-400 text-center">تمامی حقوق این وبسایت متعلق به <a target="_blank" class="hover:text-cyan-600 text-cyan-500 transition-all" href="https://avapardaz.vc/"> گروه فناوری آواپرداز </a>می باشد</p>
   </footer>
 </template>
 <script>
