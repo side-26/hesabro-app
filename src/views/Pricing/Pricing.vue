@@ -1,7 +1,9 @@
 <template lang="">
   <div>
     <NavBar :class="{ blur: loading.spinner }" />
-    <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading.spinner }">
+    <section class="flex justify-between flex-wrap ">
+      <!-- بخش اصلی سایت -->
+    <main class="mt-10 mx-auto sm:px-14 md:px-0 lg:px-20 md:mb-24" :class="{ blur: loading.spinner }">
       <section class="bg-gray-100 mx-5 px-5 rounded-3xl shadow-lg">
         <div class="py-4 mr-[0.390625rem]">
           <div class="text-xl font-extrabold">انتخاب شده ها</div>
@@ -10,16 +12,21 @@
           <SelectedCard @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selected_modules_id" :key="item.id" />
         </TransitionGroup>
         <div>
-          <PricingCard v-if="pricingData" @handle-total-price="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
+          <div class="py-4 mr-[0.390625rem]">
+          <div class="text-xl font-extrabold">تعرفه های حسابرو</div>
+        </div>
+        <div>
+          <TransitionGroup  class="pb-4" tag="div" name="list">
+            <PricingCard v-if="pricingData" @handle-total-price="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
+          </TransitionGroup>
+        </div>
+        <!-- <figure  class="w-52 h-48 mx-auto">
+          <img class="w-full h-full" src="../../../public/img/emptyList.svg" alt="emptyList">
+          <span class="font-extrabold text-3xl">هورااا</span>
+          <p>تعرفه ها همه انتخاب شده اند برای نهایی کردن خرید ثبت سفارش کنید</p>
+        </figure> -->
         </div>
       </section>
-      <pricing-container title="تعرفه های حسابرو">
-        <template v-slot:body>
-        </template>
-        <template v-slot:footer>
-          <total-price-container class="hidden md:block" title="قیمت کل زیر سیستم ها" :totalPrice="totalprice" />
-        </template>
-      </pricing-container>
       <pricing-container title="امکانات جانبی">
         <template lang="" v-slot:body>
           <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
@@ -37,6 +44,10 @@
         </template>
       </pricing-container>
     </main>
+    <aside>
+      اینجا سایدبار هست
+    </aside>
+    </section>
     <Footer :class="{ blur: loading.spinner }" />
     <Loading v-if="loading.spinner" msg="لطفا منتظر بمانید" />
   </div>
@@ -71,15 +82,13 @@ export default {
     const taxes = ref(5)
     const loading = reactive({ submit: false, spinner: true })
     const btnStatusCode = ref(0)
-    const selected_modules_id = ref([])
+    const selected_modules_id = ref([]);
     let customerInfo = reactive({})
     let PerBranch = ref({ price: 0, count: 0 })
     let PerUser = ref({ price: 0, count: 0 })
     const modalInfo = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed' })
     const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
     const handleDeleteSelectedCard = (inselectedCard) => {
-      // pricingData.value={item:[...inselectedCard]}
-      // console.log(pricingData.value.items)
       handleTotalPrice(-(+inselectedCard.price))
       pricingData.value.items.push(inselectedCard)
       selected_modules_id.value = selected_modules_id.value.filter((item) => item.id !== inselectedCard.id)
@@ -87,9 +96,6 @@ export default {
     }
     const totalPrice = computed(() => totalprice.value + PerBranch.value.price + PerUser.value.price)
     const handleSelectCard = (price, cardInfo) => {
-      // totalprice.value += +price
-      // if (!checked) selected_modules_id.value = selected_modules_id.value.filter((id) => id !== cardInfo)
-      // else selected_modules_id.value = [...selected_modules_id.value, cardInfo]
       handleTotalPrice(price);
       selected_modules_id.value.push(cardInfo)
       pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id)

@@ -1,0 +1,12 @@
+<svg width="178" height="146" viewBox="0 0 178 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-1-outside-1_36_16" maskUnits="userSpaceOnUse" x="0" y="46" width="178" height="100" fill="black">
+<rect fill="white" y="46" width="178" height="100"/>
+<path d="M12 47C12 46.4477 12.4477 46 13 46H165C165.552 46 166 46.4477 166 47V133C166 133.552 165.552 134 165 134H13C12.4477 134 12 133.552 12 133V47Z"/>
+</mask>
+<path d="M12 46H166H12ZM178 133C178 140.18 172.18 146 165 146H13C5.8203 146 0 140.18 0 133L24 122H154L178 133ZM13 146C5.8203 146 0 140.18 0 133V59C0 51.8203 5.8203 46 13 46H24C24 46 24 46.4477 24 47V122L13 146ZM165 46C172.18 46 178 51.8203 178 59V133C178 140.18 172.18 146 165 146L154 122V47C154 46.4477 154 46 154 46H165Z" fill="black" fill-opacity="0.2" mask="url(#path-1-outside-1_36_16)"/>
+<line x1="29" y1="112.5" x2="149" y2="112.5" stroke="black" stroke-opacity="0.2" stroke-width="9"/>
+<line x1="29" y1="85.5" x2="149" y2="85.5" stroke="black" stroke-opacity="0.2" stroke-width="9"/>
+<line x1="29" y1="58.5" x2="149" y2="58.5" stroke="black" stroke-opacity="0.2" stroke-width="9"/>
+<line x1="29" y1="31.5" x2="149" y2="31.5" stroke="black" stroke-opacity="0.2" stroke-width="9"/>
+<line x1="29" y1="4.5" x2="149" y2="4.5" stroke="black" stroke-opacity="0.2" stroke-width="9"/>
+</svg>
