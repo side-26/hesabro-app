@@ -1,23 +1,31 @@
 <template lang="">
-  <section class="font-medium md:bg-transparent bg-gray-100 p-4 text-gray-800 text-base rounded-lg md:w-4/5 mx-2 md:mx-0 lg:w-2/3">
+  <section class="font-medium md:bg-transparent bg-gray-100 p-4 text-gray-800 text-sm rounded-lg md:w-4/5 mx-2 md:mx-0 lg:w-full">
     <div class="my-5 flex justify-between">
-      <span> قیمت کل : </span><span>{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed())) }} تومان</span>
+      <span>قیمت ماژول‌ها :  </span><span>{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed())) }} {{currency}}</span>
+    </div>
+    <div class="my-5 flex justify-between">
+      <span>شعب اضافه : </span><span>{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed())) }} {{currency}}</span>
+    </div>
+    <div class="my-5 flex justify-between">
+      <span>کاربر اضافه : </span><span>{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed())) }} {{currency}}</span>
     </div>
     <!-- <div class="my-5 flex justify-between">
-      <span> تخفیف : </span><span class="text-red-500">{{ toFarsiNumber(handleSprateNumber(discount.toFixed())) }} تومان </span>
+      <span> تخفیف : </span><span class="text-red-500">{{ toFarsiNumber(handleSprateNumber(discount.toFixed())) }} {{currency}} </span>
     </div> -->
     <div class="my-5 flex justify-between">
-      <span> مالیات : </span><span>{{ toFarsiNumber(handleSprateNumber(taxes.toFixed())) }} تومان</span>
+      <span> مالیات : </span><span>{{ toFarsiNumber(handleSprateNumber(taxes.toFixed())) }} {{currency}}</span>
     </div>
-    <div class="border-t-2 my-4 pt-3 border-gray-300 flex justify-between">
-      <span>جمع کل</span><span>{{ toFarsiNumber(handleSprateNumber(totalPrice.toFixed())) }} تومان</span>
+    <div class="my-4 pt-3 text-center font-extrabold border-gray-300 flex justify-center">
+      <div>{{ toFarsiNumber(handleSprateNumber(totalPrice.toFixed())) }} {{currency}}</div>
     </div>
   </section>
 </template>
 <script>
 import { computed } from 'vue'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
-import { handleSprateNumber } from '@/utilities/SeprateNumbers'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers';
+import {currency} from '@/config/currency.config'
+
 export default {
   name: 'Bill',
   props: {
@@ -33,23 +41,32 @@ export default {
       type: Number,
       required: true,
     },
+    pricePerUsers: {
+      type: Number,
+      required: true,
+    },
+    pricePerBranch: {
+      type: Number,
+      required: true,
+    },
   },
   setup(props) {
     const discount = computed(() => {
-      return(props.discount * props.finalPrice) / 100
+      return (props.discount * props.finalPrice) / 100
     })
     const taxes = computed(() => {
-      return ((9 / 100) * props.finalPrice)
+      return (9 / 100) * props.finalPrice
     })
     const totalPrice = computed(() => {
-      return props.finalPrice+taxes.value
+      return props.finalPrice + taxes.value
     })
     return {
       discount,
       taxes,
       totalPrice,
       toFarsiNumber,
-      handleSprateNumber
+      handleSprateNumber,
+      currency
     }
   },
 }
