@@ -41,7 +41,7 @@
         </template>
       </pricing-container> -->
       </main>
-      <aside class="bg-gray-100 rounded-2xl overflow-hidden px-2 lg:w-[33%] 2xl:w-[25%]">
+      <aside class="bg-gray-100 rounded-2xl overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
         <!-- <section class="bg-gray-200"> -->
           <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
         <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />

@@ -1,5 +1,5 @@
 <template lang="">
-  <section class="font-medium md:bg-transparent bg-gray-100 p-4 text-gray-800 text-sm rounded-lg md:w-4/5 mx-2 md:mx-0 lg:w-full">
+  <section class="relative font-medium md:bg-transparent my-6 bg-gray-100 py-4 text-gray-800 text-sm rounded-lg md:w-4/5 mx-2 md:mx-0 lg:w-full after:bg-gray-400 after:absolute after:w-full after:bottom-[25%] after:left-0 after:rounded-md after:h-[2px]">
     <div class="my-5 flex justify-between">
       <span>قیمت ماژول‌ها : </span><span class="font-extrabold">{{ toFarsiNumber(handleSprateNumber(totalPrice.toFixed())) }} {{ currency }}</span>
     </div>
@@ -15,7 +15,7 @@
     <div class="my-5 flex justify-between">
       <span> مالیات : </span><span class="font-extrabold">{{ toFarsiNumber(handleSprateNumber(taxes.toFixed())) }} {{ currency }}</span>
     </div>
-    <div class="my-4 pt-3 text-center font-extrabold border-gray-300 flex justify-center">
+    <div class="my-4 pt-3 text-center text-lg font-extrabold border-gray-300 flex justify-center">
       <div>{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed())) }} {{ currency }}</div>
     </div>
   </section>

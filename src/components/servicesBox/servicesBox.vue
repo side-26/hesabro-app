@@ -1,14 +1,14 @@
 <template lang="">
-  <div class="bg-gray-100 sm:p-5 px-2 py-5 rounded-xl mx-4 md:mx-0">
+  <div class="relative bg-gray-100 first-of-type:mb-14 rounded-xl mx-4 md:mx-0 after:bg-gray-400 after:absolute after:w-full after:bottom-[-25%] after:left-0 after:rounded-md after:h-[2px]">
     <div class="flex justify-between sm:items-center mb-5 flex-row">
-      <h6 class="font-bold sm:self-center my-3 self-start sm:my-0 text-sm">{{ title }}</h6>
+      <h6 class="font-extrabold sm:self-center my-3 self-start sm:my-0 text-sm">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
     </div>
     <div class="text-xs font-IranYekan-regular my-7 md:my-6">به ازای هر {{ desc }}،{{ toFarsiNumber(handleSprateNumber(percent)) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
     <div class="text-xs flex-col side-26 lg:flex-row flex justify-between font-medium">
       <span>برای هر {{ desc }} : </span>
       <Transition name="fade">
-        <span v-if="price > 0" class="mr-auto">{{ toFarsiNumber(handleSprateNumber(price.toFixed(0))) }} تومان</span>
+        <span v-if="price > 0" class="mr-auto text-sm font-bold">{{ toFarsiNumber(handleSprateNumber(price.toFixed(0))) }} تومان</span>
         <span v-else class="text-sm mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">رایگان</span>
       </Transition>
       <!-- <span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed(0))) }} تومان</span> -->
