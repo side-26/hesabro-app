@@ -4,7 +4,7 @@
     <section class="flex flex-col lg:flex-row justify-between items-start mx-4 md:mx-[6rem] mt-10 mb-8 2xl:mx-[8%]">
       <!-- بخش اصلی سایت -->
       <main class="lg:mb-0 w-full lg:w-[67%] 2xl:w-[75%]" :class="{ blur: loading.spinner }">
-        <section id="selectedContainer" class="bg-gray-100 md:mx-5 px-1 md:px-5 rounded-2xl shadow-lg">
+        <section id="selectedContainer" class="bg-gray-100 mb-5 md:mb-0 md:mx-5 px-1 md:px-5 rounded-2xl shadow-lg">
           <div v-if="selected_modules_id.length > 0" class="py-5 mr-[0.390625rem]">
             <div class="text-xl font-extrabold">انتخاب شده ها</div>
           </div>
