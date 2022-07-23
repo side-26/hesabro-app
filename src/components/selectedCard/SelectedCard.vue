@@ -1,5 +1,5 @@
 <template>
-  <div class="my-[0.390625rem] mx-0 md:m-[0.390625rem] md lg:w-[40%] xl:w-[30%] 2xl:w-[23%]">
+  <div class="my-[0.390625rem]  md:m-[0.390625rem]  mr-1 lg:w-[40%] xl:w-[30%] 2xl:w-[23%]">
     <div @click="handleToggle()" class="p-4  bg-white  rounded-xl cursor-pointer shadow-md  text-cyan-500">
      <h3  class="mb-4 font-extrabold">{{pricingInfo.module_name}}</h3>
       <div class="flex justify-between items-center">

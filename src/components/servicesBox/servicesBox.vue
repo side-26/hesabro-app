@@ -4,12 +4,12 @@
       <h6 class="font-extrabold sm:self-center my-3 self-start sm:my-0 text-sm">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
     </div>
-    <div class="text-xs font-IranYekan-regular my-7 md:my-6">به ازای هر {{ desc }}،{{ toFarsiNumber(handleSprateNumber(percent)) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
-    <div class="text-xs flex-col side-26 lg:flex-row flex justify-between font-medium">
+    <div class="text-xs font-regular my-7 md:my-6">به ازای هر {{ desc }}،{{ toFarsiNumber(handleSprateNumber(percent)) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
+    <div class="text-xs side-26 flex-row flex justify-between font-medium">
       <span>برای هر {{ desc }} : </span>
       <Transition name="fade">
         <span v-if="price > 0" class="mr-auto text-sm font-bold">{{ toFarsiNumber(handleSprateNumber(price.toFixed(0))) }} تومان</span>
-        <span v-else class="text-sm mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">رایگان</span>
+        <span v-else class="text-sm font-bold self-end lg:self-stretch">رایگان</span>
       </Transition>
       <!-- <span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed(0))) }} تومان</span> -->
     </div>
