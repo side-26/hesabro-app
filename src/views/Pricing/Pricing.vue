@@ -45,7 +45,7 @@
         <!-- <section class="bg-gray-200"> -->
           <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
         <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
-          <Bill class="w-full" :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
+          <Bill class="w-full" :pricePerBranch="PerBranch.price" :pricePerUsers="PerUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
         <!-- </section> -->
       </aside>
     </section>
