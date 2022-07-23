@@ -2,9 +2,19 @@
   <div>
     <NavBar :class="{ blur: loading.spinner }" />
     <main class="container mt-10 mx-auto sm:px-14 md:px-0 lg:px-28 md:mb-24" :class="{ blur: loading.spinner }">
+      <section class="bg-gray-100 mx-5 px-5 rounded-3xl shadow-lg">
+        <div class="py-4 mr-[0.390625rem]">
+          <div class="text-xl font-extrabold">انتخاب شده ها</div>
+        </div>
+        <TransitionGroup class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
+          <SelectedCard @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selected_modules_id" :key="item.id" />
+        </TransitionGroup>
+        <div>
+          <PricingCard v-if="pricingData" @handle-total-price="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
+        </div>
+      </section>
       <pricing-container title="تعرفه های حسابرو">
         <template v-slot:body>
-          <PricingCard v-if="pricingData" @handle-total-price="handleTotalPrice" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.title" />
         </template>
         <template v-slot:footer>
           <total-price-container class="hidden md:block" title="قیمت کل زیر سیستم ها" :totalPrice="totalprice" />
@@ -41,6 +51,7 @@ import { reactive, ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Loading from '@/components/Loading/Loading.vue'
 import NavBar from '@/layout/navBar/NavBar.layout.vue'
+import SelectedCard from '../../components/selectedCard/SelectedCard.vue'
 import PricingContainer from '@/components/PricingContainer/PricingContainer.vue'
 import PricingCard from '@/components/PricingCard/PricingCard.vue'
 import TotalPriceContainer from '@/components/TotalPriceContainer/TotalPriceContainer.vue'
@@ -65,16 +76,26 @@ export default {
     let PerBranch = ref({ price: 0, count: 0 })
     let PerUser = ref({ price: 0, count: 0 })
     const modalInfo = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed' })
-    const finalPrice = computed(() => {
-      return +(totalprice.value + taxes.value - discount.value)
-    })
-    const totalPrice = computed(() => {
-      return totalprice.value + PerBranch.value.price + PerUser.value.price
-    })
-    const handleTotalPrice = (price, cardInfo, checked) => {
+    const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
+    const handleDeleteSelectedCard = (inselectedCard) => {
+      // pricingData.value={item:[...inselectedCard]}
+      // console.log(pricingData.value.items)
+      handleTotalPrice(-(+inselectedCard.price))
+      pricingData.value.items.push(inselectedCard)
+      selected_modules_id.value = selected_modules_id.value.filter((item) => item.id !== inselectedCard.id)
+      pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
+    }
+    const totalPrice = computed(() => totalprice.value + PerBranch.value.price + PerUser.value.price)
+    const handleSelectCard = (price, cardInfo) => {
+      // totalprice.value += +price
+      // if (!checked) selected_modules_id.value = selected_modules_id.value.filter((id) => id !== cardInfo)
+      // else selected_modules_id.value = [...selected_modules_id.value, cardInfo]
+      handleTotalPrice(price);
+      selected_modules_id.value.push(cardInfo)
+      pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id)
+    }
+    const handleTotalPrice=(price)=>{
       totalprice.value += +price
-      if (!checked) selected_modules_id.value = selected_modules_id.value.filter((id) => id !== cardInfo)
-      else selected_modules_id.value = [...selected_modules_id.value, cardInfo]
     }
     const handleSubmit = (val) => {
       btnStatusCode.value = 200
@@ -94,7 +115,7 @@ export default {
           modalInfo.desc = 'ثبت نام انجام نشد لطفا بعدا امتحان کنید.'
           modalInfo.redirectPath = '/pricing'
         }
-          loading.submit = false
+        loading.submit = false
       })
     }
 
@@ -111,6 +132,7 @@ export default {
             modalInfo.desc = 'دریافت اطلاعات با خطا مواجه شد'
           }
           pricingData.value = item.data.data
+          console.log(pricingData.value)
         })
       } catch (error) {
         router.push('/')
@@ -131,7 +153,9 @@ export default {
       finalPrice,
       totalPrice,
       handleTotalPrice,
+      handleSelectCard,
       handleSubmit,
+      handleDeleteSelectedCard,
     }
   },
   components: {
@@ -145,10 +169,11 @@ export default {
     userForm,
     Loading,
     InfoModal,
+    SelectedCard,
   },
 }
 </script>
-<style scoped>
+<style>
 .modal {
   position: fixed;
   z-index: 9997575;
@@ -156,5 +181,19 @@ export default {
   left: 50%;
   width: 300px;
   margin-left: -150px;
+}
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.list-leave-active {
+  position: absolute;
 }
 </style>
