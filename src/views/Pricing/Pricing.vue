@@ -1,10 +1,10 @@
 <template lang="">
   <div>
     <NavBar :class="{ blur: loading.spinner }" />
-    <section class="flex justify-between items-start mx-[6rem] mt-10 mb-8 2xl:mx-[8%]">
+    <section class="flex flex-col lg:flex-row justify-between items-start mx-4 md:mx-[6rem] mt-10 mb-8 2xl:mx-[8%]">
       <!-- بخش اصلی سایت -->
-      <main class="lg:mb-0 lg:w-[67%] 2xl:w-[75%]" :class="{ blur: loading.spinner }">
-        <section class="bg-gray-100 mx-5 px-5 rounded-2xl shadow-lg">
+      <main class="lg:mb-0 w-full lg:w-[67%] 2xl:w-[75%]" :class="{ blur: loading.spinner }">
+        <section id="selectedContainer" class="bg-gray-100 md:mx-5 px-1 md:px-5 rounded-2xl shadow-lg">
           <div v-if="selected_modules_id.length > 0" class="py-5 mr-[0.390625rem]">
             <div class="text-xl font-extrabold">انتخاب شده ها</div>
           </div>
@@ -41,7 +41,7 @@
         </template>
       </pricing-container> -->
       </main>
-      <aside class="bg-gray-100 rounded-2xl overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
+      <aside class="bg-gray-100 rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
         <!-- <section class="bg-gray-200"> -->
         <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
         <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
@@ -96,7 +96,6 @@ export default {
       pricingData.value.items.push(inselectedCard)
       selected_modules_id.value = selected_modules_id.value.filter((item) => item.id !== inselectedCard.id)
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
-      window.screenTop(0)
     }
     const handleOpenForm = () => {
       alert('open formModal')
@@ -106,6 +105,7 @@ export default {
       handleTotalPrice(price)
       selected_modules_id.value.push(cardInfo)
       pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id)
+      router.push('#selectedContainer')
     }
     const handleTotalPrice = (price) => {
       totalprice.value += +price
