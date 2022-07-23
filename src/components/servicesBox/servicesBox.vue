@@ -1,15 +1,17 @@
 <template lang="">
   <div class="bg-gray-100 sm:p-5 px-2 py-5 rounded-xl mx-4 md:mx-0">
     <div class="flex justify-between sm:items-center mb-5 flex-row">
-      <h6 class="font-bold sm:self-center my-3 self-start sm:my-0 text-base">{{ title }}</h6>
+      <h6 class="font-bold sm:self-center my-3 self-start sm:my-0 text-sm">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
     </div>
     <div class="text-xs font-IranYekan-regular my-7 md:my-6">به ازای هر {{ desc }}،{{ toFarsiNumber(handleSprateNumber(percent)) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
     <div class="text-xs flex-col side-26 lg:flex-row flex justify-between font-medium">
-      <span
-        >برای هر {{ desc }}  : <span class="">{{ toFarsiNumber(handleSprateNumber(price.toFixed(0))) }} تومان</span></span
-      ><span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed(0))) }} تومان</span>
-      <span v-else class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">رایگان</span>
+      <span>برای هر {{ desc }} : </span>
+      <Transition name="fade">
+        <span v-if="price > 0" class="mr-auto">{{ toFarsiNumber(handleSprateNumber(price.toFixed(0))) }} تومان</span>
+        <span v-else class="text-sm mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">رایگان</span>
+      </Transition>
+      <!-- <span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed(0))) }} تومان</span> -->
     </div>
   </div>
 </template>
@@ -60,8 +62,8 @@ export default {
     watch(finalPrice, () => {
       emit('update:modelValue', { price: finalPrice.value, count: count.value })
     })
-    onMounted(()=>{
-      count.value=props.min
+    onMounted(() => {
+      count.value = props.min
     })
     return {
       count,
@@ -77,3 +79,22 @@ export default {
   },
 }
 </script>
+<style lang="css">
+/*
+  Enter and leave animations can use different
+  durations and timing functions.
+*/
+.fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+</style>
