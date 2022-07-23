@@ -1,52 +1,53 @@
 <template lang="">
   <div>
     <NavBar :class="{ blur: loading.spinner }" />
-    <section class="flex justify-between flex-wrap ">
+    <section class="flex justify-between items-start mx-[6rem] mt-10 mb-8  2xl:mx-[8%]">
       <!-- بخش اصلی سایت -->
-    <main class="mt-10 mx-auto sm:px-14 md:px-0 lg:px-20 md:mb-24" :class="{ blur: loading.spinner }">
-      <section class="bg-gray-100 mx-5 px-5 rounded-3xl shadow-lg">
-        <div class="py-4 mr-[0.390625rem]">
-          <div class="text-xl font-extrabold">انتخاب شده ها</div>
-        </div>
-        <TransitionGroup class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
-          <SelectedCard @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selected_modules_id" :key="item.id" />
-        </TransitionGroup>
-        <div>
-          <div class="py-4 mr-[0.390625rem]">
-          <div class="text-xl font-extrabold">تعرفه های حسابرو</div>
-        </div>
-        <div>
-          <TransitionGroup  class="pb-4" tag="div" name="list">
-            <PricingCard v-if="pricingData" @handle-total-price="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
+      <main class=" lg:mb-0 lg:w-[67%] 2xl:w-[75%]" :class="{ blur: loading.spinner }">
+        <section class="bg-gray-100 mx-5 px-5 rounded-2xl shadow-lg">
+          <div v-if="selected_modules_id.length>0" class="py-4 mr-[0.390625rem]">
+            <div class="text-xl font-extrabold">انتخاب شده ها</div>
+          </div>
+          <TransitionGroup v-if="selected_modules_id.length>0" class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
+            <SelectedCard @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selected_modules_id" :key="item.id" />
           </TransitionGroup>
-        </div>
-        <!-- <figure  class="w-52 h-48 mx-auto">
+          <div v-if="pricingData.items">
+            <div class="py-4 mr-[0.390625rem]">
+              <div class="text-xl font-extrabold">تعرفه های حسابرو</div>
+            </div>
+            <div>
+              <TransitionGroup class="pb-4" tag="div" name="list">
+                <PricingCard v-if="pricingData" @handle-total-price="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
+              </TransitionGroup>
+            </div>
+            <!-- <figure  class="w-52 h-48 mx-auto">
           <img class="w-full h-full" src="../../../public/img/emptyList.svg" alt="emptyList">
           <span class="font-extrabold text-3xl">هورااا</span>
           <p>تعرفه ها همه انتخاب شده اند برای نهایی کردن خرید ثبت سفارش کنید</p>
         </figure> -->
-        </div>
-      </section>
-      <pricing-container title="امکانات جانبی">
+          </div>
+        </section>
+        <!-- <pricing-container title="امکانات جانبی">
         <template lang="" v-slot:body>
-          <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
-          <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
+          
         </template>
         <template v-slot:footer lang="">
-          <total-price-container class="md:hidden" title="قیمت ماژول ها" :totalPrice="totalprice" />
-          <total-price-container class="md:hidden" title="قیمت کل" :totalPrice="totalPrice" />
+         
         </template>
-      </pricing-container>
-      <pricing-container title="ثبت سفارش">
+      </pricing-container> -->
+        <!-- <pricing-container title="ثبت سفارش">
         <template lang="" v-slot:body>
-          <Bill :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
           <user-form :totalprice="totalprice" :submitLoading="loading.submit" class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit" />
         </template>
-      </pricing-container>
-    </main>
-    <aside>
-      اینجا سایدبار هست
-    </aside>
+      </pricing-container> -->
+      </main>
+      <aside class="bg-gray-100 rounded-2xl overflow-hidden px-2 lg:w-[33%] 2xl:w-[25%]">
+        <!-- <section class="bg-gray-200"> -->
+          <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
+        <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
+          <Bill class="w-full" :discount="discount" :taxes="taxes" :finalPrice="totalPrice" />
+        <!-- </section> -->
+      </aside>
     </section>
     <Footer :class="{ blur: loading.spinner }" />
     <Loading v-if="loading.spinner" msg="لطفا منتظر بمانید" />
@@ -82,25 +83,25 @@ export default {
     const taxes = ref(5)
     const loading = reactive({ submit: false, spinner: true })
     const btnStatusCode = ref(0)
-    const selected_modules_id = ref([]);
+    const selected_modules_id = ref([])
     let customerInfo = reactive({})
     let PerBranch = ref({ price: 0, count: 0 })
     let PerUser = ref({ price: 0, count: 0 })
     const modalInfo = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed' })
     const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
     const handleDeleteSelectedCard = (inselectedCard) => {
-      handleTotalPrice(-(+inselectedCard.price))
+      handleTotalPrice(-+inselectedCard.price)
       pricingData.value.items.push(inselectedCard)
       selected_modules_id.value = selected_modules_id.value.filter((item) => item.id !== inselectedCard.id)
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
     }
     const totalPrice = computed(() => totalprice.value + PerBranch.value.price + PerUser.value.price)
     const handleSelectCard = (price, cardInfo) => {
-      handleTotalPrice(price);
+      handleTotalPrice(price)
       selected_modules_id.value.push(cardInfo)
       pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id)
     }
-    const handleTotalPrice=(price)=>{
+    const handleTotalPrice = (price) => {
       totalprice.value += +price
     }
     const handleSubmit = (val) => {
