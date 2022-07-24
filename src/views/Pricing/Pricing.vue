@@ -41,7 +41,7 @@
         </template>
       </pricing-container> -->
       </main>
-      <aside class="bg-gray-100 rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
+      <aside :class="{ blur: loading.spinner }" class="bg-gray-100 rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
         <!-- <section class="bg-gray-200"> -->
         <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
         <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
@@ -64,14 +64,14 @@ import { reactive, ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Loading from '@/components/Loading/Loading.vue'
 import NavBar from '@/layout/navBar/NavBar.layout.vue'
-import SelectedCard from '../../components/selectedCard/SelectedCard.vue'
+import SelectedCard from '@/components/selectedCard/SelectedCard.vue'
 import PricingContainer from '@/components/PricingContainer/PricingContainer.vue'
 import PricingCard from '@/components/PricingCard/PricingCard.vue'
 import TotalPriceContainer from '@/components/TotalPriceContainer/TotalPriceContainer.vue'
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
-import Button from '../../components/Button/Button.vue'
+import Button from '@/components/Button/Button.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import { tarefeha } from '@/api/tarefeha.api'
 import { users } from '@/api/users.api'

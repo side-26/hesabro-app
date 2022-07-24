@@ -4,16 +4,17 @@
     :class="{ 'border-cyan-500 bg-white lg:border-0  border-2': checked, 'h-auto ': !toggled, 'h-fit': toggled }"
     class="cursor-pointer bg-gray-200 p-3 md:p-5 flex-grow my-3 hover:-translate-y-1 hover:shadow-md hover:bg-white mx-4 md:mx-0 rounded-lg transition-all"
   >
-    <section :class="{ 'text-cyan-500 ': checked, 'mb-3': !toggled }" class="flex 0 transition-all flex-wrap justify-between">
+    <section  class="flex 0 transition-all flex-wrap items-center justify-between">
       <div class="flex justify-between flex-wrap items-center">
         <h4 class="font-bold text-sm md:text-base">{{ tarefehInfo.module_name }}</h4>
       </div>
-      <div class="items-center flex sm:mt-0 text-center sm:text-left" @click.stop="handleToggle()">
         <span class="font-bold">{{ toFarsiNumber(handleSprateNumber(tarefehInfo.price)) }} {{ currency }}</span>
-        <button type="button" :class="{ 'rotate-180': !toggled }" class="text-slate-900 hidden md:block transition-all mr-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      <div class="items-center flex sm:mt-0 text-center sm:text-left" @click.stop="handleToggle()">
+        <button type="button" class="text-cyan-500 hidden md:flex hover:bg-cyan-500 hover:text-white text-sm font-bold py-2 rounded-xl justify-between items-center px-3 transition-all mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
+          انتخاب ماژول
         </button>
       </div>
     </section>

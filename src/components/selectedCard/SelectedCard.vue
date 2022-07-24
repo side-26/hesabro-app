@@ -1,11 +1,11 @@
 <template>
-  <div class="my-[0.390625rem]  md:m-[0.390625rem]  mr-1 lg:w-[40%] xl:w-[30%] 2xl:w-[23%]">
-    <div @click="handleToggle()" class="p-4  bg-white  rounded-xl cursor-pointer shadow-md  text-cyan-500">
-     <h3  class="mb-4 font-extrabold">{{pricingInfo.module_name}}</h3>
+  <div class="my-[0.390625rem] md:m-[0.390625rem] mr-1 lg:w-[40%] xl:w-[30%] 2xl:w-[23%]">
+    <div @click="handleToggle()" class="p-4 bg-white rounded-xl cursor-pointer shadow-md text-cyan-500">
+      <h3 class="mb-4 font-extrabold">{{ pricingInfo.module_name }}</h3>
       <div class="flex justify-between items-center">
-        <div  class="font-bold text-sm">
-          {{ toFarsiNumber(handleSprateNumber(pricingInfo.price))}}
-           {{currency}}
+        <div class="font-bold text-sm">
+          {{ toFarsiNumber(handleSprateNumber(pricingInfo.price)) }}
+          {{ currency }}
         </div>
         <button @click.stop="handleDelete(pricingInfo)" class="text-gray-300 px-2 py-2 rounded-md flex-wrap text-xs transition-all hover:text-red-500 hover:bg-red-300 flex items-center font-semibold" type="button">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
@@ -14,16 +14,14 @@
           حذف
         </button>
       </div>
-
     </div>
   </div>
-  
 </template>
 <script>
-import {ref} from 'vue'
-import {toFarsiNumber} from '@/utilities/ConvertToPersian';
-import {handleSprateNumber} from '@/utilities/SeprateNumbers';
-import {currency} from '../../config/currency.config'
+import { ref } from 'vue'
+import { toFarsiNumber } from '@/utilities/ConvertToPersian'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers'
+import { currency } from '@/config/currency.config'
 export default {
   name: 'SelectedPricingCard',
   props: {
@@ -32,21 +30,21 @@ export default {
       type: Object,
     },
   },
-setup(props,{emit}) {
-  const toggle=ref(false)
-  const handleDelete=(id)=>{
-    emit('handleDeleteSelectedCard',id);
-  }
-  const handleToggle=()=>{
-    toggle.value=!toggle.value;
-  }
-  return{
-    handleDelete,
-    currency,
-    handleToggle,
-    toFarsiNumber,
-    handleSprateNumber
-  }
-}
+  setup(props, { emit }) {
+    const toggle = ref(false)
+    const handleDelete = (id) => {
+      emit('handleDeleteSelectedCard', id)
+    }
+    const handleToggle = () => {
+      toggle.value = !toggle.value
+    }
+    return {
+      handleDelete,
+      currency,
+      handleToggle,
+      toFarsiNumber,
+      handleSprateNumber,
+    }
+  },
 }
 </script>
