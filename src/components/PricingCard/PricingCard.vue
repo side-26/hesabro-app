@@ -50,7 +50,7 @@ export default {
       const openToggle = document.querySelectorAll('.toggleSection')
         openToggle.forEach(element=>{
           element.classList.add('h-0')
-        })
+        });
       toggled.value = !toggled.value
     }
     const convertToArray = (str) => {
