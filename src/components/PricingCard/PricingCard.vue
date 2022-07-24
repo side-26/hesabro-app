@@ -1,6 +1,6 @@
 <template lang="">
   <div
-    @click="handleCheck(tarefehInfo.price)"
+    @click="handleSelect(tarefehInfo.price)"
     :class="{ 'border-cyan-500 bg-white lg:border-0  border-2': checked, 'h-auto ': !toggled, 'h-fit': toggled }"
     class="cursor-pointer bg-gray-200 p-3 md:p-5 flex-grow my-3 hover:-translate-y-1 hover:shadow-md hover:bg-white mx-4 md:mx-0 rounded-lg transition-all"
   >
@@ -42,10 +42,9 @@ export default {
     const checked = ref(false)
     const toggled = ref(true)
     const itemArr = ref([])
-    const handleCheck = (price) => {
+    const handleSelect = (price) => {
       checked.value = !checked.value
-      if (checked.value) emit('handleTotalPrice', price, props.tarefehInfo)
-      else emit('handleTotalPrice', -price, props.tarefehInfo.id, false)
+      emit('handleTotalPrice', price, props.tarefehInfo)
     }
     const handleToggle = () => {
       toggled.value = !toggled.value
@@ -67,7 +66,7 @@ export default {
       checked,
       toggled,
       itemArr,
-      handleCheck,
+      handleSelect,
       convertToArray,
       toFarsiNumber,
       handleToggle,
