@@ -1,6 +1,6 @@
 <template lang="">
   <div
-    @click=" handleToggle()"
+    @click="handleToggle()"
     :class="{ 'border-cyan-500 bg-white lg:border-0  border-2': checked, 'h-auto ': !toggled, 'h-fit': toggled }"
     class="cursor-pointer bg-gray-200 p-3 md:px-5 md:py-4 flex-grow my-3 hover:-translate-y-1 hover:shadow-md hover:bg-white mx-4 md:mx-0 rounded-lg transition-all"
   >
@@ -10,7 +10,7 @@
       </div>
       <span class="font-bold">{{ toFarsiNumber(handleSprateNumber(tarefehInfo.price)) }} {{ currency }}</span>
       <div class="items-center flex sm:mt-0 text-center sm:text-left" @click.stop="handleSelect(tarefehInfo.price)">
-        <button type="button" class="text-cyan-500 hidden md:flex hover:bg-cyan-500 hover:text-white text-sm font-bold py-2 rounded-xl justify-between items-center px-3 transition-all mr-4">
+        <button type="button" class="text-cyan-500 hidden md:flex hover:bg-cyan-500 hover:text-white text-sm font-semibold py-2 rounded-lg justify-between items-center px-3 transition-all mr-4">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
@@ -48,9 +48,9 @@ export default {
     }
     const handleToggle = () => {
       const openToggle = document.querySelectorAll('.toggleSection')
-        openToggle.forEach(element=>{
-          element.classList.add('h-0')
-        });
+      openToggle.forEach((element) => {
+        element.classList.add('h-0')
+      })
       toggled.value = !toggled.value
     }
     const convertToArray = (str) => {
