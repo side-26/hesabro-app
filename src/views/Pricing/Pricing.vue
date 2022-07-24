@@ -17,7 +17,7 @@
             </div>
             <div>
               <TransitionGroup class="pb-4" tag="div" name="list">
-                <PricingCard v-if="pricingData" @handle-total-price="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
+                <PricingCard v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
               </TransitionGroup>
             </div>
             <!-- <figure  class="w-52 h-48 mx-auto">
