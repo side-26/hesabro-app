@@ -1,6 +1,6 @@
 <template lang="">
-    <div class="flex z-40 fixed w-full h-full left-0 top-0 items-center justify-center">
-      <div class="bg-white rounded-lg z-50 px-4 w-80 relative py-2">
+    <div class="flex z-[200] fixed bg-slate-800 bg-opacity-10 w-full h-full left-0 top-0 items-center justify-center">
+      <div class="bg-white rounded-lg z-[201] px-4 w-80 relative py-2">
         <h6 class="font-bold  text-sm py-3">{{ title }}</h6>
         <p class="text-xs font-IranYekan-regular text-gray-600 leading-6">{{ desc }}</p>
         <button
