@@ -1,15 +1,15 @@
 <template lang="">
   <div id="selectedContainer">
     <NavBar :class="{ blur: loading.spinner }" />
-    <section  class="flex flex-col lg:flex-row relative justify-between items-start mx-4 md:mx-[6rem] mt-10 mb-8 2xl:mx-[8%]">
+    <section class="flex flex-col lg:flex-row relative justify-between items-start mx-4 md:mx-[6rem] mt-10 mb-8 2xl:mx-[8%]">
       <!-- بخش اصلی سایت -->
       <main class="lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%]" :class="{ blur: loading.spinner }">
-        <section  class="bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl shadow-lg">
-          <div v-if="selected_modules_id.length > 0" class="py-5 mr-[0.390625rem]">
+        <section class="bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl shadow-lg">
+          <div v-if="selectedPricingData.length > 0" class="py-5 mr-[0.390625rem]">
             <div class="text-xl font-extrabold">انتخاب شده ها</div>
           </div>
-          <TransitionGroup v-if="selected_modules_id.length > 0" class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
-            <SelectedCard @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selected_modules_id" :key="item.id" />
+          <TransitionGroup v-if="selectedPricingData.length > 0" class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
+            <SelectedCard @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selectedPricingData" :key="item.id" />
           </TransitionGroup>
           <div v-if="pricingData.items">
             <div class="py-5 mr-[0.390625rem]">
@@ -36,18 +36,16 @@
         </template>
       </pricing-container> -->
         <!-- <pricing-container title="ثبت سفارش">
-        <template lang="" v-slot:body>
-          <user-form :totalprice="totalprice" :submitLoading="loading.submit" class="lg:w-2/3 md:w-4/5 w-full mt-3 md:mt-0 md:mr-auto px-3" @handleSubmit="handleSubmit" />
-        </template>
+        
       </pricing-container> -->
       </main>
-      <aside :class="{ blur: loading.spinner }" class="bg-gray-100 rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
+      <aside :class="{ blur: loading.spinner }" class="bg-gray-100 sticky top-20 rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
         <!-- <section class="bg-gray-200"> -->
         <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
         <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
         <Bill class="w-full" :pricePerBranch="PerBranch.price" :pricePerUsers="PerUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
         <!-- </section> -->
-        <Button @click="handleOpenForm()">ثبت سفارش</Button>
+        <Button :disabled="totalprice === 0 ||loading.submit " type="button" @click="handleOpenForm()">ثبت سفارش</Button>
       </aside>
     </section>
     <Footer :class="{ blur: loading.spinner }" />
@@ -55,7 +53,14 @@
   </div>
   <Teleport to="#modalTel">
     <transition>
-      <InfoModal v-model="modalInfo.show" :path="modalInfo.redirectPath" v-if="modalInfo.show" :title="modalInfo.title" :type="modalInfo.type" :desc="modalInfo.desc" btnText="تایید" />
+      <info-modal v-model="modalInfo.show" :path="modalInfo.redirectPath" v-if="modalInfo.show" :title="modalInfo.title" :type="modalInfo.type" :desc="modalInfo.desc" btnText="تایید" />
+    </transition>
+  </Teleport>
+  <Teleport to="#modalTel">
+    <transition name="modal">
+      <form-modal v-model="formModal.show" v-if="formModal.show" :title="formModal.title">
+        <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
+      </form-modal>
     </transition>
   </Teleport>
 </template>
@@ -71,15 +76,17 @@ import TotalPriceContainer from '@/components/TotalPriceContainer/TotalPriceCont
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
-import Button from '@/components/Button/Button.vue'
+import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
+import FormModal from '@/components/Modal/formModal/FormModal.vue'
+import Button from '@/components/button/Button.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import { tarefeha } from '@/api/tarefeha.api'
 import { users } from '@/api/users.api'
-import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
 export default {
   setup() {
     const router = useRouter()
     const pricingData = ref([])
+    const selectedPricingData = ref([])
     const totalprice = ref(0)
     const discount = ref(0)
     const taxes = ref(5)
@@ -90,23 +97,26 @@ export default {
     let PerBranch = ref({ price: 0, count: 0 })
     let PerUser = ref({ price: 0, count: 0 })
     const modalInfo = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed' })
+    const formModal = reactive({ show: false, title: 'ثبت سفارش' })
     const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
     const handleDeleteSelectedCard = (inselectedCard) => {
       handleTotalPrice(-+inselectedCard.price)
       pricingData.value.items.push(inselectedCard)
-      selected_modules_id.value = selected_modules_id.value.filter((item) => item.id !== inselectedCard.id)
+      selectedPricingData.value = selectedPricingData.value.filter((item) => item.id !== inselectedCard.id)
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
     }
     const handleOpenForm = () => {
-      alert('open formModal')
+      formModal.show = !formModal.show
     }
     const totalPrice = computed(() => totalprice.value + PerBranch.value.price + PerUser.value.price)
     const handleSelectCard = (price, cardInfo) => {
       handleTotalPrice(price)
-      selected_modules_id.value.push(cardInfo)
-      pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id)
+      selectedPricingData.value.push(cardInfo)
+      pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id);
+      selected_modules_id.value.push(cardInfo.id)
       router.push('#selectedContainer')
     }
+    
     const handleTotalPrice = (price) => {
       totalprice.value += +price
     }
@@ -116,6 +126,7 @@ export default {
       const selectedModulesIdArray = JSON.stringify(selected_modules_id.value)
       loading.submit = true
       customerInfo = { ...val, selected_modules_id: selectedModulesIdArray, users_count: PerUser.value.count, branches_count: PerBranch.value.count }
+      console.log(customerInfo)
       users.post(customerInfo).then((item) => {
         modalInfo.show = true
         btnStatusCode.value = 0
@@ -130,6 +141,7 @@ export default {
         }
         loading.submit = false
       })
+      formModal.show = false
     }
 
     onMounted(() => {
@@ -153,6 +165,7 @@ export default {
     })
     return {
       pricingData,
+      selectedPricingData,
       totalprice,
       discount,
       taxes,
@@ -170,6 +183,7 @@ export default {
       handleSubmit,
       handleDeleteSelectedCard,
       handleOpenForm,
+      formModal,
     }
   },
   components: {
@@ -184,6 +198,7 @@ export default {
     Loading,
     InfoModal,
     SelectedCard,
+    FormModal,
     Button,
   },
 }
@@ -210,5 +225,18 @@ export default {
 }
 .list-leave-active {
   position: absolute;
+}
+.modal-enter-from {
+  opacity: 0;
+}
+
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .modal-container,
+.modal-leave-to .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 </style>
