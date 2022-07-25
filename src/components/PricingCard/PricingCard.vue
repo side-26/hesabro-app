@@ -44,14 +44,19 @@ export default {
     const itemArr = ref([])
     const handleSelect = (price) => {
       checked.value = !checked.value
-      if (checked.value) emit('handleSelectCard', price, props.tarefehInfo)
+      emit('handleSelectCard', price, props.tarefehInfo)
     }
     const handleToggle = () => {
-      const openToggle = document.querySelectorAll('.toggleSection')
-      openToggle.forEach((element) => {
-        element.classList.add('h-0')
+      const openToggles = document.querySelectorAll('.toggleSection')
+      openToggles.forEach((element) => {
+        if (!element.classList.contains('h-0')) {
+          element.classList.add('h-0')
+          element.parentElement.classList.add('h-auto')
+          element.parentElement.classList.remove('h-fit')
+        }
       })
       toggled.value = !toggled.value
+      // console.log(evt.target.classList.contains('h-fit'))
     }
     const convertToArray = (str) => {
       let arr = []
