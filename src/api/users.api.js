@@ -10,7 +10,7 @@ export const users = {
         //         'Access-Control-Allow-Headers':'Origin,Content-Type,X-Requested-With,Accept,Authorization'
         //     }
         //   };
-        return await api.post(urls.tarefeha, data)
+        return await api.post(urls.pricing, data)
             .then(res => {
                 return res
             }).catch(err => {
