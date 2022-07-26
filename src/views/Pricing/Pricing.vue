@@ -78,7 +78,7 @@ import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
 import FormModal from '@/components/Modal/formModal/FormModal.vue'
 import Button from '@/components/button/Button.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
-import { tarefeha } from '@/api/tarefeha.api'
+import { pricing } from '@/api/pricing.api'
 import { users } from '@/api/users.api'
 export default {
   setup() {
@@ -143,7 +143,7 @@ export default {
 
     onMounted(() => {
       try {
-        tarefeha.get().then((item) => {
+        pricing.get().then((item) => {
           loading.spinner = false
           if (!item) {
             modalInfo.type = 'failed'

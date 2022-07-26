@@ -62,10 +62,10 @@
           </div>
         </div>
         <div class="flex lg:hidden overflow-x-auto min-h-min container mx-auto py-2">
-          <ModuleCard v-for="Module in TarefehaModules" class="lg:hidden min-h-[18rem] md:min-h-[12rem]  max-w-[70vw] block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
+          <ModuleCard v-for="Module in pricingModules" class="lg:hidden min-h-[18rem] md:min-h-[12rem]  max-w-[70vw] block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
         </div>
         <div class="lg:flex flex-wrap justify-center hidden my-4 px-12 2xl:container wxl:px-0 2xl:mx-auto">
-          <ModuleCard class="hidden lg:block" v-for="Module in TarefehaModules" :title="Module.title" :desc="Module.desc" :src="Module.src" />
+          <ModuleCard class="hidden lg:block" v-for="Module in pricingModules" :title="Module.title" :desc="Module.desc" :src="Module.src" />
         </div>
         <HesabroWaterMark/>
       </section>
@@ -111,7 +111,7 @@ export default {
   data() {
     return {
       advantagesData: advantages,
-      TarefehaModules: modules,
+      pricingModules: modules,
       customers: customers,
       achivements,
     }

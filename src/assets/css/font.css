@@ -2,33 +2,53 @@
     font-family: "IranYecan";
     font-display: block;
     font-weight: 100;
-    src: url(../fonts/Rounded_Dots/IRANYekanThinRd.ttf);
-}
-
-@font-face {
-    font-family: "IranYecan";
-    font-display: block;
-    font-weight: 500;
-    src: url(../fonts/Rounded_Dots/IRANYekanMediumRd.ttf);
+    src: url(../fonts/eot/iranyekanweblight.eot);
+    src: url(../fonts/ttf/iranyekanweblight.ttf);
+    src: url(../fonts/woff/iranyekanweblight.woff);
 }
 
 @font-face {
     font-family: "IranYecan";
     font-display: block;
     font-weight: 400;
-    src: url(../fonts/Rounded_Dots/IRANYekanRegularRd.ttf);
+    src: url(../fonts/eot/iranyekanwebregular.eot);
+    src: url(../fonts/ttf/iranyekanwebregular.ttf);
+    src: url(../fonts/woff/iranyekanwebregular.woff);
 }
 
 @font-face {
     font-family: "IranYecan";
     font-display: block;
+    font-weight: 500;
+    src: url(../fonts/eot/iranyekanwebmedium.eot);
+    src: url(../fonts/ttf/iranyekanwebmedium.ttf);
+    src: url(../fonts/woff/iranyekanwebmedium.woff);
+}
+
+
+@font-face {
+    font-family: "IranYecan";
+    font-display: block;
     font-weight: 700;
-    src: url(../fonts/Rounded_Dots/IRANYekanBoldRd.ttf);
+    src: url(../fonts/eot/iranyekanwebbold.eot);
+    src: url(../fonts/ttf/iranyekanwebbold.ttf);
+    src: url(../fonts/woff/iranyekanwebbold.woff);
 }
 
 @font-face {
     font-family: "IranYecan";
     font-display: block;
     font-weight: 800;
-    src: url(../fonts/Rounded_Dots/IRANYekanExtraBoldRd.ttf);
+    src: url(../fonts/eot/iranyekanwebextrabold.eot);
+    src: url(../fonts/ttf/iranyekanwebextrabold.ttf);
+    src: url(../fonts/woff/iranyekanwebextrabold.woff);
+}
+
+@font-face {
+    font-family: "IranYecan";
+    font-display: block;
+    font-weight: 900;
+    src: url(../fonts/eot/iranyekanwebextrablack.eot);
+    src: url(../fonts/ttf/iranyekanwebextrablack.ttf);
+    src: url(../fonts/woff/iranyekanwebextrablack.woff);
 }
