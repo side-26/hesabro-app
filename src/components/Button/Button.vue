@@ -18,9 +18,6 @@ export default {
       required:true
     }
   },
-  setup(props) {
-    
-  }
 }
 </script>
 <style lang="css"></style>
