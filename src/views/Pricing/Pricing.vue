@@ -45,7 +45,7 @@
         <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
         <Bill class="w-full" :pricePerBranch="PerBranch.price" :pricePerUsers="PerUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
         <!-- </section> -->
-        <Button :disabled="totalprice === 0 ||loading.submit " type="button" @click="handleOpenForm()">ثبت سفارش</Button>
+        <Button :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">ثبت سفارش</Button>
       </aside>
     </section>
     <Footer :class="{ blur: loading.spinner }" />
@@ -70,9 +70,7 @@ import { useRouter } from 'vue-router'
 import Loading from '@/components/Loading/Loading.vue'
 import NavBar from '@/layout/navBar/NavBar.layout.vue'
 import SelectedCard from '@/components/selectedCard/SelectedCard.vue'
-import PricingContainer from '@/components/PricingContainer/PricingContainer.vue'
 import PricingCard from '@/components/PricingCard/PricingCard.vue'
-import TotalPriceContainer from '@/components/TotalPriceContainer/TotalPriceContainer.vue'
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
@@ -92,10 +90,10 @@ export default {
     const taxes = ref(5)
     const loading = reactive({ submit: false, spinner: true })
     const btnStatusCode = ref(0)
-    const selected_modules_id = ref([])
-    let customerInfo = reactive({})
-    let PerBranch = ref({ price: 0, count: 0 })
-    let PerUser = ref({ price: 0, count: 0 })
+    const selectedModulesId = ref([])
+    const customerInfo = ref({})
+    const PerBranch = ref({ price: 0, count: 0 })
+    const PerUser = ref({ price: 0, count: 0 })
     const modalInfo = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed' })
     const formModal = reactive({ show: false, title: 'ثبت سفارش' })
     const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
@@ -112,22 +110,21 @@ export default {
     const handleSelectCard = (price, cardInfo) => {
       handleTotalPrice(price)
       selectedPricingData.value.push(cardInfo)
-      pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id);
-      selected_modules_id.value.push(cardInfo.id)
+      pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id)
+      selectedModulesId.value.push(cardInfo.id)
       router.push('#selectedContainer')
     }
-    
+
     const handleTotalPrice = (price) => {
       totalprice.value += +price
     }
     const handleSubmit = (val) => {
       btnStatusCode.value = 200
       modalInfo.title = 'ثبت سفارش'
-      const selectedModulesIdArray = JSON.stringify(selected_modules_id.value)
+      const selectedModulesIdArray = JSON.stringify(selectedModulesId.value)
       loading.submit = true
-      customerInfo = { ...val, selected_modules_id: selectedModulesIdArray, users_count: PerUser.value.count, branches_count: PerBranch.value.count }
-      console.log(customerInfo)
-      users.post(customerInfo).then((item) => {
+      customerInfo.value = { ...val, selected_modules_id: selectedModulesIdArray, users_count: PerUser.value.count, branches_count: PerBranch.value.count }
+      users.post(customerInfo.value).then((item) => {
         modalInfo.show = true
         btnStatusCode.value = 0
         if (item) {
@@ -171,7 +168,7 @@ export default {
       taxes,
       btnStatusCode,
       loading,
-      selected_modules_id,
+      selectedModulesId,
       customerInfo,
       PerBranch,
       PerUser,
@@ -189,9 +186,7 @@ export default {
   components: {
     NavBar,
     Footer,
-    PricingContainer,
     PricingCard,
-    TotalPriceContainer,
     servicesBox,
     Bill,
     userForm,
