@@ -95,7 +95,7 @@ export default {
     const PerBranch = ref({ price: 0, count: 0 })
     const PerUser = ref({ price: 0, count: 0 })
     const modalInfo = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed' })
-    const formModal = reactive({ show: false, title: 'ثبت سفارش' })
+    const formModal = ref({ show: false, title: 'ثبت سفارش' })
     const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
     const handleDeleteSelectedCard = (inselectedCard) => {
       handleTotalPrice(-inselectedCard.price)
@@ -104,7 +104,7 @@ export default {
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
     }
     const handleOpenForm = () => {
-      formModal.show = !formModal.show
+      formModal.value.show = !formModal.value.show
     }
     const totalPrice = computed(() => totalprice.value + PerBranch.value.price + PerUser.value.price)
     const handleSelectCard = (price, cardInfo) => {
@@ -119,6 +119,7 @@ export default {
       totalprice.value += +price
     }
     const handleSubmit = (val) => {
+      
       btnStatusCode.value = 200
       modalInfo.title = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selectedModulesId.value)
@@ -138,7 +139,7 @@ export default {
         }
         loading.submit = false
       })
-      formModal.show = false
+      formModal.value.show = false
     }
 
     onMounted(() => {
