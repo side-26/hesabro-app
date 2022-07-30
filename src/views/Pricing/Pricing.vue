@@ -76,7 +76,7 @@ import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
 import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
 import FormModal from '@/components/Modal/formModal/FormModal.vue'
-import Button from '@/components/button/Button.vue'
+import Button from '@/components/Button/Button.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import { pricing } from '@/api/pricing.api'
 import { users } from '@/api/users.api'
@@ -98,7 +98,7 @@ export default {
     const formModal = reactive({ show: false, title: 'ثبت سفارش' })
     const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
     const handleDeleteSelectedCard = (inselectedCard) => {
-      handleTotalPrice(-+inselectedCard.price)
+      handleTotalPrice(-inselectedCard.price)
       pricingData.value.items.push(inselectedCard)
       selectedPricingData.value = selectedPricingData.value.filter((item) => item.id !== inselectedCard.id)
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)

@@ -15,7 +15,7 @@ import { Form } from 'vee-validate';
 import  '@/config/yup.confing'
 import { string, object } from 'yup';
 import Input from './Input/Input.vue';
-import Button from '../button/Button.vue'
+import Button from '../Button/Button.vue'
 export default {
   components: {
     Form,
