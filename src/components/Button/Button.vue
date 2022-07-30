@@ -10,13 +10,11 @@ export default {
     type:{
       type:String,
       default:"button",
-      required:true
     },
     disabled:{
       type:Boolean,
-      default:false,
       required:true
-    }
+    } 
   },
 }
 </script>
