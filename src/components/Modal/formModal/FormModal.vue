@@ -1,6 +1,6 @@
 <template lang="">
   <div @click="handelCloseModal()" class="flex z-[200] bg-slate-800 bg-opacity-40 fixed w-full h-full left-0 top-0 items-center justify-center">
-    <div @click="stopPropagation($event)" class="px-5 py-7 bg-white rounded-xl z-[201] w-full md:w-1/2 lg:w-1/4 2xl:w-1/5 mx-5 sm:mx-8 md:mx-32 lg:mx-0">
+    <div @click.stop="" class="px-5 py-7 bg-white rounded-xl z-[201] w-full md:w-1/2 lg:w-1/4 2xl:w-1/5 mx-5 sm:mx-8 md:mx-32 lg:mx-0">
       <div class="font-extrabold flex justify-between items-center">
         <div>
           {{ title }}
@@ -21,7 +21,6 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
       default: 'ثبت سفارش',
     },
   },
@@ -29,12 +28,8 @@ export default {
     const handelCloseModal = () => {
       emit('update:modelValue', false)
     }
-    const stopPropagation = (evt) => {
-      evt.stopPropagation()
-    }
     return {
       handelCloseModal,
-      stopPropagation,
     }
   },
 }
