@@ -17,7 +17,9 @@
             </div>
             <div>
               <TransitionGroup class="pb-4" tag="div" name="list">
-                <pricing-card @handleCloseALlCards="handleCloseALlCards()" :toggled="toggled" v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
+                <div v-for="(item, index) in pricingData.items" :key="item.id" @click="openToggle(index)">
+                <pricing-card  :isOpen="selectedItem !== index||selectedItem===-1" v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item"/>
+                </div>
               </TransitionGroup>
             </div>
             <!-- <figure  class="w-52 h-48 mx-auto">
@@ -46,7 +48,7 @@
         <Bill class="w-full" :pricePerBranch="perBranch.price" :pricePerUsers="perUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
         <!-- </section> -->
         <transition-group>
-          <Button :disabled="totalprice === 0 || loading.submit" v-if="buttonTxt !== 'ثبت سفارش'" type="button" @click="handleGuideCustomer()">{{ buttonTxt }}</Button>
+          <Button :disabled="totalprice === 0 || loading.submit" v-if="buttonTxt !== 'ثبت سفارش'" type="button" @click="handleShowSelectedList()">{{ buttonTxt }}</Button>
           <Button v-else :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">{{ buttonTxt }}</Button>
         </transition-group>
       </aside>
@@ -87,6 +89,7 @@ export default {
   setup() {
     const router = useRouter()
     const buttonTxt = ref('مشاهده لیست انتخاب شده ها')
+    const scrollPosition = ref(window.scrollY.toFixed())
     const pricingData = ref([])
     const selectedPricingData = ref([])
     const totalprice = ref(0)
@@ -107,17 +110,25 @@ export default {
       pricingData.value.items.push(inselectedCard)
       selectedPricingData.value = selectedPricingData.value.filter((item) => item.id !== inselectedCard.id)
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
+      buttonTxt.value = 'مشاهده لیست انتخاب شده ها'
     }
-    const handleGuideCustomer = () => {
+    const selectedItem = ref(-1)
+
+    const openToggle = (index) => {
+      if (index === selectedItem.value) {
+        selectedItem.value = -2;
+      } else {
+        selectedItem.value = index;
+      }
+    }
+
+    const handleShowSelectedList = () => {
+      console.log(scrollPosition.value)
       router.push('#selectedContainer')
       buttonTxt.value = 'ثبت سفارش'
     }
     const handleOpenForm = () => {
       formModal.value.show = !formModal.value.show
-      buttonTxt.value = 'مشاهده لیست انتخاب ها'
-    }
-    const handleCloseALlCards = () => {
-      toggled.value = false
     }
     const totalPrice = computed(() => totalprice.value + perBranch.value.price + perUser.value.price)
     const handleSelectCard = (price, cardInfo) => {
@@ -126,12 +137,13 @@ export default {
       pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id)
       selectedModulesId.value.push(cardInfo.id)
       router.push('#selectedContainer')
-      if (buttonTxt.value !== 'مشاهده لیست انتخاب ها') buttonTxt.value !== 'مشاهده لیست انتخاب ها'
+      buttonTxt.value = 'مشاهده لیست انتخاب ها'
     }
 
     const handleTotalPrice = (price) => {
       totalprice.value += +price
     }
+
     const handleSubmit = (val) => {
       btnStatusCode.value = 200
       modalInfo.title = 'ثبت سفارش'
@@ -170,6 +182,7 @@ export default {
           pricingData.value = item.data.data
           console.log(pricingData.value)
         })
+        console.log(scrollPosition.value)
       } catch (error) {
         router.push('/')
       }
@@ -178,6 +191,7 @@ export default {
       pricingData,
       buttonTxt,
       selectedPricingData,
+      scrollPosition,
       totalprice,
       discount,
       toggled,
@@ -194,11 +208,12 @@ export default {
       handleTotalPrice,
       handleSelectCard,
       handleSubmit,
-      handleGuideCustomer,
+      handleShowSelectedList,
       handleDeleteSelectedCard,
-      handleCloseALlCards,
       handleOpenForm,
       formModal,
+      selectedItem,
+      openToggle
     }
   },
   components: {
