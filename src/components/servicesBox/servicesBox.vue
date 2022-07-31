@@ -4,22 +4,21 @@
       <h6 class="font-extrabold sm:self-center my-3 self-start sm:my-0 text-sm">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
     </div>
-    <div class="text-xs font-regular my-7 md:my-6">به ازای هر {{ desc }}،{{ toFarsiNumber(handleSprateNumber(percent)) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
+    <div class="text-xs font-regular my-7 md:my-6">به ازای هر {{ desc }}،{{ toSepratedFarsiNo(percent) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
     <div class="text-xs side-26 flex-row flex justify-between font-medium">
       <span>برای هر {{ desc }} : </span>
       <Transition name="fade">
-        <span v-if="price > 0" class="mr-auto text-sm font-bold">{{ toFarsiNumber(handleSprateNumber(price.toFixed(0))) }} {{ currency }}</span>
+        <span v-if="price > 0" class="mr-auto text-sm font-bold">{{ toSepratedFarsiNo(price.toFixed(0)) }} {{ currency }}</span>
         <span v-else class="text-sm font-bold self-end lg:self-stretch">رایگان</span>
       </Transition>
-      <!-- <span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toFarsiNumber(handleSprateNumber(finalPrice.toFixed(0))) }} تومان</span> -->
+      <!-- <span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toSepratedFarsiNofinalPrice.toFixed(0)) }} تومان</span> -->
     </div>
   </div>
 </template>
 <script>
 import { ref, computed, watch, onMounted } from 'vue'
 import Counter from '@/components/Counter/Counter.vue'
-import { toFarsiNumber } from '@/utilities/ConvertToPersian'
-import { handleSprateNumber } from '@/utilities/SeprateNumbers'
+import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber'
 import { currency } from '@/config/currency.config'
 export default {
   props: {
@@ -71,8 +70,7 @@ export default {
       price,
       finalPrice,
       handleCounter,
-      handleSprateNumber,
-      toFarsiNumber,
+      toSepratedFarsiNo,
       currency,
     }
   },

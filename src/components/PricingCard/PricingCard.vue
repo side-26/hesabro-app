@@ -4,9 +4,9 @@
       <div class="flex justify-between sm:w-40 flex-wrap items-center">
         <h4 class="font-bold text-sm md:text-base">{{ tarefehInfo.module_name }}</h4>
       </div>
-      <div class="font-bold">{{ toFarsiNumber(handleSprateNumber(tarefehInfo.price)) }} {{ currency }}</div>
-      <div class="items-center flex sm:mt-0 mt-3  text-center sm:text-left w-full  sm:w-auto" @click.stop="handleSelect(tarefehInfo.price)">
-        <button type="button" class="text-cyan-500 flex flex-1  justify-center  hover:bg-cyan-500 hover:text-white text-sm font-semibold py-2 rounded-lg sm:justify-between items-center px-3 transition-all sm:mr-4">
+      <div class="font-bold">{{ toSepratedFarsiNo(tarefehInfo.price) }} {{ currency }}</div>
+      <div class="items-center flex sm:mt-0 mt-3 text-center sm:text-left w-full sm:w-auto" @click.stop="handleSelect(tarefehInfo.price)">
+        <button type="button" class="text-cyan-500 flex flex-1 justify-center hover:bg-cyan-500 hover:text-white text-sm font-semibold py-2 rounded-lg sm:justify-between items-center px-3 transition-all sm:mr-4">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
@@ -23,9 +23,9 @@
 </template>
 <script>
 import { ref, onMounted } from 'vue'
-import { toFarsiNumber } from '@/utilities/ConvertToPersian'
-import { handleSprateNumber } from '@/utilities/SeprateNumbers'
 import { currency } from '@/config/currency.config'
+import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber';
+import {toFarsiNumber} from '../../utilities/ConvertToPersian'
 export default {
   name: 'PricingCard',
   props: {
@@ -70,10 +70,10 @@ export default {
       // toggled,
       itemArr,
       handleSelect,
-      convertToArray,
+      toSepratedFarsiNo,
       toFarsiNumber,
+      convertToArray,
       handleToggle,
-      handleSprateNumber,
       currency,
     }
   },
