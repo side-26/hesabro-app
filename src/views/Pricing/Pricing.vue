@@ -1,7 +1,7 @@
 <template lang="">
   <div id="selectedContainer">
     <NavBar :class="{ blur: loading.spinner }" />
-    <section class="flex flex-col lg:flex-row relative justify-between items-start mx-4 md:mx-[6rem] mt-10 mb-8 2xl:mx-[8%]">
+    <section class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] mt-10 mb-8 2xl:mx-[8%]">
       <!-- بخش اصلی سایت -->
       <main class="lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%]" :class="{ blur: loading.spinner }">
         <section class="bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl shadow-lg">
@@ -9,7 +9,7 @@
             <div class="text-xl font-extrabold">انتخاب شده ها</div>
           </div>
           <TransitionGroup v-if="selectedPricingData.length > 0" class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
-            <SelectedCard @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selectedPricingData" :key="item.id" />
+            <selected-card @handleDeleteSelectedCard="handleDeleteSelectedCard"  :pricingInfo="item" v-for="item in selectedPricingData" :key="item.id" />
           </TransitionGroup>
           <div v-if="pricingData.items">
             <div class="py-5 mr-[0.390625rem]">
@@ -17,7 +17,7 @@
             </div>
             <div>
               <TransitionGroup class="pb-4" tag="div" name="list">
-                <PricingCard v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
+                <pricing-card @handleCloseALlCards="handleCloseALlCards()" :toggled="toggled" v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item" v-for="item in pricingData.items" :key="item.id" />
               </TransitionGroup>
             </div>
             <!-- <figure  class="w-52 h-48 mx-auto">
@@ -39,11 +39,11 @@
         
       </pricing-container> -->
       </main>
-      <aside :class="{ blur: loading.spinner }" class="bg-gray-100 sticky top-20 rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
+      <aside :class="{ blur: loading.spinner }" class="bg-gray-100 sticky top-20 md:w-4/5 mx-auto rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
         <!-- <section class="bg-gray-200"> -->
-        <services-box v-if="pricingData.const_prices" v-model="PerBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
-        <services-box v-if="pricingData.const_prices" v-model="PerUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
-        <Bill class="w-full" :pricePerBranch="PerBranch.price" :pricePerUsers="PerUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
+        <services-box v-if="pricingData.const_prices" v-model="perBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
+        <services-box v-if="pricingData.const_prices" v-model="perUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
+        <Bill class="w-full" :pricePerBranch="perBranch.price" :pricePerUsers="perUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
         <!-- </section> -->
         <Button :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">ثبت سفارش</Button>
       </aside>
@@ -87,13 +87,14 @@ export default {
     const selectedPricingData = ref([])
     const totalprice = ref(0)
     const discount = ref(0)
-    const taxes = ref(5)
+    const taxes = ref(5);
+    const toggled=ref(true)
     const loading = reactive({ submit: false, spinner: true })
     const btnStatusCode = ref(0)
     const selectedModulesId = ref([])
     const customerInfo = ref({})
-    const PerBranch = ref({ price: 0, count: 0 })
-    const PerUser = ref({ price: 0, count: 0 })
+    const perBranch = ref({ price: 0, count: 0 })
+    const perUser = ref({ price: 0, count: 0 })
     const modalInfo = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed' })
     const formModal = ref({ show: false, title: 'ثبت سفارش' })
     const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
@@ -106,7 +107,10 @@ export default {
     const handleOpenForm = () => {
       formModal.value.show = !formModal.value.show
     }
-    const totalPrice = computed(() => totalprice.value + PerBranch.value.price + PerUser.value.price)
+    const handleCloseALlCards=()=>{
+      toggled.value=false
+    }
+    const totalPrice = computed(() => totalprice.value + perBranch.value.price + perUser.value.price)
     const handleSelectCard = (price, cardInfo) => {
       handleTotalPrice(price)
       selectedPricingData.value.push(cardInfo)
@@ -124,7 +128,7 @@ export default {
       modalInfo.title = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selectedModulesId.value)
       loading.submit = true
-      customerInfo.value = { ...val, selected_modules_id: selectedModulesIdArray, users_count: PerUser.value.count, branches_count: PerBranch.value.count }
+      customerInfo.value = { ...val, selected_modules_id: selectedModulesIdArray, users_count: perUser.value.count, branches_count: perBranch.value.count }
       users.post(customerInfo.value).then((item) => {
         modalInfo.show = true
         btnStatusCode.value = 0
@@ -166,13 +170,14 @@ export default {
       selectedPricingData,
       totalprice,
       discount,
+      toggled,
       taxes,
       btnStatusCode,
       loading,
       selectedModulesId,
       customerInfo,
-      PerBranch,
-      PerUser,
+      perBranch,
+      perUser,
       modalInfo,
       finalPrice,
       totalPrice,
@@ -180,6 +185,7 @@ export default {
       handleSelectCard,
       handleSubmit,
       handleDeleteSelectedCard,
+      handleCloseALlCards,
       handleOpenForm,
       formModal,
     }

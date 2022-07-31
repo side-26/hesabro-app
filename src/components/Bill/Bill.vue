@@ -1,5 +1,5 @@
 <template lang="">
-  <section class="relative font-medium md:bg-transparent my-6 bg-gray-100 py-4 text-gray-800 text-sm rounded-lg md:w-4/5 mx-2 md:mx-0 lg:w-full after:bg-gray-400 after:absolute after:w-full after:bottom-[25%] after:left-0 after:rounded-md after:h-[2px]">
+  <section class="relative font-medium md:bg-transparent my-6 bg-gray-100 py-4 text-gray-800 text-sm rounded-lg mx-2 md:mx-0 md:w-full after:bg-gray-400 after:absolute after:w-full after:bottom-[25%] after:left-0 after:rounded-md after:h-[2px]">
     <div class="my-5 flex justify-between">
       <span>قیمت ماژول‌ها : </span><span class="font-extrabold">{{ toFarsiNumber(handleSprateNumber(totalPrice.toFixed())) }} {{ currency }}</span>
     </div>
