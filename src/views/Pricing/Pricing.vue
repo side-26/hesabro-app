@@ -6,7 +6,7 @@
       <main class="lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%]" :class="{ blur: loading.spinner }">
         <section class="bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl shadow-lg">
           <div v-if="selectedPricingData.length > 0" class="py-5 mr-[0.390625rem]">
-            <div class="text-xl font-extrabold">انتخاب٬ها ها</div>
+            <div class="text-xl font-extrabold">انتخاب شده ها</div>
           </div>
           <TransitionGroup v-if="selectedPricingData.length > 0" class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
             <selected-card @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selectedPricingData" :key="item.id" />

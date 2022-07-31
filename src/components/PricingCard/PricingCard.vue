@@ -25,7 +25,7 @@
 import { ref, onMounted } from 'vue'
 import { currency } from '@/config/currency.config'
 import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber';
-import {toFarsiNumber} from '@/utilities/ConvertToPersian'
+import {toFarsiNumber} from '../../utilities/ConvertToPersian';
 export default {
   name: 'PricingCard',
   props: {
@@ -50,7 +50,6 @@ export default {
       console.log(props.toggled)
       checked.value = !checked.value
       emit('handleCloseALlCards')
-      console.log(checked.value)
     }
     const convertToArray = (str) => {
       let arr = []
