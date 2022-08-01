@@ -9,7 +9,7 @@
             <div class="text-xl font-extrabold">انتخاب شده ها</div>
           </div>
           <TransitionGroup v-if="selectedPricingData.length > 0" class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
-            <selected-card @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selectedPricingData" :key="item.id" />
+            <selected-card  v-for="item in selectedPricingData" :key="item.id" @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" />
           </TransitionGroup>
           <div v-if="pricingData.items" >
             <div class="py-5 mr-[0.390625rem]">

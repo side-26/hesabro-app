@@ -1,21 +1,22 @@
 <template lang="">
-  <section class="relative font-medium md:bg-transparent my-6 bg-gray-100 py-4 text-gray-800 text-sm rounded-lg mx-2 md:mx-0 md:w-full after:bg-gray-400 after:absolute after:w-full after:bottom-[25%] after:left-0 after:rounded-md after:h-[2px]">
-    <div class="my-5 flex justify-between">
+  <section class="relative font-medium md:bg-transparent my-4 bg-gray-100 text-gray-800 text-sm rounded-lg">
+    <div class="my-4 flex justify-between">
       <span>قیمت ماژول‌ها : </span><span class="font-extrabold">{{ toSepratedFarsiNo(totalPrice.toFixed()) }} {{ currency }}</span>
     </div>
-    <div class="my-5 flex justify-between">
+    <div class="my-4 flex justify-between">
       <span>شعب اضافه : </span><span class="font-extrabold">{{ toSepratedFarsiNo(pricePerBranch.toFixed()) }} {{ currency }}</span>
     </div>
-    <div class="my-5 flex justify-between">
+    <div class="my-4 flex justify-between">
       <span>کاربر اضافه : </span><span class="font-extrabold">{{ toSepratedFarsiNo(pricePerUsers.toFixed()) }} {{ currency }}</span>
     </div>
-    <!-- <div class="my-5 flex justify-between">
+    <!-- <div class="my-4 flex justify-between">
       <span> تخفیف : </span><span class="text-red-500">{{ toSepratedFarsiNo(discount.toFixed()) }} {{currency}} </span>
     </div> -->
-    <div class="my-5 flex justify-between">
+    <div class="my-4 flex justify-between">
       <span> مالیات : </span><span class="font-extrabold">{{ toSepratedFarsiNo(taxes.toFixed()) }} {{ currency }}</span>
     </div>
-    <div class="my-4 pt-3 text-center text-lg font-extrabold border-gray-300 flex justify-center">
+    <div class="my-4 md:mx-0 md:w-full bg-gray-300 w-full bottom-[25%] left-0 rounded-md py-[1px]"></div>
+    <div class="my-4 text-center text-lg font-extrabold border-gray-300 flex justify-center">
       <div>{{ toSepratedFarsiNo(finalPrice.toFixed()) }} {{ currency }}</div>
     </div>
   </section>

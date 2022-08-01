@@ -1,19 +1,20 @@
 <template lang="">
-  <div class="relative bg-gray-100 first-of-type:mb-14 rounded-xl mx-4 md:mx-0 after:bg-gray-400 after:absolute after:w-full after:bottom-[-25%] after:left-0 after:rounded-md after:h-[2px]">
-    <div class="flex justify-between sm:items-center mb-5 flex-row">
+  <div class="relative bg-gray-100 first-of-type:mb-4 rounded-xl mx-4 md:mx-0 ">
+    <div class="flex justify-between sm:items-center mb-3 flex-row">
       <h6 class="font-extrabold sm:self-center my-3 self-start sm:my-0 text-sm">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
     </div>
-    <div class="text-xs font-regular my-7 md:my-6">به ازای هر {{ desc }}،{{ toSepratedFarsiNo(percent) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
+    <div class="text-xs font-regular my-4 md:my-3">به ازای هر {{ desc }}،{{ toSepratedFarsiNo(percent) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
     <div class="text-xs side-26 flex-row flex justify-between font-medium">
       <span>برای هر {{ desc }} : </span>
       <Transition name="fade">
         <span v-if="price > 0" class="mr-auto text-sm font-bold">{{ toSepratedFarsiNo(price.toFixed(0)) }} {{ currency }}</span>
         <span v-else class="text-sm font-bold self-end lg:self-stretch">رایگان</span>
       </Transition>
-      <!-- <span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan-bold self-end lg:self-stretch">{{ toSepratedFarsiNofinalPrice.toFixed(0)) }} تومان</span> -->
+      <!-- <span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan5-stretch">{{ toSepratedFarsiNofinalPrice.toFixed(0)) }} تومان</span> -->
     </div>
   </div>
+        <div class="my-4 md:mx-0 md:w-full bg-gray-300 w-full rounded-md h-[1px]"></div>
 </template>
 <script>
 import { ref, computed, watch, onMounted } from 'vue'
