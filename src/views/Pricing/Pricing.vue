@@ -53,14 +53,14 @@
     <Footer :class="{ blur: loading.spinner }" />
     <Loading v-if="loading.spinner" msg="لطفا منتظر بمانید" />
   </div>
-      <Modal v-model="modalProps.show" :hasButton=false  v-if="modalProps.show && !modalProps.isInfoModal" :title="modalProps.title">
-        <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
-      </Modal>
-      <Modal v-else v-model="modalProps.show" :hasButton=true :path="modalProps.redirectPath" v-if="modalProps.show" :title="modalProps.title" :type="modalProps.type">
-        <div class="py-3">
-        <p class="text-xs font-IranYekan-regular text-gray-600 leading-6">{{ modalProps.desc }}</p>
-      </div>
-      </Modal>
+  <Modal v-model="formModalShow" :hasButton="false" title="ثبت سفارش">
+    <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
+  </Modal>
+  <Modal v-model="modalProps.show" :hasButton="true" :path="modalProps.redirectPath" :title="modalProps.title" :type="modalProps.type">
+    <div class="py-3">
+      <p class="text-xs font-IranYekan-regular text-gray-600 leading-6">{{ modalProps.desc }}</p>
+    </div>
+  </Modal>
 </template>
 <script>
 import { reactive, ref, onMounted, computed } from 'vue'
@@ -92,6 +92,7 @@ export default {
     const customerInfo = ref({})
     const perBranch = ref({ price: 0, count: 0 })
     const perUser = ref({ price: 0, count: 0 })
+    const formModalShow = ref(false)
     const modalProps = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed', isInfoModal: false })
     const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
     const handleDeleteSelectedCard = (inselectedCard) => {
@@ -110,8 +111,7 @@ export default {
       }
     }
     const handleOpenForm = () => {
-      modalProps.isInfoModal=false;
-      modalProps.show = !modalProps.show;
+      formModalShow.value=true
     }
     const totalPrice = computed(() => totalprice.value + perBranch.value.price + perUser.value.price)
     const handleSelectCard = (price, cardInfo) => {
@@ -127,7 +127,7 @@ export default {
     }
 
     const handleSubmit = (val) => {
-      modalProps.isInfoModal=true;
+      modalProps.isInfoModal = true
       btnStatusCode.value = 200
       modalProps.title = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selectedModulesId.value)
@@ -147,7 +147,7 @@ export default {
         }
         loading.submit = false
       })
-      modalProps.show = false
+      formModalShow.value = false
     }
 
     onMounted(() => {
@@ -182,6 +182,7 @@ export default {
       perBranch,
       perUser,
       modalProps,
+      formModalShow,
       finalPrice,
       totalPrice,
       handleTotalPrice,
