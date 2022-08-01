@@ -1,11 +1,11 @@
 <template lang="">
   <div>
     <NavBar :currentPosition="currentPosition" />
-<!-- هدر سایت -->
+    <!-- هدر سایت -->
     <header id="header" class="observing">
       <section class="bg-center bg-cover bg-no-repeat main-bg sm:px-24 px-10 relative z-10 side-26 sm:py-40 pt-10 lg:py-0 lg:h-57vh flex justify-start items-center">
         <div class="pb-20 sm:mb-0">
-          <h1 class="sm:text-4xl  2xl:text-4.5xl shadow-black text-white text-3xl font-extrabold sm:leading-loose leading-normal">
+          <h1 class="sm:text-4xl 2xl:text-4.5xl shadow-black text-white text-3xl font-extrabold sm:leading-loose leading-normal">
             حسابرو<br />
             مدیریت مالی و حسابداری
           </h1>
@@ -18,7 +18,7 @@
         <AdvantagesCard v-for="item in advantagesData" :key="item.id" :cardProperty="item" />
       </section>
       <!-- بخش درباره با ما -->
-      <section id="aboutUs" class="observing  z-50 md:my-0 lg:py-8 md:mt-20 my-5 relative flex justify-start items-stretch right-0">
+      <section id="aboutUs" class="observing z-50 md:my-0 lg:py-8 md:mt-20 my-5 relative flex justify-start items-stretch right-0">
         <div class="hidden md:flex justify-center px-10 min-w-33 lg:min-w-0 lg:w-97 min-h-full lg:min-h-0 lg:h-105 rounded-l-3xl overflow-hidden bg-gray-100">
           <div class="text-4xl text-gray-300 lg:pt-36 font-thin text-right tracking-wider md:rotate-90"><span class="hidden md:inline-block">درباره ما</span></div>
         </div>
@@ -31,7 +31,7 @@
             <p class="font-medium text-center md:text-right mx-auto md:mx-0 text-gray-900 w-4/5 text-xs">
               سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
             </p>
-            <section class="flex flex-wrap justify-center md:justify-start my-14 md:my-[52px] mx-auto  md:mx-0 lg:mx-3 ">
+            <section class="flex flex-wrap justify-center md:justify-start my-14 md:my-[52px] mx-auto md:mx-0 lg:mx-3">
               <about-us-item :itemArr="item" v-for="item in achivements" :key="item.id" />
             </section>
             <section class="bg-gray-50 py-4 px-3 mr-[-11px] md:mr-0 md:bg-transparent">
@@ -55,22 +55,22 @@
       <section class="py-32 z-40 lg:relative 2xl:px-20">
         <div class="">
           <div class="border-cyan-600 flex items-center justify-center">
-            <h3 class="font-extrabold justify-center  mb-14 text-center flex text-3xl">
+            <h3 class="font-extrabold justify-center mb-14 text-center flex text-3xl">
               <span class="ml-4"> ماژول های </span>
               <span class="text-cyan-600"> حسابرو </span>
             </h3>
           </div>
         </div>
         <div class="flex lg:hidden overflow-x-auto min-h-min container mx-auto py-2">
-          <ModuleCard v-for="Module in pricingModules" class="lg:hidden min-h-[18rem] md:min-h-[12rem]  max-w-[70vw] block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
+          <ModuleCard v-for="Module in pricingModules" class="lg:hidden min-h-[18rem] md:min-h-[12rem] max-w-[70vw] block" :title="Module.title" :desc="Module.desc" :src="Module.src" />
         </div>
         <div class="lg:flex flex-wrap justify-center hidden my-4 px-12 2xl:container wxl:px-0 2xl:mx-auto">
           <ModuleCard class="hidden lg:block" v-for="Module in pricingModules" :title="Module.title" :desc="Module.desc" :src="Module.src" />
         </div>
-        <HesabroWaterMark/>
+        <HesabroWaterMark />
       </section>
       <!-- مشتریان حسابرو -->
-      <section  id="customers" class="observing relative z-50 container  my-24 lg:mt-14 lg:mb-48 mx-auto">
+      <section id="customers" class="observing relative z-50 container my-24 lg:mt-14 lg:mb-48 mx-auto">
         <h3 class="font-extrabold z-50 text-3xl text-center my-5">برخی از مشتریان حسابرو</h3>
         <p class="text-center px-4 md:w-[60%] 2xl:w-[50%] md:mx-auto md:px-0 text-xs font-medium">
           گروه مشتریان هدف حسابرو شامل تمامی کسب و کار های کوچک و متوسط می باشد شرکتهای فنی و مهندسی ، شرکت های مالی ، استارت آپ ها ، فروشندگان کالای دیجیتال و هایپر مارکت ها با ابعاد متوسط از جمله مشتریان حسابرو به شمار می آیند
@@ -82,8 +82,8 @@
                 <img class="w-12 h-12 md:w-[4.7rem] md:h-[4.7rem]" :src="customer.src" :alt="customer.title" />
               </figure>
             </div>
-            <div class=" bg-gray-200 py-2 w-full ">
-              <div  class="text-center font-bold  text-xs md:text-sm">{{ customer.title }}</div>
+            <div class="bg-gray-200 py-2 w-full">
+              <div class="text-center font-bold text-xs md:text-sm">{{ customer.title }}</div>
             </div>
           </a>
         </div>
@@ -122,7 +122,7 @@ export default {
     AdvantagesCard,
     aboutUsItem,
     ModuleCard,
-    HesabroWaterMark
+    HesabroWaterMark,
   },
   setup() {
     const currentPosition = ref('')

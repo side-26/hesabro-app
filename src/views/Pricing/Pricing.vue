@@ -17,8 +17,8 @@
             </div>
             <div>
               <TransitionGroup class="pb-4" tag="div" name="list">
-                <div v-for="(item, index) in pricingData.items" :key="item.id" @click="openToggle(index)">
-                  <pricing-card :isOpen="selectedItem !== index || selectedItem === -1" v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item" />
+                <div v-for="item in pricingData.items" :key="item.id" @click="openToggle(item.id)">
+                  <pricing-card v-if="pricingData" :isOpen="selectedItem === item.id" @handle-select-card="handleSelectCard" :tarefehInfo="item" />
                 </div>
               </TransitionGroup>
             </div>
@@ -56,7 +56,7 @@
   <Modal v-model="formModalShow" :hasButton="false" title="ثبت سفارش">
     <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
   </Modal>
-  <Modal v-model="modalProps.show" :hasButton="true" :path="modalProps.redirectPath" :title="modalProps.title" :type="modalProps.type">
+  <Modal v-model="modalProps.show" :path="modalProps.redirectPath" :title="modalProps.title" :type="modalProps.type">
     <div class="py-3">
       <p class="text-xs font-IranYekan-regular text-gray-600 leading-6">{{ modalProps.desc }}</p>
     </div>
@@ -105,13 +105,13 @@ export default {
 
     const openToggle = (index) => {
       if (index === selectedItem.value) {
-        selectedItem.value = -2
+        selectedItem.value = -1
       } else {
         selectedItem.value = index
       }
     }
     const handleOpenForm = () => {
-      formModalShow.value=true
+      formModalShow.value = true
     }
     const totalPrice = computed(() => totalprice.value + perBranch.value.price + perUser.value.price)
     const handleSelectCard = (price, cardInfo) => {

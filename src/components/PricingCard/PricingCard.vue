@@ -1,5 +1,5 @@
 <template lang="">
-  <div :class="{ 'h-auto ': !isOpen, 'h-fit': isOpen }" class="cursor-pointer bg-gray-200 p-3 md:px-5 md:py-4 flex-grow my-3 hover:-translate-y-1 hover:shadow-md hover:bg-white mx-0 rounded-lg transition-all">
+  <div :class="{ 'h-auto ': isOpen, 'h-fit': !isOpen }" class="cursor-pointer bg-gray-200 p-3 md:px-5 md:py-4 flex-grow my-3 hover:-translate-y-1 hover:shadow-md hover:bg-white mx-0 rounded-lg transition-all">
     <section class="flex transition-all flex-wrap items-center justify-between">
       <div class="flex justify-between sm:w-40 flex-wrap items-center">
         <h4 class="font-bold text-sm md:text-base">{{ tarefehInfo.module_name }}</h4>
@@ -14,7 +14,7 @@
         </button>
       </div>
     </section>
-    <section class="toggleSection overflow-hidden" :class="{ 'h-0': isOpen}">
+    <section class="toggleSection overflow-hidden" :class="{ 'h-0': !isOpen }">
       <ul>
         <li class="text-xs my-5 font-medium" v-for="(item, index) in itemArr" :key="item">{{ toFarsiNumber(index + 1) }}{{ item }}</li>
       </ul>
@@ -24,8 +24,8 @@
 <script>
 import { ref, onMounted } from 'vue'
 import { currency } from '@/config/currency.config'
-import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber';
-import {toFarsiNumber} from '@/utilities/ConvertToPersian';
+import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber'
+import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 export default {
   name: 'PricingCard',
   props: {
@@ -58,7 +58,6 @@ export default {
     }
     onMounted(() => {
       itemArr.value = convertToArray(props.tarefehInfo.description)
-      
     })
     return {
       itemArr,
