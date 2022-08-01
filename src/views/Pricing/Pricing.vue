@@ -53,17 +53,14 @@
     <Footer :class="{ blur: loading.spinner }" />
     <Loading v-if="loading.spinner" msg="لطفا منتظر بمانید" />
   </div>
-  <Teleport to="#modalTel">
-    <transitionGroup name="modal">
-      <Modal v-model="modalProps.show" :isInfoType="modalProps.isInfoModal" :path="modalProps.redirectPath" v-if="modalProps.show && !modalProps.isInfoModal" :title="modalProps.title">
+      <Modal v-model="modalProps.show" :hasButton=false  v-if="modalProps.show && !modalProps.isInfoModal" :title="modalProps.title">
         <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
       </Modal>
-      <Modal v-else v-model="modalProps.show" :isInfoType="modalProps.isInfoModal" :path="modalProps.redirectPath" v-if="modalProps.show" :title="modalProps.title" :type="modalProps.type" :desc="modalProps.desc" />
-    </transitionGroup>
-  </Teleport>
-  <!-- <form-modal v-model="modalProps.show" v-if="modalProps.show" :title="modalProps.title">
-        
-      </form-modal> -->
+      <Modal v-else v-model="modalProps.show" :hasButton=true :path="modalProps.redirectPath" v-if="modalProps.show" :title="modalProps.title" :type="modalProps.type">
+        <div class="py-3">
+        <p class="text-xs font-IranYekan-regular text-gray-600 leading-6">{{ modalProps.desc }}</p>
+      </div>
+      </Modal>
 </template>
 <script>
 import { reactive, ref, onMounted, computed } from 'vue'
