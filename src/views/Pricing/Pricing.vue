@@ -5,13 +5,13 @@
       <!-- بخش اصلی سایت -->
       <main class="lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%]" :class="{ blur: loading.spinner }">
         <section class="bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl shadow-lg">
-          <div v-if="selectedPricingData.length > 0" class="py-5 mr-[0.390625rem]">
+          <div  v-if="selectedPricingData.length > 0" class="py-5 mr-[0.390625rem]">
             <div class="text-xl font-extrabold">انتخاب شده ها</div>
           </div>
           <TransitionGroup v-if="selectedPricingData.length > 0" class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
             <selected-card @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" v-for="item in selectedPricingData" :key="item.id" />
           </TransitionGroup>
-          <div v-if="pricingData.items">
+          <div v-if="pricingData.items" >
             <div class="py-5 mr-[0.390625rem]">
               <div class="text-xl font-extrabold">تعرفه های حسابرو</div>
             </div>
@@ -47,10 +47,8 @@
         <services-box v-if="pricingData.const_prices" v-model="perUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
         <Bill class="w-full" :pricePerBranch="perBranch.price" :pricePerUsers="perUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
         <!-- </section> -->
-        <transition-group>
-          <Button :disabled="totalprice === 0 || loading.submit" v-if="buttonTxt !== 'ثبت سفارش'" type="button" @click="handleShowSelectedList()">{{ buttonTxt }}</Button>
-          <Button v-else :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">{{ buttonTxt }}</Button>
-        </transition-group>
+          <Button  :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">ثبت سفارش</Button>
+        
       </aside>
     </section>
     <Footer :class="{ blur: loading.spinner }" />
@@ -88,8 +86,6 @@ import { users } from '@/api/users.api'
 export default {
   setup() {
     const router = useRouter()
-    const buttonTxt = ref('مشاهده لیست انتخاب شده ها')
-    const scrollPosition = ref(window.scrollY.toFixed())
     const pricingData = ref([])
     const selectedPricingData = ref([])
     const totalprice = ref(0)
@@ -110,7 +106,6 @@ export default {
       pricingData.value.items.push(inselectedCard)
       selectedPricingData.value = selectedPricingData.value.filter((item) => item.id !== inselectedCard.id)
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
-      buttonTxt.value = 'مشاهده لیست انتخاب شده ها'
     }
     const selectedItem = ref(-1)
 
@@ -125,7 +120,6 @@ export default {
     const handleShowSelectedList = () => {
       console.log(scrollPosition.value)
       router.push('#selectedContainer')
-      buttonTxt.value = 'ثبت سفارش'
     }
     const handleOpenForm = () => {
       formModal.value.show = !formModal.value.show
@@ -137,7 +131,6 @@ export default {
       pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id)
       selectedModulesId.value.push(cardInfo.id)
       router.push('#selectedContainer')
-      buttonTxt.value = 'مشاهده لیست انتخاب ها'
     }
 
     const handleTotalPrice = (price) => {
@@ -180,18 +173,14 @@ export default {
             modalInfo.desc = 'دریافت اطلاعات با خطا مواجه شد'
           }
           pricingData.value = item.data.data
-          console.log(pricingData.value)
         })
-        console.log(scrollPosition.value)
       } catch (error) {
         router.push('/')
       }
     })
     return {
       pricingData,
-      buttonTxt,
       selectedPricingData,
-      scrollPosition,
       totalprice,
       discount,
       toggled,
@@ -213,7 +202,7 @@ export default {
       handleOpenForm,
       formModal,
       selectedItem,
-      openToggle
+      openToggle,
     }
   },
   components: {
