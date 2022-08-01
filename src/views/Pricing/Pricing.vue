@@ -5,20 +5,20 @@
       <!-- بخش اصلی سایت -->
       <main class="lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%]" :class="{ blur: loading.spinner }">
         <section class="bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl shadow-lg">
-          <div  v-if="selectedPricingData.length > 0" class="py-5 mr-[0.390625rem]">
+          <div v-if="selectedPricingData.length > 0" class="py-5 mr-[0.390625rem]">
             <div class="text-xl font-extrabold">انتخاب شده ها</div>
           </div>
           <TransitionGroup v-if="selectedPricingData.length > 0" class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
-            <selected-card  v-for="item in selectedPricingData" :key="item.id" @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" />
+            <selected-card v-for="item in selectedPricingData" :key="item.id" @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" />
           </TransitionGroup>
-          <div v-if="pricingData.items" >
+          <div v-if="pricingData.items">
             <div class="py-5 mr-[0.390625rem]">
               <div class="text-xl font-extrabold">تعرفه های حسابرو</div>
             </div>
             <div>
               <TransitionGroup class="pb-4" tag="div" name="list">
                 <div v-for="(item, index) in pricingData.items" :key="item.id" @click="openToggle(index)">
-                <pricing-card  :isOpen="selectedItem !== index||selectedItem===-1" v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item"/>
+                  <pricing-card :isOpen="selectedItem !== index || selectedItem === -1" v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item" />
                 </div>
               </TransitionGroup>
             </div>
@@ -47,25 +47,23 @@
         <services-box v-if="pricingData.const_prices" v-model="perUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
         <Bill class="w-full" :pricePerBranch="perBranch.price" :pricePerUsers="perUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
         <!-- </section> -->
-          <Button  :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">ثبت سفارش</Button>
-        
+        <Button :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">ثبت سفارش</Button>
       </aside>
     </section>
     <Footer :class="{ blur: loading.spinner }" />
     <Loading v-if="loading.spinner" msg="لطفا منتظر بمانید" />
   </div>
   <Teleport to="#modalTel">
-    <transition>
-      <info-modal v-model="modalInfo.show" :path="modalInfo.redirectPath" v-if="modalInfo.show" :title="modalInfo.title" :type="modalInfo.type" :desc="modalInfo.desc" btnText="تایید" />
-    </transition>
-  </Teleport>
-  <Teleport to="#modalTel">
-    <transition name="modal">
-      <form-modal v-model="formModal.show" v-if="formModal.show" :title="formModal.title">
+    <transitionGroup name="modal">
+      <Modal v-model="modalProps.show" :isInfoType="modalProps.isInfoModal" :path="modalProps.redirectPath" v-if="modalProps.show && !modalProps.isInfoModal" :title="modalProps.title">
         <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
-      </form-modal>
-    </transition>
+      </Modal>
+      <Modal v-else v-model="modalProps.show" :isInfoType="modalProps.isInfoModal" :path="modalProps.redirectPath" v-if="modalProps.show" :title="modalProps.title" :type="modalProps.type" :desc="modalProps.desc" />
+    </transitionGroup>
   </Teleport>
+  <!-- <form-modal v-model="modalProps.show" v-if="modalProps.show" :title="modalProps.title">
+        
+      </form-modal> -->
 </template>
 <script>
 import { reactive, ref, onMounted, computed } from 'vue'
@@ -77,8 +75,7 @@ import PricingCard from '@/components/PricingCard/PricingCard.vue'
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
-import InfoModal from '@/components/Modal/InfoModal/InfoModal.vue'
-import FormModal from '@/components/Modal/formModal/FormModal.vue'
+import Modal from '@/components/Modal/Modal.vue'
 import Button from '@/components/Button/Button.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import { pricing } from '@/api/pricing.api'
@@ -98,8 +95,7 @@ export default {
     const customerInfo = ref({})
     const perBranch = ref({ price: 0, count: 0 })
     const perUser = ref({ price: 0, count: 0 })
-    const modalInfo = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed' })
-    const formModal = ref({ show: false, title: 'ثبت سفارش' })
+    const modalProps = reactive({ desc: '', title: 'خطا', show: false, redirectPath: '', type: 'failed', isInfoModal: false })
     const finalPrice = computed(() => +(totalprice.value + taxes.value - discount.value))
     const handleDeleteSelectedCard = (inselectedCard) => {
       handleTotalPrice(-inselectedCard.price)
@@ -111,18 +107,14 @@ export default {
 
     const openToggle = (index) => {
       if (index === selectedItem.value) {
-        selectedItem.value = -2;
+        selectedItem.value = -2
       } else {
-        selectedItem.value = index;
+        selectedItem.value = index
       }
     }
-
-    const handleShowSelectedList = () => {
-      console.log(scrollPosition.value)
-      router.push('#selectedContainer')
-    }
     const handleOpenForm = () => {
-      formModal.value.show = !formModal.value.show
+      modalProps.isInfoModal=false;
+      modalProps.show = !modalProps.show;
     }
     const totalPrice = computed(() => totalprice.value + perBranch.value.price + perUser.value.price)
     const handleSelectCard = (price, cardInfo) => {
@@ -138,26 +130,27 @@ export default {
     }
 
     const handleSubmit = (val) => {
+      modalProps.isInfoModal=true;
       btnStatusCode.value = 200
-      modalInfo.title = 'ثبت سفارش'
+      modalProps.title = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selectedModulesId.value)
       loading.submit = true
       customerInfo.value = { ...val, selected_modules_id: selectedModulesIdArray, users_count: perUser.value.count, branches_count: perBranch.value.count }
       users.post(customerInfo.value).then((item) => {
-        modalInfo.show = true
+        modalProps.show = true
         btnStatusCode.value = 0
         if (item) {
-          modalInfo.desc = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
-          modalInfo.type = 'success'
-          modalInfo.redirectPath = '/'
+          modalProps.desc = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
+          modalProps.type = 'success'
+          modalProps.redirectPath = '/'
         } else {
-          modalInfo.type = 'failed'
-          modalInfo.desc = 'ثبت نام انجام نشد لطفا بعدا امتحان کنید.'
-          modalInfo.redirectPath = '/pricing'
+          modalProps.type = 'failed'
+          modalProps.desc = 'ثبت نام انجام نشد لطفا بعدا امتحان کنید.'
+          modalProps.redirectPath = '/pricing'
         }
         loading.submit = false
       })
-      formModal.value.show = false
+      modalProps.show = false
     }
 
     onMounted(() => {
@@ -165,12 +158,12 @@ export default {
         pricing.get().then((item) => {
           loading.spinner = false
           if (!item) {
-            modalInfo.type = 'failed'
-            modalInfo.show = true
+            modalProps.type = 'failed'
+            modalProps.show = true
             loading.spinner = false
-            modalInfo.title = 'خطا!!'
-            modalInfo.redirectPath = '/'
-            modalInfo.desc = 'دریافت اطلاعات با خطا مواجه شد'
+            modalProps.title = 'خطا!!'
+            modalProps.redirectPath = '/'
+            modalProps.desc = 'دریافت اطلاعات با خطا مواجه شد'
           }
           pricingData.value = item.data.data
         })
@@ -191,16 +184,14 @@ export default {
       customerInfo,
       perBranch,
       perUser,
-      modalInfo,
+      modalProps,
       finalPrice,
       totalPrice,
       handleTotalPrice,
       handleSelectCard,
       handleSubmit,
-      handleShowSelectedList,
       handleDeleteSelectedCard,
       handleOpenForm,
-      formModal,
       selectedItem,
       openToggle,
     }
@@ -213,9 +204,8 @@ export default {
     Bill,
     userForm,
     Loading,
-    InfoModal,
+    Modal,
     SelectedCard,
-    FormModal,
     Button,
   },
 }
