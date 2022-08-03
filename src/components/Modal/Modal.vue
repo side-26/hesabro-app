@@ -1,5 +1,5 @@
 <template lang="">
-<Teleport to="#modalTel" v-if="modelValue">
+<Teleport v-if="modelValue" to="#modalTel">
     <transitionGroup name="modal">
         <div @click="handelCloseModal()" class="flex z-[200] bg-slate-800 bg-opacity-40 fixed w-full h-full left-0 top-0 items-center justify-center">
           <div @click.stop="" class="px-5 py-5 bg-white rounded-xl z-[201] w-full md:w-1/2 lg:w-1/4 2xl:w-1/5 mx-5 sm:mx-8 md:mx-32 lg:mx-0">

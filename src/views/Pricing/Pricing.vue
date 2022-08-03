@@ -17,8 +17,8 @@
             </div>
             <div>
               <TransitionGroup class="pb-4" tag="div" name="list">
-                <div v-for="(item, index) in pricingData.items" :key="item.id" @click="openToggle(index)">
-                  <pricing-card :isOpen="selectedItem !== index || selectedItem === -1" v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item" />
+                <div v-for="item in pricingData.items" :key="item.id" @click="openToggle(item.id)">
+                  <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item" />
                 </div>
               </TransitionGroup>
             </div>
@@ -147,7 +147,8 @@ export default {
         }
         loading.submit = false
       })
-      formModalShow.value = false
+      formModalShow.value
+       = false
     }
 
     onMounted(() => {
