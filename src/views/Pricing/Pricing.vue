@@ -12,13 +12,13 @@
             <selected-card v-for="item in selectedPricingData" :key="item.id" @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" />
           </TransitionGroup>
           <div v-if="pricingData.items">
-            <div class="py-5 mr-[0.390625rem]">
-              <div class="text-xl font-extrabold">تعرفه های حسابرو</div>
+            <div class="pt-5 mr-[0.390625rem]">
+              <div class="text-base md:text-xl font-extrabold">تعرفه های حسابرو</div>
             </div>
             <div>
               <TransitionGroup class="pb-4" tag="div" name="list">
-                <div v-for="item in pricingData.items" :key="item.id" @click="openToggle(item.id)">
-                  <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-select-card="handleSelectCard" :tarefehInfo="item" />
+                <div v-for="(item,index) in pricingData.items" :key="item.id" @click="openToggle(item.id)">
+                  <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="openToggle" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length-2<=index" :tarefehInfo="item" />
                 </div>
               </TransitionGroup>
             </div>
@@ -28,6 +28,7 @@
           <p>تعرفه ها همه انتخاب٬ها اند برای نهایی کردن خرید ثبت سفارش کنید</p>
         </figure> -->
           </div>
+          <Button class="sticky bottom-2 sm:hidden"> ثبت سفارش </Button>
         </section>
         <!-- <pricing-container title="امکانات جانبی">
         <template lang="" v-slot:body>
@@ -57,7 +58,7 @@
     <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
   </Modal>
   <Modal v-model="modalProps.show" :hasButton="true" :path="modalProps.redirectPath" :title="modalProps.title" :type="modalProps.type">
-    <div class="py-3">
+    <div class="p-3">
       <p class="text-xs font-IranYekan-regular text-gray-600 leading-6">{{ modalProps.desc }}</p>
     </div>
   </Modal>
@@ -80,12 +81,18 @@ import { users } from '@/api/users.api'
 export default {
   setup() {
     const router = useRouter()
+    const stages = reactive({
+      stage1: true,
+      stage2: false,
+      stage3: false,
+    })
     const pricingData = ref([])
     const selectedPricingData = ref([])
     const totalprice = ref(0)
     const discount = ref(0)
     const taxes = ref(5)
     const toggled = ref(true)
+    const selectedItem = ref(-1)
     const loading = reactive({ submit: false, spinner: true })
     const btnStatusCode = ref(0)
     const selectedModulesId = ref([])
@@ -101,17 +108,16 @@ export default {
       selectedPricingData.value = selectedPricingData.value.filter((item) => item.id !== inselectedCard.id)
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
     }
-    const selectedItem = ref(-1)
 
-    const openToggle = (index) => {
-      if (index === selectedItem.value) {
-        selectedItem.value = -2
+    const openToggle = (id) => {
+      if (id === selectedItem.value) {
+        selectedItem.value = -1
       } else {
-        selectedItem.value = index
+        selectedItem.value = id
       }
     }
     const handleOpenForm = () => {
-      formModalShow.value=true
+      formModalShow.value = true
     }
     const totalPrice = computed(() => totalprice.value + perBranch.value.price + perUser.value.price)
     const handleSelectCard = (price, cardInfo) => {
@@ -147,8 +153,7 @@ export default {
         }
         loading.submit = false
       })
-      formModalShow.value
-       = false
+      formModalShow.value = false
     }
 
     onMounted(() => {
