@@ -1,5 +1,5 @@
 <template lang="">
-  <div :class="{ 'sm:h-auto ': isClose, 'sm:h-fit': !isClose,'my-1':isSelected }" class="sm:cursor-pointer relative hover:z-[100] sm:bg-gray-200 px-4 py-[1.375rem] md:px-5 md:py-4 flex-grow my-2 sm:hover:-translate-y-1 sm:hover:shadow-md sm:hover:bg-white mx-0 rounded-lg transition-all">
+  <div :class="{ 'sm:h-auto ': isClose, 'sm:h-fit': !isClose,'my-1 py-1':isSelected,'py-[1.375rem]':!isSelected }" class="sm:cursor-pointer relative hover:z-[100] sm:bg-gray-200 px-4  md:px-5 md:py-4 flex-grow my-2 sm:hover:-translate-y-1 sm:hover:shadow-md sm:hover:bg-white mx-0 rounded-lg transition-all">
     <section class="flex transition-all flex-wrap items-center justify-between">
       <div class="flex justify-between items-center flex-grow">
         <div class="flex sm:items-center sm:justify-between flex-col sm:flex-row md:w-4/5 xl:w-2/3">
