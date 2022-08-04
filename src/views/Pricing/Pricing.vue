@@ -1,35 +1,30 @@
 <template lang="">
   <div id="selectedContainer">
     <NavBar :class="{ blur: loading.spinner }" />
-    <section class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] mt-10 mb-8 2xl:mx-[8%]">
+    <transition-group tag="section" name="sections" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] mt-10 sm:mb-8 2xl:mx-[8%]">
       <!-- بخش اصلی سایت -->
-      <main class="lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%]" :class="{ blur: loading.spinner }">
-        <section class="bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl shadow-lg">
-          <div v-if="selectedPricingData.length > 0" class="py-5 mr-[0.390625rem]">
+      <main v-if="stages.stage1" class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
+        <section class="sm:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl sm:shadow-lg">
+          <div v-if="selectedPricingData.length > 0" class="hidden sm:block py-5 mr-[0.390625rem]">
             <div class="text-xl font-extrabold">انتخاب شده ها</div>
           </div>
-          <TransitionGroup v-if="selectedPricingData.length > 0" class="flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
+          <TransitionGroup v-if="selectedPricingData.length > 0" class="hidden sm:flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
             <selected-card v-for="item in selectedPricingData" :key="item.id" @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" />
           </TransitionGroup>
           <div v-if="pricingData.items">
-            <div class="pt-5 mr-[0.390625rem]">
+            <div class="pt-5 sm:mb-8 mr-[0.390625rem]" v-if="pricingData.items.length > 0">
               <div class="text-base md:text-xl font-extrabold">تعرفه های حسابرو</div>
             </div>
             <div>
-              <TransitionGroup class="pb-4" tag="div" name="list">
-                <div v-for="(item,index) in pricingData.items" :key="item.id" @click="openToggle(item.id)">
-                  <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="openToggle" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length-2<=index" :tarefehInfo="item" />
+              <TransitionGroup class="pb-4" tag="div" name="list" v-if="pricingData.items.length > 0">
+                <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)">
+                  <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="openToggle" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                 </div>
               </TransitionGroup>
             </div>
-            <!-- <figure  class="w-52 h-48 mx-auto">
-          <img class="w-full h-full" src="../../../public/img/emptyList.svg" alt="emptyList">
-          <span class="font-extrabold text-3xl">هورااا</span>
-          <p>تعرفه ها همه انتخاب٬ها اند برای نهایی کردن خرید ثبت سفارش کنید</p>
-        </figure> -->
           </div>
-          <Button class="sticky bottom-2 sm:hidden"> ثبت سفارش </Button>
         </section>
+        <mobile-selected-container @handle-delete-item="handleDeleteSelectedCard" :selectedArr="selectedPricingData" />
         <!-- <pricing-container title="امکانات جانبی">
         <template lang="" v-slot:body>
           
@@ -42,7 +37,11 @@
         
       </pricing-container> -->
       </main>
-      <aside :class="{ blur: loading.spinner }" class="bg-gray-100 sticky top-20 md:w-4/5 mx-auto rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
+      <section v-if="stages.stage2" class="sm:hidden mt-2">
+        <services-box v-if="pricingData.const_prices" v-model="perBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
+        <services-box v-if="pricingData.const_prices" v-model="perUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
+      </section>
+      <aside :class="{ blur: loading.spinner }" class="bg-gray-100 hidden sm:block sticky top-20 md:w-4/5 mx-auto rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
         <!-- <section class="bg-gray-200"> -->
         <services-box v-if="pricingData.const_prices" v-model="perBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
         <services-box v-if="pricingData.const_prices" v-model="perUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
@@ -50,8 +49,13 @@
         <!-- </section> -->
         <Button :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">ثبت سفارش</Button>
       </aside>
-    </section>
-    <Footer :class="{ blur: loading.spinner }" />
+      <section v-if="stages.stage3" class="sm:hidden mt-2">
+        <Bill class="hidden sm:block w-full" :pricePerBranch="perBranch.price" :pricePerUsers="perUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
+        <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
+      </section>
+    </transition-group>
+    <transitionGroup tag="section" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] mt-2 mb-8 2xl:mx-[8%]"> </transitionGroup>
+    <Footer class="hidden sm:block" :class="{ blur: loading.spinner }" />
     <Loading v-if="loading.spinner" msg="لطفا منتظر بمانید" />
   </div>
   <Modal v-model="formModalShow" :hasButton="false" title="ثبت سفارش">
@@ -71,6 +75,7 @@ import NavBar from '@/layout/navBar/NavBar.layout.vue'
 import SelectedCard from '@/components/selectedCard/SelectedCard.vue'
 import PricingCard from '@/components/PricingCard/PricingCard.vue'
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
+import MobileSelectedContainer from '@/components/MobileSelectedContainer/MobileSelectedContainer.vue'
 import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
 import Modal from '@/components/Modal/Modal.vue'
@@ -108,7 +113,9 @@ export default {
       selectedPricingData.value = selectedPricingData.value.filter((item) => item.id !== inselectedCard.id)
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
     }
-
+    const handleOpenToggle = (id) => {
+      if (window.innerWidth > 640) openToggle(id)
+    }
     const openToggle = (id) => {
       if (id === selectedItem.value) {
         selectedItem.value = -1
@@ -125,7 +132,8 @@ export default {
       selectedPricingData.value.push(cardInfo)
       pricingData.value.items = pricingData.value.items.filter((item) => item.id !== cardInfo.id)
       selectedModulesId.value.push(cardInfo.id)
-      router.push('#selectedContainer')
+      if (window.innerWidth > 640) router.push('#selectedContainer')
+      else router.push('#mobile_selected_container')
     }
 
     const handleTotalPrice = (price) => {
@@ -187,6 +195,7 @@ export default {
       customerInfo,
       perBranch,
       perUser,
+      stages,
       modalProps,
       formModalShow,
       finalPrice,
@@ -198,6 +207,7 @@ export default {
       handleOpenForm,
       selectedItem,
       openToggle,
+      handleOpenToggle,
     }
   },
   components: {
@@ -211,6 +221,7 @@ export default {
     Modal,
     SelectedCard,
     Button,
+    MobileSelectedContainer,
   },
 }
 </script>
