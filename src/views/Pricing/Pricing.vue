@@ -1,7 +1,7 @@
 <template lang="">
   <div id="selectedContainer">
     <NavBar :class="{ blur: loading.spinner }" />
-    <transition-group tag="section" name="sections" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] mt-10 sm:mb-8 2xl:mx-[8%]">
+    <transition-group tag="section" name="sections" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] mt-2 sm:mb-8 2xl:mx-[8%]">
       <!-- بخش اصلی سایت -->
       <main v-if="stages.stage1" class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
         <section class="sm:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl sm:shadow-lg">
@@ -24,7 +24,7 @@
             </div>
           </div>
         </section>
-        <mobile-selected-container @handle-delete-item="handleDeleteSelectedCard" :selectedArr="selectedPricingData" />
+        <mobile-selected-container @handle-delete-item="handleDeleteSelectedCard" :finalPrice='totalprice' :selectedArr="selectedPricingData" />
         <!-- <pricing-container title="امکانات جانبی">
         <template lang="" v-slot:body>
           
