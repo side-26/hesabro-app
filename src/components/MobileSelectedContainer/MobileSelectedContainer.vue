@@ -1,8 +1,8 @@
 <template lang="">
-  <div :class="{ 'bg-slate-800 max- h-full': isOpen }" id="mobile_selected_container" class="sm:hidden fixed transition-all flex z-0 items-end bottom-0 left-0 w-full bg-opacity-20 overflow-hidden">
+  <div @click="handleOpen()" :class="{ 'bg-slate-900 max- h-full': isOpen }" id="mobile_selected_container" class="sm:hidden fixed transition-all flex z-[150] items-end bottom-0 left-0 w-full bg-opacity-20 overflow-hidden">
     <!-- <div :class="{ hidden: !isOpen }" class="bg-slate-800 bg-opacity-20 absolute w-full h-full z-[99]"></div> -->
-    <div class="bg-white shadow-2xl overflow-hidden transition-all w-full" :class="{ 'sm:h-auto ': isOpen, 'sm:h-fit': !isOpen }">
-      <section class="bg-white flex items-center justify-between px-3 py-4">
+    <div @click.stop="" class="bg-white shadow-2xl pb-6 transition-all w-full" :class="{ 'sm:h-auto ': isOpen, 'sm:h-fit': !isOpen }">
+      <section @click="handleOpen()" class="bg-white flex items-center shadow-lg justify-between px-4 py-4">
         <transition-group tage="div" name="list" class="w-[88%]">
           <div v-if="selectedArr.length === 0" class="text-sm text-slate-800 w-full">هیچ ماژولی انتخاب نشده!!</div>
           <!-- <div v-else class="text-sm font-bold">تعرفه های انتخاب شده</div> -->
@@ -11,7 +11,7 @@
           </div>
           <div v-if="isOpen && selectedArr.length > 0">تعرفه های انتخاب شده</div>
         </transition-group>
-        <button type="button" class="relative cursor-pointer transition-all" @click="handleOpen()">
+        <button type="button" class="relative cursor-pointer transition-all" @click.stop="handleOpen()">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
@@ -20,11 +20,11 @@
           </div>
         </button>
       </section>
-      <transition-group tag="section" name="list" class="bg-white overflow-x-hidden overflow-y-auto transition-all" :class="{ 'h-0': !isOpen || selectedArr.length === 0, 'max-h-[73.8vh]': isOpen }">
+      <transition-group  tag="section" name="list" class="bg-white overflow-x-hidden overflow-y-auto transition-all" :class="{ 'h-0': !isOpen || selectedArr.length === 0, 'max-h-[74vh]': isOpen }">
         <selected-pricing-card v-for="(item, index) in selectedArr" :key="item.id" @handleDeleteSelectedCard="handleDeleteItem" :tarefehInfo="item" :isClose="false" :isLast="index >= selectedArr.length - 2" :isSelected="true" />
       </transition-group>
       <section class="bg-white px-3 pb-2">
-        <Button :disabled="selectedArr.length === 0" type="button"
+        <Button @click="handleNextStage('stage1','stage2')" :disabled="selectedArr.length === 0" type="button"
           ><div class="flex justify-between items-center text-sm font-normal">
             <div>ادامه</div>
             <div class="font-bold">{{ toSepratedFarsiNo(finalPrice) }} {{ currency }} </div>
@@ -59,12 +59,13 @@ export default {
   setup(props, { emit }) {
     const isOpen = ref(false)
     const handleOpen = () => {
-      if (props.selectedArr.length > 0) isOpen.value = !isOpen.value
-      else if (isOpen.value === true && props.selectedArr.length === 0) isOpen.value = fas
-      console.log(props.totalprice)
+      isOpen.value=!isOpen.value
     }
     const handleDeleteItem = (cardInfo) => {
       emit('handleDeleteItem', cardInfo)
+    }
+    const handleNextStage=(currentStageNo,nextStage)=>{
+      emit('handleNextStage',currentStageNo,nextStage)
     }
     return {
       isOpen,
@@ -73,6 +74,7 @@ export default {
       toSepratedFarsiNo,
       currency,
       handleDeleteItem,
+      handleNextStage
     }
   },
 }
