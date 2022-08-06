@@ -3,12 +3,13 @@
     <span class="text-sm text-gray-700 font-bold">{{ title }} :</span>
     <span class="font-bold text-black side-26"
       >{{ toSepratedFarsiNo(totalPrice) }}
-      <span class="text-xs font-extrabold">تومان</span>
+      <span class="text-xs font-extrabold">{{currency}}</span>
     </span>
   </div>
 </template>
 <script>
 import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber'
+import {currency} from '@/config/currency.config'
 export default {
   props: {
     title: {
@@ -23,6 +24,7 @@ export default {
   setup() {
     return {
       toSepratedFarsiNo,
+      currency
     }
   },
 }
