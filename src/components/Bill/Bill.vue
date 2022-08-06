@@ -1,13 +1,20 @@
 <template lang="">
-  <section class="relative font-medium md:bg-transparent my-4 bg-gray-100 text-gray-800 text-sm rounded-lg">
-    <div class="my-4 flex justify-between">
+  <section vif="totalPrice" class="relative font-medium md:bg-transparent my-4 bg-gray-100 text-gray-800 text-sm rounded-lg">
+    <div class="my-4 hidden md:flex justify-between">
       <span>قیمت ماژول‌ها : </span><span class="font-extrabold">{{ toSepratedFarsiNo(totalPrice.toFixed()) }} {{ currency }}</span>
     </div>
-    <div class="my-4 flex justify-between">
-      <span>شعب اضافه : </span><span class="font-extrabold">{{ toSepratedFarsiNo(pricePerBranch.toFixed()) }} {{ currency }}</span>
+    <!-- desktop size -->
+    <div class="hidden md:flex my-4 justify-between">
+      <span>شعب اضافه : </span><span v class="font-extrabold">{{ toSepratedFarsiNo(pricePerBranch.toFixed()) }} {{ currency }}</span>
     </div>
-    <div class="my-4 flex justify-between">
+    <!-- desktop size -->
+    <div class="hidden md:flex my-4 justify-between">
       <span>کاربر اضافه : </span><span class="font-extrabold">{{ toSepratedFarsiNo(pricePerUsers.toFixed()) }} {{ currency }}</span>
+    </div>
+    <!-- mobile-size -->
+    <div class="md:hidden flex justify-between">
+      <div>قیمت کل</div>
+      <div class="font-extrabold">{{ toSepratedFarsiNo(sideServices) }} {{ currency }}</div>
     </div>
     <!-- <div class="my-4 flex justify-between">
       <span> تخفیف : </span><span class="text-red-500">{{ toSepratedFarsiNo(discount.toFixed()) }} {{currency}} </span>
@@ -16,8 +23,12 @@
       <span> مالیات : </span><span class="font-extrabold">{{ toSepratedFarsiNo(taxes.toFixed()) }} {{ currency }}</span>
     </div>
     <div class="my-4 md:mx-0 md:w-full bg-gray-300 w-full bottom-[25%] left-0 rounded-md py-[1px]"></div>
-    <div class="my-4 text-center text-lg font-extrabold border-gray-300 flex justify-center">
-      <div>{{ toSepratedFarsiNo(finalPrice.toFixed()) }} {{ currency }}</div>
+    <div class="my-4 text-center text-lg font-extrabold lg:border-gray-300 flex lg:justify-center">
+      <div class="hidden lg:block">{{ toSepratedFarsiNo(finalPrice.toFixed()) }} {{ currency }}</div>
+      <div class="flex lg:hidden text-sm font-medium justify-between w-full">
+        <div class="font-bold">قیمت نهایی :</div>
+        <div class="font-extrabold text-lg">{{ toSepratedFarsiNo(finalPrice.toFixed()) }} {{ currency }}</div>
+      </div>
     </div>
   </section>
 </template>
@@ -39,23 +50,30 @@ export default {
     },
     totalPrice: {
       type: Number,
-      required: true,
+      default: 0,
     },
     pricePerUsers: {
       type: Number,
-      required: true,
+      default: 0,
     },
     pricePerBranch: {
       type: Number,
-      required: true,
+      default: 0,
+    },
+    sevicesPrice: {
+      type: Number,
+      default: 0,
     },
   },
   setup(props) {
     const discount = computed(() => (props.discount * sideServices.value) / 100)
     const taxes = computed(() => (9 / 100) * sideServices.value)
     // const totalPrice = computed(() => props.finalPrice + taxes.value)
-    const sideServices = computed(() => props.totalPrice + props.pricePerUsers + props.pricePerBranch)
-    const finalPrice = computed(() => sideServices.value + discount.value + taxes.value)
+    const sideServices = computed(() => {
+      if (props.pricePerBranch > 0 && props.pricePerUsers > 0) return props.totalPrice + props.pricePerUsers + props.pricePerBranch
+      else return  props.totalPrice+props.sevicesPrice
+    })
+    const finalPrice = computed(() => sideServices.value + taxes.value)
     return {
       discount,
       taxes,
