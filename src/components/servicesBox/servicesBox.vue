@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="relative bg-gray-100 first-of-type:mb-4 rounded-xl mx-4 md:mx-0 ">
+  <div class="relative bg-gray-100 first-of-type:mb-4 rounded-xl p-3 md:mx-0 mb-3">
     <div class="flex justify-between sm:items-center mb-3 flex-row">
       <h6 class="font-extrabold sm:self-center my-3 self-start sm:my-0 text-sm">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
@@ -14,7 +14,7 @@
       <!-- <span v-if="finalPrice > 0" class="text-base mt-4 lg:mt-0 font-IranYekan5-stretch">{{ toSepratedFarsiNofinalPrice.toFixed(0)) }} تومان</span> -->
     </div>
   </div>
-        <div class="my-4 md:mx-0 md:w-full bg-gray-300 w-full rounded-md h-[1px]"></div>
+        <div class="hidden lg:block my-4 md:mx-0 md:w-full bg-gray-300 w-full rounded-md h-[1px]"></div>
 </template>
 <script>
 import { ref, computed, watch, onMounted } from 'vue'
