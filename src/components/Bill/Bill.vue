@@ -1,5 +1,5 @@
 <template lang="">
-  <section vif="totalPrice" class="relative font-medium md:bg-transparent my-4 bg-gray-100 text-gray-800 text-sm rounded-lg">
+  <section vif="totalPrice" class="relative font-medium md:bg-transparent my-4 bg-gray-50 p-3 lg:p- lg:odd:bg-gray-100 text-gray-800 text-sm rounded-lg">
     <div class="my-4 hidden md:flex justify-between">
       <span>قیمت ماژول‌ها : </span><span class="font-extrabold">{{ toSepratedFarsiNo(totalPrice.toFixed()) }} {{ currency }}</span>
     </div>
@@ -23,7 +23,7 @@
       <span> مالیات : </span><span class="font-extrabold">{{ toSepratedFarsiNo(taxes.toFixed()) }} {{ currency }}</span>
     </div>
     <div class="my-4 md:mx-0 md:w-full bg-gray-300 w-full bottom-[25%] left-0 rounded-md py-[1px]"></div>
-    <div class="my-4 text-center text-lg font-extrabold lg:border-gray-300 flex lg:justify-center">
+    <div class="mt-4 lg:my-4 text-center text-lg font-extrabold lg:border-gray-300 flex lg:justify-center">
       <div class="hidden lg:block">{{ toSepratedFarsiNo(finalPrice.toFixed()) }} {{ currency }}</div>
       <div class="flex lg:hidden text-sm font-medium justify-between w-full">
         <div class="font-bold">قیمت نهایی :</div>
