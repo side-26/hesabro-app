@@ -71,7 +71,7 @@ export default {
     // const totalPrice = computed(() => props.finalPrice + taxes.value)
     const sideServices = computed(() => {
       if (props.pricePerBranch > 0 && props.pricePerUsers > 0) return props.totalPrice + props.pricePerUsers + props.pricePerBranch
-      else return  props.totalPrice+props.sevicesPrice
+      else return props.totalPrice + props.sevicesPrice
     })
     const finalPrice = computed(() => sideServices.value + taxes.value)
     return {
