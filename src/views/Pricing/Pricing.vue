@@ -47,13 +47,13 @@
               <total-price-container title="قیمت ماژول ها" :totalPrice="totalprice" />
               <total-price-container title="قیمت نهایی" :totalPrice="totalPrice" />
             </div>
-            <AppButton @click="hanleMoveStage('stage2', 'stage3')"> ادامه </AppButton>
+            <AppButton @click="hanleMoveStage()"> ادامه </AppButton>
           </section>
           <section v-if="stage === 2" class="relative md:hidden mt-2 h-[86vh] px-3">
             <div class="mt-2 flex justify-between items-center">
               <div class="font-extrabold">ثبت سفارش</div>
               <div class="md:hidden">
-                <button @click="handlePreviousStage('stage3', 'stage2')" class="flex justify-between items-center">
+                <button @click="handlePreviousStage()" class="flex justify-between items-center">
                   بازگشت
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
