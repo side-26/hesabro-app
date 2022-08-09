@@ -17,7 +17,7 @@
                 <div class="text-base md:text-xl font-extrabold">تعرفه های حسابرو</div>
               </div>
               <div>
-                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-16 md:pb-4  h-full" tag="div" name="">
+                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-16 md:pb-4 h-full" tag="div" name="">
                   <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)" class="hidden md:block">
                     <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                   </div>
@@ -27,7 +27,7 @@
                 </TransitionGroup>
               </div>
             </div>
-            
+
             <mobile-selected-container @handle-next-stage="handleMoveStage" @handle-delete-item="handleDeleteSelectedCard" :finalPrice="totalprice" :selectedArr="selectedPricingData" />
           </section>
           <section v-if="stage === 1" class="md:hidden mt-2 flex justify-between flex-col h-[88vh]">
@@ -35,7 +35,7 @@
               <div class="mb-4 flex justify-between items-center">
                 <div class="font-extrabold">امکانات جانبی</div>
                 <div class="md:hidden">
-                  <button @click="handlePreviousStage()" class="flex justify-between items-center ">
+                  <button @click="handlePreviousStage()" class="flex justify-between items-center">
                     بازگشت
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -50,11 +50,11 @@
             </div>
             <AppButton @click="handleMoveStage()" class="absolute bottom-0 w-full"> ادامه </AppButton>
           </section>
-          <section v-if="stage === 2" class="relative md:hidden mt-2 h-[89vh]  px-3">
+          <section v-if="stage === 2" class="relative md:hidden mt-2 h-[89vh] px-3">
             <div class="mt-2 flex justify-between items-center">
               <div class="font-extrabold">ثبت سفارش</div>
               <div class="md:hidden">
-                <button @click="handlePreviousStage()" class="flex justify-between items-center ">
+                <button @click="handlePreviousStage()" class="flex justify-between items-center">
                   بازگشت
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
