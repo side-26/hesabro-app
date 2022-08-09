@@ -1,7 +1,7 @@
 <template lang="">
   <div id="selectedContainer">
     <NavBar :class="{ blur: loading.spinner }" />
-    <transition-group tag="section" name="sections" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] h-full lg:h-fit mt-2 sm:mb-8 2xl:mx-[8%]">
+    <transition-group tag="section" name="sections" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] lg:mx-[3rem] xl:mx-[6rem] h-full lg:h-fit mt-2 sm:mb-8 2xl:mx-[8%]">
       <!-- بخش اصلی سایت -->
       <main class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
         <transition-group name="list">
