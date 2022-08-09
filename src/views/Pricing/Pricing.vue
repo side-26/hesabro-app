@@ -5,11 +5,11 @@
       <!-- بخش اصلی سایت -->
       <main class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
         <transition-group name="list">
-          <section v-if="stages.stage1" class="sm:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl sm:shadow-lg">
-            <div v-if="selectedPricingData.length > 0" class="hidden sm:block py-5 mr-[0.390625rem]">
+          <section v-if="stages.stage1" class="sm:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
+            <div v-if="selectedPricingData.length > 0" class="hidden md:block py-5 mr-[0.390625rem]">
               <div class="text-xl font-extrabold">انتخاب شده ها</div>
             </div>
-            <TransitionGroup v-if="selectedPricingData.length > 0" class="hidden sm:flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
+            <TransitionGroup v-if="selectedPricingData.length > 0" class="hidden md:flex flex-wrap sm:justify-center lg:justify-start pb-5" tag="div" name="list">
               <selected-card v-for="item in selectedPricingData" :key="item.id" @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" />
             </TransitionGroup>
             <div v-if="pricingData.items">
@@ -17,7 +17,7 @@
                 <div class="text-base md:text-xl font-extrabold">تعرفه های حسابرو</div>
               </div>
               <div>
-                <TransitionGroup class="pb-4" tag="div" name="list" v-if="pricingData.items.length > 0">
+                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-4 max-h-[62vh] overflow-y-auto md:max-h-fit" tag="div" name="list" >
                   <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)">
                     <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="openToggle" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                   </div>
@@ -26,7 +26,7 @@
             </div>
             <mobile-selected-container @handle-next-stage="hanleMoveStage" @handle-delete-item="handleDeleteSelectedCard" :finalPrice="totalprice" :selectedArr="selectedPricingData" />
           </section>
-          <section v-if="stages.stage2" class="sm:hidden mt-2 flex justify-between flex-col h-[85vh]">
+          <section v-if="stages.stage2" class="md:hidden mt-2 flex justify-between flex-col h-[85vh]">
             <div class="mx-3 mt-2">
               <div class="mb-4">
                 <div class="font-extrabold">امکانات جانبی</div>
@@ -38,7 +38,7 @@
             </div>
             <Button @click="hanleMoveStage('stage2', 'stage3')"> ادامه </Button>
           </section>
-          <section v-if="stages.stage3" class="relative sm:hidden mt-2 h-[86vh] px-3">
+          <section v-if="stages.stage3" class="relative md:hidden mt-2 h-[86vh] px-3">
             <div class="mt-2">
               <div class="font-extrabold">ثبت سفارش</div>
             </div>
@@ -48,7 +48,7 @@
         </transition-group>
       </main>
       <!-- descktop mode -->
-      <aside :class="{ blur: loading.spinner }" class="bg-gray-100 hidden sm:block sticky top-20 md:w-4/5 mx-auto rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
+      <aside :class="{ blur: loading.spinner }" class="bg-gray-100 hidden md:block sticky top-20 md:w-4/5 mx-auto rounded-2xl w-full overflow-hidden p-5 lg:w-[33%] 2xl:w-[25%]">
         <!-- <section class="bg-gray-200"> -->
         <services-box v-if="pricingData.const_prices" v-model="perBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
         <services-box v-if="pricingData.const_prices" v-model="perUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
@@ -58,7 +58,7 @@
       </aside>
     </transition-group>
     <transitionGroup tag="section" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] mt-2 mb-8 2xl:mx-[8%]"> </transitionGroup>
-    <Footer class="hidden sm:block" :class="{ blur: loading.spinner }" />
+    <Footer class="hidden md:block" :class="{ blur: loading.spinner }" />
     <Loading v-if="loading.spinner" msg="لطفا منتظر بمانید" />
   </div>
   <Modal v-model="formModalShow" :hasButton="false" title="ثبت سفارش">
@@ -119,7 +119,7 @@ export default {
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
     }
     const handleOpenToggle = (id) => {
-      if (window.innerWidth > 640) openToggle(id)
+      if (window.innerWidth > 768) openToggle(id)
     }
     const openToggle = (id) => {
       if (id === selectedItem.value) {
