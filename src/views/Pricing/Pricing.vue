@@ -3,9 +3,9 @@
     <NavBar :class="{ blur: loading.spinner }" />
     <transition-group tag="section" name="sections" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] lg:mx-[3rem] xl:mx-[6rem] md:h-full lg:h-fit mt-2 sm:mb-8 2xl:mx-[8%] max-h-full">
       <!-- بخش اصلی سایت -->
-      <main class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
+      <main class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%]" :class="{ blur: loading.spinner }">
         <transition-group name="list">
-          <section v-if="stage === 0" class="md:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
+          <section v-if="stage === 0" class="md:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg max-h-full">
             <div v-if="selectedPricingData.length > 0" class="hidden md:block py-5 mr-[0.390625rem]">
               <div class="text-xl font-extrabold">انتخاب شده ها</div>
             </div>
@@ -17,7 +17,7 @@
                 <div class="text-base md:text-xl font-extrabold">تعرفه های حسابرو</div>
               </div>
               <div>
-                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-16 md:pb-4 overflow-y-auto" tag="div" name="list">
+                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-16 md:pb-4  h-full" tag="div" name="">
                   <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)" class="hidden md:block">
                     <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                   </div>
@@ -27,6 +27,7 @@
                 </TransitionGroup>
               </div>
             </div>
+            
             <mobile-selected-container @handle-next-stage="handleMoveStage" @handle-delete-item="handleDeleteSelectedCard" :finalPrice="totalprice" :selectedArr="selectedPricingData" />
           </section>
           <section v-if="stage === 1" class="md:hidden mt-2 flex justify-between flex-col h-[88vh]">
