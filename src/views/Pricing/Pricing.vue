@@ -5,7 +5,7 @@
       <!-- بخش اصلی سایت -->
       <main class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
         <transition-group name="list">
-          <section v-if="stages.stage1" class="sm:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
+           <section v-if="stages.stage1" class="sm:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
             <div v-if="selectedPricingData.length > 0" class="hidden md:block py-5 mr-[0.390625rem]">
               <div class="text-xl font-extrabold">انتخاب شده ها</div>
             </div>
@@ -131,6 +131,9 @@ export default {
     const hanleMoveStage = (currentStage, nextStage) => {
       stages[currentStage] = false
       stages[nextStage] = true
+    }
+    const handlePreviousStage=()=>{
+      
     }
     const handleOpenForm = () => {
       formModalShow.value = true
