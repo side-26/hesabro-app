@@ -47,7 +47,7 @@
               <total-price-container title="قیمت ماژول ها" :totalPrice="totalprice" />
               <total-price-container title="قیمت نهایی" :totalPrice="totalPrice" />
             </div>
-            <AppButton @click="hanleMoveStage()" class="absolute bottom-0 w-full"> ادامه </AppButton>
+            <AppButton @click="handleMoveStage()" class="absolute bottom-0 w-full"> ادامه </AppButton>
           </section>
           <section v-if="stage === 2" class="relative md:hidden mt-2 h-[89vh]  px-3">
             <div class="mt-2 flex justify-between items-center">
@@ -98,7 +98,7 @@ import SelectedCard from '@/components/selectedCard/SelectedCard.vue'
 import PricingCard from '@/components/PricingCard/PricingCard.vue'
 import servicesBox from '@/components/servicesBox/servicesBox.vue'
 import MobileSelectedContainer from '@/components/MobileSelectedContainer/MobileSelectedContainer.vue'
-import TotalPriceContainer from '../../components/TotalPriceContainer/TotalPriceContainer.vue'
+import TotalPriceContainer from '@/components/TotalPriceContainer/TotalPriceContainer.vue'
 import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
 import Modal from '@/components/Modal/Modal.vue'
