@@ -5,7 +5,7 @@
       <!-- بخش اصلی سایت -->
       <main class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
         <transition-group name="list">
-          <section v-if="stages.stage1" class="md:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
+          <section v-if="stage === 0" class="md:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
             <div v-if="selectedPricingData.length > 0" class="hidden md:block py-5 mr-[0.390625rem]">
               <div class="text-xl font-extrabold">انتخاب شده ها</div>
             </div>
@@ -18,15 +18,18 @@
               </div>
               <div>
                 <TransitionGroup v-if="pricingData.items.length > 0" class="pb-4 max-h-[62vh] overflow-y-auto md:max-h-fit" tag="div" name="list">
-                  <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)">
-                    <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="openToggle" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
+                  <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)" class="hidden md:block">
+                    <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
+                  </div>
+                  <div v-for="(item, index) in pricingData.items" :key="item.id" class="block md:hidden">
+                    <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                   </div>
                 </TransitionGroup>
               </div>
             </div>
             <mobile-selected-container @handle-next-stage="hanleMoveStage" @handle-delete-item="handleDeleteSelectedCard" :finalPrice="totalprice" :selectedArr="selectedPricingData" />
           </section>
-          <section v-if="stages.stage2" class="md:hidden mt-2 flex justify-between flex-col h-[85vh]">
+          <section v-if="stage === 1" class="md:hidden mt-2 flex justify-between flex-col h-[85vh]">
             <div class="mx-3 mt-2">
               <div class="mb-4 flex justify-between items-center">
                 <div class="font-extrabold">امکانات جانبی</div>
@@ -41,12 +44,12 @@
               </div>
               <services-box v-if="pricingData.const_prices" v-model="perBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
               <services-box v-if="pricingData.const_prices" v-model="perUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
-              <TotalPriceContainer title="قیمت ماژول ها" :totalPrice="totalprice" />
-              <TotalPriceContainer title="قیمت نهایی" :totalPrice="totalPrice" />
+              <total-price-container title="قیمت ماژول ها" :totalPrice="totalprice" />
+              <total-price-container title="قیمت نهایی" :totalPrice="totalPrice" />
             </div>
             <AppButton @click="hanleMoveStage('stage2', 'stage3')"> ادامه </AppButton>
           </section>
-          <section v-if="stages.stage3" class="relative md:hidden mt-2 h-[86vh] px-3">
+          <section v-if="stage === 2" class="relative md:hidden mt-2 h-[86vh] px-3">
             <div class="mt-2 flex justify-between items-center">
               <div class="font-extrabold">ثبت سفارش</div>
               <div class="md:hidden">
@@ -106,11 +109,7 @@ import { users } from '@/api/users.api'
 export default {
   setup() {
     const router = useRouter()
-    const stages = reactive({
-      stage1: true,
-      stage2: false,
-      stage3: false,
-    })
+    const stage = ref(0)
     const pricingData = ref([])
     const selectedPricingData = ref([])
     const totalprice = ref(0)
@@ -135,7 +134,10 @@ export default {
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
     }
     const handleOpenToggle = (id) => {
-      if (window.innerWidth > 768) openToggle(id)
+      openToggle(id)
+    }
+    const handleOpenTooltip = (id) => {
+      openToggle(id)
     }
     const openToggle = (id) => {
       if (id === selectedItem.value) {
@@ -144,13 +146,11 @@ export default {
         selectedItem.value = id
       }
     }
-    const hanleMoveStage = (currentStage, nextStage) => {
-      stages[currentStage] = false
-      stages[nextStage] = true
+    const hanleMoveStage = () => {
+      ++stage.value
     }
-    const handlePreviousStage = (currentStage, PreStage) => {
-      stages[currentStage] = false
-      stages[PreStage] = true
+    const handlePreviousStage = () => {
+      --stage.value
     }
     const handleOpenForm = () => {
       formModalShow.value = true
@@ -224,7 +224,7 @@ export default {
       customerInfo,
       perBranch,
       perUser,
-      stages,
+      stage,
       modalProps,
       formModalShow,
       finalPrice,
@@ -239,6 +239,7 @@ export default {
       handleOpenToggle,
       hanleMoveStage,
       handlePreviousStage,
+      handleOpenTooltip,
     }
   },
   components: {
