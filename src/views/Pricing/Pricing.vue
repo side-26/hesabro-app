@@ -5,7 +5,7 @@
       <!-- بخش اصلی سایت -->
       <main class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
         <transition-group name="list">
-          <section v-if="stages.stage1" class="sm:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
+          <section v-if="stages.stage1" class="md:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
             <div v-if="selectedPricingData.length > 0" class="hidden md:block py-5 mr-[0.390625rem]">
               <div class="text-xl font-extrabold">انتخاب شده ها</div>
             </div>
@@ -31,7 +31,7 @@
               <div class="mb-4 flex justify-between items-center">
                 <div class="font-extrabold">امکانات جانبی</div>
                 <div class="md:hidden">
-                  <button @click="handlePreviousStage('stage2','stage1')" class="flex justify-between items-center">
+                  <button @click="handlePreviousStage('stage2', 'stage1')" class="flex justify-between items-center">
                     بازگشت
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -44,19 +44,19 @@
               <TotalPriceContainer title="قیمت ماژول ها" :totalPrice="totalprice" />
               <TotalPriceContainer title="قیمت نهایی" :totalPrice="totalPrice" />
             </div>
-            <Button @click="hanleMoveStage('stage2', 'stage3')"> ادامه </Button>
+            <AppButton @click="hanleMoveStage('stage2', 'stage3')"> ادامه </AppButton>
           </section>
           <section v-if="stages.stage3" class="relative md:hidden mt-2 h-[86vh] px-3">
             <div class="mt-2 flex justify-between items-center">
               <div class="font-extrabold">ثبت سفارش</div>
               <div class="md:hidden">
-                  <button @click="handlePreviousStage('stage3','stage2')" class="flex justify-between items-center">
-                    بازگشت
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                </div>
+                <button @click="handlePreviousStage('stage3', 'stage2')" class="flex justify-between items-center">
+                  بازگشت
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              </div>
             </div>
             <Bill class="block lg:hidden w-full" :sevicesPrice="servicesPrice" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
             <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
@@ -70,7 +70,7 @@
         <services-box v-if="pricingData.const_prices" v-model="perUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
         <Bill class="w-full" :pricePerBranch="perBranch.price" :pricePerUsers="perUser.price" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
         <!-- </section> -->
-        <Button :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">ثبت سفارش</Button>
+        <AppButton :disabled="totalprice === 0 || loading.submit" type="button" @click="handleOpenForm()">ثبت سفارش</AppButton>
       </aside>
     </transition-group>
     <transitionGroup tag="section" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] mt-2 mb-8 2xl:mx-[8%]"> </transitionGroup>
@@ -99,7 +99,7 @@ import TotalPriceContainer from '../../components/TotalPriceContainer/TotalPrice
 import Bill from '@/components/Bill/Bill.vue'
 import userForm from '@/components/UserForm/userForm.vue'
 import Modal from '@/components/Modal/Modal.vue'
-import Button from '@/components/Button/Button.vue'
+import AppButton from '@/components/Button/AppButton.vue'
 import Footer from '@/layout/footer/Footer.layout.vue'
 import { pricing } from '@/api/pricing.api'
 import { users } from '@/api/users.api'
@@ -251,7 +251,7 @@ export default {
     Loading,
     Modal,
     SelectedCard,
-    Button,
+    AppButton,
     MobileSelectedContainer,
     TotalPriceContainer,
   },

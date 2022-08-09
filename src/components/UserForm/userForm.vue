@@ -3,10 +3,10 @@
     <Form @submit="handleSubmit" :validation-schema="schema">
       <Input name="name" :type="text" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
       <Input name="phone_number" :type="text" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
-      <Button :disabled="false" type="submit" class="rounded-xl absolute lg:static bottom-0 left-0 w-full disabled:bg-gray-200 bg-cyan-600 hover:bg-cyan-700 disabled:cursor-not-allowed flex justify-center items-center font-bold text-sm transition-all">
+      <AppButton :disabled="false" type="submit" class="rounded-xl absolute lg:static bottom-0 left-0 w-full disabled:bg-gray-200 bg-cyan-600 hover:bg-cyan-700 disabled:cursor-not-allowed flex justify-center items-center font-bold text-sm transition-all">
         ثبت
         <!-- <span v-else class="animate-spin loading-spinner mx-1" v-for="item in 3" :key="item"></span> -->
-      </Button>
+      </AppButton>
     </Form>
   </section>
 </template>
@@ -15,14 +15,14 @@ import { Form } from 'vee-validate'
 import '@/config/yup.confing'
 import { string, object } from 'yup'
 import Input from './Input/Input.vue'
-import Button from '../Button/Button.vue'
+import AppButton from '../Button/AppButton.vue'
 export default {
   components: {
     Form,
     string,
     object,
     Input,
-    Button,
+    AppButton,
   },
   setup(props, { emit }) {
     const handleSubmit = (val) => {

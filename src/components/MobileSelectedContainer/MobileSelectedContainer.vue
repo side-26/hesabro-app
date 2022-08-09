@@ -40,7 +40,7 @@ import SelectedPricingCard from '../PricingCard/PricingCard.vue'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber'
 import { currency } from '@/config/currency.config'
-import Button from '../Button/Button.vue'
+import Button from '../Button/AppButton.vue'
 export default {
   name: 'MobileSelectedContainer',
   props: {
