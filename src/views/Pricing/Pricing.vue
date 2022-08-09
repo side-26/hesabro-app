@@ -1,7 +1,7 @@
 <template lang="">
   <div id="selectedContainer">
     <NavBar :class="{ blur: loading.spinner }" />
-    <transition-group tag="section" name="sections" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] lg:mx-[3rem] xl:mx-[6rem] h-full lg:h-fit mt-2 sm:mb-8 2xl:mx-[8%]">
+    <transition-group tag="section" name="sections" class="flex flex-col lg:flex-row relative justify-between items-start mx-2 md:mx-[6rem] lg:mx-[3rem] xl:mx-[6rem] md:h-full lg:h-fit mt-2 sm:mb-8 2xl:mx-[8%] max-h-full">
       <!-- بخش اصلی سایت -->
       <main class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
         <transition-group name="list">
@@ -17,7 +17,7 @@
                 <div class="text-base md:text-xl font-extrabold">تعرفه های حسابرو</div>
               </div>
               <div>
-                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-4 max-h-[62vh] overflow-y-auto md:max-h-fit" tag="div" name="list">
+                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-16 md:pb-4 overflow-y-auto" tag="div" name="list">
                   <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)" class="hidden md:block">
                     <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                   </div>
@@ -29,12 +29,12 @@
             </div>
             <mobile-selected-container @handle-next-stage="handleMoveStage" @handle-delete-item="handleDeleteSelectedCard" :finalPrice="totalprice" :selectedArr="selectedPricingData" />
           </section>
-          <section v-if="stage === 1" class="md:hidden mt-2 flex justify-between flex-col h-[85vh]">
+          <section v-if="stage === 1" class="md:hidden mt-2 flex justify-between flex-col h-[88vh]">
             <div class="mx-3 mt-2">
               <div class="mb-4 flex justify-between items-center">
                 <div class="font-extrabold">امکانات جانبی</div>
                 <div class="md:hidden">
-                  <button @click="handlePreviousStage('stage2', 'stage1')" class="flex justify-between items-center">
+                  <button @click="handlePreviousStage()" class="flex justify-between items-center ">
                     بازگشت
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -47,13 +47,13 @@
               <total-price-container title="قیمت ماژول ها" :totalPrice="totalprice" />
               <total-price-container title="قیمت نهایی" :totalPrice="totalPrice" />
             </div>
-            <AppButton @click="handleMoveStage()"> ادامه </AppButton>
+            <AppButton @click="hanleMoveStage()" class="absolute bottom-0 w-full"> ادامه </AppButton>
           </section>
-          <section v-if="stage === 2" class="relative md:hidden mt-2 h-[86vh] px-3">
+          <section v-if="stage === 2" class="relative md:hidden mt-2 h-[89vh]  px-3">
             <div class="mt-2 flex justify-between items-center">
               <div class="font-extrabold">ثبت سفارش</div>
               <div class="md:hidden">
-                <button @click="handlePreviousStage()" class="flex justify-between items-center">
+                <button @click="handlePreviousStage()" class="flex justify-between items-center ">
                   بازگشت
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />

@@ -1,7 +1,7 @@
 <template lang="">
   <div
-    :class="{ 'sm:h-auto ': isClose, 'sm:h-fit': !isClose, 'py-1': isSelected, 'py-[1.375rem]': !isSelected }"
-    class="sm:cursor-pointer relative hover:z-[100] sm:bg-gray-200 px-4 md:px-5 md:py-4 flex-grow sm:hover:-translate-y-1 sm:hover:shadow-md sm:hover:bg-white mx-0 my-3 rounded-lg transition-all"
+    :class="{ 'sm:h-auto ': isClose, 'sm:h-fit': !isClose, 'py-1': isSelected, 'py-[1.282rem]': !isSelected }"
+    class="sm:cursor-pointer relative hover:z-[100] bg-gray-self px-4 md:px-5 md:py-4 flex-grow sm:hover:-translate-y-1 sm:hover:shadow-md sm:hover:bg-white mx-0 my-3 rounded-lg transition-all"
   >
     <section class="flex transition-all items-center justify-between">
       <div class="flex justify-between items-center flex-grow">
@@ -113,3 +113,8 @@ export default {
   },
 }
 </script>
+<style lang="css">
+.bg-gray-self{
+  background-color: #F3F4F6;
+}
+</style>

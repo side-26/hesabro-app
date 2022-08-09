@@ -1,5 +1,5 @@
 <template lang="">
-  <section vif="totalPrice" class="relative font-medium md:bg-transparent my-4 bg-gray-50 p-3 lg:p- lg:odd:bg-gray-100 text-gray-800 text-sm rounded-lg">
+  <section vif="totalPrice" class="relative font-medium md:bg-transparent my-4 bg-gray-200 md:bg-gray-50 p-3 lg:p- lg:odd:bg-gray-100 text-gray-800 text-sm rounded-lg">
     <div class="my-4 hidden md:flex justify-between">
       <span>قیمت ماژول‌ها : </span><span class="font-extrabold">{{ toSepratedFarsiNo(totalPrice.toFixed()) }} {{ currency }}</span>
     </div>

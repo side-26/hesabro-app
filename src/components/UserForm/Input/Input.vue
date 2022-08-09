@@ -1,7 +1,7 @@
 <template>
   <div class="flex-col flex mb-3">
     <label class="font-medium text-xs mb-3 text-gray-700">{{ title }}</label>
-    <Field class="bg-gray-200 text-sm text-gray-800 font-bold py-2 pr-1 rounded-lg placeholder:font-bold placeholder:text-xs" :name="name" :type="type"  :placeholder="placeHolder" />
+    <Field class="bg-gray-200 text-sm text-gray-800 font-bold h-12 pr-1 rounded-xl placeholder:font-bold placeholder:text-xs placeholder:pr-1" :name="name" :type="type"  :placeholder="placeHolder" />
     <ErrorMessage class="text-xs font-bold text-red-600 mt-2" :name="name" />
   </div>
 </template>
