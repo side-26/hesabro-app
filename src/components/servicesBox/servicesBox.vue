@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="relative bg-gray-100 first-of-type:mb-4 rounded-xl p-3 md:mx-0 mb-3">
+  <div class="relative bg-gray-100 first-of-type:mb-4 rounded-xl p-3 sm:p-4 md:px-3 lg:px-1 xl:px-3 md:mx-0 mb-3">
     <div class="flex justify-between sm:items-center mb-3 flex-row">
       <h6 class="font-extrabold sm:self-center my-3 self-start sm:my-0 text-sm">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
