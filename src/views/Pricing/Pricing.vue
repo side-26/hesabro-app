@@ -5,7 +5,7 @@
       <!-- بخش اصلی سایت -->
       <main class="relative lg:mb-0 w-full lg:w-[80%] 2xl:w-[83%] overflow-hidden" :class="{ blur: loading.spinner }">
         <transition-group name="list">
-           <section v-if="stages.stage1" class="sm:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
+          <section v-if="stages.stage1" class="sm:bg-gray-100 mb-5 lg:mb-0 lg:mx-5 md:mx-8 px-1 md:px-6 lg:px-5 rounded-2xl md:shadow-lg">
             <div v-if="selectedPricingData.length > 0" class="hidden md:block py-5 mr-[0.390625rem]">
               <div class="text-xl font-extrabold">انتخاب شده ها</div>
             </div>
@@ -13,11 +13,11 @@
               <selected-card v-for="item in selectedPricingData" :key="item.id" @handleDeleteSelectedCard="handleDeleteSelectedCard" :pricingInfo="item" />
             </TransitionGroup>
             <div v-if="pricingData.items">
-              <div class="pt-5 sm:mb-8 mr-[0.390625rem]" v-if="pricingData.items.length > 0">
+              <div class="pt-5 sm:mb-8 mr-[0.390625rem] flex justify-between items-center" v-if="pricingData.items.length > 0">
                 <div class="text-base md:text-xl font-extrabold">تعرفه های حسابرو</div>
               </div>
               <div>
-                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-4 max-h-[62vh] overflow-y-auto md:max-h-fit" tag="div" name="list" >
+                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-4 max-h-[62vh] overflow-y-auto md:max-h-fit" tag="div" name="list">
                   <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)">
                     <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="openToggle" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                   </div>
@@ -28,8 +28,16 @@
           </section>
           <section v-if="stages.stage2" class="md:hidden mt-2 flex justify-between flex-col h-[85vh]">
             <div class="mx-3 mt-2">
-              <div class="mb-4">
+              <div class="mb-4 flex justify-between items-center">
                 <div class="font-extrabold">امکانات جانبی</div>
+                <div class="md:hidden">
+                  <button @click="handlePreviousStage('stage2','stage1')" class="flex justify-between items-center">
+                    بازگشت
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                </div>
               </div>
               <services-box v-if="pricingData.const_prices" v-model="perBranch" :min="pricingData.const_prices.default_branches_count" :percent="pricingData.const_prices.price_per_branch" :totalPrice="totalprice" title="تعداد شعب" desc="شعبه جدید" />
               <services-box v-if="pricingData.const_prices" v-model="perUser" :min="pricingData.const_prices.default_users_count" :percent="pricingData.const_prices.price_per_user" :totalPrice="totalprice" title="تعداد کاربران همزمان" desc="کاربر جدید" />
@@ -39,8 +47,16 @@
             <Button @click="hanleMoveStage('stage2', 'stage3')"> ادامه </Button>
           </section>
           <section v-if="stages.stage3" class="relative md:hidden mt-2 h-[86vh] px-3">
-            <div class="mt-2">
+            <div class="mt-2 flex justify-between items-center">
               <div class="font-extrabold">ثبت سفارش</div>
+              <div class="md:hidden">
+                  <button @click="handlePreviousStage('stage2','stage1')" class="flex justify-between items-center">
+                    بازگشت
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                </div>
             </div>
             <Bill class="block lg:hidden w-full" :sevicesPrice="servicesPrice" :discount="discount" :taxes="taxes" :totalPrice="totalprice" />
             <user-form :submitLoading="loading.submit" class="w-full mt-5" @handleSubmit="handleSubmit" />
@@ -132,8 +148,9 @@ export default {
       stages[currentStage] = false
       stages[nextStage] = true
     }
-    const handlePreviousStage=()=>{
-      
+    const handlePreviousStage = (currentStage, PreStage) => {
+      stages[currentStage] = false
+      stages[PreStage] = true
     }
     const handleOpenForm = () => {
       formModalShow.value = true
@@ -221,6 +238,7 @@ export default {
       openToggle,
       handleOpenToggle,
       hanleMoveStage,
+      handlePreviousStage,
     }
   },
   components: {
