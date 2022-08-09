@@ -24,11 +24,11 @@
         <selected-pricing-card v-for="(item, index) in selectedArr" :key="item.id" @handleDeleteSelectedCard="handleDeleteItem" :tarefehInfo="item" :isClose="false" :isLast="index >= selectedArr.length - 2" :isSelected="true" />
       </transition-group>
       <section class="bg-white px-3 pb-2">
-        <Button @click="handleNextStage('stage1','stage2')" :disabled="selectedArr.length === 0" type="button"
+        <AppButton @click="handleNextStage('stage1','stage2')" :disabled="selectedArr.length === 0" type="button"
           ><div class="flex justify-between items-center text-sm font-normal">
             <div>ادامه</div>
             <div class="font-bold">{{ toSepratedFarsiNo(finalPrice) }} {{ currency }} </div>
-          </div></Button
+          </div></AppButton
         >
       </section>
     </div>
@@ -40,7 +40,7 @@ import SelectedPricingCard from '../PricingCard/PricingCard.vue'
 import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber'
 import { currency } from '@/config/currency.config'
-import Button from '../Button/AppButton.vue'
+import AppButton from '../Button/AppButton.vue'
 export default {
   name: 'MobileSelectedContainer',
   props: {
@@ -54,7 +54,7 @@ export default {
   },
   components: {
     SelectedPricingCard,
-    Button,
+    AppButton,
   },
   setup(props, { emit }) {
     const isOpen = ref(false)
