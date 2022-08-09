@@ -27,7 +27,7 @@
                 </TransitionGroup>
               </div>
             </div>
-            <mobile-selected-container @handle-next-stage="hanleMoveStage" @handle-delete-item="handleDeleteSelectedCard" :finalPrice="totalprice" :selectedArr="selectedPricingData" />
+            <mobile-selected-container @handle-next-stage="handleMoveStage" @handle-delete-item="handleDeleteSelectedCard" :finalPrice="totalprice" :selectedArr="selectedPricingData" />
           </section>
           <section v-if="stage === 1" class="md:hidden mt-2 flex justify-between flex-col h-[85vh]">
             <div class="mx-3 mt-2">
@@ -47,7 +47,7 @@
               <total-price-container title="قیمت ماژول ها" :totalPrice="totalprice" />
               <total-price-container title="قیمت نهایی" :totalPrice="totalPrice" />
             </div>
-            <AppButton @click="hanleMoveStage()"> ادامه </AppButton>
+            <AppButton @click="handleMoveStage()"> ادامه </AppButton>
           </section>
           <section v-if="stage === 2" class="relative md:hidden mt-2 h-[86vh] px-3">
             <div class="mt-2 flex justify-between items-center">
@@ -146,7 +146,7 @@ export default {
         selectedItem.value = id
       }
     }
-    const hanleMoveStage = () => {
+    const handleMoveStage = () => {
       ++stage.value
     }
     const handlePreviousStage = () => {
@@ -237,7 +237,7 @@ export default {
       selectedItem,
       openToggle,
       handleOpenToggle,
-      hanleMoveStage,
+      handleMoveStage,
       handlePreviousStage,
       handleOpenTooltip,
     }
