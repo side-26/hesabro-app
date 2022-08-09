@@ -5,7 +5,7 @@
   >
     <section class="flex transition-all items-center justify-between">
       <div class="flex justify-between items-center flex-grow">
-        <div class="flex sm:items-center sm:justify-between flex-col sm:flex-row md:w-4/5 xl:w-2/3">
+        <div class="flex sm:items-center sm:justify-between flex-col sm:flex-row sm:w-2/3 md:w-4/5 xl:w-2/3">
           <div class="flex items-start">
             <h4 class="font-bold text-sm md:text-base mb-2 md:mb-0">
               {{ tarefehInfo.module_name }}
@@ -35,7 +35,7 @@
         </button>
       </div>
     </section>
-    <section class="hidden sm:block transition-all toggleSection overflow-hidden" :class="{ 'sm:h-0': !isClose }">
+    <section class="hidden md:block transition-all toggleSection overflow-hidden" :class="{ 'md:h-0': !isClose }">
       <ul class="">
         <li class="text-xs my-5 font-medium" v-for="(item, index) in itemArr" :key="item">
           <span>{{ toFarsiNumber(index + 1) }}</span>
