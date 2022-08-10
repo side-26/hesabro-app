@@ -7,7 +7,7 @@
           <div v-if="selectedArr.length === 0" class="text-sm text-slate-800 w-full">هیچ ماژولی انتخاب نشده!!</div>
           <!-- <div v-else class="text-sm font-bold">تعرفه های انتخاب شده</div> -->
           <div v-if="!isOpen" class="text-sm font-bold text-ellipsis whitespace-nowrap overflow-hidden w-[90%]">
-            <span class="text-[12px] font-normal" v-for="(item,index) in selectedArr" :key="item.id">{{ item.module_name }}<span v-if="index<selectedArr.length-1">,</span></span>
+            <span class="text-[12px] font-normal" v-for="(item,index) in selectedArr" :key="item.id">{{ item.module_name }}<span v-if="index<selectedArr.length-1"> , </span></span>
           </div>
           <div v-if="isOpen && selectedArr.length > 0">تعرفه های انتخاب شده</div>
         </transition-group>
