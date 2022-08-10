@@ -19,7 +19,7 @@
               <div>
                 <TransitionGroup v-if="pricingData.items.length > 0" class="pb-16 md:pb-4 h-full" tag="div" name="slide-fade">
                   <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)" class="">
-                    <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
+                    <pricing-card :isTooltipClosed="closedTooltip === item.id" :isClose="openedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                   </div>
                 </TransitionGroup>
               </div>
@@ -115,7 +115,8 @@ export default {
     const discount = ref(0)
     const taxes = ref(5)
     const toggled = ref(true)
-    const selectedItem = ref(-1)
+    const openedItem = ref(-1)
+    const closedTooltip = ref(-1)
     const loading = reactive({ submit: false, spinner: true })
     const btnStatusCode = ref(0)
     const selectedModulesId = ref([])
@@ -133,17 +134,18 @@ export default {
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
     }
     const handleOpenToggle = (id) => {
-      if (window.innerWidth > 768) openToggle(id)
+      openToggle(id, openedItem)
     }
     const handleOpenTooltip = (id) => {
-      openToggle(id)
+      openToggle(id, closedTooltip)
     }
-    const openToggle = (id) => {
-      if (id === selectedItem.value) {
-        selectedItem.value = -1
+    const openToggle = (id, value) => {
+      if (id === value.value) {
+        value.value = -1
       } else {
-        selectedItem.value = id
+        value.value = id
       }
+        console.log(value.value)
     }
     const handleMoveStage = () => {
       ++stage.value
@@ -234,7 +236,8 @@ export default {
       handleSubmit,
       handleDeleteSelectedCard,
       handleOpenForm,
-      selectedItem,
+      openedItem,
+      closedTooltip,
       openToggle,
       handleOpenToggle,
       handleMoveStage,

@@ -14,7 +14,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 relative" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <ToolTip :itemsArr="itemArr" :isClose="isClose" :isLast="isLast" />
+              <ToolTip :itemsArr="itemArr" :isClose="isTooltipClosed" :isLast="isLast" />
             </button>
           </div>
           <div class="font-bold">{{ toSepratedFarsiNo(tarefehInfo.price) }} {{ currency }}</div>
@@ -72,6 +72,10 @@ export default {
       type: Boolean,
       required: true,
     },
+    isTooltipClosed:{
+      type:Boolean,
+      required:true
+    }
   },
   components: {
     ToolTip,
@@ -99,6 +103,7 @@ export default {
     }
     onMounted(() => {
       itemArr.value = convertToArray(props.tarefehInfo.description)
+      console.log(props.isTooltipClosed)
     })
     return {
       itemArr,
