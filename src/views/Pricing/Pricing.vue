@@ -30,7 +30,7 @@
 
             <mobile-selected-container @handle-next-stage="handleMoveStage" @handle-delete-item="handleDeleteSelectedCard" :finalPrice="totalprice" :selectedArr="selectedPricingData" />
           </section>
-          <section v-if="stage === 1" class="md:hidden mt-2 flex justify-between flex-col h-[88vh]">
+          <section v-if="stage === 1" class="md:hidden mt-2 flex justify-between flex-col h-full">
             <div class="mx-3 mt-2">
               <div class="mb-4 flex justify-between items-center">
                 <div class="font-extrabold">امکانات جانبی</div>
@@ -48,7 +48,7 @@
               <total-price-container title="قیمت ماژول ها" :totalPrice="totalprice" />
               <total-price-container title="قیمت نهایی" :totalPrice="totalPrice" />
             </div>
-            <AppButton @click="handleMoveStage()" class="absolute bottom-0 w-full"> ادامه </AppButton>
+            <AppButton @click="handleMoveStage()" class="fixed bottom-2 mx-auto left-0 right-0 w-[95%]"> ادامه </AppButton>
           </section>
           <section v-if="stage === 2" class="relative md:hidden mt-2 h-[89vh] px-3">
             <div class="mt-2 flex justify-between items-center">
@@ -93,6 +93,7 @@
 <script>
 import { reactive, ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { convertNumbersToEnglish } from '../../utilities/convertNumberToEnglish'
 import Loading from '@/components/Loading/Loading.vue'
 import NavBar from '@/layout/navBar/NavBar.layout.vue'
 import SelectedCard from '@/components/selectedCard/SelectedCard.vue'
@@ -175,6 +176,7 @@ export default {
       modalProps.title = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selectedModulesId.value)
       loading.submit = true
+      val.phone_number = convertNumbersToEnglish(val.phone_number)
       customerInfo.value = { ...val, selected_modules_id: selectedModulesIdArray, users_count: perUser.value.count, branches_count: perBranch.value.count }
       users.post(customerInfo.value).then((item) => {
         modalProps.show = true
@@ -241,6 +243,7 @@ export default {
       handleMoveStage,
       handlePreviousStage,
       handleOpenTooltip,
+      convertNumbersToEnglish,
     }
   },
   components: {
