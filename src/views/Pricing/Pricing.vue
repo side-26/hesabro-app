@@ -18,10 +18,7 @@
               </div>
               <div>
                 <TransitionGroup v-if="pricingData.items.length > 0" class="pb-16 md:pb-4 h-full" tag="div" name="slide-fade">
-                  <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)" class="hidden md:block">
-                    <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
-                  </div>
-                  <div v-for="(item, index) in pricingData.items" :key="item.id" class="block md:hidden">
+                  <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)" class="">
                     <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                   </div>
                 </TransitionGroup>
@@ -31,7 +28,7 @@
             <mobile-selected-container @handle-next-stage="handleMoveStage" @handle-delete-item="handleDeleteSelectedCard" :finalPrice="totalprice" :selectedArr="selectedPricingData" />
           </section>
           <section v-if="stage === 1" class="md:hidden mt-2 flex justify-between flex-col h-full">
-            <div class="mx-3 mt-2">
+            <div class="mx-3 mt-2 pb-12">
               <div class="mb-4 flex justify-between items-center">
                 <div class="font-extrabold">امکانات جانبی</div>
                 <div class="md:hidden">
@@ -136,7 +133,7 @@ export default {
       pricingData.value.items.sort((firstItem, secondItem) => firstItem.id - secondItem.id)
     }
     const handleOpenToggle = (id) => {
-      openToggle(id)
+      if (window.innerWidth > 768) openToggle(id)
     }
     const handleOpenTooltip = (id) => {
       openToggle(id)
