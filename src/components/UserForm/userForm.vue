@@ -28,7 +28,7 @@ export default {
     const handleSubmit = (val) => {
       emit('handleSubmit', val)
     }
-    const phoneRegex = new RegExp('^(09)\\d{9}$')
+    const phoneRegex = new RegExp('^(09|۰۹)[0-9|۰-۹]{3}[0-9|۰-۹]{3}[0-9|۰-۹]{3}$')
     const schema = {
       name: string().required().label(),
       phone_number: string().matches(phoneRegex, 'شماره تلفن معتبر نمی باشد').required().label(),
