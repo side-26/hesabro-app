@@ -17,7 +17,7 @@
                 <div class="text-base md:text-xl font-extrabold">تعرفه های حسابرو</div>
               </div>
               <div>
-                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-16 md:pb-4 h-full" tag="div" name="">
+                <TransitionGroup v-if="pricingData.items.length > 0" class="pb-16 md:pb-4 h-full" tag="div" name="slide-fade">
                   <div v-for="(item, index) in pricingData.items" :key="item.id" @click="handleOpenToggle(item.id)" class="hidden md:block">
                     <pricing-card :isClose="selectedItem === item.id" v-if="pricingData" @handle-open-toggle="handleOpenTooltip" @handle-select-card="handleSelectCard" :isLast="pricingData.items.length - 2 <= index" :tarefehInfo="item" />
                   </div>
@@ -297,5 +297,18 @@ export default {
 .modal-leave-to .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+.slide-fade-enter-active {
+  transition: all 0.35s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.5s ease-in;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
