@@ -103,7 +103,6 @@ export default {
     }
     onMounted(() => {
       itemArr.value = convertToArray(props.tarefehInfo.description)
-      console.log(props.isTooltipClosed)
     })
     return {
       itemArr,

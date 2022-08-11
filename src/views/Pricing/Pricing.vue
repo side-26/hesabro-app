@@ -145,7 +145,6 @@ export default {
       } else {
         value.value = id
       }
-        console.log(value.value)
     }
     const handleMoveStage = () => {
       ++stage.value
