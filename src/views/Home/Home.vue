@@ -135,7 +135,7 @@ export default {
             }
           })
         },
-        { threshold: 0.35 },
+        { threshold: 0.25},
       )
       document.querySelectorAll('.observing').forEach((section) => {
         observer.observe(section)
