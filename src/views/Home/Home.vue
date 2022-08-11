@@ -29,7 +29,7 @@
           <div class="mr-3 md:mr-5 lg:mr-10 lg:w-2/3">
             <h3 class="font-extrabold text-center md:text-right text-3xl mb-10">درباره ما</h3>
             <p class="font-medium text-center md:text-right mx-auto md:mx-0 text-gray-900 w-4/5 text-xs">
-              سامانه یکپارچه حسابرو، راهکاری نوین جهت راه اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی ، خرید و فروش ، انبارگردانی،فروشگاه اینترنتی و دیگر فرایند ها را در بستری ساده و کم هزینه فراهم می آورد
+              سامانه یکپارچه حسابرو، راهکاری نوین جهت راه‌اندازی و مدیریت کسب و کارهاست. حسابرو تمامی نیازهای یک کسب و کار را از امور حسابداری و مالی، خرید و فروش، انبارگردانی، فروشگاه اینترنتی و دیگر فرایندها را در بستری ساده و کم هزینه فراهم می‌آورد.
             </p>
             <section class="flex flex-wrap justify-center md:justify-start my-14 md:my-[52px] mx-auto md:mx-0 lg:mx-3">
               <about-us-item :itemArr="item" v-for="item in achivements" :key="item.id" />
@@ -135,7 +135,7 @@ export default {
             }
           })
         },
-        { threshold: 0.25},
+        { threshold: 0.25 },
       )
       document.querySelectorAll('.observing').forEach((section) => {
         observer.observe(section)
