@@ -11,6 +11,7 @@
   </section>
 </template>
 <script>
+import { useForm } from 'vee-validate'
 import { Form } from 'vee-validate'
 import '@/config/yup.confing'
 import { string, object } from 'yup'
@@ -25,17 +26,20 @@ export default {
     AppButton,
   },
   setup(props, { emit }) {
-    const handleSubmit = (val) => {
-      emit('handleSubmit', val)
+    // const { handleSubmit } = useForm()
+
+    const handleSubmit = (val, actions) => {
+      emit('handleSubmit', val, actions)
     }
+    // const handle
     const phoneRegex = new RegExp('^(09|۰۹)[0-9|۰-۹]{3}[0-9|۰-۹]{3}[0-9|۰-۹]{3}$')
     const schema = {
       name: string().required().label(),
       phone_number: string().matches(phoneRegex, 'شماره تلفن معتبر نمی باشد').required().label(),
     }
     return {
-      handleSubmit,
       schema,
+      handleSubmit,
     }
   },
 }

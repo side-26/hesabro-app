@@ -167,30 +167,35 @@ export default {
     const handleTotalPrice = (price) => {
       totalprice.value += +price
     }
-
-    const handleSubmit = (val) => {
+    const handleModalProps = (show = false, desc = '', type = 'failed', redirectPath = '') => {
+      modalProps.show = show
+      modalProps.desc = desc
+      modalProps.type = type
+      modalProps.redirectPath = redirectPath
+    }
+    const handleSubmit = (val, actions) => {
       modalProps.isInfoModal = true
       btnStatusCode.value = 200
       modalProps.title = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selectedModulesId.value)
       loading.submit = true
-      val.phone_number = convertNumbersToEnglish(val.phone_number)
+      // val.phone_number = convertNumbersToEnglish(val.phone_number)
       customerInfo.value = { ...val, selected_modules_id: selectedModulesIdArray, users_count: perUser.value.count, branches_count: perBranch.value.count }
       users.post(customerInfo.value).then((item) => {
-        modalProps.show = true
         btnStatusCode.value = 0
-        if (item) {
-          modalProps.desc = 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.'
-          modalProps.type = 'success'
-          modalProps.redirectPath = '/'
+        if (item.data) {
+          handleModalProps(true, 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.', 'success', '/')
+          formModalShow.value = false
+          console.log(item.data)
+        } else if (item.response.status == 422) {
+          modalProps.show = false
+          actions.setFieldError(item.response.data.data[0].field, item.response.data.data[0].message)
+          console.log(item.response.data)
         } else {
-          modalProps.type = 'failed'
-          modalProps.desc = 'ثبت نام انجام نشد لطفا بعدا امتحان کنید.'
-          modalProps.redirectPath = '/pricing'
+          handleModalProps(true, 'ثبت سفارش با مشکل مواجه شد بعدا امتحان کنید.')
         }
         loading.submit = false
       })
-      formModalShow.value = false
     }
 
     onMounted(() => {
@@ -243,6 +248,7 @@ export default {
       handlePreviousStage,
       handleOpenTooltip,
       convertNumbersToEnglish,
+      handleModalProps,
     }
   },
   components: {
