@@ -4,5 +4,4 @@ import { setLocale}  from 'yup';
     mixed: {
       required: 'ورودی نمی تواند خالی باشد',
     },
-    
   });
