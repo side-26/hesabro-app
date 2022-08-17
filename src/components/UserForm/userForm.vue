@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Form @submit="handleSubmit"  :validation-schema="schema">
+    <Form @submit="handleSubmit" :validation-schema="schema">
       <Input name="name" :type="text" title="نام و نام خانوادگی" placeHolder="نام و نام خانوادگی خود را وارد کنید" />
       <Input name="phone_number" label="سلام" :type="text" title="موبایل" placeHolder="موبایل خود را وارد کنید" />
       <AppButton :disabled="false" type="submit" class="rounded-xl absolute lg:static bottom-0 left-0 w-full disabled:bg-gray-200 bg-cyan-600 hover:bg-cyan-700 disabled:cursor-not-allowed flex justify-center items-center font-bold text-sm transition-all">
@@ -25,12 +25,9 @@ export default {
     AppButton,
   },
   setup(props, { emit }) {
-    // const { handleSubmit } = useForm()
-
     const handleSubmit = (val, actions) => {
       emit('handleSubmit', val, actions)
     }
-    // const handle
     const phoneRegex = new RegExp('^(09|۰۹)[0-9|۰-۹]{3}[0-9|۰-۹]{3}[0-9|۰-۹]{3}$')
     const schema = {
       name: string().required().label(),

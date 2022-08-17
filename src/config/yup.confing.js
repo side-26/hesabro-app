@@ -1,7 +1,7 @@
-import { setLocale}  from 'yup';
+import { setLocale } from 'yup'
 
-  setLocale({
-    mixed: {
-      required: 'ورودی نمی تواند خالی باشد',
-    },
-  });
+setLocale({
+  mixed: {
+    required: 'ورودی نمی تواند خالی باشد',
+  },
+})

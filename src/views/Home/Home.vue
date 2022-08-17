@@ -36,15 +36,15 @@
             </section>
             <section class="bg-gray-50 py-4 px-3 mr-[-11px] md:mr-0 md:bg-transparent">
               <div class="font-medium text-sm md:text-base flex">
-                <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="../../../public/img/phoneIcon.svg" alt="company-phoneNumber" /></figure>
+                <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/phoneIcon.svg" alt="company-phoneNumber" /></figure>
                 <a class="text-slate-900" href="tel:03491002424">{{ toFarsiNumber('03491002426') }}</a>
               </div>
               <div class="font-medium text-sm md:text-base flex my-7">
-                <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="../../../public/img/whatsApp.svg" alt="company-whatsapp-account" /></figure>
+                <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/whatsApp.svg" alt="company-whatsapp-account" /></figure>
                 <a class="text-slate-900" href="tel:09981396467">{{ toFarsiNumber('09981396467') }}</a>
               </div>
               <div class="font-medium text-sm md:text-base flex">
-                <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="../../../public/img/mapMarker.svg" alt="company-address" /></figure>
+                <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/mapMarker.svg" alt="company-address" /></figure>
                 <span class="text-slate-900">کرمان، میدان قرنی، ساختمان پدر</span>
               </div>
             </section>

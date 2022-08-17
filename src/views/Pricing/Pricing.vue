@@ -179,18 +179,16 @@ export default {
       modalProps.title = 'ثبت سفارش'
       const selectedModulesIdArray = JSON.stringify(selectedModulesId.value)
       loading.submit = true
-      // val.phone_number = convertNumbersToEnglish(val.phone_number)
+      val.phone_number = convertNumbersToEnglish(val.phone_number)
       customerInfo.value = { ...val, selected_modules_id: selectedModulesIdArray, users_count: perUser.value.count, branches_count: perBranch.value.count }
       users.post(customerInfo.value).then((item) => {
         btnStatusCode.value = 0
         if (item.data) {
           handleModalProps(true, 'سفارش شما با موفقیت انجام شد.با شما تماس گرفته خواهد شد.', 'success', '/')
           formModalShow.value = false
-          console.log(item.data)
         } else if (item.response.status == 422) {
           modalProps.show = false
           actions.setFieldError(item.response.data.data[0].field, item.response.data.data[0].message)
-          console.log(item.response.data)
         } else {
           handleModalProps(true, 'ثبت سفارش با مشکل مواجه شد بعدا امتحان کنید.')
         }

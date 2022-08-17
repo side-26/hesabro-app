@@ -72,10 +72,10 @@ export default {
       type: Boolean,
       required: true,
     },
-    isTooltipClosed:{
-      type:Boolean,
-      required:true
-    }
+    isTooltipClosed: {
+      type: Boolean,
+      required: true,
+    },
   },
   components: {
     ToolTip,
