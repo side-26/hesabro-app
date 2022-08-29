@@ -1,4 +1,6 @@
-@import url(./font.css);
+﻿@import url(fontiran.css);
 body {
-    font-family: 'IranYecan' !important;
+	font-family: iranyekan  !important;
+	/* direction: rtl; */
 }
+

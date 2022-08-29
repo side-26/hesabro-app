@@ -4,7 +4,7 @@
       <h3 class="mb-4 sm:font-extrabold font-bold text-center sm:text-right text-sm sm:text-base">{{ pricingInfo.module_name }}</h3>
       <div class="flex flex-col sm:flex-row justify-between items-center">
         <div class="font-bold sm:text-sm text-xs">
-          {{ toSepratedFarsiNo(pricingInfo.price) }}
+          {{ handleSprateNumber(pricingInfo.price) }}
           {{ currency }}
         </div>
         <button @click="handleDelete(pricingInfo)" class="text-gray-300 w-full sm:w-auto px-2 py-2 rounded-md flex-wrap text-xs transition-all hover:text-red-500 hover:bg-red-300 justify-center my-2 sm:my-0 flex items-center font-semibold" type="button">
@@ -19,7 +19,7 @@
 </template>
 <script>
 import { ref } from 'vue'
-import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers.js'
 import { currency } from '@/config/currency.config'
 export default {
   name: 'SelectedPricingCard',
@@ -42,7 +42,7 @@ export default {
       handleDelete,
       currency,
       handleToggle,
-      toSepratedFarsiNo,
+      handleSprateNumber,
     }
   },
 }

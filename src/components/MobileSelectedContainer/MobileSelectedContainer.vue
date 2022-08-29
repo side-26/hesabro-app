@@ -15,7 +15,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           <div v-if="selectedArr.length > 0" class="absolute h-4 w-4 text-[12px] bg-red-600 left-[-50%] top-[-34%] text-white rounded-full">
-            {{ toFarsiNumber(selectedArr.length) }}
+            {{ selectedArr.length }}
           </div>
         </button>
       </section>
@@ -26,7 +26,7 @@
         <AppButton @click="handleNextStage()" :disabled="selectedArr.length === 0" type="button"
           ><div class="flex justify-between items-center text-sm font-medium">
             <div>ادامه</div>
-            <div class="font-extrabold">{{ toSepratedFarsiNo(finalPrice) }} {{ currency }}</div>
+            <div class="font-extrabold">{{ handleSprateNumber(finalPrice) }} {{ currency }}</div>
           </div></AppButton
         >
       </section>
@@ -36,8 +36,7 @@
 <script>
 import { ref } from '@vue/reactivity'
 import SelectedPricingCard from '../PricingCard/PricingCard.vue'
-import { toFarsiNumber } from '@/utilities/ConvertToPersian'
-import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers.js'
 import { currency } from '@/config/currency.config'
 import AppButton from '../Button/AppButton.vue'
 export default {
@@ -55,7 +54,7 @@ export default {
     SelectedPricingCard,
     AppButton,
   },
-  setup(props, { emit }) {
+  setup (props, { emit }) {
     const isOpen = ref(false)
     const handleOpen = () => {
       isOpen.value = !isOpen.value
@@ -69,8 +68,7 @@ export default {
     return {
       isOpen,
       handleOpen,
-      toFarsiNumber,
-      toSepratedFarsiNo,
+      handleSprateNumber,
       currency,
       handleDeleteItem,
       handleNextStage,

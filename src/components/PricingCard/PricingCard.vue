@@ -17,7 +17,7 @@
               <ToolTip :itemsArr="itemArr" :isClose="isTooltipClosed" :isLast="isLast" />
             </button>
           </div>
-          <div class="font-bold">{{ toSepratedFarsiNo(tarefehInfo.price) }} {{ currency }}</div>
+          <div class="font-bold">{{ handleSprateNumber(tarefehInfo.price) }} {{ currency }}</div>
         </div>
       </div>
       <div class="items-center flex sm:mt-0 mt-3 text-center sm:text-left" @click.stop="handleSelect(tarefehInfo.price)">
@@ -38,7 +38,7 @@
     <section class="hidden md:block transition-all toggleSection overflow-hidden" :class="{ 'md:h-0': !isClose }">
       <ul class="">
         <li class="text-xs my-5 font-medium" v-for="(item, index) in itemArr" :key="item">
-          <span>{{ toFarsiNumber(index + 1) }}</span>
+          <span>{{ index + 1 }}</span>
           <span>
             {{ item }}
           </span>
@@ -51,8 +51,7 @@
 import { ref, onMounted } from 'vue'
 import ToolTip from '../ToolTip/ToolTip.vue'
 import { currency } from '@/config/currency.config'
-import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber'
-import { toFarsiNumber } from '@/utilities/ConvertToPersian'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers.js'
 export default {
   name: 'PricingCard',
   props: {
@@ -80,7 +79,7 @@ export default {
   components: {
     ToolTip,
   },
-  setup(props, { emit }) {
+  setup (props, { emit }) {
     const itemArr = ref([])
     const handleSelect = (price) => {
       emit('handleSelectCard', price, props.tarefehInfo)
@@ -109,8 +108,7 @@ export default {
       handleSelect,
       hanleOpenToolTip,
       handleDelete,
-      toSepratedFarsiNo,
-      toFarsiNumber,
+      handleSprateNumber,
       convertToArray,
       currency,
     }

@@ -4,16 +4,16 @@
       <h6 class="font-extrabold sm:self-center my-3 self-start sm:my-0 text-sm">{{ title }}</h6>
       <Counter :price="price" :min="min" v-model="count" :count="count" :step="1" />
     </div>
-    <div class="text-xs font-regular my-4 md:my-3">به ازای هر {{ desc }}،{{ toSepratedFarsiNo(percent) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
+    <div class="text-xs font-regular my-4 md:my-3">به ازای هر {{ desc }}،{{ handleSprateNumber(percent) }} درصد به قیمت ماژول‌ها‌ ‌اضافه میشود</div>
     <div class="text-xs side-26 flex-row flex md:justify-between font-medium">
       <span>برای هر {{ desc }} : </span>
       <Transition name="fade" class="mr-3 md:mr-0">
-        <div v-if="price > 0" class="md:mr-auto text-sm font-bold">{{ toSepratedFarsiNo(price.toFixed(0)) }} {{ currency }}</div>
+        <div v-if="price > 0" class="md:mr-auto text-sm font-bold">{{ handleSprateNumber(price.toFixed(0)) }} {{ currency }}</div>
         <div v-else class="hidden md:block text-sm font-bold md:self-end lg:self-stretch">رایگان</div>
       </Transition>
     </div>
     <transition name="fade" class="w-fit mr-auto">
-      <div v-if="finalPrice > 0" class="md:hidden text-base mt-4 lg:mt-0 font-extrabold">{{ toSepratedFarsiNo(finalPrice.toFixed(0)) }} {{ currency }}</div>
+      <div v-if="finalPrice > 0" class="md:hidden text-base mt-4 lg:mt-0 font-extrabold">{{ handleSprateNumber(finalPrice.toFixed(0)) }} {{ currency }}</div>
       <div v-else class="md:hidden text-base mt-4 lg:mt-0 font-bold">رایگان</div>
     </transition>
   </div>
@@ -22,7 +22,7 @@
 <script>
 import { ref, computed, watch, onMounted } from 'vue'
 import Counter from '@/components/Counter/Counter.vue'
-import { toSepratedFarsiNo } from '@/utilities/farsiSepratedNumber'
+import { handleSprateNumber } from '@/utilities/SeprateNumbers.js'
 import { currency } from '@/config/currency.config'
 export default {
   props: {
@@ -74,7 +74,7 @@ export default {
       price,
       finalPrice,
       handleCounter,
-      toSepratedFarsiNo,
+      handleSprateNumber,
       currency,
     }
   },

@@ -37,11 +37,11 @@
             <section class="bg-gray-50 py-4 px-3 mr-[-11px] md:mr-0 md:bg-transparent">
               <div class="font-medium text-sm md:text-base flex">
                 <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/phoneIcon.svg" alt="company-phoneNumber" /></figure>
-                <a class="text-slate-900" href="tel:03491002424">{{ toFarsiNumber('03491002426') }}</a>
+                <a class="text-slate-900" href="tel:03491002424">03491002426 </a>
               </div>
               <div class="font-medium text-sm md:text-base flex my-7">
                 <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/whatsApp.svg" alt="company-whatsapp-account" /></figure>
-                <a class="text-slate-900" href="tel:09981396467">{{ toFarsiNumber('09981396467') }}</a>
+                <a class="text-slate-900" href="tel:09981396467">09981396467</a>
               </div>
               <div class="font-medium text-sm md:text-base flex">
                 <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/mapMarker.svg" alt="company-address" /></figure>
@@ -101,14 +101,13 @@ import AdvantagesCard from '@/components/AdvantagesCard/AdvantagesCard.vue'
 import aboutUsItem from '@/components/AboutUsItem/aboutUsItem.vue'
 import ModuleCard from '@/components/ModuleCard/ModuleCard.vue'
 import HesabroWaterMark from '@/components/hesabroWaterMark/HesabroWaterMark.vue'
-import { toFarsiNumber } from '@/utilities/ConvertToPersian'
 import { advantages } from '@/config/tarefeh.data'
 import { modules } from '@/config/tarefeh.data'
 import { customers } from '@/config/tarefeh.data'
 import { achivements } from '@/config/tarefeh.data'
 export default {
   name: 'home',
-  data() {
+  data () {
     return {
       advantagesData: advantages,
       pricingModules: modules,
@@ -124,7 +123,7 @@ export default {
     ModuleCard,
     HesabroWaterMark,
   },
-  setup() {
+  setup () {
     const currentPosition = ref('')
     onMounted(() => {
       const observer = new IntersectionObserver(
@@ -143,7 +142,6 @@ export default {
     })
     return {
       currentPosition,
-      toFarsiNumber,
     }
   },
 }

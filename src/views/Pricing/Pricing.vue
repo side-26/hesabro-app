@@ -90,7 +90,7 @@
 <script>
 import { reactive, ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { convertNumbersToEnglish } from '../../utilities/convertNumberToEnglish'
+import { convertNumbersToEnglish } from '@/utilities/convertNumberToEnglish'
 import Loading from '@/components/Loading/Loading.vue'
 import NavBar from '@/layout/navBar/NavBar.layout.vue'
 import SelectedCard from '@/components/selectedCard/SelectedCard.vue'
@@ -106,7 +106,7 @@ import Footer from '@/layout/footer/Footer.layout.vue'
 import { pricing } from '@/api/pricing.api'
 import { users } from '@/api/users.api'
 export default {
-  setup() {
+  setup () {
     const router = useRouter()
     const stage = ref(0)
     const pricingData = ref([])
@@ -236,6 +236,7 @@ export default {
       handleTotalPrice,
       handleSelectCard,
       handleSubmit,
+      convertNumbersToEnglish,
       handleDeleteSelectedCard,
       handleOpenForm,
       openedItem,
@@ -245,7 +246,6 @@ export default {
       handleMoveStage,
       handlePreviousStage,
       handleOpenTooltip,
-      convertNumbersToEnglish,
       handleModalProps,
     }
   },
