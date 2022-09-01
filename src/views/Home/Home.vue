@@ -37,7 +37,7 @@
             <section class="bg-gray-50 py-4 px-3 mr-[-11px] md:mr-0 md:bg-transparent">
               <div class="font-medium text-sm md:text-base flex">
                 <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/phoneIcon.svg" alt="company-phoneNumber" /></figure>
-                <a class="text-slate-900" href="tel:03491002424">03491002426 </a>
+                <a class="text-slate-900" href="tel:03491002426">03491002426 </a>
               </div>
               <div class="font-medium text-sm md:text-base flex my-7">
                 <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/whatsApp.svg" alt="company-whatsapp-account" /></figure>
