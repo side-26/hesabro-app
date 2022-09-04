@@ -41,7 +41,7 @@
               </div>
               <div class="font-medium text-sm md:text-base flex my-7">
                 <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/whatsApp.svg" alt="company-whatsapp-account" /></figure>
-                <a class="text-slate-900" href="tel:09981396467">09981396467</a>
+                <a class="text-slate-900" href="https://api.whatsapp.com/send?phone=989981396467" target="_blank">09981396467</a>
               </div>
               <div class="font-medium text-sm md:text-base flex">
                 <figure class="text-slate-500 ml-4 w-5 h-5"><img class="w-full h-full" src="/img/mapMarker.svg" alt="company-address" /></figure>
